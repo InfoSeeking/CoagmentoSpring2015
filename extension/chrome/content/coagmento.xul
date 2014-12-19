@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<?xml-stylesheet 
+  href="chrome://coagmento/skin/overlay.css"
+  type="text/css" 
+?>
+<!DOCTYPE overlay SYSTEM "chrome://coagmento/locale/sidebar.dtd">
+<overlay id="coagmento-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript" src="chrome://coagmento/content/coagmento.js" />
+
+    <toolbox id="navigator-toolbox">
+        <toolbar id="coagmento-Toolbar" toolbarname="Coagmento Toolbar" accesskey="C"
+                 class="chromeclass-toolbar" context="toolbar-context-menu"
+                 hidden="false" persist="hidden">
+                
+                <toolbarbutton id="coagmento-CSpaceLogin-Button" 
+					tooltiptext="Go to your CSpace" 
+					label="CSpace" 
+					oncommand="loadURL('http://www.coagmento.org/CSpace/')" />
+
+				<toolbarseparator />             
+
+				<toolbarbutton id="coagmento-Activate-Button" 
+					tooltiptext="Turn on/off recording your browsing history" 
+					label="Turn On" 
+					oncommand="activate()" />
+
+				<toolbarseparator />
+				
+        		<toolbarbutton id="coagmento-Save-Button" 
+					tooltiptext="Save/remove this page" 
+					label="Bookmark" 
+					oncommand="save()" />
+				<toolbarbutton id="coagmento-Recommend-Button" 
+					tooltiptext="Recommend this page to others" 
+					label="Recommend" 
+					oncommand="recommend()" />
+				<toolbarbutton id="coagmento-Annotate-Button" 
+					tooltiptext="Make notes on the current page" 
+					label="Annotate" 
+					oncommand="annotate()" />
+				<toolbarbutton id="coagmento-Snip-Button" 
+					tooltiptext="Snip highlighted passage from the current page" 
+					label="Snip" 
+					oncommand="snip()" />
+
+ 				<toolbarseparator />
+        		
+				<toolbarbutton id="coagmento-Views-Status-Button" 
+					tooltiptext="Views status" 
+					label="" 
+					oncommand="loadURLPopup('http://www.coagmento.org/CSpace/views.php', 'Views for the current page')" />
+				<toolbarbutton id="coagmento-Notes-Status-Button" 
+					tooltiptext="Annotations status" 
+					label="" 
+					oncommand="annotate()" />
+				<toolbarbutton id="coagmento-Snippets-Status-Button" 
+					tooltiptext="Snippets status" 
+					label="" 
+					oncommand="showSnippets()" />
+				
+				<toolbarseparator />
+				
+				<toolbarbutton id="coagmento-Project-Status-Button" 
+					tooltiptext="Active project" 
+					label="Project: N/A" 
+					oncommand="loadURL('http://www.coagmento.org/CSpace/index.php?project')" />
+					
+				<toolbarseparator />
+        </toolbar>
+    </toolbox>
+
+	<menupopup id="viewSidebarMenu">
+    	<menuitem key="key_openSidebar" 
+			observes="viewSidebar"  />
+  	</menupopup>
+  
+	<keyset id="mainKeyset">
+    	<key id="key_openSidebar" command="viewSidebar"
+         	key="&openSidebar.commandkey;"
+         	modifiers="&openSidebar.modifierskey;" />
+  	</keyset>
+ 
+	<broadcasterset id="mainBroadcasterSet">
+    	<broadcaster id="viewSidebar"
+                 label="&sidebar.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="http://www.coagmento.org/CSpace/sidebar.php"
+                 sidebartitle="&sidebar.title;"
+                 oncommand="toggleSidebar('viewSidebar');" />
+	</broadcasterset>
+	
+</overlay>
