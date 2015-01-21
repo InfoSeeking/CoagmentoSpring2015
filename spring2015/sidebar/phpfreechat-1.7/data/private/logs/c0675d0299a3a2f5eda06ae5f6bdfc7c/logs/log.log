@@ -1,0 +1,967 @@
+ch_proj-20003	15/10/2014	12:45:04		matt_test_3 joins proj-20003
+ch_proj-20003	15/10/2014	12:45:13	matt_test_3	asd
+ch_proj-20003	15/10/2014	12:45:15	matt_test_3	hello
+ch_proj-20003	15/10/2014	12:45:16	matt_test_3	world
+ch_proj-20003	15/10/2014	12:45:26	matt_test_3	zxc
+ch_proj-20003	15/10/2014	12:45:30	matt_test_3	alkj
+ch_proj-20003	15/10/2014	13:17:35	matt_test_3	mm
+ch_proj-20003	15/10/2014	13:24:07	matt_test_3	[color=#FF0000] asdasd [/color]
+ch_proj-20003	15/10/2014	13:24:14	matt_test_3	[color=#FF0000] [b]asdasd[/b] [/color]
+ch_proj-20005	15/10/2014	19:37:26		matt_test_5 joins proj-20005
+ch_proj-20005	15/10/2014	19:37:33	matt_test_5	lkj
+ch_proj-20006	15/10/2014	20:24:49		matt_test_6 joins proj-20006
+ch_proj-20007	15/10/2014	20:27:42		matt_test_6 joins proj-20007
+ch_proj-20007	15/10/2014	20:28:35		matt_test_7 joins proj-20007
+ch_proj-20008	16/10/2014	11:59:13		matt_test_8 joins proj-20008
+ch_proj-20008	16/10/2014	15:03:16		matt_test_8 joins proj-20008
+ch_proj-20009	16/10/2014	16:23:16		matt_test_9 joins proj-20009
+ch_proj-20010	16/10/2014	16:27:32		matt_test_9 joins proj-20010
+ch_proj-20011	16/10/2014	22:28:11	matt_test_12	asd
+ch_proj-20011	16/10/2014	22:28:12	matt_test_12	qwe
+ch_proj-20011	16/10/2014	22:37:32		matt_test_11 joins proj-20011
+	16/10/2014	22:43:01		asd
+ch_proj-20011	16/10/2014	22:43:26		matt_test_13 joins proj-20011
+ch_proj-20011	16/10/2014	22:43:30	matt_test_13	asd
+ch_proj-20011	17/10/2014	08:46:24	matt_test_13	lkj
+ch_proj-20011	17/10/2014	08:46:27	matt_test_13	hhh
+ch_proj-10002	17/10/2014	11:40:55		test_2 joins proj-10002
+ch_proj-10004	17/10/2014	12:57:35		test_4 joins proj-10004
+ch_proj-10003	17/10/2014	13:01:58		test_3 joins proj-10003
+ch_proj-10003	17/10/2014	16:48:07		test_3 joins proj-10003
+ch_proj-20012	17/10/2014	20:14:42		matt_test_12 joins proj-20012
+ch_proj-20013	17/10/2014	22:57:43		matt_test_13 joins proj-20013
+ch_proj-20013	18/10/2014	11:25:14	matt_test_13	a
+ch_proj-20013	18/10/2014	11:25:17	matt_test_13	s
+ch_proj-20013	18/10/2014	11:36:11	matt_test_13	a
+ch_proj-20013	18/10/2014	14:28:42		matt_test_13 joins proj-20013
+ch_proj-20011	18/10/2014	14:30:43		matt_test_11 joins proj-20011
+ch_proj-20014	18/10/2014	14:38:38		matt_test_14 joins proj-20014
+ch_proj-20016	20/10/2014	11:59:07		matt_test_16 joins proj-20016
+ch_proj-20016	20/10/2014	11:59:10	matt_test_16	asd
+ch_proj-20016	20/10/2014	11:59:13	matt_test_16	laksk
+ch_proj-20017	20/10/2014	13:56:29		matt_test_17 joins proj-20017
+ch_proj-20017	20/10/2014	13:56:31	matt_test_17	asd
+ch_proj-10008	20/10/2014	14:22:59		test_8 joins proj-10008
+ch_proj-30001	20/10/2014	14:49:25		matt_test_17 joins proj-30001
+ch_proj-30001	20/10/2014	14:49:28		matt_chris_2 joins proj-30001
+ch_proj-30001	20/10/2014	14:49:37	matt_test_17	098
+ch_proj-30001	20/10/2014	14:49:41	matt_chris_2	hello
+ch_proj-30001	20/10/2014	14:49:41	matt_test_17	777
+ch_proj-20018	21/10/2014	19:15:55		matt_test_18 joins proj-20018
+ch_proj-20018	21/10/2014	19:16:31	matt_test_18	lkj
+ch_proj-20018	21/10/2014	19:16:33	matt_test_18	ll
+ch_proj-20018	21/10/2014	23:02:31	matt_test_18	asd
+ch_proj-20018	21/10/2014	23:02:35	matt_test_18	fff
+ch_proj-20018	21/10/2014	23:09:12	matt_test_18	asd
+ch_proj-20018	21/10/2014	23:11:19	matt_test_18	[color=#FF0000] [b]asdlkj[/b] [/color]
+ch_proj-20018	21/10/2014	23:15:54	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:17:26	matt_test_18	[color=#FF0000] ccczxc [/color]
+ch_proj-20018	21/10/2014	23:19:39	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:25:11	matt_test_18	[color=#FF0000] zxc [/color]
+ch_proj-20018	21/10/2014	23:33:16	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:35:18	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:37:16	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:37:45	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:39:46	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:42:33	matt_test_18	[color=#FF0000] hello world [/color]
+ch_proj-20018	21/10/2014	23:46:01	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:46:17	matt_test_18	[color=#FF0000] rehash [/color]
+ch_proj-20018	21/10/2014	23:46:30	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:48:18	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:48:33	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:48:37	matt_test_18	[color=#FF0000] l [/color]
+ch_proj-20018	21/10/2014	23:50:05	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:50:11	matt_test_18	[color=#FF0000] cc [/color]
+ch_proj-20018	21/10/2014	23:50:18	matt_test_18	[color=#FF0000] lkj [/color]
+ch_proj-20018	21/10/2014	23:51:57	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:52:37	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:52:44	matt_test_18	[color=#FF0000] asd [/color]
+ch_proj-20018	21/10/2014	23:53:08		matt_test_18_1 joins proj-20018
+ch_proj-20018	21/10/2014	23:53:09	matt_test_18_1	asd
+ch_proj-20018	21/10/2014	23:53:14	matt_test_18_1	jkl
+ch_proj-20018	21/10/2014	23:56:06	matt_test_18_1	asd
+ch_proj-20018	21/10/2014	23:57:00	matt_test_18_1	asd
+ch_proj-20018	21/10/2014	23:57:02	matt_test_18_1	sdf
+ch_proj-20018	21/10/2014	23:57:03	matt_test_18_1	lll
+ch_proj-20018	21/10/2014	23:57:05	matt_test_18_1	qwe
+ch_proj-20018	21/10/2014	23:59:44	matt_test_18_1	asd
+ch_proj-20018	21/10/2014	23:59:45	matt_test_18_1	jkl
+ch_proj-20018	22/10/2014	00:00:53	matt_test_18_1	hahahaha
+ch_proj-20018	22/10/2014	00:43:05	matt_test_18_1	matt_test_18 quit (timeout)
+ch_proj-20018	22/10/2014	10:56:38		matt_test_18_1 joins proj-20018
+ch_proj-20018	22/10/2014	10:56:41	matt_test_18_1	lll
+ch_proj-20018	22/10/2014	10:57:26	matt_test_18_1	lkj
+ch_proj-20018	22/10/2014	10:59:50	matt_test_18_1	zxc
+ch_lib-p-20018	22/10/2014	11:07:48		matt_test_18 joins lib-p-20018
+ch_lib-p-20018	22/10/2014	11:07:56	matt_test_18	poi
+ch_lib-p-103	01/11/2014	12:28:02		matt_test_2 joins lib-p-103
+ch_lib-p-103	01/11/2014	12:28:14		matt_test_3 joins lib-p-103
+ch_lib-p-103	01/11/2014	12:28:29	matt_test_3	hey there
+ch_lib-p-103	01/11/2014	12:28:32	matt_test_2	hi back
+ch_lib-p-103	01/11/2014	12:28:36	matt_test_3	sup
+ch_lib-p-103	01/11/2014	12:28:41	matt_test_2	chicken butt
+ch_lib-p-103	01/11/2014	12:28:44	matt_test_3	lol
+ch_lib-p-103	01/11/2014	12:28:47	matt_test_3	silly
+ch_lib-p-3	06/11/2014	08:47:13		library_3 joins lib-p-3
+ch_lib-p-3	06/11/2014	08:47:25		library_2 joins lib-p-3
+ch_lib-p-3	06/11/2014	08:47:38	library_2	test by matt
+ch_lib-p-3	06/11/2014	08:47:43	library_3	test by matt
+ch_lib-p-29	06/11/2014	10:28:25		library_34 joins lib-p-29
+ch_lib-p-9	07/11/2014	13:03:26		library_12 joins lib-p-9
+ch_lib-p-9	07/11/2014	13:07:42	library_12	Am I connected to you here Tammy?
+ch_lib-p-9	07/11/2014	13:09:11		library_11 joins lib-p-9
+ch_lib-p-26	07/11/2014	13:09:11		library_28 joins lib-p-26
+ch_lib-p-26	07/11/2014	13:10:44		library_29 joins lib-p-26
+ch_lib-p-3	07/11/2014	13:11:08		library_3 joins lib-p-3
+ch_lib-p-11	07/11/2014	13:11:08		library_16 joins lib-p-11
+ch_lib-p-4	07/11/2014	13:11:11		library_5 joins lib-p-4
+ch_lib-p-4	07/11/2014	13:11:12		library_4 joins lib-p-4
+ch_lib-p-11	07/11/2014	13:11:13		library_15 joins lib-p-11
+ch_lib-p-32	07/11/2014	13:11:14		library_37 joins lib-p-32
+ch_lib-p-4	07/11/2014	13:11:26	library_4	hey there
+ch_lib-p-13	07/11/2014	13:11:43		library_20 joins lib-p-13
+ch_lib-p-3	07/11/2014	13:12:08		library_2 joins lib-p-3
+ch_lib-p-4	07/11/2014	13:13:08	library_5	i have no idea how to do this..
+ch_lib-p-11	07/11/2014	13:13:16	library_16	heyy lol
+ch_lib-p-3	07/11/2014	13:13:20	library_3	hi
+ch_lib-p-11	07/11/2014	13:13:23	library_15	hey!
+ch_lib-p-13	07/11/2014	13:13:24		library_19 joins lib-p-13
+ch_lib-p-3	07/11/2014	13:13:25	library_3	Whats good
+ch_lib-p-32	07/11/2014	13:13:26	library_37	hi
+ch_lib-p-32	07/11/2014	13:13:28		library_38 joins lib-p-32
+ch_lib-p-13	07/11/2014	13:13:28	library_20	hey
+ch_lib-p-26	07/11/2014	13:13:31	library_28	hehehe
+ch_lib-p-32	07/11/2014	13:13:38	library_38	hi
+ch_lib-p-11	07/11/2014	13:13:42	library_15	library_16 quit (timeout)
+ch_lib-p-13	07/11/2014	13:13:43	library_19	erica ?
+ch_lib-p-9	07/11/2014	13:13:45	library_11	Hi
+ch_lib-p-26	07/11/2014	13:13:52	library_29	hi pumkin
+ch_lib-p-32	07/11/2014	13:13:53	library_38	betch
+ch_lib-p-13	07/11/2014	13:13:53	library_20	no donny
+ch_lib-p-4	07/11/2014	13:13:59	library_5	hello btw
+ch_lib-p-4	07/11/2014	13:14:00	library_4	me either, just follow the steps, i guess
+ch_lib-p-3	07/11/2014	13:14:00	library_3	Ctrl+shift+s
+ch_lib-p-3	07/11/2014	13:14:02	library_3	:D
+ch_lib-p-32	07/11/2014	13:14:04	library_37	beach
+ch_lib-p-13	07/11/2014	13:14:06	library_19	lmfaoooo
+ch_lib-p-32	07/11/2014	13:14:07	library_37	lets start
+ch_lib-p-9	07/11/2014	13:14:09	library_12	I want that 20 bucks so let me know if you have any questions =p
+ch_lib-p-4	07/11/2014	13:14:14	library_4	hello to you too
+ch_lib-p-13	07/11/2014	13:14:18	library_20	so what we doing
+ch_lib-p-32	07/11/2014	13:14:27	library_37	what topic on interpersonal reltaionships?
+ch_lib-p-3	07/11/2014	13:14:28	library_2	hellooooo
+ch_lib-p-3	07/11/2014	13:14:29	library_3	WHERE ARE YOU
+ch_lib-p-3	07/11/2014	13:14:30	library_3	no
+ch_lib-p-3	07/11/2014	13:14:31	library_3	get out
+ch_lib-p-3	07/11/2014	13:14:36	library_2	YOU GE TOUT
+ch_lib-p-13	07/11/2014	13:14:38	library_19	start researching your topic 
+ch_lib-p-3	07/11/2014	13:14:41	library_3	I was here first
+ch_lib-p-3	07/11/2014	13:14:45	library_2	no bye
+ch_lib-p-13	07/11/2014	13:14:47	library_19	my topic is diveristy
+ch_lib-p-3	07/11/2014	13:14:48	library_3	My topic is the same as yours
+ch_lib-p-32	07/11/2014	13:14:49	library_38	odk
+ch_lib-p-32	07/11/2014	13:14:51	library_38	idk
+ch_lib-p-32	07/11/2014	13:14:53	library_38	lol
+ch_lib-p-3	07/11/2014	13:14:53	library_3	hurhur
+ch_lib-p-13	07/11/2014	13:14:54	library_20	im going to do my comm research topic
+ch_lib-p-3	07/11/2014	13:14:54	library_2	W O W
+ch_lib-p-4	07/11/2014	13:14:56	library_4	my topic is cultrural influence on self identity
+ch_lib-p-26	07/11/2014	13:14:57	library_28	my topic is identity in depression yo
+ch_lib-p-32	07/11/2014	13:14:59	library_38	im so disoriented rn
+ch_lib-p-4	07/11/2014	13:15:01	library_5	Aite so we're gonna find articles?
+ch_lib-p-9	07/11/2014	13:15:01	library_12	and sorry for that compliment... generally people don't get a compliment then block and hate someone so my bad... didn't forsee that effect
+ch_lib-p-11	07/11/2014	13:15:02	library_15	my topic is deception within interpersonal/intimate relationships
+ch_lib-p-9	07/11/2014	13:15:03	library_11	My topic is deception in interpersonal relationships
+ch_lib-p-3	07/11/2014	13:15:03	library_3	We finished our paper...
+ch_lib-p-3	07/11/2014	13:15:08	library_2	are we gonna look for the same stuff that we had before?
+ch_lib-p-13	07/11/2014	13:15:09	library_20	i still need to finish extended abstract lol
+ch_lib-p-3	07/11/2014	13:15:09	library_3	LOOOOL
+ch_lib-p-3	07/11/2014	13:15:14	library_2	same sources?
+ch_lib-p-3	07/11/2014	13:15:15	library_3	HAHAHAA
+ch_lib-p-3	07/11/2014	13:15:17	library_3	we could
+ch_lib-p-26	07/11/2014	13:15:20	library_28	okay so i found a source for my topic
+ch_lib-p-26	07/11/2014	13:15:20	library_29	Darkside of emotions- jealousy grief and hurt within relationships
+ch_lib-p-4	07/11/2014	13:15:23	library_4	i think that's what are we supossed to do...
+ch_lib-p-9	07/11/2014	13:15:24	library_12	mine is social networking causing people to become disconnected
+ch_lib-p-13	07/11/2014	13:15:30	library_19	so your topic is medical right but what about it ?
+ch_lib-p-32	07/11/2014	13:15:31	library_38	well do you have the paper
+ch_lib-p-3	07/11/2014	13:15:31	library_2	lol yes
+ch_lib-p-26	07/11/2014	13:15:35	library_29	wanna go first? or do you want to do my topic first??
+ch_lib-p-3	07/11/2014	13:15:35	library_3	where should welook?
+ch_lib-p-3	07/11/2014	13:15:37	library_3	cuz idr
+ch_lib-p-32	07/11/2014	13:15:38	library_38	are we allowed to go to sakai?
+ch_lib-p-9	07/11/2014	13:15:40	library_12	so I'm trying to find different search phrases... do you want to do mine or yours first?
+ch_lib-p-3	07/11/2014	13:15:43	library_3	academic search premier?
+ch_lib-p-13	07/11/2014	13:15:43	library_19	we should probably do yours first
+ch_lib-p-26	07/11/2014	13:15:48	library_28	i already started
+ch_lib-p-3	07/11/2014	13:15:50	library_2	comm and mass media complete
+ch_lib-p-3	07/11/2014	13:15:53	library_2	comabstracts
+ch_lib-p-13	07/11/2014	13:15:58	library_20	expectancy violation theory
+ch_lib-p-26	07/11/2014	13:16:00	library_28	
+ch_lib-p-3	07/11/2014	13:16:05	library_3	kk
+ch_lib-p-3	07/11/2014	13:16:09	library_2	I like the first one
+ch_lib-p-32	07/11/2014	13:16:12	library_37	lmao 
+ch_lib-p-3	07/11/2014	13:16:12	library_2	CMMC
+ch_lib-p-13	07/11/2014	13:16:17	library_19	okay so you want to do research on that right now ?
+ch_lib-p-32	07/11/2014	13:16:18	library_38	it has to do with IP relationships
+ch_lib-p-9	07/11/2014	13:16:24	library_11	we can do yours
+ch_lib-p-32	07/11/2014	13:16:26	library_37	yeaah
+ch_lib-p-32	07/11/2014	13:16:27	library_38	thats all i know
+ch_lib-p-4	07/11/2014	13:16:29	library_5	Do u know how the websites popped out works?
+ch_lib-p-13	07/11/2014	13:16:39	library_20	yea ima do medical
+ch_lib-p-13	07/11/2014	13:16:43	library_20	i just saw that
+ch_lib-p-13	07/11/2014	13:17:01	library_19	omgyoure confusing memedical or expectancy theory...which one do you want to research now ?
+ch_lib-p-9	07/11/2014	13:17:02	library_12	ok cool... make sure you use the "bookmark tab" next to the "snip" on top and rate the pages and annotate the sources and how they are helpful
+ch_lib-p-32	07/11/2014	13:17:12	library_37	lets choose a topic
+ch_lib-p-9	07/11/2014	13:17:13	library_11	ok
+ch_lib-p-3	07/11/2014	13:17:20	library_3	uhh
+ch_lib-p-9	07/11/2014	13:17:26	library_12	and the people that use these tools the best will win so we're winning =] hehe good luck!!! I'm here if you need me
+ch_lib-p-3	07/11/2014	13:17:27	library_3	yea i dont like comabstraccts
+ch_lib-p-32	07/11/2014	13:17:28	library_38	ok i got the syllabus
+ch_lib-p-32	07/11/2014	13:17:29	library_37	one for each of us about interpersonal relationships
+ch_lib-p-3	07/11/2014	13:17:29	library_3	not feeling it
+ch_lib-p-32	07/11/2014	13:17:31	library_38	i went on sakai
+ch_lib-p-32	07/11/2014	13:17:35	library_38	no
+ch_lib-p-3	07/11/2014	13:17:37	library_2	we used CMMC before
+ch_lib-p-13	07/11/2014	13:17:37	library_20	medical bc thats what theyre making me do
+ch_lib-p-26	07/11/2014	13:17:39	library_28	if you find anything on the five factor model or the Big 5 bookmark it
+ch_lib-p-32	07/11/2014	13:17:44	library_38	we should work on the same topic no
+ch_lib-p-32	07/11/2014	13:17:45	library_38	?
+ch_lib-p-26	07/11/2014	13:17:48	library_28	i searched up depression and personality
+ch_lib-p-9	07/11/2014	13:17:51	library_12	"snip" any paragraphs or phrases that seem to support either side of the argument
+ch_lib-p-3	07/11/2014	13:17:54	library_3	yea thats what i figured
+ch_lib-p-32	07/11/2014	13:17:56	library_37	okay
+ch_lib-p-32	07/11/2014	13:17:59	library_38	isnt that the whole point ? like partner work?
+ch_lib-p-13	07/11/2014	13:18:01	library_19	okay but what about medical ? i need to know a little more so i know what to search for
+ch_lib-p-4	07/11/2014	13:18:13	library_4	are we supposed to read the articles we find....
+ch_lib-p-32	07/11/2014	13:18:15	library_37	well he said others had different topics
+ch_lib-p-13	07/11/2014	13:18:15	library_19	mine is about diversity benefiting the workplace
+ch_lib-p-32	07/11/2014	13:18:18	library_38	For this assignment, you will write a 5-7 page paper that should examine the accuracy of a non-academic article regarding interpersonal communication.  Non-academic sources for this paper could include, but are not limited to, newspaper or magazine articles, as well as short book chapters.  Examples: Cosmopolitan, Maxim, Vanity Fair, Seventeen, Women’s Health, Men’s 
+ch_lib-p-3	07/11/2014	13:18:24	library_3	im on the article for media portrayals
+ch_lib-p-4	07/11/2014	13:18:29	library_5	i have no idea..
+ch_lib-p-32	07/11/2014	13:18:29	library_38	^daz in da syllabus
+ch_lib-p-3	07/11/2014	13:18:33	library_2	NO I'M DOING THAT ONE
+ch_lib-p-3	07/11/2014	13:18:36	library_2	UGHHHH
+ch_lib-p-11	07/11/2014	13:18:46		library_16_1 joins lib-p-11
+ch_lib-p-32	07/11/2014	13:18:47	library_38	okay so what is something that is always in like cosmo or something
+ch_lib-p-13	07/11/2014	13:18:50	library_20	idk wtf we doing homestly
+ch_lib-p-11	07/11/2014	13:18:52	library_16_1	huyhuiy
+ch_lib-p-32	07/11/2014	13:18:52	library_38	like playing hard to get?
+ch_lib-p-13	07/11/2014	13:18:56	library_20	all it says is medical
+ch_lib-p-11	07/11/2014	13:19:02	library_16_1	im backkk
+ch_lib-p-26	07/11/2014	13:19:03	library_29	ill look!
+ch_lib-p-11	07/11/2014	13:19:05	library_16_1	what r we doing lool
+ch_lib-p-32	07/11/2014	13:19:05	library_37	okay
+ch_lib-p-32	07/11/2014	13:19:13	library_38	cxhloe
+ch_lib-p-3	07/11/2014	13:19:13	library_3	TOO LATE
+ch_lib-p-11	07/11/2014	13:19:17	library_15	wanna work on mine first?
+ch_lib-p-13	07/11/2014	13:19:22	library_20	he said we have to work on the same topic so i say we do diversity in workplace instead of medical
+ch_lib-p-3	07/11/2014	13:19:25	library_2	rsxhztjytterhttrjtza
+ch_lib-p-11	07/11/2014	13:19:25	library_15	for like 15 min?
+ch_lib-p-32	07/11/2014	13:19:25	library_38	okay is not an answer to the question
+ch_lib-p-11	07/11/2014	13:19:29	library_16_1	sure
+ch_lib-p-11	07/11/2014	13:19:31	library_15	or less
+ch_lib-p-11	07/11/2014	13:19:32	library_16_1	whats ur topiv
+ch_lib-p-3	07/11/2014	13:19:32	library_3	I OPENED TASK PAD
+ch_lib-p-3	07/11/2014	13:19:34	library_3	holy moly
+ch_lib-p-3	07/11/2014	13:19:35	library_3	LMAO
+ch_lib-p-11	07/11/2014	13:19:35	library_16_1	topic*
+ch_lib-p-32	07/11/2014	13:19:37	library_37	yeah im saying okay to that
+ch_lib-p-3	07/11/2014	13:19:43	library_3	we could just put our outline on here and write more
+ch_lib-p-3	07/11/2014	13:19:44	library_3	LAWL
+ch_lib-p-11	07/11/2014	13:19:45	library_15	deception in romantic relationships
+ch_lib-p-3	07/11/2014	13:19:52	library_2	okay I'm doing this one: Contradictory Messages: A Content Analysis of Hollywood-Produced Romantic Comedy Feature Films. 
+ch_lib-p-32	07/11/2014	13:19:55	library_38	para que
+ch_lib-p-13	07/11/2014	13:19:58	library_20	ok so first we looking for diversity in workplace 
+ch_lib-p-32	07/11/2014	13:20:03	library_37	wat?
+ch_lib-p-26	07/11/2014	13:20:09	library_29	is it within relationships?
+ch_lib-p-26	07/11/2014	13:20:09	library_28	not relationshipds
+ch_lib-p-4	07/11/2014	13:20:09	library_4	we basically just search and read...
+ch_lib-p-3	07/11/2014	13:20:13	library_3	GASP
+ch_lib-p-26	07/11/2014	13:20:18	library_29	just people in general?
+ch_lib-p-3	07/11/2014	13:20:18	library_3	why didnt we see that article before?
+ch_lib-p-11	07/11/2014	13:20:19	library_16_1	ok. did you focus on any age groups or marriage or anything
+ch_lib-p-13	07/11/2014	13:20:19	library_19	i know thats what ive been trying to tell you woman lol 
+ch_lib-p-4	07/11/2014	13:20:20	library_4	then use bookmark and snip....
+ch_lib-p-3	07/11/2014	13:20:21	library_2	yup yup
+ch_lib-p-26	07/11/2014	13:20:22	library_28	its like how peopels personalities are affected by depression
+ch_lib-p-3	07/11/2014	13:20:24	library_2	I have no clue
+ch_lib-p-26	07/11/2014	13:20:30	library_28	yeah people who have depression
+ch_lib-p-26	07/11/2014	13:20:32	library_28	not just anyone
+ch_lib-p-26	07/11/2014	13:20:35	library_28	turn off your chat man
+ch_lib-p-4	07/11/2014	13:20:37	library_5	what key words did u put in to search?
+ch_lib-p-3	07/11/2014	13:20:49	library_3	shameful
+ch_lib-p-26	07/11/2014	13:20:52	library_29	lol
+ch_lib-p-4	07/11/2014	13:20:53	library_4	culture and self identity
+ch_lib-p-3	07/11/2014	13:20:55	library_3	Do u think they see these?
+ch_lib-p-13	07/11/2014	13:20:56	library_20	ok so look for journals. thats what im looking for
+ch_lib-p-32	07/11/2014	13:21:00	library_37	what are you typing in the search?
+ch_lib-p-3	07/11/2014	13:21:01	library_3	OH HEYYY I DIDNT KNOW U WERE ON MY TASK PAD
+ch_lib-p-3	07/11/2014	13:21:02	library_3	GET OUT
+ch_lib-p-4	07/11/2014	13:21:07	library_5	kk
+ch_lib-p-3	07/11/2014	13:21:14	library_2	lol yeah they see these
+ch_lib-p-3	07/11/2014	13:21:15	library_2	hello!
+ch_lib-p-32	07/11/2014	13:21:20	library_37	????
+ch_lib-p-32	07/11/2014	13:21:22	library_38	IPR
+ch_lib-p-32	07/11/2014	13:21:36	library_38	romantic IPRs
+ch_lib-p-11	07/11/2014	13:21:41	library_15	I basically focused on just general intimate relationships
+ch_lib-p-13	07/11/2014	13:21:42	library_19	try looking for anything articles journals etc. im doing journals too
+ch_lib-p-3	07/11/2014	13:21:56	library_3	xDD imagine what happens when they read this chat. Oh dear lord
+ch_lib-p-3	07/11/2014	13:21:57	library_3	LOLOLOL
+ch_lib-p-32	07/11/2014	13:21:59	library_37	i cant find anything
+ch_lib-p-32	07/11/2014	13:22:03	library_37	like it says no search is found
+ch_lib-p-3	07/11/2014	13:22:07	library_2	I hope they find it amusing
+ch_lib-p-32	07/11/2014	13:22:11	library_38	i got like 2210 results
+ch_lib-p-11	07/11/2014	13:22:19	library_15	I already used the two articles "Tell Me Sweet..." and "Understanding the Routine Expression..." for tmy 2 main sources.
+ch_lib-p-3	07/11/2014	13:22:21	library_3	wait so if im reading it or whatever they dont hae the task pad opened?
+ch_lib-p-3	07/11/2014	13:22:22	library_3	=_=
+ch_lib-p-4	07/11/2014	13:22:35	library_4	i feel sleepy
+ch_lib-p-4	07/11/2014	13:22:41	library_5	loll
+ch_lib-p-32	07/11/2014	13:22:45	library_37	okay
+ch_lib-p-9	07/11/2014	13:22:47	library_12	what about deception in interpersonal relationships are you trying to prove?
+ch_lib-p-11	07/11/2014	13:22:49	library_16_1	gotchu. ok well im just looking through google, not ru libraries and i just bookmarked another artciel through another university
+ch_lib-p-11	07/11/2014	13:22:53	library_16_1	seems awesome lol
+ch_lib-p-9	07/11/2014	13:23:01	library_12	so I can do a more specific search
+ch_lib-p-32	07/11/2014	13:23:03	library_37	is a review of a book okay?
+ch_lib-p-32	07/11/2014	13:23:06	library_37	for this?
+ch_lib-p-32	07/11/2014	13:23:08	library_38	did you end up getting results?
+ch_lib-p-32	07/11/2014	13:23:16	library_37	yes
+ch_lib-p-4	07/11/2014	13:23:21	library_5	what does he mean by switching partners!!??
+ch_lib-p-32	07/11/2014	13:23:22	library_37	i fouind one on sweet talk
+ch_lib-p-32	07/11/2014	13:23:26	library_37	but its a book review
+ch_lib-p-32	07/11/2014	13:23:28	library_37	is that fine?
+ch_lib-p-26	07/11/2014	13:23:31	library_29	have you found anything?
+ch_lib-p-32	07/11/2014	13:23:35	library_38	no i think we need an academic journal because then it defeats the purpose of this exercise
+ch_lib-p-4	07/11/2014	13:23:41	library_4	i guess we are having new partners....
+ch_lib-p-4	07/11/2014	13:23:44	library_4	later
+ch_lib-p-26	07/11/2014	13:23:48	library_28	yeah i found like 3 sources so far
+ch_lib-p-32	07/11/2014	13:23:53	library_37	i thought you said we need a magaznie
+ch_lib-p-26	07/11/2014	13:24:01	library_29	did you bookmark them?
+ch_lib-p-32	07/11/2014	13:24:01	library_38	no shit!
+ch_lib-p-26	07/11/2014	13:24:03	library_28	just find anything with depression and relates to someones personality traits
+ch_lib-p-26	07/11/2014	13:24:04	library_28	yupp
+ch_lib-p-13	07/11/2014	13:24:07	library_20	im lost honestly i usually dont use library shit
+ch_lib-p-26	07/11/2014	13:24:08	library_29	i found two and bookmarked them
+ch_lib-p-32	07/11/2014	13:24:11	library_37	wtf?
+ch_lib-p-32	07/11/2014	13:24:13	library_37	im confused
+ch_lib-p-32	07/11/2014	13:24:15	library_38	but you still need an article
+ch_lib-p-32	07/11/2014	13:24:16	library_38	lmao
+ch_lib-p-9	07/11/2014	13:24:26	library_11	I search deception and relationships
+ch_lib-p-32	07/11/2014	13:24:26	library_37	what
+ch_lib-p-32	07/11/2014	13:24:30	library_38	omg -_-
+ch_lib-p-13	07/11/2014	13:24:32	library_19	lol its okay
+ch_lib-p-32	07/11/2014	13:24:42	library_38	do you understand the point of this assignment
+ch_lib-p-32	07/11/2014	13:24:43	library_37	what are you finding info on
+ch_lib-p-11	07/11/2014	13:24:47	library_15	i think i want to find signs of deception, and reactions to deception as well
+ch_lib-p-32	07/11/2014	13:24:52	library_37	you just confused me with the  Cosmo
+ch_lib-p-32	07/11/2014	13:24:58	library_37	but what are you finding info on 
+ch_lib-p-11	07/11/2014	13:25:08	library_16_1	im on it
+ch_lib-p-3	07/11/2014	13:25:18	library_2	that's lame
+ch_lib-p-32	07/11/2014	13:25:31	library_37	no
+ch_lib-p-32	07/11/2014	13:25:38	library_38	lmao
+ch_lib-p-32	07/11/2014	13:25:42	library_37	but for this assignment
+ch_lib-p-4	07/11/2014	13:25:42	library_5	NOOOOO
+ch_lib-p-32	07/11/2014	13:25:44	library_38	yo like 
+ch_lib-p-32	07/11/2014	13:25:47	library_38	basically 
+ch_lib-p-32	07/11/2014	13:25:50	library_37	we just find academic journal info?
+ch_lib-p-32	07/11/2014	13:25:52	library_38	listen up oka
+ch_lib-p-32	07/11/2014	13:25:53	library_38	y
+ch_lib-p-32	07/11/2014	13:25:58	library_38	STEP 1.
+ch_lib-p-32	07/11/2014	13:26:02	library_37	omg -_-
+ch_lib-p-32	07/11/2014	13:26:10	library_38	LOOK AT COSMO AND READ THE ADVICE COLUMN
+ch_lib-p-32	07/11/2014	13:26:16	library_37	WAIT
+ch_lib-p-32	07/11/2014	13:26:19	library_38	STEP 2. EVALUATE THE INFO
+ch_lib-p-32	07/11/2014	13:26:21	library_37	IS THIS FOR THIS ASSIGNMENT RIGHT NOW
+ch_lib-p-32	07/11/2014	13:26:23	library_37	OR FOR THE PAPER
+ch_lib-p-9	07/11/2014	13:26:26	library_11	I started with different types of deception and ellaborated on deception in romantic relationships
+ch_lib-p-32	07/11/2014	13:26:28	library_37	IDC ABOUT THE PAPER RIGHT NOW
+ch_lib-p-4	07/11/2014	13:26:31	library_4	i am confused... why should we change partners?
+ch_lib-p-3	07/11/2014	13:26:39	library_3	"The Association Between Adolescents' Exposure to Romantic-Themed Media and the Endorsement of Unrealistic Beliefs About Romantic Relationships."
+ch_lib-p-4	07/11/2014	13:26:41	library_4	are we swithing our research topics too?
+ch_lib-p-3	07/11/2014	13:26:43	library_3	THIS ARTICLE WHAT THE HAIL
+ch_lib-p-32	07/11/2014	13:26:47	library_38	I THOUGHT WE WERE DOING OUR RESEARCH ON THE PAPER
+ch_lib-p-4	07/11/2014	13:26:54	library_5	IDK!! That's so weird!
+ch_lib-p-32	07/11/2014	13:26:54	library_37	omg
+ch_lib-p-32	07/11/2014	13:27:14	library_37	just tell me what to look up
+ch_lib-p-3	07/11/2014	13:27:16	library_2	HOW DID WE EVEN MISS THAT ONE
+ch_lib-p-32	07/11/2014	13:27:25	library_38	ugh
+ch_lib-p-3	07/11/2014	13:27:27	library_3	it wont even let me read it
+ch_lib-p-3	07/11/2014	13:27:30	library_3	thats dumb
+ch_lib-p-32	07/11/2014	13:27:45	library_37	like a topic to look up
+ch_lib-p-32	07/11/2014	13:27:48	library_37	i found something about 
+ch_lib-p-32	07/11/2014	13:27:58	library_37	predictors of friend approval for romantic reltaionships
+ch_lib-p-32	07/11/2014	13:28:10	library_37	im pretty sure thats in the cosmo magaznies
+ch_lib-p-3	07/11/2014	13:28:14	library_3	its a conference
+ch_lib-p-32	07/11/2014	13:28:15	library_38	ok then read it and see if it fits into the topic
+ch_lib-p-32	07/11/2014	13:28:19	library_38	yeah its not that hard
+ch_lib-p-32	07/11/2014	13:28:26	library_37	into what topic
+ch_lib-p-32	07/11/2014	13:28:45	library_38	of our paper
+ch_lib-p-32	07/11/2014	13:28:56	library_37	whats our topic
+ch_lib-p-4	07/11/2014	13:29:10	library_5	I'm starving..
+ch_lib-p-32	07/11/2014	13:29:11	library_38	Fact or Fiction Paper 	For this assignment, you will write a 5-7 page paper that should examine the accuracy of a non-academic article regarding interpersonal communication.  Non-academic sources for this paper could include, but are not limited to, newspaper or magazine articles, as well as short book chapters.  Examples: Cosmopolitan, Maxim, Vanity Fair, Seventeen, Women’s Health, Men’s Health, “He’s Just Not That Into You”, “It’s Called a Break-Up Because It’s Broken”, “Men are from Mars, Women are from Venus”, or a pre-approved alternate option.  Academic sources can include any interpersonal communication journal article that is and involves some type of empirical research. 	You should utilize at least 1 (ONE) academic journal article about your topic to help in your discussion, though using more might be necessary for some topics.  In your paper, you should briefly explain the main points/purpose of the article.  You should then elect 3 (THREE) pieces of information/advice from the article to compare/contrast to class information and your chosen journal article(s).   	This assignment is an extension of the previous 2 papers written in this class.  Thus, when analyzing the findings of the academic source, you should be critical.  Are the results of the articles generalizable and/or valid? (etc.). Use your experience in analyzing academic articles in your discussion.  	NOTE:  You should tie knowledge you have gained in this class to aid in your evaluation.  You should not evaluate the article based on your own personal experience, but rather through concepts, ideas, and theories discussed in class and found in your research.  Meaning, you should not include your opinion about the topic itself, but simply analyze how the academic and non-academic articles compare.
+ch_lib-p-32	07/11/2014	13:29:19	library_37	okay
+ch_lib-p-32	07/11/2014	13:29:23	library_38	For this assignment, you will write a 5-7 page paper that should examine the accuracy of a non-academic article regarding interpersonal communication.  Non-academic sources for this paper could include, but are not limited to, newspaper or magazine articles, as well as short book chapters.  Examples: Cosmopolitan, Maxim, Vanity Fair, Seventeen, Women’s Health, Men’s Health, “He’s Just Not That Into You”, “It’s Called a Break-Up Because It’s Broken”, “Men are from Mars, Women are from Venus”, or a pre-approved alternate option.  Academic sources can include any interpersonal communication journal article that is and involves some type of empirical research. 	You should utilize at least 1 (ONE) academic journal article about your topic to help in your discussion, though using more might be necessary for some topics.  In your paper, you should briefly explain the main points/purpose of the article.  You should then elect 3 (THREE) pieces of information/advice from the article to compare/contrast to class information and your chosen journal article(s).   	This assignment is an extension of the previous 2 papers written in this class.  Thus, when analyzing the findings of the academic source, you should be critical.  Are the results of the articles generalizable and/or valid? (etc.). Use your experience in analyzing academic articles in your discussion.  	NOTE:  You should tie knowledge you have gained in this class to aid in your evaluation.  You should not evaluate the article based on your own personal experience, but rather through concepts, ideas, and theories discussed in class and found in your research.  Meaning, you should not include your opinion about the topic itself, but simply analyze how the academic and non-academic articles compare.
+ch_lib-p-32	07/11/2014	13:29:24	library_37	where do we put in the info
+ch_lib-p-4	07/11/2014	13:29:26	library_4	i told you to have lunch with me
+ch_lib-p-26	07/11/2014	13:29:27	library_29	how's it going
+ch_lib-p-4	07/11/2014	13:29:41	library_5	:`(
+ch_lib-p-9	07/11/2014	13:29:45	library_12	what's your thesis?
+ch_lib-p-32	07/11/2014	13:29:50	library_38	idk 
+ch_lib-p-3	07/11/2014	13:29:52	library_2	Gendering the Self: Selective Magazine Reading and Reinforcement of Gender Conformity. 
+ch_lib-p-3	07/11/2014	13:29:59	library_2	dukgrsgvreser
+ch_lib-p-32	07/11/2014	13:30:01	library_37	so what do you want  to write about
+ch_lib-p-4	07/11/2014	13:30:02	library_4	this is much easier than i think...
+ch_lib-p-3	07/11/2014	13:30:03	library_2	THIS IS BEAUTIFUL
+ch_lib-p-4	07/11/2014	13:30:06	library_5	i have a sandwich in my backpack and i cant eat it!!
+ch_lib-p-32	07/11/2014	13:30:06	library_37	cus i thouight you said we're gonna find the same topic
+ch_lib-p-3	07/11/2014	13:30:16	library_3	"Linking Exposure to Outcomes: Early Adolescents’ Consumption of Sexual Content in Six Media"
+ch_lib-p-4	07/11/2014	13:30:23	library_4	i know haha
+ch_lib-p-3	07/11/2014	13:30:25	library_3	all these articles that could have been
+ch_lib-p-3	07/11/2014	13:30:27	library_3	RAGRETS
+ch_lib-p-3	07/11/2014	13:30:29	library_3	;(
+ch_lib-p-32	07/11/2014	13:30:39	library_38	yeah like for this half
+ch_lib-p-3	07/11/2014	13:30:39	library_2	SO MANY RAGRETS
+ch_lib-p-4	07/11/2014	13:30:41	library_4	sandwich is a stupid idea....get up early next time
+ch_lib-p-3	07/11/2014	13:30:45	library_3	this one is all about sexual imagery
+ch_lib-p-3	07/11/2014	13:30:46	library_3	D;
+ch_lib-p-32	07/11/2014	13:30:46	library_37	what
+ch_lib-p-32	07/11/2014	13:30:49	library_37	what half
+ch_lib-p-32	07/11/2014	13:30:50	library_38	and then for the next half its a different topic
+ch_lib-p-4	07/11/2014	13:30:55	library_5	no :(
+ch_lib-p-32	07/11/2014	13:30:58	library_38	he explained this to u 
+ch_lib-p-32	07/11/2014	13:30:58	library_37	okay then
+ch_lib-p-4	07/11/2014	13:30:59	library_5	never
+ch_lib-p-4	07/11/2014	13:31:01	library_5	ever
+ch_lib-p-32	07/11/2014	13:31:04	library_38	omg
+ch_lib-p-4	07/11/2014	13:31:09	library_5	EVER
+ch_lib-p-32	07/11/2014	13:31:11	library_38	this is so annoying lmao!!!
+ch_lib-p-4	07/11/2014	13:31:11	library_4	stubborn girl
+ch_lib-p-4	07/11/2014	13:31:13	library_4	i get it
+ch_lib-p-32	07/11/2014	13:31:13	library_38	im dead
+ch_lib-p-32	07/11/2014	13:31:13	library_37	the topic for this one is going to  be about predictors of friend approval
+ch_lib-p-9	07/11/2014	13:31:23	library_12	partners use deception to meet personal goals?
+ch_lib-p-32	07/11/2014	13:31:24	library_38	i just want to like go on like youtube
+ch_lib-p-32	07/11/2014	13:31:30	library_37	you choose next one
+ch_lib-p-4	07/11/2014	13:31:31	library_5	lolll
+ch_lib-p-3	07/11/2014	13:31:32	library_3	wait acutally that one wanst that useful LOL
+ch_lib-p-32	07/11/2014	13:31:32	library_38	okay
+ch_lib-p-4	07/11/2014	13:31:34	library_4	u r even using emoji...
+ch_lib-p-9	07/11/2014	13:31:45	library_12	people use deception as a means to maintain the relationship?
+ch_lib-p-4	07/11/2014	13:31:45	library_5	hahahaha lmao
+ch_lib-p-32	07/11/2014	13:31:47	library_37	you can put the info on the task pad
+ch_lib-p-4	07/11/2014	13:31:47	library_4	are u really reading ...
+ch_lib-p-26	07/11/2014	13:31:47	library_28	goood
+ch_lib-p-26	07/11/2014	13:31:51	library_28	lets do yours now
+ch_lib-p-4	07/11/2014	13:31:54	library_5	no im not
+ch_lib-p-26	07/11/2014	13:31:55	library_28	what was your topic again?
+ch_lib-p-9	07/11/2014	13:31:55	library_11	how people use deception
+ch_lib-p-4	07/11/2014	13:32:03	library_4	xiao dian di
+ch_lib-p-3	07/11/2014	13:32:06	library_2	yeah but there are so many that are really good
+ch_lib-p-9	07/11/2014	13:32:07	library_11	in relationships
+ch_lib-p-4	07/11/2014	13:32:10	library_4	low laugh point
+ch_lib-p-32	07/11/2014	13:32:12	library_38	mine is differences between men and women in ipr relatoionships
+ch_lib-p-26	07/11/2014	13:32:19	library_29	dark side of emotions- jealousy, grief, and hurt
+ch_lib-p-32	07/11/2014	13:32:22	library_37	okay then we will do that in the next half
+ch_lib-p-32	07/11/2014	13:32:27	library_38	^thats super general tho
+ch_lib-p-26	07/11/2014	13:32:30	library_29	so you can search emotions and grief
+ch_lib-p-32	07/11/2014	13:32:32	library_37	look for info on friend approval in relationship[s
+ch_lib-p-4	07/11/2014	13:32:33	library_5	yeah and u're even trynna type mandarin
+ch_lib-p-26	07/11/2014	13:32:35	library_29	or emotions and jealousy
+ch_lib-p-32	07/11/2014	13:32:39	library_38	so like maybe like we can focus on attachment
+ch_lib-p-26	07/11/2014	13:32:40	library_29	or emotions and hurt 
+ch_lib-p-32	07/11/2014	13:32:41	library_38	okay :)
+ch_lib-p-26	07/11/2014	13:32:41	library_29	lol
+ch_lib-p-26	07/11/2014	13:32:43	library_29	etc
+ch_lib-p-32	07/11/2014	13:32:46	library_38	are we friends still
+ch_lib-p-26	07/11/2014	13:32:49	library_29	try for grief
+ch_lib-p-32	07/11/2014	13:32:51	library_37	wait wat..........
+ch_lib-p-32	07/11/2014	13:32:52	library_37	and yes
+ch_lib-p-26	07/11/2014	13:32:54	library_28	okay lets do disss
+ch_lib-p-32	07/11/2014	13:32:55	library_37	but despite that
+ch_lib-p-26	07/11/2014	13:32:57	library_29	i already have some on jealousy and hurt 
+ch_lib-p-32	07/11/2014	13:32:57	library_37	lets just finish this
+ch_lib-p-32	07/11/2014	13:32:58	library_38	because i feel like this program ruins friendships
+ch_lib-p-32	07/11/2014	13:33:01	library_38	lmao
+ch_lib-p-9	07/11/2014	13:33:03	library_12	that's explanatory... you've got to choose something similar to what I was suggesting...a thesis is a position on an arguable hypothesis
+ch_lib-p-26	07/11/2014	13:33:03	library_29	but also look for those
+ch_lib-p-32	07/11/2014	13:33:08	library_37	LOL NO
+ch_lib-p-32	07/11/2014	13:33:12	library_37	stop getting off topic!
+ch_lib-p-32	07/11/2014	13:33:14	library_37	we didnt do shiet!
+ch_lib-p-26	07/11/2014	13:33:16	library_28	is it on relationships?
+ch_lib-p-4	07/11/2014	13:33:24	library_5	how do we use snip?
+ch_lib-p-26	07/11/2014	13:33:25	library_28	like how dark side affects people?
+ch_lib-p-32	07/11/2014	13:33:33	library_37	so we just find info for now and copy and paste and then take side notes!!!!!!!!!!!!
+ch_lib-p-26	07/11/2014	13:33:34	library_28	or on their relationships?
+ch_lib-p-4	07/11/2014	13:33:41	library_4	you highlight the sentence and snip
+ch_lib-p-9	07/11/2014	13:33:42	library_12	so you choose something and then find different sources and different people that researched and had the same or opposing views and find supporting arguments for your thesis
+ch_lib-p-11	07/11/2014	13:34:44	library_15	want to start woking on yours now?
+ch_lib-p-4	07/11/2014	13:34:46	library_4	why are they all typing....
+ch_lib-p-3	07/11/2014	13:34:54	library_3	"A Crack in the Crystal Ball? Prolonged Exposure to Media Portrayals of Social Roles Affect Possible Future Selves. "
+ch_lib-p-3	07/11/2014	13:34:55	library_3	wow
+ch_lib-p-32	07/11/2014	13:35:00	library_37	i dont get the snipp
+ch_lib-p-4	07/11/2014	13:35:03	library_5	chatting like us lol
+ch_lib-p-26	07/11/2014	13:35:04	library_29	YES!!
+ch_lib-p-3	07/11/2014	13:35:04	library_3	BUT I CANT READ IT
+ch_lib-p-3	07/11/2014	13:35:06	library_3	THESE ARTICLES
+ch_lib-p-3	07/11/2014	13:35:08	library_3	WHAT THE HELL
+ch_lib-p-11	07/11/2014	13:35:09	library_16_1	sure
+ch_lib-p-3	07/11/2014	13:35:12	library_3	jk it worked
+ch_lib-p-11	07/11/2014	13:35:13	library_16_1	interpersonal conflict
+ch_lib-p-11	07/11/2014	13:35:23	library_15	library_15 quit
+ch_lib-p-11	07/11/2014	13:35:24		library_15 joins lib-p-11
+ch_lib-p-11	07/11/2014	13:35:26	library_15	library_15 quit
+ch_lib-p-11	07/11/2014	13:35:26		library_15 joins lib-p-11
+ch_lib-p-11	07/11/2014	13:35:40	library_16_1	i focused a little on abuse and how important it is to use good comm sttrategies to avoid getting to that stae in a relationship
+ch_lib-p-11	07/11/2014	13:35:54	library_15	i accidentally cleared out the chat history..
+ch_lib-p-4	07/11/2014	13:35:59	library_4	bye, my partner
+ch_lib-p-4	07/11/2014	13:36:17	library_5	no we are still working tgt
+ch_lib-p-4	07/11/2014	13:36:31	library_5	he asks us to search each other's topic
+ch_lib-p-4	07/11/2014	13:36:46	library_4	oh....
+ch_lib-p-4	07/11/2014	13:37:00	library_5	so i'll work on culture influence on self identity
+ch_lib-p-11	07/11/2014	13:37:12	library_16_1	back in action lmao
+ch_lib-p-13	07/11/2014	13:37:13	library_20	que lo que
+ch_lib-p-32	07/11/2014	13:37:13	library_38	:)
+ch_lib-p-13	07/11/2014	13:37:16	library_20	ok so medical
+ch_lib-p-11	07/11/2014	13:37:18	library_16_1	okkkk sooo
+ch_lib-p-3	07/11/2014	13:37:19	library_2	hello again
+ch_lib-p-13	07/11/2014	13:37:20	library_19	okay so you want to do medical right
+ch_lib-p-3	07/11/2014	13:37:22	library_3	yoo
+ch_lib-p-32	07/11/2014	13:37:22	library_38	wait
+ch_lib-p-13	07/11/2014	13:37:26	library_19	but what exactly again i forgot 
+ch_lib-p-11	07/11/2014	13:37:27	library_16_1	interpersonal conflict
+ch_lib-p-3	07/11/2014	13:37:27	library_3	all those comments got deletred
+ch_lib-p-32	07/11/2014	13:37:27	library_38	ours is still 13
+ch_lib-p-3	07/11/2014	13:37:28	library_3	LOLOL
+ch_lib-p-3	07/11/2014	13:37:29	library_3	sad life
+ch_lib-p-13	07/11/2014	13:37:29	library_20	thats what theyre giving me lol
+ch_lib-p-32	07/11/2014	13:37:29	library_38	no?
+ch_lib-p-3	07/11/2014	13:37:33	library_2	TIME TO START AGAIN
+ch_lib-p-9	07/11/2014	13:37:34	library_11	disconnect with social networking?
+ch_lib-p-4	07/11/2014	13:37:34	library_5	hello??
+ch_lib-p-3	07/11/2014	13:37:36	library_3	LOLOL
+ch_lib-p-13	07/11/2014	13:37:38	library_19	thats your topic dude
+ch_lib-p-3	07/11/2014	13:37:40	library_3	not the task pad i think
+ch_lib-p-26	07/11/2014	13:37:41	library_29	hiii
+ch_lib-p-13	07/11/2014	13:37:41	library_20	what should we research about medical
+ch_lib-p-3	07/11/2014	13:37:42	library_3	idk though
+ch_lib-p-13	07/11/2014	13:37:42	library_19	you picked it lol
+ch_lib-p-3	07/11/2014	13:37:44	library_2	hello whoever is reading this later
+ch_lib-p-32	07/11/2014	13:37:46	library_37	hello
+ch_lib-p-11	07/11/2014	13:37:52	library_15	what kind?
+ch_lib-p-13	07/11/2014	13:37:52	library_20	no i didnt lol
+ch_lib-p-11	07/11/2014	13:37:53	library_16_1	i talked about abuse and how without comm strategies it can ruin the relationship and lead to a point of no return
+ch_lib-p-4	07/11/2014	13:37:56	library_4	yep.... u act like u are actually going to search my topic
+ch_lib-p-3	07/11/2014	13:37:58	library_2	I hope you had a good day
+ch_lib-p-13	07/11/2014	13:37:59	library_19	what have you written your paper about
+ch_lib-p-13	07/11/2014	13:38:01	library_20	it said medical on its own
+ch_lib-p-32	07/11/2014	13:38:01	library_37	hellooooooooo
+ch_lib-p-13	07/11/2014	13:38:01	library_19	so far
+ch_lib-p-32	07/11/2014	13:38:04	library_37	we will work on your next topic
+ch_lib-p-32	07/11/2014	13:38:07	library_37	what is it???
+ch_lib-p-11	07/11/2014	13:38:07	library_16_1	i talked about the kinds but i could not find anything about them
+ch_lib-p-3	07/11/2014	13:38:08	library_2	yeah our task pad is still there
+ch_lib-p-9	07/11/2014	13:38:11	library_12	how social networking and technology have caused people to become less connected in real life
+ch_lib-p-3	07/11/2014	13:38:11	library_2	it saved
+ch_lib-p-32	07/11/2014	13:38:17	library_37	????
+ch_lib-p-3	07/11/2014	13:38:22	library_2	type some stuff in the ideals section
+ch_lib-p-13	07/11/2014	13:38:39	library_20	how miscommunication between a doctor and his patient can lead to misdiagnosis
+ch_lib-p-32	07/11/2014	13:38:40	library_38	habits of men vs women in romantic relationships
+ch_lib-p-4	07/11/2014	13:38:44	library_5	hello??
+ch_lib-p-9	07/11/2014	13:38:44	library_12	like people spend their time on facebook and caught up with technology rather than actually being present and socializing with people like they used to
+ch_lib-p-11	07/11/2014	13:38:47	library_15	so youre looking for more info on the types of abuse?
+ch_lib-p-13	07/11/2014	13:38:49	library_19	got you
+ch_lib-p-9	07/11/2014	13:38:50	library_12	that make sense?
+ch_lib-p-32	07/11/2014	13:38:54	library_38	aka like men are from mars women are from venus
+ch_lib-p-4	07/11/2014	13:38:54	library_4	can you hear me?
+ch_lib-p-32	07/11/2014	13:38:59	library_38	that sort of junk
+ch_lib-p-4	07/11/2014	13:39:00	library_5	oh
+ch_lib-p-13	07/11/2014	13:39:08	library_20	why is miscommunication a problem when it comes to medical. focus between doctor and his patient
+ch_lib-p-9	07/11/2014	13:39:08	library_12	I'm finding some great info for your topic now.. hopefully it will help you formulate a thesis and run with it =]
+ch_lib-p-32	07/11/2014	13:39:09	library_37	okay
+ch_lib-p-4	07/11/2014	13:39:11	library_5	that's my gal
+ch_lib-p-11	07/11/2014	13:39:12	library_16_1	yeah that would help umm im opening my essay now to see the typers
+ch_lib-p-32	07/11/2014	13:39:13	library_37	i put the title
+ch_lib-p-4	07/11/2014	13:39:14	library_5	yay
+ch_lib-p-32	07/11/2014	13:39:18	library_37	under your purple text
+ch_lib-p-32	07/11/2014	13:39:26	library_38	i saw
+ch_lib-p-32	07/11/2014	13:39:27	library_38	it
+ch_lib-p-32	07/11/2014	13:39:28	library_38	ty
+ch_lib-p-4	07/11/2014	13:39:33	library_4	at least open one article and snip
+ch_lib-p-4	07/11/2014	13:39:34	library_5	how much have u left?
+ch_lib-p-11	07/11/2014	13:39:40	library_15	is it verbal/physical? and between romatic partners?
+ch_lib-p-11	07/11/2014	13:39:49	library_16_1	yes
+ch_lib-p-9	07/11/2014	13:39:51	library_11	ok
+ch_lib-p-9	07/11/2014	13:39:53	library_11	thanks
+ch_lib-p-11	07/11/2014	13:40:10	library_16_1	argument, disagreeable comm, hostile episode and pervasive tension are the types
+ch_lib-p-4	07/11/2014	13:40:11	library_4	i don't think i ever started...
+ch_lib-p-11	07/11/2014	13:40:17	library_16_1	and i found nothing on them
+ch_lib-p-4	07/11/2014	13:40:25	library_5	wat?!
+ch_lib-p-13	07/11/2014	13:40:31	library_19	its hard to find anything on it but ill try my best
+ch_lib-p-4	07/11/2014	13:40:32	library_4	i was reading "feelinglike my self...
+ch_lib-p-11	07/11/2014	13:40:39	library_16_1	maybe types of conflict resolution skills
+ch_lib-p-4	07/11/2014	13:40:40	library_4	what bout u
+ch_lib-p-11	07/11/2014	13:40:49	library_16_1	i htink that should get us started lol
+ch_lib-p-32	07/11/2014	13:40:54	library_37	idk why my info is coming out like that
+ch_lib-p-32	07/11/2014	13:41:03	library_38	its cool
+ch_lib-p-13	07/11/2014	13:41:22	library_20	word it is
+ch_lib-p-4	07/11/2014	13:41:23	library_5	Culture, the Self, and Identity: Introduction to the Special Issue
+ch_lib-p-26	07/11/2014	13:41:29	library_28	dudee i got you so much stuff
+ch_lib-p-4	07/11/2014	13:41:48	library_4	so i am going to read your artical?
+ch_lib-p-9	07/11/2014	13:41:49	library_12	no problem... mine is a bit difficult to put into words so if you get any good search terms that brings up relevant results let me know
+ch_lib-p-4	07/11/2014	13:41:53	library_29	library_5 quit (timeout)
+ch_lib-p-4	07/11/2014	13:42:13	library_5	what does it mean that i quit!?
+ch_lib-p-4	07/11/2014	13:42:20	library_4	wowowow
+ch_lib-p-4	07/11/2014	13:42:23	library_4	u come back to life
+ch_lib-p-4	07/11/2014	13:42:26	library_4	u scare me
+ch_lib-p-13	07/11/2014	13:42:31	library_19	just put medical miscommunication 
+ch_lib-p-9	07/11/2014	13:42:33	library_12	it's a super interesting topic though... I'm excited to put together the final paper.. I have to get a lot of the sources here at the library because the journals weren't available online
+ch_lib-p-4	07/11/2014	13:42:36	library_5	i have only 8 min left
+ch_lib-p-4	07/11/2014	13:42:44	library_4	me too
+ch_lib-p-13	07/11/2014	13:42:46	library_19	or anything that has to do with medical and communication thats going to be our best bet lol 
+ch_lib-p-4	07/11/2014	13:43:04	library_5	the girl next me has like 20
+ch_lib-p-4	07/11/2014	13:43:12	library_5	so weird
+ch_lib-p-3	07/11/2014	13:43:15	library_3	These colours are blending together
+ch_lib-p-3	07/11/2014	13:43:17	library_3	headache
+ch_lib-p-3	07/11/2014	13:43:18	library_3	@_@
+ch_lib-p-4	07/11/2014	13:43:20	library_4	.... 
+ch_lib-p-3	07/11/2014	13:43:29	library_2	yeah can you change the colors?
+ch_lib-p-3	07/11/2014	13:43:47	library_2	BAM
+ch_lib-p-32	07/11/2014	13:43:55	library_37	why am i getting like no info lol
+ch_lib-p-32	07/11/2014	13:44:14	library_38	its okay
+ch_lib-p-3	07/11/2014	13:44:24	library_3	no uc ant
+ch_lib-p-3	07/11/2014	13:44:25	library_3	O_o
+ch_lib-p-3	07/11/2014	13:44:30	library_3	i dont see a way to anyway
+ch_lib-p-32	07/11/2014	13:44:42	library_38	:p
+ch_lib-p-32	07/11/2014	13:44:43	library_38	:drizzle:
+ch_lib-p-32	07/11/2014	13:44:43	library_38	:***:
+ch_lib-p-32	07/11/2014	13:44:46	library_38	>O<
+ch_lib-p-32	07/11/2014	13:44:47	library_38	:clouds:
+ch_lib-p-32	07/11/2014	13:44:48	library_38	:cloudly:
+ch_lib-p-26	07/11/2014	13:44:48	library_29	you're the best
+ch_lib-p-32	07/11/2014	13:44:48	library_38	:$:
+ch_lib-p-32	07/11/2014	13:44:49	library_38	0=
+ch_lib-p-3	07/11/2014	13:44:54	library_2	click settings
+ch_lib-p-3	07/11/2014	13:45:01	library_2	and uncheck authorship colors
+ch_lib-p-3	07/11/2014	13:45:12	library_2	like at the top of the task pad
+ch_lib-p-3	07/11/2014	13:45:32	library_3	oh hello~
+ch_lib-p-11	07/11/2014	13:45:38	library_16_1	conflict goals is another paragraph i had
+ch_lib-p-4	07/11/2014	13:45:44	library_5	wait idk how to snip
+ch_lib-p-4	07/11/2014	13:45:57	library_5	there's nothing in my snip
+ch_lib-p-4	07/11/2014	13:46:02	library_5	how does it work?
+ch_lib-p-26	07/11/2014	13:46:10	library_28	how much stuff did you get on jealousy
+ch_lib-p-4	07/11/2014	13:46:17	library_4	u sure?
+ch_lib-p-4	07/11/2014	13:46:30	library_4	just highlight the sentence and snip
+ch_lib-p-4	07/11/2014	13:46:41	library_5	yeah that's what i did
+ch_lib-p-4	07/11/2014	13:47:03	library_4	i guess there's a bug in your computer
+ch_lib-p-26	07/11/2014	13:47:03	library_29	a bunch
+ch_lib-p-4	07/11/2014	13:47:07	library_4	i guess there's a bug
+ch_lib-p-26	07/11/2014	13:47:15	library_29	I think i need more on hurt
+ch_lib-p-4	07/11/2014	13:47:27	library_4	the girl next to me just move to a new one..
+ch_lib-p-26	07/11/2014	13:47:28	library_29	its hard to find within relationships and related to emotions
+ch_lib-p-32	07/11/2014	13:47:41	library_37	WTF
+ch_lib-p-32	07/11/2014	13:47:43	library_37	WHY IS MY INFO LIKE THIS
+ch_lib-p-4	07/11/2014	13:47:47	library_5	wait i think i'm running out of time
+ch_lib-p-3	07/11/2014	13:47:53	library_3	checking this one out "Romantic TV and Emotional Satisfaction: Does Romantic Beliefs Moderate the Relationship Between Satisfaction and Parasocial Relationship Strength. "
+ch_lib-p-32	07/11/2014	13:48:00	library_37	help
+ch_lib-p-4	07/11/2014	13:48:02	library_5	i can't snip now
+ch_lib-p-4	07/11/2014	13:48:05	library_4	bye my partner
+ch_lib-p-4	07/11/2014	13:48:09	library_5	or use bookmarks
+ch_lib-p-4	07/11/2014	13:48:09	library_4	i can't use emoji
+ch_lib-p-4	07/11/2014	13:48:19	library_5	me neither
+ch_lib-p-4	07/11/2014	13:48:21	library_4	... why do u realize now?
+ch_lib-p-3	07/11/2014	13:48:22	library_2	we had that one before, right?
+ch_lib-p-3	07/11/2014	13:48:31	library_12	library_2 quit (timeout)
+ch_lib-p-4	07/11/2014	13:48:33	library_5	what
+ch_lib-p-3	07/11/2014	13:48:35	library_3	i m not sure
+ch_lib-p-32	07/11/2014	13:48:39	library_37	HELLO
+ch_lib-p-3	07/11/2014	13:48:48	library_2	hmmm
+ch_lib-p-4	07/11/2014	13:48:52	library_4	the snip and bookmark thing
+ch_lib-p-3	07/11/2014	13:48:54	library_3	wait why does it say u quit
+ch_lib-p-3	07/11/2014	13:48:55	library_3	that was weird
+ch_lib-p-4	07/11/2014	13:49:00	library_4	so there's nothing on your history?
+ch_lib-p-11	07/11/2014	13:49:01	library_15	your topic is really hard to find information on
+ch_lib-p-3	07/11/2014	13:49:03	library_3	library_2 quit (timeout)
+ch_lib-p-3	07/11/2014	13:49:05	library_3	O_O
+ch_lib-p-4	07/11/2014	13:49:16	library_4	library_5 quit (timeout)
+ch_lib-p-3	07/11/2014	13:49:16	library_2	yeah idk why that happened
+ch_lib-p-3	07/11/2014	13:49:18	library_3	i dont think so
+ch_lib-p-4	07/11/2014	13:49:18	library_5	wait i think i made it
+ch_lib-p-4	07/11/2014	13:49:22	library_15	library_4 quit (timeout)
+ch_lib-p-3	07/11/2014	13:49:22	library_3	but im not sure? 
+ch_lib-p-4	07/11/2014	13:49:23	library_5	nvm
+ch_lib-p-3	07/11/2014	13:49:29	library_3	the title seems like familiar
+ch_lib-p-4	07/11/2014	13:49:33	library_4	did i just quit?
+ch_lib-p-4	07/11/2014	13:49:42	library_5	oh u are also running out of time 
+ch_lib-p-26	07/11/2014	13:49:44	library_28	okay i'm looking up hurtful communication
+ch_lib-p-4	07/11/2014	13:49:58	library_5	do u still have a time bar on your screen?
+ch_lib-p-3	07/11/2014	13:50:10	library_3	wait i think we did
+ch_lib-p-4	07/11/2014	13:50:20	library_5	wait i have 1 min left
+ch_lib-p-4	07/11/2014	13:50:24	library_4	one minute left
+ch_lib-p-32	07/11/2014	13:50:25	library_37	fuck my life
+ch_lib-p-32	07/11/2014	13:50:29	library_38	like what
+ch_lib-p-32	07/11/2014	13:50:32	library_38	?
+ch_lib-p-4	07/11/2014	13:50:32	library_4	i am trying to snip as much as i can
+ch_lib-p-32	07/11/2014	13:50:38	library_38	sry iwas researching
+ch_lib-p-32	07/11/2014	13:50:38	library_37	LIK ETHIS
+ch_lib-p-32	07/11/2014	13:51:03	library_38	lol copy the info
+ch_lib-p-32	07/11/2014	13:51:10	library_38	paste in the searchbar
+ch_lib-p-32	07/11/2014	13:51:20	library_38	and then copy it again in the searchbar
+ch_lib-p-26	07/11/2014	13:51:24	library_29	:) I somehow just found a bunch
+ch_lib-p-11	07/11/2014	13:51:32	library_16_1	ik!!! lmao. 
+ch_lib-p-26	07/11/2014	13:51:40	library_29	i'm gonna try to find more on grief i think
+ch_lib-p-26	07/11/2014	13:52:17	library_28	aight i'll help ya out
+ch_lib-p-26	07/11/2014	13:54:01	library_16_1	library_29 quit (timeout)
+ch_lib-p-26	07/11/2014	13:55:48	library_29	hiii
+ch_lib-p-11	07/11/2014	13:55:53	library_16_1	ive found some good stuff tho! its exciting lol. didnt know it was this easy in a way lol
+ch_lib-p-11	07/11/2014	14:00:36	library_15	it's much easier working on the paper in this format
+ch_lib-p-11	07/11/2014	14:00:40	library_15	MUCH easier
+ch_lib-p-11	07/11/2014	14:00:48	library_15	and when you have help from a partner lol
+ch_lib-p-11	07/11/2014	14:00:53	library_16_1	lol ik! i feel so productve
+ch_lib-p-27	07/11/2014	15:04:26		library_31 joins lib-p-27
+ch_lib-p-27	07/11/2014	15:11:06		library_30 joins lib-p-27
+ch_lib-p-12	07/11/2014	15:11:14		library_18 joins lib-p-12
+ch_lib-p-12	07/11/2014	15:11:15		library_17 joins lib-p-12
+ch_lib-p-10	07/11/2014	15:11:20		library_14 joins lib-p-10
+ch_lib-p-27	07/11/2014	15:11:21	library_30	Hey
+ch_lib-p-27	07/11/2014	15:11:28	library_31	hi sam
+ch_lib-p-12	07/11/2014	15:11:31	library_18	hi library 17
+ch_lib-p-10	07/11/2014	15:11:32		library_13 joins lib-p-10
+ch_lib-p-12	07/11/2014	15:11:35	library_17	Lets just start researching different topics and see which one we like best
+ch_lib-p-27	07/11/2014	15:11:38	library_31	how do i get on the library website
+ch_lib-p-10	07/11/2014	15:11:39	library_14	hello jacquisha
+ch_lib-p-12	07/11/2014	15:11:52	library_18	i don't even have my notes #unprepared
+ch_lib-p-10	07/11/2014	15:12:11	library_13	thats not my name
+ch_lib-p-12	07/11/2014	15:12:12	library_17	Didn't we say something about relationship actions
+ch_lib-p-10	07/11/2014	15:12:13	library_14	[b]HELLO JACQUISHA[/b]
+ch_lib-p-27	07/11/2014	15:12:16	library_30	It's above your tool bar
+ch_lib-p-12	07/11/2014	15:12:22	library_17	like the tests
+ch_lib-p-27	07/11/2014	15:12:26	library_30	Rutgers Libraries
+ch_lib-p-12	07/11/2014	15:12:27	library_18	yes
+ch_lib-p-27	07/11/2014	15:12:32	library_31	ty!
+ch_lib-p-27	07/11/2014	15:12:33	library_30	I think
+ch_lib-p-10	07/11/2014	15:12:54	library_13	ill go first
+ch_lib-p-10	07/11/2014	15:13:01	library_14	nope
+ch_lib-p-12	07/11/2014	15:13:06	library_17	Lets do tests first
+ch_lib-p-10	07/11/2014	15:13:15	library_14	teammate comm
+ch_lib-p-10	07/11/2014	15:13:19	library_13	yes
+ch_lib-p-10	07/11/2014	15:13:29	library_14	goooooooooooooood
+ch_lib-p-12	07/11/2014	15:13:56	library_17	do u want to just stick with one topic
+ch_lib-p-12	07/11/2014	15:14:10	library_18	deff
+ch_lib-p-12	07/11/2014	15:14:19	library_17	Okay lets do actions for right now
+ch_lib-p-12	07/11/2014	15:14:19	library_18	i forget what the overarching theme is 
+ch_lib-p-12	07/11/2014	15:14:25	library_18	like secret tests, relationship talk 
+ch_lib-p-27	07/11/2014	15:14:26	library_30	Let's do this
+ch_lib-p-12	07/11/2014	15:14:26	library_17	if we don't like it we can always switch later on
+ch_lib-p-5	07/11/2014	15:14:27		library_6 joins lib-p-5
+ch_lib-p-12	07/11/2014	15:14:28	library_18	they're part of something 
+ch_lib-p-5	07/11/2014	15:14:30		library_7 joins lib-p-5
+ch_lib-p-12	07/11/2014	15:14:34	library_17	its relational dialectics
+ch_lib-p-27	07/11/2014	15:14:40	library_31	i thought we all got 20!
+ch_lib-p-27	07/11/2014	15:14:43	library_31	i guess not
+ch_lib-p-27	07/11/2014	15:14:44	library_31	lol
+ch_lib-p-12	07/11/2014	15:14:47	library_18	isnt that autonmy v. connection 
+ch_lib-p-12	07/11/2014	15:14:51	library_17	Relational dialetics theory?
+ch_lib-p-12	07/11/2014	15:14:52	library_18	and that stuff 
+ch_lib-p-27	07/11/2014	15:15:10	library_30	We do
+ch_lib-p-5	07/11/2014	15:15:23	library_6	hi
+ch_lib-p-27	07/11/2014	15:15:29	library_31	he said thats first prize
+ch_lib-p-27	07/11/2014	15:15:29	library_30	I think there is also a 20 or 10 bonus for the best research
+ch_lib-p-12	07/11/2014	15:15:38	library_17	Type in like relational dialectics or relationship theories
+ch_lib-p-5	07/11/2014	15:18:07	library_7	hi
+ch_lib-p-5	07/11/2014	15:18:08	library_7	LOL
+ch_lib-p-12	07/11/2014	15:18:11	library_18	how do we bookmark something 
+ch_lib-p-27	07/11/2014	15:18:18	library_31	oh okay
+ch_lib-p-5	07/11/2014	15:18:20	library_6	wow
+ch_lib-p-27	07/11/2014	15:18:23	library_31	how do i delete a snippet
+ch_lib-p-5	07/11/2014	15:18:29	library_6	way to respond so late LOL your volume
+ch_lib-p-5	07/11/2014	15:18:42	library_7	we just research anything?
+ch_lib-p-12	07/11/2014	15:18:44	library_17	go up to the top tool bar and click bookmark
+ch_lib-p-5	07/11/2014	15:18:53	library_6	interpersonal relationshpis
+ch_lib-p-27	07/11/2014	15:18:53	library_30	Idk
+ch_lib-p-12	07/11/2014	15:19:04	library_18	thanks
+ch_lib-p-5	07/11/2014	15:19:11	library_7	yea lol
+ch_lib-p-27	07/11/2014	15:19:21	library_30	Do you remeber which lecture chaper stereotyping was in?
+ch_lib-p-27	07/11/2014	15:19:47	library_31	im not sure
+ch_lib-p-27	07/11/2014	15:19:53	library_31	were you going to look at our slideshow?
+ch_lib-p-27	07/11/2014	15:22:54	library_30	ya
+ch_lib-p-27	07/11/2014	15:23:55	library_30	ch4 
+ch_lib-p-12	07/11/2014	15:24:06	library_18	how are u doing 
+ch_lib-p-27	07/11/2014	15:24:20	library_30	let's try to find studies dealing with stereotyping different cultures/races
+ch_lib-p-27	07/11/2014	15:24:54	library_30	--> Racial and ethnic stereotypes are among the most pervasive sources of distorted perception in the society.
+ch_lib-p-12	07/11/2014	15:26:27	library_17	wait do u remember the assignment?  Are we picking an overall theme and then talking about all its different categories
+ch_lib-p-12	07/11/2014	15:26:57	library_18	we're picking any concept we talked about in class 
+ch_lib-p-12	07/11/2014	15:26:58	library_17	because relational dialectics is obviously very broad so Im guessing we can go anywhere with the types of articles we pick 
+ch_lib-p-12	07/11/2014	15:27:07	library_18	i discovered the overarching theme for tests and relationship talk 
+ch_lib-p-12	07/11/2014	15:27:13	library_18	its not relational dialectics 
+ch_lib-p-12	07/11/2014	15:27:16	library_18	its relational uncertainty 
+ch_lib-p-12	07/11/2014	15:27:23	library_18	which is why you use secret tests, jealous, and relationship talk 
+ch_lib-p-12	07/11/2014	15:27:34	library_18	to figure more about the relationship without directly asking the partner 
+ch_lib-p-12	07/11/2014	15:27:34	library_17	oh yeah i like that one better because we talked about it alot in comm theory
+ch_lib-p-12	07/11/2014	15:27:42	library_18	yes !
+ch_lib-p-27	07/11/2014	15:27:43	library_31	what is that
+ch_lib-p-27	07/11/2014	15:27:54	library_31	i looked at it from a popculture stand point
+ch_lib-p-27	07/11/2014	15:27:57	library_31	and why we stereotype
+ch_lib-p-27	07/11/2014	15:28:03	library_30	From her lecture notes
+ch_lib-p-27	07/11/2014	15:28:05	library_31	and some of the advantages and disadvsantages
+ch_lib-p-12	07/11/2014	15:28:05	library_18	we we could do relational uncertainty and find articles on the different components of it 
+ch_lib-p-27	07/11/2014	15:28:56	library_31	where are her lecture notes
+ch_lib-p-27	07/11/2014	15:29:04	library_31	did you snip them?
+ch_lib-p-27	07/11/2014	15:29:18	library_30	I bookmarked it
+ch_lib-p-12	07/11/2014	15:30:35	library_17	okay perf! 
+ch_lib-p-27	07/11/2014	15:31:25	library_30	Since we need 2 journal articles, we can use the first as yours and the second as mine 
+ch_lib-p-10	07/11/2014	15:32:13	library_14	your article now?
+ch_lib-p-10	07/11/2014	15:32:28	library_14	topic*
+ch_lib-p-10	07/11/2014	15:32:29	library_13	yes the better topic
+ch_lib-p-10	07/11/2014	15:32:58	library_14	:
+ch_lib-p-10	07/11/2014	15:33:04	library_13	nurse physician communication
+ch_lib-p-27	07/11/2014	15:34:40	library_30	Topic 1: Stereotypes are passed down from generation to generation
+ch_lib-p-5	07/11/2014	15:34:50	library_6	library_6 quit
+ch_lib-p-5	07/11/2014	15:34:53		library_6 joins lib-p-5
+ch_lib-p-27	07/11/2014	15:35:13	library_30	Topic 2: popculture stand point pros cons
+ch_lib-p-27	07/11/2014	15:35:23	library_31	do we have two journal articles?
+ch_lib-p-27	07/11/2014	15:35:25	library_31	im so confused
+ch_lib-p-27	07/11/2014	15:35:39	library_30	Yes lol
+ch_lib-p-27	07/11/2014	15:35:46	library_31	thank god
+ch_lib-p-5	07/11/2014	15:35:58	library_6	ooo am i supposed to help you now and do yours lol
+ch_lib-p-12	07/11/2014	15:36:04	library_17	i don't really want to do online interactions 
+ch_lib-p-27	07/11/2014	15:36:04	library_30	Group Assignment (15%): Paper: This group paper is an in-depth literature review of the interpersonal communication topic that you will select from the book. This paper should build on what we have covered and learnt in class. The group will need to find 10-12 relevant journal articles in light of the topic. This cannot be a book or a magazine, but must be a journal that have been published between 2000 and 2014. Not only you need to summarize the articles, but also you need to incorporate them in a coherent way. Summarize a) the goal of the study b) the methods used c) the findings of the study d) implications of the study. Each summary can be one to two paragraphs, and should not be a retelling of the abstract. The final paper should be 8-10 pages in length.  
+ch_lib-p-12	07/11/2014	15:36:17	library_18	whats that 
+ch_lib-p-12	07/11/2014	15:36:17	library_17	I feel like face-to-face is alot simpler than looking at online
+ch_lib-p-12	07/11/2014	15:36:27	library_18	oh yeah deff 
+ch_lib-p-12	07/11/2014	15:36:48	library_18	i found a few things 
+ch_lib-p-12	07/11/2014	15:36:57	library_18	but i feel like im not searching the right keywords
+ch_lib-p-12	07/11/2014	15:37:08	library_17	same!! they are super long though this project is going to take longer than we thought
+ch_lib-p-12	07/11/2014	15:37:18	library_18	fml
+ch_lib-p-5	07/11/2014	15:37:31	library_7	yea 
+ch_lib-p-5	07/11/2014	15:37:34	library_7	something like that 
+ch_lib-p-5	07/11/2014	15:37:34	library_7	LOL
+ch_lib-p-12	07/11/2014	15:37:39	library_18	wait so 
+ch_lib-p-12	07/11/2014	15:37:54	library_18	we each need to find 3 articles all on the different aspects of relational uncertainty and then summarize them?
+ch_lib-p-12	07/11/2014	15:38:08	library_18	we can always change our topic too if its too ambiguous/obsure
+ch_lib-p-12	07/11/2014	15:38:13	library_17	I think so! I think she said 9 sources is fine
+ch_lib-p-12	07/11/2014	15:38:14	library_18	obscure * 
+ch_lib-p-12	07/11/2014	15:38:20	library_18	yes  ok 
+ch_lib-p-12	07/11/2014	15:38:36	library_17	yes! marie liked this topic too because we talked about it last night at dinner
+ch_lib-p-12	07/11/2014	15:38:45	library_18	perfeecto
+ch_lib-p-12	07/11/2014	15:38:58	library_18	[color=#800080] i'm cool  [/color]
+ch_lib-p-12	07/11/2014	15:39:01	library_18	[color=#00FFFF] rainbow  [/color]
+ch_lib-p-12	07/11/2014	15:39:06	library_17	lol im so tired 
+ch_lib-p-12	07/11/2014	15:39:12	library_17	wait thats awesome I wanna try
+ch_lib-p-12	07/11/2014	15:39:26	library_17	library_17 quit
+ch_lib-p-12	07/11/2014	15:39:27	library_18	[color=#FF00FF] pretty in pink  [/color]
+ch_lib-p-12	07/11/2014	15:39:28		library_17 joins lib-p-12
+ch_lib-p-12	07/11/2014	15:39:40	library_18	library_18 quit
+ch_lib-p-12	07/11/2014	15:39:40	library_17	oh no i deleted it
+ch_lib-p-12	07/11/2014	15:39:55		library_18 joins lib-p-12
+ch_lib-p-12	07/11/2014	15:39:59	library_18	[color=#FF00FF] hahahaha  [/color]
+ch_lib-p-12	07/11/2014	15:40:14	library_17	what database are u using
+ch_lib-p-27	07/11/2014	15:40:17	library_30	Make sure your sources are from 2000-2014
+ch_lib-p-12	07/11/2014	15:40:31	library_18	[color=#FF00FF] Ebsco Host: Communication and Mass media Complete [/color]
+ch_lib-p-12	07/11/2014	15:40:43	library_17	kk
+ch_lib-p-27	07/11/2014	15:41:23	library_31	thats for class not now
+ch_lib-p-27	07/11/2014	15:42:47	library_30	I think we're allowed to use this time for our Comm Relationships paper
+ch_lib-p-27	07/11/2014	15:45:08	library_31	you have me so lost
+ch_lib-p-27	07/11/2014	15:45:14	library_31	im not in your group
+ch_lib-p-27	07/11/2014	15:46:38	library_30	No you're not in my group for the slass, but that doesn't mean we can't research the same topic
+ch_lib-p-27	07/11/2014	15:47:18	library_30	There will be a final group paper in the class
+ch_lib-p-12	07/11/2014	15:47:22	library_18	[color=#FF00FF] curious how i just stumbled upon an article having to do w sex addiction.. good  [/color]
+ch_lib-p-27	07/11/2014	15:47:30	library_30	Everyone got in groups of 5-6 ppl
+ch_lib-p-27	07/11/2014	15:47:34	library_31	like our groups?
+ch_lib-p-27	07/11/2014	15:48:09	library_30	No you and I are a group in this Research study only. Not for the class
+ch_lib-p-10	07/11/2014	15:48:33	library_14	it's cold in here
+ch_lib-p-10	07/11/2014	15:49:21	library_13	i told you to wear unershirts
+ch_lib-p-10	07/11/2014	15:49:26	library_13	undershirts
+ch_lib-p-12	07/11/2014	15:49:41	library_17	lol def wont use that one
+ch_lib-p-27	07/11/2014	15:49:42	library_31	i have no idea what you are talking about
+ch_lib-p-10	07/11/2014	15:49:53	library_14	ok mom
+ch_lib-p-27	07/11/2014	15:49:59	library_31	i have already been eriting stuff in the task pad
+ch_lib-p-27	07/11/2014	15:50:05	library_31	and what this is for the study?
+ch_lib-p-10	07/11/2014	15:50:29	library_13	stop
+ch_lib-p-10	07/11/2014	15:51:33	library_13	isnt my topic so much better
+ch_lib-p-10	07/11/2014	15:52:07	library_14	it's easier
+ch_lib-p-10	07/11/2014	15:52:21	library_13	better*
+ch_lib-p-10	07/11/2014	15:52:38	library_14	stop
+ch_lib-p-10	07/11/2014	15:52:54	library_13	^trying to be like me
+ch_lib-p-10	07/11/2014	15:53:02	library_14	k
+ch_lib-p-10	07/11/2014	15:53:32	library_13	i'd want to be me too
+ch_lib-p-10	07/11/2014	15:53:34	library_13	its ok
+ch_lib-p-12	07/11/2014	15:59:04	library_18	[color=#FF00FF] <3 [/color]
+ch_lib-p-12	07/11/2014	16:00:31	library_17	got too many articles my mind is all over the place
+ch_lib-p-12	07/11/2014	16:00:45	library_18	[color=#FF00FF] i need a nap  [/color]
+ch_lib-p-12	07/11/2014	16:00:45	library_18	[color=#FF00FF] asap  [/color]
+ch_lib-p-12	07/11/2014	16:00:54	library_17	same!!!!
+ch_lib-p-12	07/11/2014	16:01:06	library_18	[color=#FF00FF] [u]help[/u] [/color]
+ch_lib-p-35	12/11/2014	15:12:30		library_41 joins lib-p-35
+ch_lib-p-36	12/11/2014	15:19:41		library_46 joins lib-p-36
+ch_lib-p-15	12/11/2014	15:19:43		library_23 joins lib-p-15
+ch_lib-p-15	12/11/2014	15:19:44		library_22 joins lib-p-15
+ch_lib-p-35	12/11/2014	15:19:55		library_42 joins lib-p-35
+ch_lib-p-35	12/11/2014	15:20:02	library_42	hey
+ch_lib-p-15	12/11/2014	15:20:04	library_22	hey Jenna!!
+ch_lib-p-35	12/11/2014	15:20:05	library_41	heyy
+ch_lib-p-15	12/11/2014	15:20:06	library_23	HEYYYYYYYYY
+ch_lib-p-15	12/11/2014	15:21:17	library_23	wanna do yours first? 
+ch_lib-p-15	12/11/2014	15:21:26	library_22	sure=]
+ch_lib-p-35	12/11/2014	15:22:29	library_42	ok mine specifically was the effects of long distance relationships in college student
+ch_lib-p-15	12/11/2014	15:22:52	library_22	i'm going in Academic search premier
+ch_lib-p-35	12/11/2014	15:23:18	library_41	okayy!
+ch_lib-p-35	12/11/2014	15:23:21	library_42	there is a difference btwn adults in a LDR and college students
+ch_lib-p-35	12/11/2014	15:23:33	library_42	like there mind sets are diff
+ch_lib-p-35	12/11/2014	15:23:41	library_42	ok so yours first?
+ch_lib-p-35	12/11/2014	15:23:42	library_41	oh okay i gotcha
+ch_lib-p-15	12/11/2014	15:23:57	library_23	I'm on the rutgers regular database search
+ch_lib-p-35	12/11/2014	15:23:58	library_41	do you need to know what mine is again ?? i'm not sure if it's listed here somewhere
+ch_lib-p-35	12/11/2014	15:24:01	library_41	yeah sure!
+ch_lib-p-15	12/11/2014	15:24:32	library_23	does this have anything to do with sex or gender.
+ch_lib-p-15	12/11/2014	15:24:38	library_23	Are the any specifics i should be looking for?
+ch_lib-p-35	12/11/2014	15:24:39	library_42	the effecs of patient-centered care on breast cancer treatment success
+ch_lib-p-15	12/11/2014	15:24:51	library_22	hm
+ch_lib-p-35	12/11/2014	15:24:55	library_41	okay yeah that's right
+ch_lib-p-15	12/11/2014	15:25:02	library_22	i didn't specify in my paper like race, but
+ch_lib-p-35	12/11/2014	15:25:07	library_42	ok what are some key words i should use
+ch_lib-p-15	12/11/2014	15:25:13	library_22	i focused on heterosexual couples
+ch_lib-p-15	12/11/2014	15:25:22	library_22	living together before marriage
+ch_lib-p-15	12/11/2014	15:25:42	library_23	okay b/c a lot of 
+ch_lib-p-15	12/11/2014	15:25:49	library_22	asking q's like why would they want to move in w eachother and the communication process changing bc of it
+ch_lib-p-15	12/11/2014	15:25:50	library_23	"african america" research is coming up 
+ch_lib-p-15	12/11/2014	15:25:56	library_22	lol really?
+ch_lib-p-15	12/11/2014	15:25:58	library_23	and i didn't know if i should look into it hahaha
+ch_lib-p-15	12/11/2014	15:26:04	library_23	yeah weird right?
+ch_lib-p-15	12/11/2014	15:26:06	library_22	hahaha
+ch_lib-p-35	12/11/2014	15:26:15	library_41	patient- centered breast cancer treatment 
+ch_lib-p-35	12/11/2014	15:26:18	library_41	i think things like that
+ch_lib-p-15	12/11/2014	15:26:40	library_22	i guess try to focus on couples in america then? 
+ch_lib-p-15	12/11/2014	15:27:02	library_23	okay :)
+ch_lib-p-35	12/11/2014	15:30:33	library_41	are you having trouble finding stuff?
+ch_lib-p-35	12/11/2014	15:31:05	library_41	cause you can literally go to psych info and do a basic search and just type in "patient-centered care breast cancer treatment success" and it comes up with a lot of stuff
+ch_lib-p-35	12/11/2014	15:32:01	library_42	im good!!!!
+ch_lib-p-35	12/11/2014	15:32:10	library_42	Thanks hottie<3
+ch_lib-p-35	12/11/2014	15:32:11	library_42	lol
+ch_lib-p-35	12/11/2014	15:32:13	library_42	jk
+ch_lib-p-15	12/11/2014	15:41:18	library_23	My topic is gender influence on sibling communication
+ch_lib-p-35	12/11/2014	15:41:21	library_41	LOL just saw this my b
+ch_lib-p-35	12/11/2014	15:41:22	library_41	<3
+ch_lib-p-15	12/11/2014	15:41:57	library_23	definitely focus on brother to sister relationships more than sister siblings and brother siblings
+ch_lib-p-15	12/11/2014	15:42:01	library_22	okay, what do you mean about gender though? gender of the siblings effecting comm?
+ch_lib-p-15	12/11/2014	15:42:04	library_22	okay gotcha
+ch_lib-p-15	12/11/2014	15:42:40	library_23	yes how having a brother-sister sibling relationship differs from same sex sibling relationships
+ch_lib-p-35	12/11/2014	15:48:25	library_42	Focus on the effects, and make sure you tie in how communication via technology is important
+ch_lib-p-35	12/11/2014	15:48:57	library_42	since it is a major phenomenon in todays society, changing how we interact
+ch_lib-p-15	12/11/2014	15:50:32	library_22	okay i keep getting weird sibling incest articles lol what search terms are you using?
+ch_lib-p-15	12/11/2014	15:54:53	library_23	lol thats what i  use to get
+ch_lib-p-15	12/11/2014	15:55:06	library_23	focus on influence of genderinterpersonal relationships
+ch_lib-p-15	12/11/2014	15:55:19	library_23	sibling communication
+ch_lib-p-15	12/11/2014	15:55:21	library_22	okay
+ch_lib-p-15	12/11/2014	15:55:38	library_23	i always use advance search so that they focus on more key words than incest
+ch_lib-p-15	12/11/2014	15:55:40	library_23	lol
+ch_lib-p-1001	23/11/2014	13:49:40		test_10 joins lib-p-1001
+ch_lib-p-1001	23/11/2014	15:22:29		test_10 joins lib-p-1001
+ch_lib-p-1001	23/11/2014	21:57:44		test_10 joins lib-p-1001
+ch_lib-p-1001	23/11/2014	22:48:43		testy joins lib-p-1001
+ch_lib-p-1001	24/11/2014	09:05:31		test_10 joins lib-p-1001
+ch_lib-p-1001	24/11/2014	09:46:48	testy	Hello
+ch_lib-p-1001	24/11/2014	10:07:32	testy	test_10 quit (timeout)
+ch_lib-p-1001	24/11/2014	11:05:28	testy	nnmnm
+ch_lib-p-1001	26/11/2014	12:27:55		testy joins lib-p-1001
+ch_lib-p-1001	01/12/2014	08:43:02		Test_10 joins lib-p-1001
+ch_lib-p-1001	09/12/2014	16:36:11		test_10 joins lib-p-1001
