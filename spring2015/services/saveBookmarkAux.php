@@ -1,9 +1,10 @@
 <?php
-    
+
 	session_start();
     require_once('../core/Connection.class.php');
     require_once('../core/Base.class.php');
     require_once('../core/Util.class.php');
+    require_once('../core/Tags.class.php');
 
 
     if (Base::getInstance()->isSessionActive())
@@ -19,17 +20,17 @@
     $localDate = $_POST['localDate'];
     $localTime = $_POST['localTime'];
     $localTimestamp = $_POST['localTimestamp'];
-    
-	
+
+
     $title = addslashes($_POST['title']);
     $source = addslashes($_POST['source']);
 //    $site = $_POST['site'];
-    
+
     $queryString = '';
     if(isset($_POST['queryString'])){
         $queryString = addslashes($_POST['queryString']);
     }
-    
+
     $queryString = $_POST['queryString'];
     $originalURL = $_POST['originalURL'];
     $rating = "NULL";
@@ -45,22 +46,25 @@
     $date = $base->getDate();
     $time = $base->getTime();
     $lastID = $connection->getLastID();
-    
+
     Util::getInstance()->saveAction("Save Bookmark - Rating: $rating",$lastID,$base);
-    
+
     $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$source','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating')";
     $results = $connection->commit($query);
-    
+
+    $bookmarkID = $connection->getLastID();
+    $tags = new Tags();
+    $tags->assignTagsToBookmark($bookmarkID, $_POST["tags"]);
     echo "<script>window.close()</script>";
 
-    
+
     //TODO: Save bookmark action!!!!
-    
+
 //    $lastID = mysql_insert_id();
     //TODO: Insert into actions!
 //            $aQuery = "INSERT INTO actions VALUES('','$userID','$projectID','$timestamp','$date','$time','save-page','$lastID','$ip')";
 //            $aResults = mysql_query($aQuery) or die(" ". mysql_error());
-        
+
     }
-	
+
 ?>
