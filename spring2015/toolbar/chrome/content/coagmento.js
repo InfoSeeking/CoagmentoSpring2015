@@ -24,7 +24,7 @@ function loadURL(url) {
 var googleURL = "	";
 
 function search() {
-	var url = googleURL;
+	var url = googleURL; 
 	loadURL(url);
 }
 
@@ -57,14 +57,14 @@ function onChange()
 	}
 }
 
-function tabSelected(event)
+function tabSelected(event) 
 {
 
 	action = "tabSelected";
 	savePQ();
 }
 
-function tabAdded(event)
+function tabAdded(event) 
 {
 
 	action = "tabAdded";
@@ -88,7 +88,7 @@ function checkStageBrowsability()
      xmlHttpConnection.onreadystatechange=function(){
            if (xmlHttpConnection.readyState == 4 && xmlHttpConnection.status == 200) {
                  var serverResponse = xmlHttpConnection.responseText;
-                 var url = window.content.document.location;
+                 var url = window.content.document.location;	
                  if (serverResponse==1)
                  {
                 	 allowBrowsingFlag = true;
@@ -120,13 +120,13 @@ function checkStageBrowsability()
                                      xmlHttpConnection.abort();
                                      clearTimeout(xmlHttpTimeout);
                                  },5000);
-	}
-
+	}	
+	
 	/***---ADDED on 06/04/14-----*/
 	else
 	{
 		setTimeout(checkStageBrowsability,10);
-
+	
 	}
 }
 
@@ -137,10 +137,10 @@ function checkStageBrowsability()
 		if (loggedIn)
 		{
 			flagSearchEngine = true;
-			var url = new String(window.content.document.location);
-
+			var url = new String(window.content.document.location);	
+		
 			if ((url.indexOf("www.google.com",0) != -1)&&(url.indexOf("complete=0",0) == -1))
-			{
+			{	
 				search();
 			}
 		}
@@ -149,7 +149,7 @@ function checkStageBrowsability()
 
 function onPageLoad()
 {
-	//validSearchEngine();
+	//validSearchEngine();	
 	checkStageBrowsability();
 	cleanAlert();
 	savePQ();
@@ -157,46 +157,46 @@ function onPageLoad()
 
 var TOPIC_MODIFY_REQUEST = "http-on-modify-request";
 
-var coagmentoObserver = {
-        register: function() {
-        var observerService = Components.classes["@mozilla.org/observer-service;1"]
-                                                  .getService(Components.interfaces.nsIObserverService);
-        observerService.addObserver(this, TOPIC_MODIFY_REQUEST, false);
-        },
-        //observe function to capture the changed event
+var coagmentoObserver = {  
+        register: function() {  
+        var observerService = Components.classes["@mozilla.org/observer-service;1"]  
+                                                  .getService(Components.interfaces.nsIObserverService);  
+        observerService.addObserver(this, TOPIC_MODIFY_REQUEST, false);  
+        }, 
+        //observe function to capture the changed event 
         observe : function(aSubject, aTopic, aData) {
           if (TOPIC_MODIFY_REQUEST == aTopic) {
                 var url;
                 aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
-
+				
 				url = aSubject.URI.spec;
-
+				
 				//alert("Data received: " + url + aData);
-
+				
 							//aSubject.setRequestHeader("Host", "google.com", false);
 				//validSearchEngine(url);
 
 			if (loggedIn)
 			{
 				/*if (!flagSearchEngine)
-				{
-
+				{	
+										
 					flagSearchEngine = true;
 					//if (!flagSearchEngine)
 					//{*/
 					/*if ((url.indexOf("www.google.com",0) != -1)&&(url.indexOf("complete=0",0) != -1))
-
+					
 						aSubject.cancel(Components.results.NS_BINDING_ABORTED);
 						search();
 					}
 					/*flagSearchEngine = false;
-
+					
 				}*/
-
+				
 				// This is not required since in user study 2014 you can go to any search engine. No restrictions.
 				/*
 				if (sessionNumber==2)
-				{
+				{	
 					//url = encodeURIComponent(url);
 					//Here check if this is Google images .. that is fine if they want to use that.
 					if ((url.indexOf("bing.com",0) != -1)||
@@ -211,70 +211,70 @@ var coagmentoObserver = {
 						(url.indexOf("yahoo.co",0) != -1)||
 						(url.indexOf("altavista.com",0) != -1)||
 						(url.indexOf("wiki.answers.com",0) != -1)
-					  )
+					  )												
 					{
 							//Add condition to restricted date range search based on session 1 or 2
 						aSubject.cancel(Components.results.NS_BINDING_ABORTED);
 						//aSubject.setRequestHeader("Referer", "https://www.google.com/webhp?hl=en&output=search&tbs=cdr:1,cd_min:1/1/1990,cd_max:3/31/2011&bav=on.2,or.r_gc.r_pw.r_qf.,cf.osb&ech=1&psi=LuOLT5GbE4L50gGPmszhCg.1334567726497.3&emsg=NCSR&noj=1&ei=LuOLT5GbE4L50gGPmszhCg&complete=0", false);
-						//aSubject.setRequestHeader("Host", "google.com", false);
+						//aSubject.setRequestHeader("Host", "google.com", false);						
 						//search();
 					}
-
+					
 				}
 				*/
 			}
+	
 
-
-               /*
-
+               /* 
+                
                 //check if the url matches any of the regula expressions mentioned above and then redirect to google.com
-                if (RE_URL_TO_MODIFY_1.test(url) || RE_URL_TO_MODIFY_2.test(url) || RE_URL_TO_MODIFY_3.test(url)|| RE_URL_TO_MODIFY_4.test(url)||RE_URL_TO_MODIFY_5.test(url) || RE_URL_TO_MODIFY_6.test(url) || RE_URL_TO_MODIFY_7.test(url)|| RE_URL_TO_MODIFY_8.test(url)||
-				    RE_URL_TO_MODIFY_9.test(url) || (RE_URL_TO_MODIFY_10.test(url)&&(!RE_URL_TO_MODIFY_11.test(url))&&(!RE_URL_TO_MODIFY_12.test(url))&&(!RE_URL_TO_MODIFY_13.test(url))))
-                {
+                if (RE_URL_TO_MODIFY_1.test(url) || RE_URL_TO_MODIFY_2.test(url) || RE_URL_TO_MODIFY_3.test(url)|| RE_URL_TO_MODIFY_4.test(url)||RE_URL_TO_MODIFY_5.test(url) || RE_URL_TO_MODIFY_6.test(url) || RE_URL_TO_MODIFY_7.test(url)|| RE_URL_TO_MODIFY_8.test(url)|| 
+				    RE_URL_TO_MODIFY_9.test(url) || (RE_URL_TO_MODIFY_10.test(url)&&(!RE_URL_TO_MODIFY_11.test(url))&&(!RE_URL_TO_MODIFY_12.test(url))&&(!RE_URL_TO_MODIFY_13.test(url)))) 
+                { 
                 aSubject.setRequestHeader("Referer", "https://www.google.com/webhp?hl=en&output=search&tbs=cdr:1,cd_min:1/1/1990,cd_max:3/31/2011&bav=on.2,or.r_gc.r_pw.r_qf.,cf.osb&ech=1&psi=LuOLT5GbE4L50gGPmszhCg.1334567726497.3&emsg=NCSR&noj=1&ei=LuOLT5GbE4L50gGPmszhCg", false);
                 aSubject.setRequestHeader("Host", "google.com", false);
-                }
-
+                } 
+                
           }
         },
         //unregister function and remove observer
-        unregister: function() {
-        var observerService = Components.classes["@mozilla.org/observer-service;1"]
-                                                        .getService(Components.interfaces.nsIObserverService);
+        unregister: function() {  
+        var observerService = Components.classes["@mozilla.org/observer-service;1"]  
+                                                        .getService(Components.interfaces.nsIObserverService);  
         observerService.removeObserver(this, "http-on-modify-request");  */
         }
-}
+}		
 
 }
 
-var coagmentoToolbar =
+var coagmentoToolbar = 
 {
 		oldTitle:document.title,
 		oldURL:document.location,
-
+		
 		delay:function()
         {
 			setTimeout(onChange,1);
         },
-
-		init: function()
+        	
+		init: function() 
 		{
 			 var container = gBrowser.tabContainer;
-
+			 		 
 			 //container.addEventListener('DOMSubtreeModified',coagmentoToolbar.delay, false);
 			 container.addEventListener('DOMSubtreeModified',onChange, false);
-			 container.addEventListener("load", onPageLoad, true);
- 			 container.addEventListener("TabOpen", tabAdded, false);
-			 container.addEventListener("TabClose", tabClosed, false);
+			 container.addEventListener("load", onPageLoad, true); 
+ 			 container.addEventListener("TabOpen", tabAdded, false);  
+			 container.addEventListener("TabClose", tabClosed, false); 
 			 container.addEventListener("TabSelect", tabSelected, false);
-
+			
 			 coagmentoObserver.register();
 			 //toggleSidebar('viewSidebar',true);
 	         //populateSidebar();
 			/*var appcontent = document.getElementById("appcontent");   // browser
 		    if(appcontent)
 		    	appcontent.addEventListener("DOMContentLoaded", onPageLoad, true);
-
+		    
 		    var messagepane = document.getElementById("messagepane"); // mail
 		    if(messagepane)
 		    	messagepane.addEventListener("load", function () { onPageLoad(); }, true);*/
@@ -285,7 +285,7 @@ var coagmentoToolbar =
 function editor()
 {
 	var url = globalUrl+"services/getTextEditor.php";
-	loadURL(url);
+	loadURL(url);	
 }
 
 function mystuff(){
@@ -294,7 +294,7 @@ function mystuff(){
 	window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600');
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes');
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View');
-
+	
 }
 
 //Save pages
@@ -311,7 +311,7 @@ function savePQ()
           var title = document.title;
           var xmlHttpTimeoutSavePQ;
           var xmlHttpConnectionSavePQ = new XMLHttpRequest();
-
+          
           //Capturing local time
           var currentTime = new Date();
           var month = currentTime.getMonth() + 1;
@@ -323,11 +323,11 @@ function savePQ()
           var seconds = currentTime.getSeconds();
           var localTime = hours + "%3A" + minutes + "%3A" + seconds;
           var localTimestamp = currentTime.getTime();
-
+          
           //Saving page
           xmlHttpConnectionSavePQ.open('GET', globalUrl+'services/savePQ.php?URL='+url+'&title='+title+'&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate+'&action='+action, true);
           action = "";
-
+          
           xmlHttpConnectionSavePQ.onreadystatechange=function(){
               if (xmlHttpConnectionSavePQ.readyState == 4 && xmlHttpConnectionSavePQ.status == 200) {
                       clearTimeout(xmlHttpTimeoutSavePQ);
@@ -342,30 +342,30 @@ function savePQ()
                                           ,3000);
       }
 
-
+ 
   //}
 		//flagGoogle = false;
 		//flagSearchEngine = false;
 };
 
 //Function to collect highlighted passage from the page as a snippet.
-function snip()
+function snip() 
 {
 	checkConnectivity();
-	if (loggedIn)
+	if (loggedIn) 
 	{
 		/*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
 		var url = window.content.document.location;
 		url = encodeURIComponent(url);
 		var title = encodeURIComponent(document.title);*/
-
+		
 		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
         var title = document.title;
         var xmlHttpTimeoutSaveSnippet;
         var xmlHttpConnectionSaveSnippet = new XMLHttpRequest();
-
+        
         //Capturing local time
         var currentTime = new Date();
         var month = currentTime.getMonth() + 1;
@@ -377,11 +377,11 @@ function snip()
         var seconds = currentTime.getSeconds();
         var localTime = hours + "%3A" + minutes + "%3A" + seconds;
         var localTimestamp = currentTime.getTime();
-
+ 
         //Saving page
         xmlHttpConnectionSaveSnippet.open('GET', globalUrl+'services/saveSnippet.php?'+'URL='+url+'&snippet='+snippet+'&title='+title+'&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate, true);
         action = "";
-
+        
         xmlHttpConnectionSaveSnippet.onreadystatechange=function(){
             if (xmlHttpConnectionSaveSnippet.readyState == 4 && xmlHttpConnectionSaveSnippet.status == 200) {
                     clearTimeout(xmlHttpTimeoutSaveSnippet);
@@ -394,9 +394,9 @@ function snip()
                                             clearTimeout(xmlHttpTimeoutSaveSnippet);
                                         }
                                         ,3000);
-
+        
         document.getElementById('msgs').textContent = " Snippet Saved!";
-        setTimeout('cleanAlert()', 3000);
+        setTimeout('cleanAlert()', 3000);        
 	}
 };
 
@@ -457,12 +457,12 @@ function checkConnectivity()
                                      clearTimeout(xmlHttpTimeout);
                                  },5000);
 	}
-
+	
 	// Added 06/04/14
 	else
 	{
 		setTimeout(checkConnectivity,10);
-
+	
 	}
 };
 
@@ -482,17 +482,17 @@ function disableButtons(value)
 	document.getElementById('coagmentoEditorButton').disabled = value;
 	document.getElementById('coagmentoMyStuffButton').disabled = value;
 
-
+    
     //FIX: Always enable home button
     document.getElementById('coagmentoHomeButton').disabled = false;
 
-
+	
 }
 
 function intilizeToolbarSession()
 {
 	if (loggedIn)
-	{
+	{	
 		//if (sessionNumber==1)
 		//{
 			googleURL = "https://www.google.com/";
@@ -500,7 +500,7 @@ function intilizeToolbarSession()
 			document.getElementById('coagmentoHomeButton').hidden = false;
 			document.getElementById('coagmentoSnipButton').hidden = false;
 			document.getElementById('coagmentoEditorButton').hidden = false;
-			document.getElementById('coagmentoMyStuffButton').hidden = false;
+			document.getElementById('coagmentoMyStuffButton').hidden = false;			
 			document.getElementById('toolbarseparatorHome').hidden = false;
 			document.getElementById('toolbarseparatorSnip').hidden = false;
 			document.getElementById('toolbarseparatorEditor').hidden = false;
@@ -518,7 +518,7 @@ function intilizeToolbarSession()
 			document.getElementById('toolbarseparatorSearch').hidden = false;
 			document.getElementById('toolbarseparatorSnip').hidden = false;
 			document.getElementById('coagmentoEditorButton').hidden = true;
-			document.getElementById('toolbarseparatorEditor').hidden = true;
+			document.getElementById('toolbarseparatorEditor').hidden = true;					
 		}*/
 
 	}
@@ -526,7 +526,7 @@ function intilizeToolbarSession()
 	{
 			document.getElementById('coagmentoHomeButton').hidden = true;
 			document.getElementById('coagmentoSnipButton').hidden = true;
-			document.getElementById('coagmentoMyStuffButton').hidden = true;
+			document.getElementById('coagmentoMyStuffButton').hidden = true;			
 
 			document.getElementById('toolbarseparatorHome').hidden = true;
 			document.getElementById('toolbarseparatorSnip').hidden = true;
@@ -536,7 +536,7 @@ function intilizeToolbarSession()
 
 			//document.getElementById('coagmentoEditorButton').hidden = false;
 			//document.getElementById('coagmentoEditorButton').hidden = false;
-
+	
 	}
     //FIX: Always show home button
     document.getElementById('coagmentoHomeButton').hidden = false;
@@ -554,7 +554,7 @@ function updateToolbarButtons()
 	}
     else
     {
-    	disableButtons(true);
+    	disableButtons(true);		
 	}
   }
 }
@@ -576,9 +576,9 @@ function populateSidebar() {
  */
 
 /*
- *
+ * 
  * CODE BELOW WAS ADAPTED FROM
- *
+ * 
 Title: Close All Tabs (Reloaded)
 Author: Michael Grafl (https://addons.mozilla.org/en-US/firefox/user/5115653/)
 Description: A toolbar button to close all open tabs. Improved and updated version of "Close All Tabs 1.1" (https://addons.mozilla.org/en/firefox/addon/2914).
@@ -608,10 +608,10 @@ onUnload: function () {
 /* When the CloseAllTabs button is clicked, we try to close all tabs. */
 runScript: function () {
 	/*try {
-
+	
 	// Actually closing tabs...
 	var lastTab = gBrowser.selectedTab;
-
+	
 	// NOTE: We cannot use gBrowser.removeAllTabsBut because the selected tab may be pinned (in which case the function would do nothing).
 	//gBrowser.removeAllTabsBut(lastTab);
 	if(gBrowser.warnAboutClosingTabs("AllBut", null, gBrowser.selectedTab._isProtected)) {
@@ -622,18 +622,29 @@ runScript: function () {
 			}
 		}
 	}
-
+	
 	//loadURL(globalUrl+"index.php");
-
+	
 	/*var homePage = gHomeButton.getHomePage().split("|")[0];
 	gBrowser.selectedTab = gBrowser.addTab(homePage);
-
+	
 	//Note: Do not close pinned tabs!
 	//if(!lastTab.pinned) gBrowser.removeTab(lastTab);
-
+			
 	}catch(e) {alert("Error: " + e);}*/
   }
 
 }
 window.addEventListener('load', CloseAllButton.onLoad, false);
 window.addEventListener('unload', CloseAllButton.onUnload, false);
+
+
+
+
+
+
+
+
+
+
+
