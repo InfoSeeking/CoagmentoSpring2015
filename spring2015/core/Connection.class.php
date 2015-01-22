@@ -30,10 +30,8 @@ class Connection
          */
         //Credentials for Matt's local test user study database - Fall 2014
         $host = "localhost";
-        $username = "mmitsui";
-        $password = "Rnihn7.";
-//		$username = "userstudy_sp15";
-//		$password = "uu8H$baK#";
+		$username = "userstudy_sp15";
+		$password = "uu8H$baK#";
 		$database = "spring2015_userstudy";
 
 
