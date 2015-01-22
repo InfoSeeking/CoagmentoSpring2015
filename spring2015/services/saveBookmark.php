@@ -2,6 +2,7 @@
 	session_start();
 
     require_once('../core/Base.class.php');
+		require_once('../core/Tags.class.php');
 
     $base = Base::getInstance();
     $userID = $base->getUserID();
@@ -52,5 +53,8 @@
 			// Extract the query if there is any
 			$queryString = extractQuery($originalURL);
 
+			// Get user's tags
+			$tags = new Tags();
+			$available_tags = $tags->getTagsForUser($userID);
 			require_once("templates/bookmark.php");
 ?>

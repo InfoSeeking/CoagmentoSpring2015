@@ -33,6 +33,9 @@
           <select name="tags[]" id="tag-input" multiple="multiple">
             <?php
             //show all user tags
+            foreach($available_tags as $tag){
+              printf("<option value='%s'>%s</option>", $tag["name"], $tag["name"]);
+            }
             ?>
           </select>
 
