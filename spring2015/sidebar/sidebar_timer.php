@@ -99,8 +99,15 @@
 
         $chat = new phpFreeChat($params);
 	}
+
+/***************************************************************************************************************************************/
+/***************************************************************************************************************************************/
+/**************************************************** TIMER ****************************************************************************/
+/***************************************************************************************************************************************/
+/***************************************************************************************************************************************/
 	
 	$page = $base->getPage();
+//	$qProgressID = $_SESSION['qProgressID'];
 	
 	/* ---COMMENTED OUT ON 05/23/2014-----
 	if ($base->getStageID()==170)
@@ -282,12 +289,69 @@ cursor:hand;
 
 	  if (isset($_GET['show'])) //&&(!(isset($_GET['answer']))))
 	  {
-        echo "<body>";
+	  	echo "<body onload=\"startTimeTask()\">";
+//        echo "<body>";
 
 		//first region
+		//if (($base->getStageID()==80)||($base->getStageID()==100))
 		if ($base->getAllowCommunication()==1)
 		{
-            
+			//Show question and timer
+			//Retrieve question
+			$qQuery = "SELECT question
+  					     FROM questions_study
+					    WHERE questionID = '".$base->getQuestionID()."'";
+
+			$connection = Connection::getInstance();
+			$results = $connection->commit($qQuery);
+			$line = mysql_fetch_array($results, MYSQL_ASSOC);
+			$question = $line['question'];
+			
+			$extra = 0; //Adding extra seconds to compensate questionnaires, reading question, and syncrhonization
+			$taskRemainingTime = $base->getTaskRemainingTime()+$extra;
+			
+			//Find question min time and max time
+			
+			$minTimeQuery = "SELECT minTimeQuestion, maxTime
+  					     	FROM session_stages
+					    	WHERE stageID = '".$base->getStageID()."'";
+
+			$minTimeconnection = Connection::getInstance();
+			$minTimeresults = $minTimeconnection->commit($minTimeQuery);
+			$minTimeline = mysql_fetch_array($minTimeresults, MYSQL_ASSOC);
+			$minTime = $minTimeline['minTimeQuestion'];
+			$maxTime = $minTimeline['maxTime'];
+			
+			
+			/*
+			* Fix for showing timer at start of task display; hiding snippets and finish button until search is enabled.
+			*/
+			$questionID = $base->getQuestionID();
+//			$queryQuest = "SELECT distinct(1) res 
+//							 	   FROM questionnaire_pretask
+//								   WHERE stageID = '".$base->getStageID()."' and userID = '".$base->getUserID()."' and projectID = '".$base->getProjectID()."' and questionID = '$questionID'";
+//					
+//			$connection = Connection::getInstance();
+//			$queryQuestresults = $connection->commit($queryQuest);
+//			$numRows = mysql_num_rows($queryQuestresults);
+//			$isPretaskQuestionnaireComplete = false;
+//			
+//			if ($numRows>0)
+//			{
+//					$isPretaskQuestionnaireComplete = true;
+//			}
+			
+			// Blinker threshold for practice and real tasks
+			$blinkThreshold = 300; //real task
+			
+//			if($base->getStageID()==50) //practice task
+//			{
+//				$blinkThreshold = 30;
+//				
+//			}
+				
+			
+		
 ?>
 
 
@@ -296,13 +360,136 @@ cursor:hand;
 
 
 <script type="text/javascript">
+var currentTimeTask = <?php echo $taskRemainingTime;?>;
+var overallTimeTask = currentTimeTask;
+var minTime = <?php echo $minTime;?>;
+var maxTime = <?php echo $maxTime;?>;
+var blinkThreshold=<?php echo $blinkThreshold;?>;
+
+
+function startTimeTask()
+{
+    if (currentTimeTask>=0)
+    {
+        var h = Math.floor(overallTimeTask/3600);
+        var m = Math.floor((overallTimeTask%3600)/60);
+        var s = overallTimeTask%60;
+        h=checkTime(h);
+        m=checkTime(m);
+        s=checkTime(s);
+        
+        <?php
+        
+        if($base->isTaskInTime()){
+
+//        if($base->isTaskInTime() && $isPretaskQuestionnaireComplete){
+            ?>
+//            if(maxTime-currentTimeTask>=minTime)
+//            {
+//                document.getElementById('finishbutton').style.display = 'block';
+//            }
+//            else
+//            {
+//                document.getElementById('finishbutton').style.display = 'none';
+//            }
+            <?php
+        }
+        ?>
+        
+        
+        if (overallTimeTask<blinkThreshold)
+        {
+            document.getElementById('taskClock').style.color = "Red";
+            document.getElementById('taskClock').innerHTML=h+":"+m+":"+s; //+" - - "+currentTimeTask;
+            setTimeout('blinkTaskTime()',500);
+        }
+        
+        else
+            document.getElementById('taskClock').innerHTML=h+":"+m+":"+s; //+" - - "+currentTimeTask;
+        currentTimeTask--;
+        overallTimeTask--;
+        
+        t=setTimeout('startTimeTask()',1000);
+    }
+    else
+    {
+        //load post-task questionnaire
+        document.getElementById('taskClock').innerHTML="00:00";
+        document.getElementById("taskInfo").style.display = "none";
+        <?php
+        if($base->isTaskInTime()){
+//        if($base->isTaskInTime() && $isPretaskQuestionnaireComplete){
+            ?>
+//            document.getElementById('finishbutton').style.display = 'none';
+            <?php
+        }
+        echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
+        echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
+        ?>
+        
+        content.wrappedJSObject.location = homeURL+'index.php';
+        document.location = homeURL+'sidebar/sidebar.php';
+    }
+}
+
+function blinkTaskTime()
+{
+    document.getElementById('taskClock').style.color = "Red";
+}
+
+function checkTime(i)
+{
+    if (i<10)
+    {
+        i="0" + i;
+    }
+    return i;
+}
+
+//function answer()
+//{
+//    content.location = homeURL+'instruments/<?php echo $page?>?answer=true';
+//}
+
+function skip()
+{
+    //                    TEMP FIX: NOT REQUIRED FOR THIS STUDY??? PRODUCES PHP ERRORS
+    //					content.location = homeURL+'instruments/
+    <?php
+    //                    echo $page;
+    ?>
+    //                    ?skip=true&qProgressID=
+    <?php
+    //                    echo $qProgressID;
+    ?>
+    //                    ';
+    <?php
+    echo "document.location = '".$homeURL."sidebar/sidebar.php?clean=true';\n";
+    ?>
+}
+
+function finish()
+{
+    document.getElementById('taskClock').innerHTML="00:00";
+    document.getElementById("taskInfo").style.display = "none";
+//    document.getElementById('finishbutton').style.display = 'none';
+    <?php
+    echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
+    echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
+    ?>
+    
+}
 
 
 <?php
+    
+     $flagSession2 = false;
      $height = "100px";
+     
      if ($base->getStageID()>=120)
      {
-         $height = "300px";
+     $flagSession2 = true;
+     $height = "300px";
      }
     ?>
 </script>
@@ -315,6 +502,22 @@ cursor:hand;
 <!-- 			<div id="statusMessage">&nbsp;&nbsp;<span style="font-size:10px;color:red;">Warning: Coagmento is turned off.</span><br/>&nbsp;&nbsp;<span style="color:blue;text-decoration:underline;cursor:pointer;font-size:10px;" onClick="tabsReload(0,'source');">Activate it</span>. <span style="color:blue;text-decoration:underline;cursor:pointer;font-size:10px;" onClick="tabsReload(0,'source');">Learn more.</span></div> -->
 <span style="font-size:10px;"><div id="currentProj"></div></span>
 <!-- 				<div id="reload"><span style="font-size:11px;color:blue;text-decoration:underline;cursor:pointer;" onClick="location.reload(true);">Reload the Sidebar</div>-->
+
+
+
+
+<center>
+<div id="taskInfo" style="border-color:black; height:<?php echo $height;?>">
+<table>
+<tr align="center">
+<th colspan="3">Your remaining time</th>
+</tr>
+<tr align="center">
+<td><div id="taskClock" style="font-weight:bold; color:Blue; font-size:30px"></div></td>
+</tr>
+</table>
+</div>
+</center>
 
 
 
@@ -368,6 +571,44 @@ cursor:hand;
 <div class="acc-section2">
 <div id="history" class="acc-content2">
 <ul id="tabs" class="shadetabs">
+<?php
+    
+    
+    $userID = Base::getInstance()->getUserID();
+    $stageID = Base::getInstance()->getStageID();
+    $sessionID = -1;
+    $sessionID = 1;
+//    if($stageID<Stage::SESSION_TWO_START)
+//    {
+//        $sessionID=1;
+//    }
+//    else
+//    {
+//        $sessionID=2;
+//    }
+    
+//    $qQuery = "SELECT userID, topicAreaID, sessionID
+//    FROM user_session_topic
+//    WHERE userID='$userID' AND sessionID='$sessionID'";
+    
+    $qQuery = "SELECT userID, topicAreaID
+    FROM users
+    WHERE userID='$userID'";
+    
+    $connection = Connection::getInstance();
+    $results = $connection->commit($qQuery);
+    $numRows = mysql_num_rows($results);
+    
+    $topicAreaID = -1;
+    if($numRows>0)
+    {
+        $line = mysql_fetch_array($results, MYSQL_ASSOC);
+        $topicAreaID = $line['topicAreaID'];
+    }
+    
+
+
+    ?>
 <li><a href="sidebarComponents/snippets.php" rel="tabscontainer" class="selected">Snippets</a></li>
 
 <li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
@@ -440,7 +681,35 @@ nestedAccordion.init("nested","h4",1,-1,"acc-selected");
                     ?>
 				}
 
+//				function finish()
+//				{
+//					document.getElementById('taskClock').innerHTML="00:00";
+//					document.getElementById("taskInfo").style.display = "none";
+//					document.getElementById('finishbutton').style.display = 'none';
+					<?php
+//					echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n"; 
+//					echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
+					?>
+					
+//				}
 			</script>
+
+<?php
+//    if($base->getStageID() == Stage::SESSION_ONE_WARMUP)
+//    {
+    ?>
+<!--			<center>
+			<div id="taskInfo" style="border-color:black">
+<table>
+<tr><td>Press this button to skip the warmup phase.</td></tr>
+<tr><td><button onclick="skipwarmup();">Skip</button></td></tr>
+</table>
+				</div>	
+		    </center>-->
+<?php
+//    }
+
+?>
 	
 
 <?php
