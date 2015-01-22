@@ -101,33 +101,6 @@
 	}
 	
 	$page = $base->getPage();
-	
-	/* ---COMMENTED OUT ON 05/23/2014-----
-	if ($base->getStageID()==170)
-	{
-		$page = "question3.php";
-	}
-	----------------------------------*/
-	
-	
-	//echo "Page ".$page;
-	/*
-	if ($base->getStageID()==100)
-		$page = "task.php";
-	else		
-		if ($base->getStageID()==80)
-			$page = "stimuli.php";
-		else
-			if ($base->getStageID()==78)
-				$page = "pretask.php";
-			else
-				if ($base->getStageID()==91)
-					$page = "posttask.php";			
-				else
-					if ($base->getStageID()==43)
-						$page = "practice.php";		*/
-						
-	
 ?>
 
 
@@ -410,38 +383,6 @@ var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
 nestedAccordion.init("nested","h4",1,-1,"acc-selected");
 
 </script>
-
-
-
-
-
-
-
-			<script type="text/javascript">
-
-				function answer()
-				{
-                    alert('finished!');
-                    <?php
-                        echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
-                        echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
-                    ?>
-                }
-				function skipwarmup()
-				{
-//					content.location = homeURL+'instruments/<?php echo $page?>?skip=true&qProgressID=
-                    <?php
-//                    echo $qProgressID;
-                    ?>
-//                    ';
-					<?php
-                        echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
-                        echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
-                    ?>
-				}
-
-			</script>
-	
 
 <?php
 
