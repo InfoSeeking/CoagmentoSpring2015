@@ -604,15 +604,9 @@ function finish()
 
     ?>
 <li><a href="sidebarComponents/snippets.php" rel="tabscontainer" class="selected">Snippets</a></li>
-<?php
-//    if($topicAreaID == Base::TASK_CIS){ //CIS
-//     
-//        echo "<li><a href=\"sidebarComponents/searches.php\" rel=\"tabsycontainer\">Searches</a></li>";
-//        
-//    }else if($topicAreaID == Base::TASK_MDP && $stageID>Stage::SESSION_ONE_WARMUP){
-//        echo "<li><a href=\"sidebarComponents/mdp_documents.php\" rel=\"tabsycontainer\">Documents</a></li>";
-//    }
-  ?>
+
+<li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
+
 <li><a href="sidebarComponents/bookmarks.php" rel="tabscontainer" class="selected">Bookmarks</a></li>
 </ul>
 <div id="tabsdivcontainer" style="border:1px solid gray; width:285px; margin-bottom: 1em; padding: 10px">  </div>
