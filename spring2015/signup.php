@@ -1,51 +1,51 @@
 <?php
 require_once('core/Connection.class.php');
 
-$query = "SELECT COUNT(*) AS num_recruits FROM recruits";
-$connection = Connection::getInstance();			
-$results = $connection->commit($query);
-$line = mysql_fetch_array($results, MYSQL_ASSOC);
-$num_recruits = $line['num_recruits'];	
+//$query = "SELECT COUNT(*) AS num_recruits FROM recruits";
+//$connection = Connection::getInstance();			
+//$results = $connection->commit($query);
+//$line = mysql_fetch_array($results, MYSQL_ASSOC);
+$num_recruits = 0;
 
 $recruit_limit =72; // Current Recruitment Limit as of 07/15/2014
 
     $closed=true;
     
-    $query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
-    $connection = Connection::getInstance();
-    $results = $connection->commit($query);
+//    $query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
+//    $connection = Connection::getInstance();
+//    $results = $connection->commit($query);
+//    
+//    $ct_array = array();
+//    
+//    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+//        if($line['k'] == 1 && $line['v'] < 21){
+//            $closed = false;
+//        }
+//        else if($line['k'] == 2 && $line['v'] < 14){
+//            $closed = false;
+//        }
+//        $ct_array[$line['k']] = $line['v'];
+//    }
+//    
+//    $section_closed = false;
+//    if(isset($_POST['num_users'])){
+//        if($_POST['num_users'] == 2 && $ct_array[$_POST['num_users']]>=14){
+//            $section_closed = true;
+//        }else if ($_POST['num_users'] == 1 && $ct_array[$_POST['num_users']]>=21){
+//            $section_closed = true;
+//        }
+//    }
     
-    $ct_array = array();
     
-    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-        if($line['k'] == 1 && $line['v'] < 21){
-            $closed = false;
-        }
-        else if($line['k'] == 2 && $line['v'] < 14){
-            $closed = false;
-        }
-        $ct_array[$line['k']] = $line['v'];
-    }
-    
-    $section_closed = false;
-    if(isset($_POST['num_users'])){
-        if($_POST['num_users'] == 2 && $ct_array[$_POST['num_users']]>=14){
-            $section_closed = true;
-        }else if ($_POST['num_users'] == 1 && $ct_array[$_POST['num_users']]>=21){
-            $section_closed = true;
-        }
-    }
-    
-    
-    $closed = true;
+    $closed = false;
     
 if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 {	
 
-	if(isset($_POST['num_users']))
+	if(1)
 	{
         
-        $NUM_USERS = $_POST['num_users'];
+        $NUM_USERS = 1;
         
 	?>
 <html>
@@ -72,15 +72,21 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
             echo "isValid &= validateField(form.firstName_$x);\n";
             echo "isValid &= validateField(form.lastName_$x);\n";
             echo "isValid &= validateEmail(form.email1_$x,form.reEmail_$x);\n";
-            echo "isValid &= isRadioSelected(form.year_$x, \"yeardiv_$x\");\n";
-            echo "isValid &= isRadioSelected(form.sex_$x, \"sexdiv_$x\");\n";
-            echo "isValid &= validateField(form.coursename_$x);\n";
-            echo "isValid &= validateField(form.researchtopic_$x);\n";
+            echo "isValid &= validateField(form.username_$x);\n";
+            echo "isValid &= validateField(form.pwd_$x);\n";
+            echo "isValid &= validateField(form.repwd_$x);\n";
+            echo "isValid &= validateSelectField(document.getElementById(\"instructor_$x\"));\n";
+            echo "isValid &= validatePwd(form.pwd_$x,form.repwd_$x);\n";
+
+//            echo "isValid &= isRadioSelected(form.year_$x, \"yeardiv_$x\");\n";
+//            echo "isValid &= isRadioSelected(form.sex_$x, \"sexdiv_$x\");\n";
+            echo "isValid &= validateField(form.instructor_$x);\n";
+//            echo "isValid &= validateField(form.researchtopic_$x);\n";
             
         }
         ?>
 		
-        isValid &= isRadioSelected(document.getElementsByName("sessionday"), "sessiondaydiv");
+//        isValid &= isRadioSelected(document.getElementsByName("sessionday"), "sessiondaydiv");
 
 		//isValid &= isRadioSelected(form.interest1, "interest1");
 		//isValid &= isRadioSelected(form.interest2, "interest2");
@@ -124,6 +130,20 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 			return true;
 		}
 	}
+
+    function validateSelectField(field)
+    {
+        if (field.text == "")
+        {
+            changeColor(field,alertColor);
+            return false;
+        }
+        else
+        {
+            changeColor(field,okColor);
+            return true;
+        }
+    }
 	
 	function isRadioSelected(radioButtons, obj) 
 	{
@@ -296,11 +316,21 @@ Registration
                                                                                                                                                                                                                                                                                                                                                     echo "<tr><td bgcolor=\"#F2F2F2\">Last name</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\"  size=25 name=\"lastName_$x\" value=\"\" /></td></tr>";
                                                                                                                                                                                                                                                                                                                                                     echo "<tr><td>Primary Email</td><td> <input type=\"text\"  size=25 name=\"email1_$x\" value=\"\" /></td></tr>";
                                                                                                                                                                                                                                                                                                                                                     echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Email</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25  name=\"reEmail_$x\" value=\"\" /></td></tr>";
-                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Your year in college</td><td><div id=\"yeardiv_$x\"><input type=\"radio\" name=\"year_$x\" value=\"Freshman\" />Freshman  <input type=\"radio\" name=\"year_$x\" value=\"Sophomore\" />Sophomore<input type=\"radio\" name=\"year_$x\" value=\"Junior\" />Junior <input type=\"radio\" name=\"year_$x\" value=\"Senior\" />Senior </div></td></tr>";
                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td bgcolor=\"#F2F2F2\">Sex</td><td bgcolor=\"#F2F2F2\"><div id=\"sexdiv_$x\"><input type=\"radio\"  name=\"sex_$x\" value=\"F\" />Female  <input type=\"radio\" name=\"sex_$x\" value=\"M\" />Male</div></td></tr>";
-                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Section of your<br>04:192:201 Communication in <br>Relationships class</td><td> <input type=\"text\" size=25 name=\"coursename_$x\" value=\"\" /></td></tr>";
-                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td bgcolor=\"#F2F2F2\">Your research topic</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25 name=\"researchtopic_$x\" value=\"\" /></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Username</td><td> <input type=\"text\"  size=25 name=\"username_$x\" value=\"\" /></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Password</td><td> <input type=\"password\"  size=25 name=\"pwd_$x\" value=\"\" /></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Pasword</td><td bgcolor=\"#F2F2F2\"> <input type=\"password\" size=25  name=\"repwd_$x\" value=\"\" /></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                    
+//                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Your year in college</td><td><div id=\"yeardiv_$x\"><input type=\"radio\" name=\"year_$x\" value=\"Freshman\" />Freshman  <input type=\"radio\" name=\"year_$x\" value=\"Sophomore\" />Sophomore<input type=\"radio\" name=\"year_$x\" value=\"Junior\" />Junior <input type=\"radio\" name=\"year_$x\" value=\"Senior\" />Senior </div></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    
+//                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td bgcolor=\"#F2F2F2\">Sex</td><td bgcolor=\"#F2F2F2\"><div id=\"sexdiv_$x\"><input type=\"radio\"  name=\"sex_$x\" value=\"F\" />Female  <input type=\"radio\" name=\"sex_$x\" value=\"M\" />Male</div></td></tr>";
+//                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Section of your<br>04:192:201 Communication in <br>Relationships class</td><td> <input type=\"text\" size=25 name=\"coursename_$x\" value=\"\" /></td></tr>";
+                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                    echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and<br/>Evaluating Electronic<br/>Information class</td><td><select name=\"instructor_$x\" id=\"instructor_$x\"><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select></td></tr>";
+//                                                                                                                                                                                                                                                                                                                                                      echo "<tr><td bgcolor=\"#F2F2F2\">Your research topic</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25 name=\"researchtopic_$x\" value=\"\" /></td></tr>";
                                                                                
                                                                                                                                                                                                                                                                                                                                                     echo "</table><br><br>";
                                                                                                                                                                                                                                                                                                                                                     
@@ -308,34 +338,34 @@ Registration
                                                                                                                                                                                                                                                                                                                                                     ?>
 							
                                                                                  
-                                                                                                                                                                                                                                                                                                                                                    <table class="style1" border="1">
+                                                                                                                                                                                                                                                                                                                                                    <!--<table class="style1" border="1">
                                                                                                                                                                                                                                                                                                                                                     <tr><td>Which study session do<br>you want to attend?</td>
                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                    <td><div id="sessiondaydiv">
+                                                                                                                                                                                                                                                                                                                                                    <td><div id="sessiondaydiv">-->
                                                                                                                                                                                                                                                                                                                                                     <?php
                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                    if($NUM_USERS ==1){
-                                                                                                                        echo "<input type=\"radio\" name=\"sessionday\" value=\"Thursday 11/6 10:00-11:00 AM\" />Thursday 11/6 10:00-11:00 AM<br>";
-                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Monday 11/10 2:00-3:00 PM\" />Monday 11/10 2:00-3:00 PM";
-                                                                                                                                                                                                                                                                                                                                                    }else{
-                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Friday 11/7 1:00-2:00 PM\" />Friday 11/7 1:00-2:00 PM<br>";
-                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Friday 11/7 3:00-4:00 PM\" />Friday 11/7 3:00-4:00 PM<br>";
-                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Tuesday 11/11 3:00-4:00 PM\" />Tuesday 11/11 3:00-4:00 PM<br>";
-                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Wednesday 11/12 3:00-4:00 PM\" />Wednesday 11/12 3:00-4:00 PM";
-                                                                                                                                                                                                                                                                                                                                                    }
+//                                                                                                                                                                                                                                                                                                                                                    if($NUM_USERS ==1){
+//                                                                                                                        echo "<input type=\"radio\" name=\"sessionday\" value=\"Thursday 11/6 10:00-11:00 AM\" />Thursday 11/6 10:00-11:00 AM<br>";
+//                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Monday 11/10 2:00-3:00 PM\" />Monday 11/10 2:00-3:00 PM";
+//                                                                                                                                                                                                                                                                                                                                                    }else{
+//                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Friday 11/7 1:00-2:00 PM\" />Friday 11/7 1:00-2:00 PM<br>";
+//                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Friday 11/7 3:00-4:00 PM\" />Friday 11/7 3:00-4:00 PM<br>";
+//                                                                                                                                                                                                                                                                                                                                                    
+//                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Tuesday 11/11 3:00-4:00 PM\" />Tuesday 11/11 3:00-4:00 PM<br>";
+//                                                                                                                                                                                                                                                                                                                                                    
+//                                                                                                                                                                                                                                                                                                                                                    echo "<input type=\"radio\" name=\"sessionday\" value=\"Wednesday 11/12 3:00-4:00 PM\" />Wednesday 11/12 3:00-4:00 PM";
+//                                                                                                                                                                                                                                                                                                                                                    }
                                                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                  ?>
-                                                                                                                                                                                                                                                                                                                                                    </div></td></tr>
+                                                                                                                                                                                                                                                                                                                                                    <!--</div></td></tr>
 
 								
 					</table>
                                                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                                                                     <table class="style1">
                                                                                       <strong>Please come to your scheduled session at least 5 minutes early to fill out some paperwork.</strong>                                                                                                                                                                                                                                                              <tr><td>
-                                                                                                                                                                                                                                                                                                                                                    </td></tr></table>
+                                                                                                                                                                                                                                                                                                                                                    </td></tr></table>-->
 					
 					
 			
@@ -368,7 +398,7 @@ Registration
 	<h3>Interactive Search Study: Complete Previous Page!!!!</h3>
 	<hr>
 	<p>You have to first submit the number of registrants for participating in the study.</p>
-	<p>Please visit the <a href="http://coagmento.org/spring2015/consent.php">signup introduction</a> first.</p>
+	<p>Please visit the <a href="http://coagmento.org/spring2015/signup_intro.php">signup introduction</a> first.</p>
 	</body>
 	</html>
 <?php

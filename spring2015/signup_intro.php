@@ -1,33 +1,33 @@
 <?php
 require_once('core/Connection.class.php');
 
-$query = "SELECT COUNT(*) AS num_recruits FROM recruits";
-$connection = Connection::getInstance();			
-$results = $connection->commit($query);
-$line = mysql_fetch_array($results, MYSQL_ASSOC);
-$num_recruits = $line['num_recruits'];
+//$query = "SELECT COUNT(*) AS num_recruits FROM recruits";
+//$connection = Connection::getInstance();			
+//$results = $connection->commit($query);
+//$line = mysql_fetch_array($results, MYSQL_ASSOC);
+$num_recruits = 0;
     $recruit_limit =72; // Current Recruitment Limit as of 10/6/2014
     
 $closed=true;
 
     
-$query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
-$connection = Connection::getInstance();
-$results = $connection->commit($query);
+//$query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
+//$connection = Connection::getInstance();
+//$results = $connection->commit($query);
+//    
+//    $ct_array = array();
+//
+//    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+//        if($line['k'] == 1 && $line['v'] < 21){
+//            $closed = false;
+//        }
+//        else if($line['k'] == 2 && $line['v'] < 14){
+//            $closed = false;
+//        }
+//        $ct_array[$line['k']] = $line['v'];
+//    }
     
-    $ct_array = array();
-
-    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-        if($line['k'] == 1 && $line['v'] < 21){
-            $closed = false;
-        }
-        else if($line['k'] == 2 && $line['v'] < 14){
-            $closed = false;
-        }
-        $ct_array[$line['k']] = $line['v'];
-    }
-    
-    $closed = true;
+    $closed = false;
     
 if($num_recruits<=$recruit_limit && !$closed)
 {
@@ -49,25 +49,26 @@ if($num_recruits<=$recruit_limit && !$closed)
 	{
 		var isValid = 1;
 		form.action = "signup.php";
+        return true;
         
-        var radios = document.getElementsByName('num_users');
-        if (radios.length >=2){
-            isValid &= isRadioSelected(form.num_users);
-        }else{
-            isValid &= radios[0].checked;
-        }
-        
-        
-        if (isValid==1)
-		{
-			document.getElementById("alertForm").style.display = "none";
-			return true;
-		}
-		else
-		{
-			document.getElementById("alertForm").style.display = "block";
-			return false;
-		}
+//        var radios = document.getElementsByName('num_users');
+//        if (radios.length >=2){
+//            isValid &= isRadioSelected(form.num_users);
+//        }else{
+//            isValid &= radios[0].checked;
+//        }
+//        
+//        
+//        if (isValid==1)
+//		{
+//			document.getElementById("alertForm").style.display = "none";
+//			return true;
+//		}
+//		else
+//		{
+//			document.getElementById("alertForm").style.display = "block";
+//			return false;
+//		}
 	}
 
 function isRadioSelected(radioButtons, obj)
@@ -126,46 +127,18 @@ function isRadioSelected(radioButtons, obj)
 Registration
 -->
                   
-                                                                                                                                                                                                                                                                                                                </table>
-                                                                                                                                                                                                                                                                                                                <hr>
-                                                                                                                                                                                                                                                                                                                <table>
+                                                                                                                                                                                                                </table>
+                                                                                                                                                                                                                                                                                                    <hr>
+                                                                                                                                                                                                                                                                                                    <table>
 			<tr>
 				<td>
                                                                                                                                                                                                                                                                                                                 <tr>
-                                                                                                                                                                                                                                                                                                                <td align="center" colspan=2>To continue with the participation registration, please select the number of registrants (individual or pair), then click on the continue button.</td></tr>
+                                                                                                                                                                                                                                                                                                                <td align="center" colspan=2>To continue with the participation registration, please click on the continue button.</td></tr>
 						
                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                        
                                                                                                                                                                                                                                                                                                                 </table>
-                                                                                                                                                                                                                                                                                                                <table>
-<?php
-                                                                                                                                                                                                                                                                                                                if($ct_array[1]<21){                                                                                                                                                                                                                                             ?><td align="center">
-                                                                                                                                                                                                                                                                                                                <input type="radio" name="num_users" value="1" style="width:100px; height:40px;" /></td><td>Individual (1 Registrant)
-                                                                                                                                                                                                                                                                                                                </td><?php
-                                                                                                                                                                                                                                                                                                                }else{
-                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                ?><td align="center">
-                                                                                                                                                                                                                                                                                                                </td><td><strong>(Registration for single registrants is closed.)</strong>
-                                                                                                                                                                                                                                                                                                                </td><?php                                                                                                                                                                     }
-                                                                                                                                                                                                                                                                                                                ?>
-                                                                                                                                                                                                                                                                                                                </tr>
-                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                <?php
-                                                                                                                                                                                                                                                                                                                if($ct_array[2]<14){                                                                                                                                                                                                                                             ?>                                                                                                                                                                                                                                          <td align="center">
-                                                                                                                                                                                                                                                                                                                <input type="radio" name="num_users" value="2" style="width:100px; height:40px;" /></td><td>Pair (2 Registrants)
-                                                                                                                                                                                                                                                                                                                </td>
-                                                                                                                                                                                                                                                                                                                <?php
-                                                                                                                                                                                                                                                                                                                }else{
-                                                                                                                                                                                                                                                                                                                ?><td align="center">
-                                                                                                                                                                                                                                                                                                                </td><td><strong>(Registration for pairs is closed.)</strong>
-                                                                                                                                                                                                                                                                                                                </td><?php
-                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                ?>
-                                                                                                                                                                                                                                                                                                                </tr>
-                                                                                                                                                                                                                                                                                                                
-                                                                                                                                            </table>
+                                                                                                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                                 <table class="style1" width=90%>
                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                                                                                 <td align="center" colspan=2>

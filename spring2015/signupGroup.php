@@ -34,119 +34,123 @@
         
         return $randomString;
     }
-    $query = "SELECT sessionday, COUNT(*) as ct from recruits GROUP BY sessionday";
-    
-    $connection = Connection::getInstance();
-    
-    $tuesday_limit = 24;
-    $friday_limit = 24;
-    $tbd_limit = 24;
-    $monday_limit = 24;
-    $wednesday_limit = 24;
-    $late_tuesday_limit = 24;
-    
-    $results = $connection->commit($query);
-    $tuesday_actual = 0;
-    $friday_actual = 0;
-    $tbd_actual = 0;
-    $monday_actual = 0;
-    $wednesday_actual = 0;
-    $late_tuesday_actual = 0;
-    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-        if(strpos($line['sessionday'],'Friday 11/7 1:00-2:00 PM') !== false){
-            $tuesday_actual = $line['ct'];
-        }else if(strpos($line['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
-            $friday_actual = $line['ct'];
-        }else if(strpos($line['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
-            $tbd_actual = $line['ct'];
-        }else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
-            $monday_actual = $line['ct'];
-        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
-            $late_tuesday_actual = $line['ct'];
-        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
-            $wednesday_actual = $line['ct'];
-        }
-    }
-    $left = 1;
-
-    if (isset($_POST['sessionday'])){
-        if(strpos($_POST['sessionday'],'TFriday 11/7 1:00-2:00 PM') !== false){
-            $left = $tuesday_limit - $tuesday_actual;
-        }else if(strpos($_POST['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
-            $left = $friday_limit - $friday_actual;
-        }else if(strpos($_POST['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
-            $left = $tbd_limit - $tbd_actual;
-        }
-        else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
-            $left = $monday_limit - $monday_actual;
-        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
-            $left = $late_tuesday_limit - $late_tuesday_actual;
-        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
-            $left = $wednesday_limit - $wednesday_actual;
-        }
-    }
-    if (isset($_POST['sessionday']) && $left <= 0){
+//    $query = "SELECT sessionday, COUNT(*) as ct from recruits GROUP BY sessionday";
+//    
+//    $connection = Connection::getInstance();
+//    
+//    $tuesday_limit = 24;
+//    $friday_limit = 24;
+//    $tbd_limit = 24;
+//    $monday_limit = 24;
+//    $wednesday_limit = 24;
+//    $late_tuesday_limit = 24;
+//    
+//    $results = $connection->commit($query);
+//    $tuesday_actual = 0;
+//    $friday_actual = 0;
+//    $tbd_actual = 0;
+//    $monday_actual = 0;
+//    $wednesday_actual = 0;
+//    $late_tuesday_actual = 0;
+//    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+//        if(strpos($line['sessionday'],'Friday 11/7 1:00-2:00 PM') !== false){
+//            $tuesday_actual = $line['ct'];
+//        }else if(strpos($line['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
+//            $friday_actual = $line['ct'];
+//        }else if(strpos($line['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
+//            $tbd_actual = $line['ct'];
+//        }else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
+//            $monday_actual = $line['ct'];
+//        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
+//            $late_tuesday_actual = $line['ct'];
+//        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
+//            $wednesday_actual = $line['ct'];
+//        }
+//    }
+//    $left = 1;
+//
+//    if (isset($_POST['sessionday'])){
+//        if(strpos($_POST['sessionday'],'TFriday 11/7 1:00-2:00 PM') !== false){
+//            $left = $tuesday_limit - $tuesday_actual;
+//        }else if(strpos($_POST['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
+//            $left = $friday_limit - $friday_actual;
+//        }else if(strpos($_POST['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
+//            $left = $tbd_limit - $tbd_actual;
+//        }
+//        else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
+//            $left = $monday_limit - $monday_actual;
+//        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
+//            $left = $late_tuesday_limit - $late_tuesday_actual;
+//        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
+//            $left = $wednesday_limit - $wednesday_actual;
+//        }
+//    }
+//    if (isset($_POST['sessionday']) && $left <= 0){
+    if(0){
         echo "<p style='background-color:red;'>We apologize, but the day that you've chosen is already taken.</p>";
         echo "<p>The following are the remaining days with available openings:</p>";
         echo "<ul style=\"list-style-type: none;\">";
-        if($tbd_limit - $tbd_actual > 0){
-            echo "<li>Thursday 11/6 10:00-11:00 AM</li>";
-        }
-        if($tuesday_limit - $tuesday_actual > 0){
-        echo "<li>Friday 11/7 1:00-2:00 PM</li>";
-        }
-        if($friday_limit - $friday_actual > 0){
-        echo "<li>Friday 11/7 3:00-4:00 PM</li>";
-        }
+//        if($tbd_limit - $tbd_actual > 0){
+//            echo "<li>Thursday 11/6 10:00-11:00 AM</li>";
+//        }
+//        if($tuesday_limit - $tuesday_actual > 0){
+//        echo "<li>Friday 11/7 1:00-2:00 PM</li>";
+//        }
+//        if($friday_limit - $friday_actual > 0){
+//        echo "<li>Friday 11/7 3:00-4:00 PM</li>";
+//        }
         
         echo "</ul>";
         echo "<p>Please click the button below to return to the sign up form.</p>";
         echo "<input type=\"button\" value=\"Go Back\" onClick=\"javascript:history.go(-1)\" />";
 
   
-        }else if (
+    }else if (
                   (isset($_POST['num_users'])) &&
 	   (isset($_POST['firstName_1'])) &&
 	   (isset($_POST['lastName_1'])) &&
 	   (isset($_POST['email1_1'])) &&
-	   (isset($_POST['year_1'])) &&
-   	   (isset($_POST['sex_1'])) &&
-   	   (isset($_POST['coursename_1'])) &&
-	   (isset($_POST['researchtopic_1'])) &&
-        (isset($_POST['sessionday']))
+	   (isset($_POST['username_1'])) &&
+   	   (isset($_POST['pwd_1'])) &&
+	   (isset($_POST['repwd_1'])) &&
+        (isset($_POST['instructor_1']))
 	   ) 
 		{  	
 			$connection = Connection::getInstance();	
 			$base = new Base();
             
-            $query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
-            $connection = Connection::getInstance();
-            $results = $connection->commit($query);
+//            $query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
+//            $connection = Connection::getInstance();
+//            $results = $connection->commit($query);
+//            
+//            $ct_array = array();
+//            
+//            while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+//                if($line['k'] == 1 && $line['v'] < 21){
+//                    $closed = false;
+//                }
+//                else if($line['k'] == 2 && $line['v'] < 14){
+//                    $closed = false;
+//                }
+//                $ct_array[$line['k']] = $line['v'];
+//            }
+//            
+//            $section_closed = false;
+//            if($_POST['num_users'] == 2 && $ct_array[$_POST['num_users']]>=14){
+//                $section_closed = true;
+//            }else if ($_POST['num_users'] == 1 && $ct_array[$_POST['num_users']]>=21){
+//                $section_closed = true;
+//            }
             
-            $ct_array = array();
             
-            while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-                if($line['k'] == 1 && $line['v'] < 21){
-                    $closed = false;
-                }
-                else if($line['k'] == 2 && $line['v'] < 14){
-                    $closed = false;
-                }
-                $ct_array[$line['k']] = $line['v'];
-            }
-            
+            $closed = false;
             $section_closed = false;
-            if($_POST['num_users'] == 2 && $ct_array[$_POST['num_users']]>=14){
-                $section_closed = true;
-            }else if ($_POST['num_users'] == 1 && $ct_array[$_POST['num_users']]>=21){
-                $section_closed = true;
-            }
-            
-            
-            $closed = true;
             
             if(!$closed && !$section_closed){
-                $NUM_USERS = $_POST['num_users'];
+                $NUM_USERS = 1;
+//                $NUM_USERS = $_POST['num_users'];
+                
+                
                 
                 
                 $query = "SELECT MAX(projectID) as max from recruits WHERE userID <100";
@@ -159,12 +163,21 @@
                 for($x=1; $x<=$NUM_USERS; $x++){
                     //ADDING PARTICIPANT REGISTRATION DETAILS
                     
+                    $instructorName = $_POST["instructor_$x"];
+                    $query = "SELECT instructorID from instructors WHERE instructorName='$instructorName'";
+                    $results = $connection->commit($query);
+                    $line = mysql_fetch_array($results, MYSQL_ASSOC);
+                    
+                    $instructorID = $line['instructorID'];
+                    
                     $query = "SELECT MAX(userID) as max FROM recruits WHERE userID <1000";
                     $results = $connection->commit($query);
                     $line = mysql_fetch_array($results,MYSQL_ASSOC);
                     $next_userID = $line['max']+1;
-                    $password = random_password_generator();
+                    $password = $_POST["pwd_$x"];
                     $password_sha1 = sha1($password);
+//                    $password = random_password_generator();
+//                    $password_sha1 = sha1($password);
                     
                     $firstName= stripslashes($_POST["firstName_$x"]);
                     $lastName = stripslashes($_POST["lastName_$x"]);
@@ -173,6 +186,7 @@
                     $year = $_POST["year_$x"];
                     $coursename = addslashes($_POST["coursename_$x"]);
                     $researchtopic = $_POST["researchtopic_$x"];
+                    $username =$_POST["username_$x"];
                     
 
                     $time = $base->getTime();
@@ -180,12 +194,12 @@
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
                     
-                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID) VALUES('$firstName','$lastName','$email1','$sex','1', '$date', '$time', '$timestamp', '$year', '$coursename', '$researchtopic', '$sessionday','$projectID','$next_userID')";
+                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '', '', '','$projectID','$next_userID','$instructorID')";
                     
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
                     
-                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,status,study,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','library_$next_userID','$password','$password_sha1','1','1','$NUM_USERS','1')";
+                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','$username','$password_sha1','1','1','$NUM_USERS','1')";
                     $results = $connection->commit($query);
                     
                     
@@ -210,7 +224,7 @@
                 // SEND NOTIFICATION EMAIL TO RESEARCHER							
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Chris Leeder <chris.leeder@rutgers.edu>' . "\r\n";
+                $headers .= 'From: Matthew Mitsui <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
                 
 
                 
@@ -257,13 +271,13 @@
                 
                 
                 $message .= "\r\n";
-                $message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
+                $message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>mmitsui@scarletmail.rutgers.edu<br/>";
                 $message .= "\r\n";
                 $message .= "</body></html>";
 
                 //$message = rtrim(chunk_split(base64_encode($message))); 
 
-                mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+//                mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
                 mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
@@ -278,17 +292,22 @@
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:chris.leeder@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
                 
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email1 = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
-                    $year = $_POST["year_$x"];
-                    $sex = $_POST["sex_$x"];
-                    $coursename = $_POST["coursename_$x"];
-                    $researchtopic = $_POST["researchtopic_$x"];
+//                    $year = $_POST["year_$x"];
+//                    $sex = $_POST["sex_$x"];
+//                    $coursename = $_POST["coursename_$x"];
+//                    $researchtopic = $_POST["researchtopic_$x"];
+                    $username =$_POST["username_$x"];
+                    $password = $_POST["pwd_$x"];
+                    $instructorName = $_POST["instructor_$x"];
+                    
+
                     if($NUM_USERS>=2){
                         echo "<tr><td><br><br></td></tr>";
                         echo "<tr><td><strong>Participant $x</strong></td></tr>\n";
@@ -298,10 +317,13 @@
                     echo "<tr><td>First name: $firstName</td></tr>\n";
                     echo "<tr><td>Last name: $lastName</td></tr>\n";
                     echo "<tr><td>Email: $email1</td></tr>\n";
-                    echo "<tr><td>Year in college: $year</td></tr>\n";
-                    echo "<tr><td>Sex: $sex</td></tr>\n";
-                    echo "<tr><td>Section of your 04:192:201 Communication in Relationships class: $coursename</td></tr>\n";
-                    echo "<tr><td>Research topic: $researchtopic</td></tr>\n";
+                    echo "<tr><td>Username: $username</td></tr>\n";
+                    echo "<tr><td>Password: $password</td></tr>\n";
+
+//                    echo "<tr><td>Year in college: $year</td></tr>\n";
+//                    echo "<tr><td>Sex: $sex</td></tr>\n";
+                    echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and Evaluating Electronic Information class: $instructorName</td></tr>\n";
+//                    echo "<tr><td>Research topic: $researchtopic</td></tr>\n";
                     
 
                 }

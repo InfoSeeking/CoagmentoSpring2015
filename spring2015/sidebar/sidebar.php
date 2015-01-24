@@ -58,7 +58,7 @@
          */
         require_once "phpfreechat-1.7/src/phpfreechat.class.php"; // adjust to your own path
         //echo $projectID." - ".$projectTitle;
-        $projectTitle = "lib-p-";
+        $projectTitle = "Group ";
         $params["serverid"] = md5(__FILE__);
         /*$params["container_type"] = "Mysql";
          $params["container_cfg_mysql_host"] = "localhost";
@@ -66,7 +66,7 @@
          $params["container_cfg_mysql_username"] = "shahonli_super";
          $params["container_cfg_mysql_password"] = "superman-2010!";*/
         $params["nick"] = $base->getUserName(); //$_POST['nickname'];
-        $params["title"] = "Coagmento";
+        $params["title"] = "ITI 220";
         $params["display_ping"] = FALSE;
         $params["displaytabclosebutton"] = FALSE;
         $params["display_pfc_logo"] = FALSE;
