@@ -90,6 +90,9 @@
     .label.snippet{
       background: #40FF59;
     }
+    .label.query{
+      background: #5F5CFF;
+    }
     .clear{
       clear: both;
     }
@@ -204,6 +207,25 @@
         </div>
       </li>
     </script>
+    <script type="text/html" id="query_template">
+      <li class="item-<%= label.toLowerCase() %>">
+        <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
+        <span><%= query %></span>
+        <div class="sub">
+          <span class="added_by">Added by <b><%= username %></b></span>
+          <span class="date"><%= pretty_date %></span>
+          <a href="#" class="showmore">Show more</a>
+        </div>
+
+        <div class="more">
+          <div class="top">
+            <a href="#" class="close">Close</a>
+          </div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </li>
+    </script>
     <script src="assets/js/jquery-2.1.3.min.js"></script>
     <script src="assets/js/jquery.loadTemplate-1.4.5.min.js"></script>
     <script src="assets/js/simple_template.js"></script>
@@ -246,6 +268,12 @@
             ed["shortened_snippet"] = ed["snippet"].length > 50 ? ed["snippet"].substring(0,50) + "..." : ed["snippet"];
             ed["label"] = "Snippet";
             feed.append(tmpl("snippet_template", ed));
+            break;
+          case "search":
+            var ed = $.extend({}, d); //extended data
+            ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+            ed["label"] = "Query";
+            feed.append(tmpl("query_template", ed));
             break;
         }
       }

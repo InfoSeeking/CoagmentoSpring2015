@@ -4,6 +4,7 @@ require_once("../core/Base.class.php");
 require_once("../core/Bookmark.class.php");
 require_once("../core/Page.class.php");
 require_once("../core/Snippet.class.php");
+require_once("../core/Query.class.php");
 require_once("views/generators/bookmark.php");
 
 $base = new Base();
@@ -66,26 +67,33 @@ $feed_data = array(); //sorted by date
 
 
 
+$projectID = $base->getProjectID();
 switch($PAGE){
   case "ALL":
-    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($base->getProjectID()), "bookmark");
-    $pages = extend_data(Page::retrieveFromProject($base->getProjectID()), "page");
-    $snippets = extend_data(Snippet::retrieveFromProject($base->getProjectID()), "snippet");
+    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($projectID), "bookmark");
+    $pages = extend_data(Page::retrieveFromProject($projectID), "page");
+    $snippets = extend_data(Snippet::retrieveFromProject($projectID), "snippet");
+    $searches = extend_data(Query::retrieveFromProject($projectID), "search");
     $feed_data = timestamp_merge($bookmarks, $pages);
     $feed_data = timestamp_merge($feed_data, $snippets);
+    $feed_data = timestamp_merge($feed_data, $searches);
   break;
   case "BOOKMARKS":
-    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($base->getProjectID()), "bookmark");
+    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($projectID), "bookmark");
     $feed_data = $bookmarks;
   break;
   case "PAGE_VISITS":
-    $pages = extend_data(Page::retrieveFromProject($base->getProjectID()), "page");
+    $pages = extend_data(Page::retrieveFromProject($projectID), "page");
     $feed_data = $pages;
   break;
   case "SNIPPETS":
-    $snippets = extend_data(Snippet::retrieveFromProject($base->getProjectID()), "snippet");
+    $snippets = extend_data(Snippet::retrieveFromProject($projectID), "snippet");
     $feed_data = $snippets;
   break;
+  case "SEARCHES":
+    $searches = extend_data(Query::retrieveFromProject($projectID), "search");
+    $feed_data = $searches;
+    break;
 }
 
 require_once("views/layout.php");
