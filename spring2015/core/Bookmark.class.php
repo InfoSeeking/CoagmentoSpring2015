@@ -135,11 +135,9 @@ class Bookmark extends Base {
   * @param int $bookmarkID
   */
   public static function delete($bookmarkID){
-    $connection = Connection::getInstance();
-    $query = "DELETE FROM bookmarks WHERE bookmarkID=:bookmarkID";
-    $params = array('bookmarkID' => $bookmarkID);
-    $statement = $connection->execute($query, $params);
-    return $statement->rowCount();
+    $cxn = Connection::getInstance();
+    $query = sprintf("DELETE FROM bookmarks WHERE bookmarkID=%d", $bookmarkID);
+    $cxn->commit($query);
   }
   /**
   * Saves or updates bookmark.

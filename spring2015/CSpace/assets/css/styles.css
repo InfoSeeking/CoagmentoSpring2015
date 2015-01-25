@@ -28,15 +28,7 @@ a{
 ul{
   list-style-type: none;
 }
-.more .top{
-  position: relative;
-}
-.more .close{
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  text-decoration: none;
-}
+
 .more .close:hover{
   text-decoration: underline;
 }
