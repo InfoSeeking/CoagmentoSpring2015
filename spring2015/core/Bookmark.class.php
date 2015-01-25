@@ -64,9 +64,9 @@ class Bookmark extends Base {
     return $bookmarks;
   }
 
-  public static function retrieveFromProject($projectID){
+  public static function retrieveWithTagsFromProject($projectID){
     $cxn=Connection::getInstance();
-    $query = sprintf("SELECT bookmarks.*, users.username FROM bookmarks, users WHERE bookmarks.projectID=%d AND bookmarks.userID=users.userID ORDER BY timestamp DESC", $projectID);
+    $query = sprintf("SELECT U.username, B.*, GROUP_CONCAT(tags.name SEPARATOR ',') as tagList FROM users U, bookmarks B LEFT JOIN (tag_assignments, tags) ON (B.bookmarkID = tag_assignments.bookmarkID AND tag_assignments.tagID = tags.tagID) WHERE B.projectID=%d AND B.userID=U.userID GROUP BY B.bookmarkID ORDER BY timestamp DESC", $projectID);
     $bookmarks = array();
     $results = $cxn->commit($query);
     while($record = mysql_fetch_assoc($results)){
@@ -75,6 +75,9 @@ class Bookmark extends Base {
     return $bookmarks;
   }
 
+  public static function retrieveFromProjectAndTag($projectID, $tagName){
+
+  }
 
   /**
   * Returns an integer if the passed user has bookmarked that url

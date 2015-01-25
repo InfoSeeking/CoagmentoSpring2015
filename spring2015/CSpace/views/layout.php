@@ -39,6 +39,10 @@
       position: absolute;
       top: 0px;
       right: 0px;
+      text-decoration: none;
+    }
+    .more .close:hover{
+      text-decoration: underline;
     }
     #feed li .sub{
       font-size: 14px;
@@ -55,13 +59,13 @@
       position: relative;
     }
     #feed li:hover{
-      background: #D6FFDA;
+      /*background: #D6FFDA;*/
     }
     #feed li .showmore{
-      display: none;
+      text-decoration: none;
     }
-    #feed li:hover .showmore{
-      display: inline;
+    #feed li .showmore:hover{
+      text-decoration: underline;
     }
     .more{
       margin-top: 15px;
@@ -83,6 +87,9 @@
     .label.page{
       background: #FF5C5C;
     }
+    .label.snippet{
+      background: #40FF59;
+    }
     .clear{
       clear: both;
     }
@@ -93,6 +100,16 @@
     .right_col{
       width: 80%;
       float: right;
+    }
+    .item-snippet .preview{
+      font-size: 14px;
+    }
+    .item-bookmark .tag{
+      border: 1px black solid;
+      border-radius: 3px;
+      padding: 1px 3px;
+      font-size: 12px;
+      margin-left: 5px;
     }
     </style>
   </head>
@@ -107,7 +124,6 @@
             <li><a href="?page=BOOKMARKS">Bookmarks</a></li>
             <li><a href="?page=SNIPPETS">Snippets</a></li>
             <li><a href="?page=SEARCHES">Searches</a></li>
-            <li><a href="?page=ANNOTATIONS">Annotations</a></li>
           </ul>
         </nav>
       </header>
@@ -120,9 +136,17 @@
       <br class="clear" />
     </div>
     <script type="text/html" id="bookmark_template">
-      <li>
+      <li class="item-<%= label.toLowerCase() %>">
         <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
         <span><a href="<%= url %>"><%= pretty_url %></a></span>
+        <div class="tagList">
+        <% if(tags.length > 0){ %>
+          Tags:
+          <% for(var i = 0; i < tags.length; i++){ %>
+            <span class="tag"><%= tags[i] %></span>
+          <% } %>
+        </div>
+        <% } %>
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
@@ -142,9 +166,29 @@
       </li>
     </script>
     <script type="text/html" id="page_template">
-      <li>
+      <li class="item-<%= label.toLowerCase() %>">
         <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
         <span><a href="<%= url %>"><%= pretty_url %></a></span>
+        <div class="sub">
+          <span class="added_by">Added by <b><%= username %></b></span>
+          <span class="date"><%= pretty_date %></span>
+          <a href="#" class="showmore">Show more</a>
+        </div>
+
+        <div class="more">
+          <div class="top">
+            <a href="#" class="close">Close</a>
+          </div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </li>
+    </script>
+    <script type="text/html" id="snippet_template">
+      <li class="item-<%= label.toLowerCase() %>">
+        <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
+        <span><%= title %></span>
+        <p class="preview"><%= shortened_snippet %></p>
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
@@ -185,6 +229,7 @@
             ed["pretty_url"] = url.length > 150 ? url.substring(0,150) + "..." : url;
             ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
             ed["label"] = "Bookmark";
+            ed["tags"] = ed["tagList"] ? ed["tagList"].split(",") : [];
             feed.append(tmpl("bookmark_template", ed));
             break;
           case "page":
@@ -194,6 +239,13 @@
             ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
             ed["label"] = "Page";
             feed.append(tmpl("page_template", ed));
+            break;
+          case "snippet":
+            var ed = $.extend({}, d); //extended data
+            ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+            ed["shortened_snippet"] = ed["snippet"].length > 50 ? ed["snippet"].substring(0,50) + "..." : ed["snippet"];
+            ed["label"] = "Snippet";
+            feed.append(tmpl("snippet_template", ed));
             break;
         }
       }

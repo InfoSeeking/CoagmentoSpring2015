@@ -3,6 +3,7 @@ session_start();
 require_once("../core/Base.class.php");
 require_once("../core/Bookmark.class.php");
 require_once("../core/Page.class.php");
+require_once("../core/Snippet.class.php");
 require_once("views/generators/bookmark.php");
 
 $base = new Base();
@@ -67,17 +68,23 @@ $feed_data = array(); //sorted by date
 
 switch($PAGE){
   case "ALL":
-    $bookmarks = extend_data(Bookmark::retrieveFromProject($base->getProjectID()), "bookmark");
+    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($base->getProjectID()), "bookmark");
     $pages = extend_data(Page::retrieveFromProject($base->getProjectID()), "page");
+    $snippets = extend_data(Snippet::retrieveFromProject($base->getProjectID()), "snippet");
     $feed_data = timestamp_merge($bookmarks, $pages);
+    $feed_data = timestamp_merge($feed_data, $snippets);
   break;
   case "BOOKMARKS":
-    $bookmarks = extend_data(Bookmark::retrieveFromProject($base->getProjectID()), "bookmark");
+    $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($base->getProjectID()), "bookmark");
     $feed_data = $bookmarks;
   break;
   case "PAGE_VISITS":
     $pages = extend_data(Page::retrieveFromProject($base->getProjectID()), "page");
     $feed_data = $pages;
+  break;
+  case "SNIPPETS":
+    $snippets = extend_data(Snippet::retrieveFromProject($base->getProjectID()), "snippet");
+    $feed_data = $snippets;
   break;
 }
 
