@@ -25,5 +25,10 @@ class Query extends Base {
     return $queries;
   }
 
+  public static function delete($queryID){
+    $cxn=Connection::getInstance();
+    $q = sprintf("DELETE FROM queries WHERE queryID=%d", $queryID);
+    $cxn->commit($q);
+  }
 }
 ?>

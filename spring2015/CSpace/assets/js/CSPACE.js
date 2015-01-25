@@ -68,6 +68,10 @@ var CSPACE = (function(){
       e.preventDefault();
     });
 
+    initDeleteListeners();
+  }
+
+  function initDeleteListeners(){
     $(".item-bookmark .delete").on("click", function(e){
       var id = $(this).attr("data-id");
       var item = $(this).parents(".item-bookmark");
@@ -84,6 +88,66 @@ var CSPACE = (function(){
         },
         error: function(){
           displayServiceError("Unknown error occurred when deleting bookmark.")
+        }
+      });
+    });
+
+    $(".item-snippet .delete").on("click", function(e){
+      var id = $(this).attr("data-id");
+      var item = $(this).parents(".item-snippet");
+      //send ajax request
+      $.ajax({
+        url: "../api/index.php",
+        data: {
+          "entity": "Snippet",
+          "function":"Delete",
+          "snippetID" : id
+        },
+        success: function(resp){
+          item.fadeOut(500, function(){item.detach();});
+        },
+        error: function(){
+          displayServiceError("Unknown error occurred when deleting snippet.")
+        }
+      });
+    });
+
+    $(".item-page .delete").on("click", function(e){
+      var id = $(this).attr("data-id");
+      var item = $(this).parents(".item-page");
+      //send ajax request
+      $.ajax({
+        url: "../api/index.php",
+        data: {
+          "entity": "Page",
+          "function":"Delete",
+          "pageID" : id
+        },
+        success: function(resp){
+          item.fadeOut(500, function(){item.detach();});
+        },
+        error: function(){
+          displayServiceError("Unknown error occurred when deleting page.")
+        }
+      });
+    });
+
+    $(".item-query .delete").on("click", function(e){
+      var id = $(this).attr("data-id");
+      var item = $(this).parents(".item-query");
+      //send ajax request
+      $.ajax({
+        url: "../api/index.php",
+        data: {
+          "entity": "Query",
+          "function":"Delete",
+          "queryID" : id
+        },
+        success: function(resp){
+          item.fadeOut(500, function(){item.detach();});
+        },
+        error: function(){
+          displayServiceError("Unknown error occurred when deleting query.")
         }
       });
     });

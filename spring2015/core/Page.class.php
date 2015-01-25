@@ -25,5 +25,10 @@ class Page extends Base {
     return $pages;
   }
 
+  public static function delete($pageID){
+    $cxn = Connection::getInstance();
+    $q = sprintf("DELETE FROM pages WHERE pageID=%d", $pageID);
+    $cxn->commit($q);
+  }
 }
 ?>

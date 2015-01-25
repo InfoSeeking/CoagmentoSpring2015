@@ -25,5 +25,10 @@ class Snippet extends Base {
     return $snippets;
   }
 
+  public static function delete($snippetID){
+    $cxn=Connection::getInstance();
+    $query = sprintf("DELETE FROM snippets WHERE snippetID=%d", $snippetID);
+    $cxn->commit($query);
+  }
 }
 ?>

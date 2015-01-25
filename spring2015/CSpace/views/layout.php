@@ -103,8 +103,7 @@ function gen_url($param){
         </div>
 
         <div class="more">
-          <button>Edit</button>
-          <button>Delete</button>
+          <button class="delete" data-id="<%= pageID %>">Delete</button>
         </div>
       </li>
     </script>
@@ -121,7 +120,7 @@ function gen_url($param){
 
         <div class="more">
           <button>Edit</button>
-          <button>Delete</button>
+          <button class="delete" data-id="<%= snippetID %>">Delete</button>
         </div>
       </li>
     </script>
@@ -136,8 +135,7 @@ function gen_url($param){
         </div>
 
         <div class="more">
-          <button>Edit</button>
-          <button>Delete</button>
+          <button class="delete" data-id="<%= queryID %>">Delete</button>
         </div>
       </li>
     </script>

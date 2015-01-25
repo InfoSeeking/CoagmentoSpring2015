@@ -2,8 +2,11 @@
 session_start();
 require_once("../core/Base.class.php");
 require_once("controllers/Api_Bookmark.class.php");
+require_once("controllers/Api_Snippet.class.php");
+require_once("controllers/Api_Page.class.php");
+require_once("controllers/Api_Query.class.php");
 
-$API_CLASSES = array("Bookmark", "Snippet");
+$API_CLASSES = array("Bookmark", "Snippet", "Page", "Query");
 
 function finish($status="success", $data=array()){
   $resp = array(
