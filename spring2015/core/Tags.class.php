@@ -22,8 +22,18 @@ class Tags extends Base{
     return $arr_results;
   }
 
-  public function getTagsForPage($bookmarkID){
-    // will be used in CSpace
+  public function retrieveFromProject($projectID){
+    $cxn = Connection::getInstance();
+    $q = sprintf("select distinct tags.* FROM tags, tag_assignments WHERE tag_assignments.tagID = tags.tagID AND tag_assignments.userID IN (select users.userID from users where users.projectID=%d);", $projectID);
+    $arr_results = array();
+    $results = $cxn->commit($q);
+    while($row = mysql_fetch_assoc($results)){
+      array_push($arr_results, array(
+        "tagID" => $row["tagID"],
+        "name" => $row["name"]
+      ));
+    }
+    return $arr_results;
   }
 
   public function updateTagForUser($tagID, $new_name){
@@ -37,12 +47,14 @@ class Tags extends Base{
     if(count($tags) == 0){
       return;
     }
-    //first replace tags in tags table
-    $q = "REPLACE INTO tags (`userID`, `name`) VALUES ";
+    /* By using IGNORE if user is assigning a previously created tag,
+     * it will not insert it again
+    */
+    $q = "INSERT IGNORE INTO tags (`userID`, `name`) VALUES ";
     $arr = array();
     $cxn = Connection::getInstance();
     foreach($tags as $name){
-      $ins = sprintf("(%d, '%s')", $this->userID, $cxn->esc($name));
+      $ins = sprintf("(%d, '%s')", $this->userID, $cxn->esc(trim($name)));
       array_push($arr, $ins);
     }
     $q .= implode(",", $arr);

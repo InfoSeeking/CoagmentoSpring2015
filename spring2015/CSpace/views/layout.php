@@ -1,120 +1,19 @@
+<?php
+function gen_url($param){
+  $defaults = array(
+  "page" => "ALL",
+  "bookmark_tag_filter" => "",
+  "sorting" => ""
+  );
+  $param = array_merge($defaults, $param);
+  return "?" . http_build_query($param);
+}
+?>
 <html>
   <head>
     <title>CSpace - Coagmento</title>
-    <style>
-    *{
-      padding: 0;
-      margin: 0;
-      font-family: "Open Sans";
-    }
-    a{
-      color: black;
-    }
-    #container{
-      width: 800px;
-      margin: 10px auto;
-    }
-    .page_header nav ul{
-      margin-bottom: 20px;
-      border-bottom: 1px black solid;
-    }
-    .page_header nav li{
-      display: inline-block;
-    }
-    .page_header nav li a{
-      display: inline-block;
-      padding: 1px 10px;
-      text-decoration: none;
-    }
-    .page_header nav li a:hover{
-      text-decoration: underline;
-    }
-    ul{
-      list-style-type: none;
-    }
-    .more .top{
-      position: relative;
-    }
-    .more .close{
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      text-decoration: none;
-    }
-    .more .close:hover{
-      text-decoration: underline;
-    }
-    #feed li .sub{
-      font-size: 14px;
-      position: relative;
-    }
-    #feed li .showmore{
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      font-size: 14px;
-    }
-    #feed li{
-      padding: 10px;
-      position: relative;
-    }
-    #feed li:hover{
-      /*background: #D6FFDA;*/
-    }
-    #feed li .showmore{
-      text-decoration: none;
-    }
-    #feed li .showmore:hover{
-      text-decoration: underline;
-    }
-    .more{
-      margin-top: 15px;
-      background: rgba(0,0,0,.1);
-      font-size: 14px;
-      display: none;
-      padding: 10px;
-
-    }
-    .label{
-      padding: 2px 4px;
-      border-radius: 5px;
-      font-size: 10px;
-      margin-right: 10px;
-    }
-    .label.bookmark{
-      background: #FFF15C;
-    }
-    .label.page{
-      background: #FF5C5C;
-    }
-    .label.snippet{
-      background: #40FF59;
-    }
-    .label.query{
-      background: #5F5CFF;
-    }
-    .clear{
-      clear: both;
-    }
-    .left_col{
-      float: left;
-      width: 20%;
-    }
-    .right_col{
-      width: 80%;
-      float: right;
-    }
-    .item-snippet .preview{
-      font-size: 14px;
-    }
-    .item-bookmark .tag{
-      border: 1px black solid;
-      border-radius: 3px;
-      padding: 1px 3px;
-      font-size: 12px;
-      margin-left: 5px;
-    }
-    </style>
+    <link type="text/css" href="assets/css/styles.css?v2" rel="stylesheet" />
+    <style></style>
   </head>
   <body>
     <div id="container">
@@ -131,7 +30,30 @@
         </nav>
       </header>
       <div class="left_col">
-        Here be filters
+        <?php
+        if($PAGE == "BOOKMARKS"):
+        ?>
+        <div id="bookmark_filters">
+          <h4>Filter by tag</h4>
+          <ul>
+          <?php
+            foreach($tag_data as $tag){
+              echo "<li>";
+              $param = array(
+                "bookmark_tag_filter" => $tag["name"],
+                "page" => "BOOKMARKS"
+              );
+              printf("<a href='%s'>%s</a>", gen_url($param), $tag["name"]);
+              echo "</li>";
+            }
+          ?>
+          </ul>
+        </div><!-- /#bookmark_filters -->
+        <?php
+        endif;
+        ?>
+        <div class="sorting">
+        </div>
       </div>
       <div class="right_col">
         <ul id="feed"></ul>
@@ -142,14 +64,15 @@
       <li class="item-<%= label.toLowerCase() %>">
         <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
         <span><a href="<%= url %>"><%= pretty_url %></a></span>
-        <div class="tagList">
         <% if(tags.length > 0){ %>
+          <div class="tagList">
           Tags:
           <% for(var i = 0; i < tags.length; i++){ %>
             <span class="tag"><%= tags[i] %></span>
           <% } %>
-        </div>
+          </div>
         <% } %>
+
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
@@ -160,6 +83,10 @@
           <div class="top">
             <a href="#" class="close">Close</a>
           </div>
+          <% if(rating > 0) { %>
+            <h4>Rating</h4>
+            <span class="rating"><%= rating %>/5</span>
+          <% } %>
           <h4>Notes</h4>
           <%= note || "No note" %>
           <br/>
@@ -227,7 +154,6 @@
       </li>
     </script>
     <script src="assets/js/jquery-2.1.3.min.js"></script>
-    <script src="assets/js/jquery.loadTemplate-1.4.5.min.js"></script>
     <script src="assets/js/simple_template.js"></script>
     <script src="assets/js/utils.js"></script>
 

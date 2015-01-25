@@ -76,7 +76,14 @@ class Bookmark extends Base {
   }
 
   public static function retrieveFromProjectAndTag($projectID, $tagName){
-
+    $cxn=Connection::getInstance();
+    $query = sprintf("SELECT U.username, B.* FROM users U, bookmarks B, tag_assignments TA, tags T WHERE B.projectID=%d AND B.userID=U.userID AND T.name='%s' AND T.tagID = TA.tagID AND TA.bookmarkID=B.bookmarkID ORDER BY timestamp DESC", $projectID, $cxn->esc($tagName));
+    $bookmarks = array();
+    $results = $cxn->commit($query);
+    while($record = mysql_fetch_assoc($results)){
+      array_push($bookmarks, $record);
+    }
+    return $bookmarks;
   }
 
   /**
