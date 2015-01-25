@@ -2,10 +2,10 @@
 	session_start();
 	require_once('../core/Base.class.php');
 	require_once('../core/Connection.class.php');
-	require_once('../core/Settings.class.php');	
+	require_once('../core/Settings.class.php');
 	require_once('../core/Stage.class.php');
 	require_once('../core/Util.class.php');
-	
+
 	$base = Base::getInstance();
 	$settings = Settings::getInstance();
 	$homeURL = $settings->getHomeURL();
@@ -21,12 +21,12 @@
                  * SIMPLIFIED CHAT
                  *
                  *
-                 
+
                 require_once "chat/src/phpfreechat.class.php"; // adjust to your own path
 			    $params["serverid"] = md5(__FILE__);
     			$params["dyn_params"] = array("nick"); //,"frozen_channels");
     			$params["max_channels"] = 1;
-    			//$params["channels"] = array("chat".$base->getProjectID()."-".$base->getQuestionID());                  
+    			//$params["channels"] = array("chat".$base->getProjectID()."-".$base->getQuestionID());
     			$params["nick"] = $base->getUserName();
     			$params["short_url"] = false;
     			$params["display_ping"] = false;
@@ -43,14 +43,14 @@
     			$params["height"]= "180px";
     			$params["title"] = "Coagmento";
     			$params['admins'] = array('admin'  => 'soportechat');
-    			//$params["connect_at_startup"] = true;    			                  
+    			//$params["connect_at_startup"] = true;
   				$params["refresh_delay"] = 2000; // 2000ms = 2s
   				$chat = new phpFreeChat($params);
                  *
                  *
                  *
                  */
-        
+
         /*
          *
          * COMPLICATED CHAT
@@ -99,7 +99,7 @@
 
         $chat = new phpFreeChat($params);
 	}
-	
+
 	$page = $base->getPage();
 ?>
 
@@ -131,7 +131,7 @@
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript"> jQuery.noConflict(); </script> 
+<script type="text/javascript"> jQuery.noConflict(); </script>
 <script type="text/javascript">
 
 
@@ -146,7 +146,7 @@
 
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
-    
+
 	var InfiniteAjaxRequest = function () {
 		 jQuery.ajax({
     	        url: uri,
@@ -155,30 +155,30 @@
     	             //alert("hi1: "+data);
     	            if (data!="0")
         	        {
-					
+
 						if (data=="5")
 						{
 							//alert(data);
-							<?php 
+							<?php
 									echo "document.location = '".$homeURL."sidebar/sidebar.php?show=true';\n";
 							?>
-						}	
+						}
 						if (data=="4")
 						{
 							//alert(data);
-							<?php 
+							<?php
 									echo "document.location = '".$homeURL."sidebar/sidebar.php?clean=true';\n";
 							?>
 						}
 						if (data=="2")
 						{
 							//alert(data);
-							<?php 
+							<?php
 									if ((!(isset($_GET['answer'])))&& (!(isset($_GET['clean']))))
 									{
 										//echo "alert(data);";
-										//echo "content.wrappedJSObject.location = '".$homeURL."instruments/".$page."?answer=true';\n"; 
-										echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n"; 
+										//echo "content.wrappedJSObject.location = '".$homeURL."instruments/".$page."?answer=true';\n";
+										echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
 										echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true';\n";
 										//echo "document.location = '".$homeURL."sidebar/sidebar.php?show=true';\n";
 										//echo "return;";
@@ -201,7 +201,7 @@
 									//echo "InfiniteAjaxRequest(uri);";
 									echo "setTimeout(\"InfiniteAjaxRequest()\",1500);";
 						?>
-								
+
 						 }
 						 else if (data=="3")
 								<?php
@@ -214,7 +214,7 @@
 										else
 											//echo "InfiniteAjaxRequest(uri);";
 											echo "setTimeout(\"InfiniteAjaxRequest()\",1500);";
-								?>							 
+								?>
     	            }
     	            else
     	            	setTimeout("InfiniteAjaxRequest()",1500);
@@ -245,11 +245,11 @@ cursor:hand;
 
 </head>
 <?php
-	
+
 	$base = Base::getInstance();
 
-	
-	
+
+
 	if ($base->isSessionActive())
 	{
 
@@ -260,7 +260,7 @@ cursor:hand;
 		//first region
 		if ($base->getAllowCommunication()==1)
 		{
-            
+
 ?>
 
 
@@ -301,7 +301,7 @@ cursor:hand;
     $results = $connection->commit($query);
     $line = mysql_fetch_array($results,MYSQL_ASSOC);
     $num_users = $line['numUsers'];
-    
+
     if($num_users>1){
         ?>
 
@@ -316,7 +316,7 @@ cursor:hand;
     if (($projectID > 0)&&($projectTitle != ""))
     {
         $chat->printChat();
-        
+
     }
     else
     {
@@ -341,11 +341,14 @@ cursor:hand;
 <div class="acc-section2">
 <div id="history" class="acc-content2">
 <ul id="tabs" class="shadetabs">
+
+<li><a href="sidebarComponents/bookmarks.php" rel="tabscontainer" class="selected">Bookmarks</a></li>
+
 <li><a href="sidebarComponents/snippets.php" rel="tabscontainer" class="selected">Snippets</a></li>
 
 <li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
 
-<li><a href="sidebarComponents/bookmarks.php" rel="tabscontainer" class="selected">Bookmarks</a></li>
+
 </ul>
 <div id="tabsdivcontainer" style="border:1px solid gray; width:285px; margin-bottom: 1em; padding: 10px">  </div>
 <script type="text/javascript">

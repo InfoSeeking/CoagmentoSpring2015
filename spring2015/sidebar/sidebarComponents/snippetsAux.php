@@ -1,7 +1,8 @@
 <?php
     require_once('../../core/Connection.class.php');
     require_once('../../core/Base.class.php');
-    
+    require_once('../../core/User.class.php');
+
 	//if ((isset($_SESSION['CSpace_userID']))) {
 		//require_once("functions.php");
 		//require_once("../connect.php"); USE MYSQL CONNECTION
@@ -20,32 +21,32 @@
 		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','snippetID asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','snippetID desc','snippetsBox','snippets.php')\"></td>";
 		//echo "<td></td>";*/
 		echo "</tr>";
-    
+
 //    TODO: May not have been part of this code.  Delete?
 //    echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
-    
+
         $base = Base::getInstance();
-        
+
         $projectID = $base->getProjectID();
+        $userMap = $userMap = User::getIDMap($projectID);
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
         $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID'";
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
-        
+
         $numRows = mysql_num_rows($results);
 
-            
+
             while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
                 $snippetID = $line['snippetID'];
-                //$userName = TODO : use a username.  Make map from userID to username, for each user in the project.
                 $userIDItem = $line['userID'];
-                $userName = $userIDItem;
+                $userName = isset($userMap[$userIDItem]) ? $userMap[$userIDItem] : "";
 
                 $note = $line['note'];
                 $snippet = stripslashes($line['snippet']);
-                
+
                 $url = $line['url'];
                 $title = stripslashes($line['title']);
                 $type = $line['type'];
@@ -53,21 +54,21 @@
                 $date = strtotime($line['date']);
                 $date = strftime("%m/%d", $date);
                 $noteAux = substr($note, 0, 20);
-                
+
                 if ($noteAux!="")
                     $title = $noteAux . '..';
                 else
                 {
                     if (!$title)
                         $title = $url;
-                    
+
                     if (strlen($title)>25) {
                         $title = substr($title, 0, 20);
                         $title = $title . '..';
                     }
                 }
-                
-                
+
+
                 echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span> </td><td><span style=\"font-size:10px\">";
                 //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
                 $viewSnipetOnWindow = "window.open('viewSnippet.php?value=$snippetID','Snippet View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600')";
@@ -77,9 +78,9 @@
                 //				echo "<font color=blue><a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px\">$title</a></span></td>\n";
                 //			else
                 //				echo "<font color=blue><a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px\">$snippet</a></span></td>\n";
-                
+
                 //$fullSnippet = "[Source: " . $url . "] || ".$snippet;
-                
+
                 echo "<input type=\"hidden\" id=\"snippetValue$snippetID\" value=\"$snippet\">";
                 echo "<input type=\"hidden\" id=\"note$snippetID\" value=\"$note\">";
                 echo "<input type=\"hidden\" id=\"source$snippetID\" value=\"$title\">";
@@ -88,32 +89,32 @@
                 //$ratingRepresentation = getRatingRepresentation($finalRating, $snippetID,'snippets','floatSnippetLayer','snippetsBox','snippets.php');
                 echo "<td align=\"center\"></td>";
                 echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatSnippetLayer',null,'$snippetID')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\"><span style=\"font-size:10px\">$date</span></td>";
-                
+
                 //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
 //                if ($userID==$userIDItem)
 //                    echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$snippetID','snippets','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
 //                else
                     echo "<td></td>";
-                
+
                 /*echo "<td align=\"right\">";
                  if ($url)
                  echo "<font color=blue><a href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\"><img src=\"images/link.gif\" height=\"18\" width=\"18\" alt=\"Go\" class=\"cursorType\" /></a>\n";
                  else
                  echo "<img src=\"images/blank.gif\" height=\"18\" width=\"18\">";
-                 
+
                  echo "<span style=\"font-size:10px; color:$bgColor\">-</span><img src=\"images/copy.gif\" height=\"18\" width=\"18\" alt=\"Copy\" class=\"cursorType\" onclick=\"javascript:copyToClipboard('snippetValue$snippetID')\"></td>";
                  */
-                
+
                 echo "</tr>";
-                
+
                 if ($bgColor == '#E8E8E8')
                     $bgColor = '#FFFFFF';
                 else
                     $bgColor = '#E8E8E8';
-                
+
             }
         echo "</table>\n";
-        
+
 
 	//else {
 	//	echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";

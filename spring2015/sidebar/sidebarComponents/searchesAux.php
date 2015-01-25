@@ -1,7 +1,8 @@
 <?php
-    
+
     require_once('../../core/Connection.class.php');
     require_once('../../core/Base.class.php');
+    require_once('../../core/User.class.php');
 	//if ((isset($_SESSION['CSpace_userID']))) {
 		//require_once("functions.php");
 		//require_once("../connect.php"); USE MYSQL CONNECTION
@@ -29,15 +30,16 @@
         $query = "SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID'";
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
-    
+
         $numRows = mysql_num_rows($results);
 
+        $userMap = User::getIDMap($projectID);
 
         while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
             $queryID = $line['queryID'];
             //$userName = TODO : use a username.  Make map from userID to username, for each user in the project.
             $userIDItem = $line['userID'];
-            $userName = $userIDItem;
+            $userName = isset($userMap[$userIDItem]) ? $userMap[$userIDItem] : "";
 
             $source= $line['source'];
             $time = $line['time'];
@@ -45,9 +47,9 @@
             $date = strtotime($line['date']);
             $date = strftime("%m/%d", $date);
 			$url = $line['url'];
-            $queryAux = substr($queryVal, 0, 11)."-".substr($source, 0, 4);
-            echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span> </td><td><span style=\"font-size:10px\">";
-			
+            $queryAux = substr($queryVal, 0, 200)." (" . $source . ")";
+            echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span>&nbsp;</td><td><span style=\"font-size:10px\">";
+
             if ($url){
                 $viewSearchOnWindow = "window.open('viewSearch.php?value=$queryID','Search View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600')";
                 echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showQuery('floatQueryLayer',null,'$queryID','text')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$queryAux</a></span></td>\n";
@@ -65,16 +67,16 @@
 			echo "<td align=\"center\"></td>";
 			echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatQueryLayer',null,'$queryID')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 			//echo "<td align=\"right\"><img src=\"images/copy.gif\" height=\"18\" width=\"18\" alt=\"Copy\" class=\"cursorType\" onclick=\"javascript:copyToClipboard('queryValue$queryID')\"></td>";
-            
-            
+
+
             //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
 //            if ($userID==$userIDItem)
 //                echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatQueryLayerDelete',null,'$queryID','queries','queriesBox','searches.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
 //            else
                 echo "<td></td>";
-            
 
-            
+
+
             echo "</tr>";
 
             if ($bgColor == '#E8E8E8')
@@ -83,18 +85,18 @@
 				$bgColor = '#E8E8E8';
         }
         echo "</table>\n";
-    
-				
-			
-
-			
-
-			
-            
 
 
 
-			
+
+
+
+
+
+
+
+
+
 		//}
 		//echo "</table>\n";
 		//}
