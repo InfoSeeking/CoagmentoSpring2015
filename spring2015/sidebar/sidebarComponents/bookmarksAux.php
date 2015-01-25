@@ -26,7 +26,7 @@
     $userID = $base->getUserID();
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
-    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID'";
+    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID' AND status=1";
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
 
@@ -86,11 +86,12 @@
         echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
-        //                if ($userID==$userIDItem)
-        //                    echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$snippetID','Bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
-        //                else
-        echo "<td></td>";
 
+        if ($userID==$userIDItem)
+            echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
+        else
+            echo "<td></td>";
+        
         /*echo "<td align=\"right\">";
          if ($url)
          echo "<font color=blue><a href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\"><img src=\"images/link.gif\" height=\"18\" width=\"18\" alt=\"Go\" class=\"cursorType\" /></a>\n";

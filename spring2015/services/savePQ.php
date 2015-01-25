@@ -163,8 +163,8 @@ if (Base::getInstance()->isSessionActive())
             
             
 
-            $query = "INSERT INTO queries (userID, projectID, stageID, questionID, query, source, url, title, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`)
-            VALUES ('$userID','$projectID','$stageID','$questionID','$queryString','$site','$originalURL','$title','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime')";
+            $query = "INSERT INTO queries (userID, projectID, stageID, questionID, query, source, url, title, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, status)
+            VALUES ('$userID','$projectID','$stageID','$questionID','$queryString','$site','$originalURL','$title','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','1')";
             
 			$connection = Connection::getInstance();
 			$results = $connection->commit($query);

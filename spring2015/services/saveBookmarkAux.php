@@ -49,7 +49,7 @@
 
     Util::getInstance()->saveAction("Save Bookmark - Rating: $rating",$lastID,$base);
 
-    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$source','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating')";
+    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$source','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
     $results = $connection->commit($query);
 
     $bookmarkID = $connection->getLastID();

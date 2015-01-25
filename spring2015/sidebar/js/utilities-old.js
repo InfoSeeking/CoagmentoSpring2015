@@ -569,9 +569,10 @@ function showRatingForm(ID,parentID,itemID,type,region,webPage) {
  var typeAux = "snippet";
  if (type=="pages")
 	typeAux = "page";
- else
-	if (type=="queries")
-		typeAux = "query";
+ else if (type=="queries")
+    typeAux = "query";
+ else if (type=="bookmarks")
+    typeAux = "bookmark";
 
  var sText = "<center><p>How good is this "+typeAux+"? Rate it:</p><br><br>"
  sText = sText +"<table><tr><td><input type=\"radio\" id=\"rating1\" onclick=\"javascript:saveRating('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\" name=\"rating\"  value=\"1\"></td>";
@@ -714,33 +715,32 @@ function saveBookmarkRatingSimple(itemID,type, value)
 function deleteItem(ID,parentID,itemID,type,region,webPage)
 {
     var currentY = cY;
-     var typeAux = "snippet";
-     if (type=="pages")
-            typeAux = "page";
-     else
-            if (type=="queries")
-                    typeAux = "query";
-
-     var sText = "<center><p>Are you sure you want to delete this resource?</p><br><br>"
-     sText = sText + "<BUTTON onclick=\"javascript:deleteItemAux('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\"><STRONG>YES</STRONG></BUTTON> <BUTTON onclick=\"javascript:hideLayer('"+ID+"')\"><STRONG>NO</STRONG></BUTTON></center>";
-
-   if (document.layers) {
-   var oLayer;
-   if(parentID){
-     oLayer = eval('document.' + parentID + '.document.' + ID + '.document');
-   }else{
-     oLayer = document.layers[ID].document;
-   }
-
-   oLayer.open();
-   oLayer.write(sText);
-   oLayer.close();
- }
- else if (parseInt(navigator.appVersion)>=5&&navigator.
+    var typeAux = "snippet";
+    if (type=="pages")
+        typeAux = "page";
+    else if (type=="queries")
+        typeAux = "query";
+    else if (type=="bookmarks")
+        typeAux = "bookmark";
+    
+    var sText = "<center><p>Are you sure you want to delete this resource?</p><br><br>"
+ sText = sText + "<BUTTON onclick=\"javascript:deleteItemAux('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\"><STRONG>YES</STRONG></BUTTON> <BUTTON onclick=\"javascript:hideLayer('"+ID+"')\"><STRONG>NO</STRONG></BUTTON></center>";
+    if (document.layers) {
+        var oLayer;
+        if(parentID){
+            oLayer = eval('document.' + parentID + '.document.' + ID + '.document');
+        }else{
+            oLayer = document.layers[ID].document;
+        }
+        oLayer.open();
+        oLayer.write(sText);
+        oLayer.close();
+    }
+    else if (parseInt(navigator.appVersion)>=5&&navigator.
 appName=="Netscape") {
-   document.getElementById(ID).innerHTML = sText;
- }
- else if (document.all) document.all[ID].innerHTML = sText
+        document.getElementById(ID).innerHTML = sText;
+    }
+    else if (document.all) document.all[ID].innerHTML = sText
 
 //Save action
   var dd = document.getElementById(ID);
