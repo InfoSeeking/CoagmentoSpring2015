@@ -26,7 +26,7 @@
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
-        $query = "SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID'";
+        $query = "SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1";
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
     
@@ -68,9 +68,9 @@
             
             
             //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
-//            if ($userID==$userIDItem)
-//                echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatQueryLayerDelete',null,'$queryID','queries','queriesBox','searches.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
-//            else
+            if ($userID==$userIDItem)
+                echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatQueryLayerDelete',null,'$queryID','queries','queriesBox','searches.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
+            else
                 echo "<td></td>";
             
 

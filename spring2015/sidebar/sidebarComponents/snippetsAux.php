@@ -30,7 +30,7 @@
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
-        $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID'";
+        $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1";
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
         
@@ -90,9 +90,9 @@
                 echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatSnippetLayer',null,'$snippetID')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\"><span style=\"font-size:10px\">$date</span></td>";
                 
                 //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
-//                if ($userID==$userIDItem)
-//                    echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$snippetID','snippets','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
-//                else
+                if ($userID==$userIDItem)
+                    echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$snippetID','snippets','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
+                else
                     echo "<td></td>";
                 
                 /*echo "<td align=\"right\">";
