@@ -8,10 +8,9 @@ class Tags extends Base{
     parent::__construct();
   }
 
-/*
-  public function getTagsForUser(){
+  public function retrieveFromProject($projectID){
     $cxn = Connection::getInstance();
-    $q = sprintf("SELECT * FROM tags WHERE userID=%d", $this->userID);
+    $q = sprintf("select * FROM tags WHERE projectID=%d", $projectID);
     $arr_results = array();
     $results = $cxn->commit($q);
     while($row = mysql_fetch_assoc($results)){
@@ -22,10 +21,10 @@ class Tags extends Base{
     }
     return $arr_results;
   }
-*/
-  public function retrieveFromProject($projectID){
+
+  public function retrieveFromBookmark($bookmarkID){
     $cxn = Connection::getInstance();
-    $q = sprintf("select * FROM tags WHERE projectID=%d", $projectID);
+    $q = sprintf("select T.* FROM tags T, tag_assignments TA WHERE TA.bookmarkID=%d AND TA.tagID=T.tagID", $bookmarkID);
     $arr_results = array();
     $results = $cxn->commit($q);
     while($row = mysql_fetch_assoc($results)){
@@ -71,5 +70,12 @@ class Tags extends Base{
     }
     $q .= implode(",", $arr);
     $cxn->commit($q);
+  }
+
+  public function deleteForBookmark($bookmarkID){
+    $cxn = Connection::getInstance();
+    //delete all tag_associations
+    $query = sprintf("DELETE FROM tag_assignments WHERE bookmarkID=%d", $bookmarkID);
+    $cxn->commit($query);
   }
 }

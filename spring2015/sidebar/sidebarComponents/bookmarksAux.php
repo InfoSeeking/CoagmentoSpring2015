@@ -29,7 +29,7 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
-    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 ORDER BY timestamp DESC";
+    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1 ORDER BY timestamp DESC";
     if($filter != -1){
       $query = sprintf("SELECT * FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d ORDER BY timestamp DESC", $filter);
     }
@@ -47,6 +47,9 @@
     }
     echo "</select></p><br/>";
 
+    if($numRows == 0){
+      echo "No bookmarks saved";
+    }
     while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
         $bookmarkID = $line['bookmarkID'];
         //$userName = TODO : use a username.  Make map from userID to username, for each user in the project.
@@ -80,7 +83,7 @@
 
         echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span>&nbsp;</td><td><span style=\"font-size:10px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
-        $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600')";
+        $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
         echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         //                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         //			if ($url)
