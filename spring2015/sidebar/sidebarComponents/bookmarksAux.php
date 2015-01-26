@@ -1,11 +1,12 @@
 <?php
     require_once('../../core/Connection.class.php');
     require_once('../../core/Base.class.php');
+    require_once('../../core/Tags.class.php');
     require_once('../../core/User.class.php');
     require_once('functions.php');
 
 
-    echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:reload('sidebarComponents/bookmarks.php','bookmarksBox')\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
+    echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:refreshBookmarks()\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
     echo "<div id=\"floatBookmarkLayer\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<div id=\"floatBookmarkLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<table width=100% cellspacing=0>\n";
@@ -22,16 +23,29 @@
 
     $base = Base::getInstance();
     $projectID = $base->getProjectID();
+    $tags = Tags::retrieveFromProject($projectID);
     $userMap = $userMap = User::getIDMap($projectID);
     $userID = $base->getUserID();
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
-    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID' AND status=1";
+    $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
+    $query = "SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 ORDER BY timestamp DESC";
+    if($filter != -1){
+      $query = sprintf("SELECT * FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d ORDER BY timestamp DESC", $filter);
+    }
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
-
     $numRows = mysql_num_rows($results);
 
+    echo "<p>Filter by tag: ";
+    echo "<select id='tagfilter' onchange='refreshBookmarks()' class='tags'><option value='-1'>Show all</option>";
+
+
+    foreach($tags as $t){
+      $extra = $t["tagID"] == $filter ? "selected" : "";
+      printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);
+    }
+    echo "</select></p><br/>";
 
     while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
         $bookmarkID = $line['bookmarkID'];
@@ -82,7 +96,7 @@
         echo "<input type=\"hidden\" id=\"url$bookmarkID\" value=\"$url\">";
         echo "<input type=\"hidden\" id=\"time$bookmarkID\" value=\"$time\">";
         $ratingRepresentation = getBookmarkRatingRepresentation($rating, $bookmarkID,'Bookmarks','floatBookmarkLayer','bookmarksBox','bookmarks.php');
-        echo "<td align=\"center\">$ratingRepresentation</td>";
+        //echo "<td align=\"center\">$ratingRepresentation</td>";
         echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
@@ -91,7 +105,7 @@
             echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatSnippetLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
         else
             echo "<td></td>";
-        
+
         /*echo "<td align=\"right\">";
          if ($url)
          echo "<font color=blue><a href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\"><img src=\"images/link.gif\" height=\"18\" width=\"18\" alt=\"Go\" class=\"cursorType\" /></a>\n";

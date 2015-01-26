@@ -55,6 +55,6 @@
 
 			// Get user's tags
 			$tags = new Tags();
-			$available_tags = $tags->getTagsForUser($userID);
+			$available_tags = $tags->retrieveFromProject($projectID);
 			require_once("templates/bookmark.php");
 ?>

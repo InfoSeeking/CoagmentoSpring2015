@@ -7,4 +7,7 @@ class Api_Page{
     Page::delete($id);
     finish("success");
   }
+  public static function get($start=0, $count=200){
+    
+  }
 }

@@ -12,7 +12,7 @@ function ajaxpage(url, containerid) {
 	else if (window.ActiveXObject){ // if IE
 		try {
 			page_request = new ActiveXObject("Msxml2.XMLHTTP");
-		} 
+		}
 		catch (e){
 			try{
 				page_request = new ActiveXObject("Microsoft.XMLHTTP");
@@ -109,7 +109,7 @@ function recommendCoagmento() {
 	var message = document.getElementById('message').value;
 	var userMessage = escape(message);
 	var sureInvite = document.getElementById('sureInvite');
- 	sureInvite.innerHTML = 'Are you sure you want to recommend Coagmento to <span style="font-weight:bold">'+inviteEmail+ '</span>?<br/><a href="recommendCoagmento.php?inviteEmail='+inviteEmail+'&message='+userMessage+'">Yes</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onClick="cancelInvite();">No</a>'; 
+ 	sureInvite.innerHTML = 'Are you sure you want to recommend Coagmento to <span style="font-weight:bold">'+inviteEmail+ '</span>?<br/><a href="recommendCoagmento.php?inviteEmail='+inviteEmail+'&message='+userMessage+'">Yes</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onClick="cancelInvite();">No</a>';
 }
 
 
@@ -155,7 +155,7 @@ function editProj() {
 	var page = 'http://www.coagmento.org/CSpace/timelineview/editProject.php?submit=true&projectID='+projID+'&title='+projTitle+'&description='+projDesc+'&privacy='+projPrivacy;
 	window.location.href = page;
 	/* ajaxpage(page,'content'); */
-	
+
 //	sureCreate.innerHTML = '<font color="green">Are you sure you want to modify project <span style="font-weight:bold">'+projTitle+ '</span>?</font><br/><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage(\'editProject.php?submit=true&projectID='+projID+'&title='+projTitle+'&description='+projDesc+'&privacy='+projPrivacy+'\',\'content\');">Yes</span>&nbsp;&nbsp;&nbsp;<span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="cancelCreateProj();">No</span>';
 }
 
@@ -193,14 +193,14 @@ function updateProfile() {
 		var email = document.getElementById('email').value;
 		var website = document.getElementById('website').value;
 		if (password)
-			var url = 'profile.php?password='+password+'&fname='+fname+'&lname='+lname+'&organization='+organization+'&email='+email+'&website='+website;	
-		else 
-			var url = 'profile.php?fname='+fname+'&lname='+lname+'&organization='+organization+'&email='+email+'&website='+website;		
+			var url = 'profile.php?password='+password+'&fname='+fname+'&lname='+lname+'&organization='+organization+'&email='+email+'&website='+website;
+		else
+			var url = 'profile.php?fname='+fname+'&lname='+lname+'&organization='+organization+'&email='+email+'&website='+website;
 		/* ajaxpage(url,'content'); */
 		window.location.href = url;
 	}
 }
-	
+
 function checkUncheckAll(theElement) {
 	var theForm = theElement.form, z = 0;
 	for(z=0; z<theForm.length;z++)
@@ -267,20 +267,20 @@ function saveNote(shared) {
 	if (note) {
 		if (noteID!=-1)
 			ajaxpage('noteList.php?shared='+shared+'&note='+note+'&noteID='+noteID,'noteList');
-		else	
+		else
 			ajaxpage('noteList.php?shared='+shared+'&note='+note,'noteList');
 	}
 	else
-		ajaxpage('noteList.php?shared='+shared,'noteList');		
+		ajaxpage('noteList.php?shared='+shared,'noteList');
 }
 
 function showNote(shared, noteID, noteText) {
 	var nID = 'note'+shared;
 	var note = document.getElementById(nID);
-	note.value = noteText;	
+	note.value = noteText;
 	var idField = document.getElementById('noteID');
 	idField.value = noteID;
-	note.focus();	
+	note.focus();
 }
 
 function deleteNote(shared, noteID) {
@@ -309,13 +309,13 @@ function filterAllData() {
 function search(projID,objs,sess) {
 	var searchString = document.getElementById('searchString').value;
 //	ajaxpage('showProgress.php','content');
-	ajaxpage('data.php?projectID='+projID+'&objects='+objs+'&session='+sess+'&searchString='+searchString, 'content');	
+	ajaxpage('data.php?projectID='+projID+'&objects='+objs+'&session='+sess+'&searchString='+searchString, 'content');
 }
 
 function searchAll(projID,objs,sess) {
 	var searchString = document.getElementById('searchString').value;
 //	ajaxpage('showProgress.php','content');
-	ajaxpage('allData.php?projectID='+projID+'&objects='+objs+'&session='+sess+'&searchString='+searchString, 'content');	
+	ajaxpage('allData.php?projectID='+projID+'&objects='+objs+'&session='+sess+'&searchString='+searchString, 'content');
 }
 
 function handleDragDropEvent(oEvent) {
@@ -407,7 +407,7 @@ if (document.layers) {
    }else{
      oLayer = document.layers[ID].document;
    }
- 
+
    oLayer.open();
    oLayer.write(sText);
    oLayer.close();
@@ -444,7 +444,7 @@ function showBookmark(ID,parentID,bookmarkID,type) {
         }else{
             oLayer = document.layers[ID].document;
         }
-        
+
         oLayer.open();
         oLayer.write(sText);
         oLayer.close();
@@ -454,7 +454,7 @@ function showBookmark(ID,parentID,bookmarkID,type) {
         document.getElementById(ID).innerHTML = sText;
     }
     else if (document.all) document.all[ID].innerHTML = sText
-        
+
         //Save action
         //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
         var dd = document.getElementById(ID);
@@ -479,7 +479,7 @@ function showQuery(ID,parentID,queryID,type) {
         }else{
             oLayer = document.layers[ID].document;
         }
-        
+
         oLayer.open();
         oLayer.write(sText);
         oLayer.close();
@@ -489,7 +489,7 @@ function showQuery(ID,parentID,queryID,type) {
         document.getElementById(ID).innerHTML = sText;
     }
     else if (document.all) document.all[ID].innerHTML = sText
-        
+
         //Save action
         //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
         var dd = document.getElementById(ID);
@@ -608,7 +608,7 @@ appName=="Netscape") {
   AssignPositionFixedOnClick(dd,110,currentY-15);
   ajaxpage('sidebarComponents/insertAction.php?action=showRatingForm_'+type+'&value='+itemID,null);
   document.getElementById(ID).style.display="block";
-} 
+}
 
 function saveRating(ID,itemID,type,region,webPage)
 {
@@ -648,7 +648,7 @@ function showBookmarkRatingForm(ID,parentID,itemID,type,region,webPage) {
     }else if (type =="bookmarks"){
         typeAux = "bookmark";
     }
-    
+
     var sText = "<center><p>How good is this "+typeAux+"? Rate it:</p><br><br>"
     sText = sText +"<table><tr><td><input type=\"radio\" id=\"rating1\" onclick=\"javascript:saveBookmarkRating('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\" name=\"rating\"  value=\"1\"></td>";
     sText = sText + "<td><input type=\"radio\" id=\"rating2\" name=\"rating\" onclick=\"javascript:saveBookmarkRating('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\" value=\"2\"></td>";
@@ -658,7 +658,7 @@ function showBookmarkRatingForm(ID,parentID,itemID,type,region,webPage) {
     sText = sText + "<tr align=center><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr></table>";
     sText = sText + "<br><br>";
     sText = sText + "<BUTTON onclick=\"javascript:hideLayer('"+ID+"')\"><STRONG>Cancel</STRONG></BUTTON></center>";
-    
+
     if (document.layers) {
         var oLayer;
         if(parentID){
@@ -666,18 +666,18 @@ function showBookmarkRatingForm(ID,parentID,itemID,type,region,webPage) {
         }else{
             oLayer = document.layers[ID].document;
         }
-        
+
         oLayer.open();
         oLayer.write(sText);
         oLayer.close();
     }
     else if (parseInt(navigator.appVersion)>=5&&navigator.
              appName=="Netscape") {
-        
+
         document.getElementById(ID).innerHTML = sText;
     }
     else if (document.all) document.all[ID].innerHTML = sText
-        
+
         //Save action
         var dd = document.getElementById(ID);
     AssignPositionFixedOnClick(dd,110,currentY-15);
@@ -688,7 +688,7 @@ function showBookmarkRatingForm(ID,parentID,itemID,type,region,webPage) {
 function saveBookmarkRating(ID,itemID,type,region,webPage)
 {
 	hideLayer(ID);
-    
+
 	var buttonGroup = document.getElementsByName('rating');
 	var value = 0;
     for (var i=0; i<buttonGroup.length; i++)
@@ -722,7 +722,7 @@ function deleteItem(ID,parentID,itemID,type,region,webPage)
         typeAux = "query";
     else if (type=="bookmarks")
         typeAux = "bookmark";
-    
+
     var sText = "<center><p>Are you sure you want to delete this resource?</p><br><br>"
  sText = sText + "<BUTTON onclick=\"javascript:deleteItemAux('"+ID+"','"+itemID+"','"+type+"','"+region+"','"+webPage+"')\"><STRONG>YES</STRONG></BUTTON> <BUTTON onclick=\"javascript:hideLayer('"+ID+"')\"><STRONG>NO</STRONG></BUTTON></center>";
     if (document.layers) {
@@ -950,3 +950,10 @@ function getCookie (name) {
     }
   return null;
   }
+
+//bookmark scripts
+function refreshBookmarks(){
+	var dropdown = document.getElementById("tagfilter");
+	var filter = dropdown.options[dropdown.selectedIndex].value;
+	reload('sidebarComponents/bookmarks.php?filter=' + filter,'bookmarksBox');
+}
