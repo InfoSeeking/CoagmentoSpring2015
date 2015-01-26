@@ -4,7 +4,7 @@
 	require_once('core/Base.class.php');
 	require_once('core/Action.class.php');
 	require_once('core/Util.class.php');
-    
+
     //Variable for determining if the study is closed
     $closed = false;
 
@@ -14,8 +14,8 @@
 	{
 		$userName = $_POST['userName'];
 		$password = sha1($_POST['password']);
-        
-		
+
+
 		//BEGIN TEMP: restart test_1
 		$a = array('test_1','test_2','test_3','test_10','matt_test_1','matt_test_2','matt_test_3');
         if(in_array($userName,$a)){
@@ -25,16 +25,16 @@
                 $r = $c->commit($q);
                 if(mysql_num_rows($r)>0){
                     $l = mysql_fetch_array($r,MYSQL_ASSOC);
-        
+
                     $i = $l['userID'];
                     $q = "DELETE FROM session_progress WHERE userID='$i'";
                     $c = Connection::getInstance();
                     $r = $c->commit($q);
-                    
+
                     $q = "INSERT INTO session_progress (projectID,userID,stageID,`date`,`time`,`timestamp`) VALUES ('$i','$i','32','2014-11-06','17:03:20','1415311400'),('$i','$i','1','2014-11-06','17:03:20','1415311400'),('$i','$i','33','2014-11-06','17:03:20','1415311400')";
                     $c = Connection::getInstance();
                     $r = $c->commit($q);
-        
+
                     $q = "DELETE FROM questions_progress WHERE userID='$i'";
                     $c = Connection::getInstance();
                     $r = $c->commit($q);
@@ -42,25 +42,25 @@
             }
         }
 		//END TEMP: restart test_1
-		
+
 		// Check if second session login has passed 48 hours since completing first session
 		$qGetUserID = "SELECT userID from users WHERE userName='$userName' AND password_sha1='$password'";
-		$cGetUserID = Connection::getInstance();			
+		$cGetUserID = Connection::getInstance();
 		$rGetUserID = $cGetUserID->commit($qGetUserID);
 		if (mysql_num_rows($rGetUserID)==1) //matching user exists
 		{
-		
+
 			$lGetUserID = mysql_fetch_array($rGetUserID, MYSQL_ASSOC);
 			$userID = $lGetUserID['userID'];
-			
+
 			$qEndFirstSession = "SELECT userID, projectID, stageID, timestamp FROM session_progress WHERE userID = '$userID' AND stageID='".strval(Stage::TASK_END)."'";
-			$cEndFirstSession = Connection::getInstance();			
+			$cEndFirstSession = Connection::getInstance();
 			$rEndFirstSession = $cEndFirstSession->commit($qEndFirstSession);
-			
+
 			$base = Base::getInstance();
 			if (mysql_num_rows($rEndFirstSession)>=1) //Task is already complete
 			{
-                
+
                 $qStartSecSession = "UPDATE users SET status = 0 WHERE userID = '$userID'";
                 $cStartSecSession = Connection::getInstance();
                 $rStartSecSession = $cStartSecSession->commit($qStartSecSession);
@@ -68,41 +68,41 @@
                 $qStartSecSession = "UPDATE users SET status = 1 WHERE userID = '$userID'";
                 $cStartSecSession = Connection::getInstance();
                 $rStartSecSession = $cStartSecSession->commit($qStartSecSession);
-                
-            }
-			
-		}
-		
-		
 
-			
-		
+            }
+
+		}
+
+
+
+
+
         $query = "SELECT userID, projectID, username, study FROM users WHERE userName='$userName' AND password_sha1='$password' AND status = 1";
 
-        $connection = Connection::getInstance();			
+        $connection = Connection::getInstance();
         $results = $connection->commit($query);
-    
+
         $localTime = $_POST['localTime'];
         $localDate = $_POST['localDate'];
         $localTimestamp = $_POST['localTimestamp'];
-    
+
         if (mysql_num_rows($results)==1) {
             $line = mysql_fetch_array($results, MYSQL_ASSOC);
             $userID = $line['userID'];
-            
+
             $ip = $_SERVER['REMOTE_ADDR'];
-            
+
             $q = "UPDATE users SET ip='$ip' WHERE userID='$userID'";
             $c = Connection::getInstance();
             $r = $c->commit($q);
-            
+
 
             //$userName = $line['userName'];
             $projectID = $line['projectID'];
             $studyID = $line['study'];
 
             $base = Base::getInstance();
-            $base->setUserName($userName);			
+            $base->setUserName($userName);
             $base->setUserID($userID);
             $base->setProjectID($projectID);
             $base->setStageID(-1);
@@ -115,20 +115,20 @@
             Util::getInstance()->saveAction('login',0,$base); //Try later to insert machine name; otherwise work with IP
 
             //Next stage
-        
+
             $stage = new Stage();
             if ($stage->getCurrentStage()<0)
                 $stage->moveToNextStage();
-            
+
             else
             {
                 $base->setStageID($stage->getCurrentStage());
                 $base->setMaxTime($stage->getMaxTime());
                 $base->setMaxTimeQuestion($stage->getMaxTimeQuestion());
-            
-            }				
+
+            }
             $page = $stage->getCurrentPage();
-        
+
             if($page == "index.php"){
                 header("Location: $page");
             }else{
@@ -138,10 +138,10 @@
             echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
             echo "<table class=body align=center>\n";
             echo "<tr><td align=center>Username/password didn't match or you are not authorized to access this.</td></tr>\n";
-            echo "</table>\n";		
+            echo "</table>\n";
         }
 	}
-	else 
+	else
 	{
 		if (!Base::getInstance()->isSessionActive())
 		{
@@ -179,7 +179,7 @@
                 is_ff = isFirefox();
                 var f = function() {};
                 checkExtension(f,loadFailureText);
-                
+
             }
 
 
@@ -196,15 +196,15 @@
 		          var seconds = currentTime.getSeconds();
 		          var localTime = hours + ":" + minutes + ":" + seconds;
 		          var localTimestamp = currentTime.getTime();
-		          
+
 		          document.getElementById("localTimestamp").value = localTimestamp;
 		          document.getElementById("localDate").value = localDate;
 		          document.getElementById("localTime").value = localTime;
 
 		          return true;
-			} 	 
-		</script>	
-			
+			}
+		</script>
+
 	<!--</html>-->
 	<body class="style1" onload="preLoginValidation()">
     <div id="error_div" style="display:none;">
@@ -225,19 +225,19 @@
 		<tr>
 			<td>
 				<p>
-					Thank you for your participation in this study!					
+					Thank you for your participation in this study!
 				</p>
 				<ul>
 
-				<li> If you do not see the <strong>Side bar</strong> to the right, please enable it by pressing <strong>Ctrl+Shift+S (Windows) or &#8984;+Shift+S (Mac)</strong>.</li>	</br>			
-				<li> Please <strong>log in</strong> to the system using the username and password you were given.	</li>				
+				<li> If you do not see the <strong>Side bar</strong> to the right, please enable it by pressing <strong>Ctrl+Shift+S (Windows) or &#8984;+Shift+S (Mac)</strong>.</li>	</br>
+				<li> Please <strong>log in</strong> to the system using the username and password you were given.	</li>
 				</ul>
 			</td>
 		</tr>
-		<tr><td><hr/></td></tr>				
+		<tr><td><hr/></td></tr>
 	</table>
 <?php
-    
+
 
 			//echo "<body>\n<center>\n<br/><br/>\n";
 			echo "<center>\n\n";
@@ -245,7 +245,7 @@
 			echo "<br/><br/>\n<table class=body>\n";
             echo "<tr><td>Username:</td><td>&nbsp;&nbsp; <input type=\"text\" name=\"userName\" placeholder=\"Username\" size=20 /></td></tr>\n";
             echo "<tr><td>Password:</td><td>&nbsp;&nbsp; <input type=\"password\" name=\"password\" placeholder=\"Password\" size=20 /></td></tr>\n";
-    
+
 //			echo "<tr><td>Username</td><td>&nbsp;&nbsp; <input type=\"text\" name=\"userName\" size=20 /></td></tr>\n";
 //			echo "<tr><td>Password</td><td>&nbsp;&nbsp; <input type=\"password\" name=\"password\" size=20 /></td></tr>\n";
 			echo "<tr><td colspan=\"2\"><br/></td></tr>\n";
@@ -255,7 +255,7 @@
             echo "</div>\n";
 
 			echo "</body></html>";
-    
+
             }else{
                 echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
 				echo "<table class=body align=center>\n";
@@ -272,7 +272,7 @@
             }else{
                 header("Location: instruments/$page");
             }
-			
+
 		}
 	}
 ?>

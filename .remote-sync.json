@@ -1,0 +1,14 @@
+{
+  "transport": "scp",
+  "uploadOnSave": false,
+  "hostname": "chirags.scilsnet.rutgers.edu",
+  "target": "/mnt/space/www/coagmento.org/htdocs/",
+  "ignore": [
+    ".git/**",
+    "extension/**",
+    "sdk_extension/**",
+    "www/**"
+  ],
+  "username": "mmitsui",
+  "password": "Pnyx6."
+}
