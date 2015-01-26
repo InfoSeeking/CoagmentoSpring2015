@@ -9,27 +9,17 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Snippets</title>
 <style type="text/css">
-.cursorType{
-cursor:pointer;
-cursor:hand;
-}
+	.cursorType{
+		cursor:pointer;
+		cursor:hand;
+	}
 </style>
 </head>
 <body>
-<?php
-    //		//$height = "700px"; //Added on October 21st, 2010
-    //		if ($_SESSION['condition']==6)
-    //			$height = "330px";
-    //			else
-    //				if ($_SESSION['condition']==5)
-    //					$height = "350px";
-    //				else
-    $height = "250px";
-    ?>
-<div id="bookmarksBox" style="height:<?php echo $height?>;overflow:auto;">
+<div id="bookmarksBox" style="height:250px;overflow:auto;">
 <?php
 	require_once("bookmarksAux.php");
-    ?>
+?>
 </div>
 </body>
 </html>

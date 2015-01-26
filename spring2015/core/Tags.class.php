@@ -8,6 +8,7 @@ class Tags extends Base{
     parent::__construct();
   }
 
+/*
   public function getTagsForUser(){
     $cxn = Connection::getInstance();
     $q = sprintf("SELECT * FROM tags WHERE userID=%d", $this->userID);
@@ -21,10 +22,10 @@ class Tags extends Base{
     }
     return $arr_results;
   }
-
+*/
   public function retrieveFromProject($projectID){
     $cxn = Connection::getInstance();
-    $q = sprintf("select distinct tags.* FROM tags, tag_assignments WHERE tag_assignments.tagID = tags.tagID AND tag_assignments.userID IN (select users.userID from users where users.projectID=%d);", $projectID);
+    $q = sprintf("select * FROM tags WHERE projectID=%d", $projectID);
     $arr_results = array();
     $results = $cxn->commit($q);
     while($row = mysql_fetch_assoc($results)){
@@ -36,8 +37,9 @@ class Tags extends Base{
     return $arr_results;
   }
 
-  public function updateTagForUser($tagID, $new_name){
+  public function updateTagForProject($projectID, $tagID, $new_name){
     // will be used in CSpace
+    $cxn = Connection::getInstance();
   }
 
   /*
@@ -50,11 +52,11 @@ class Tags extends Base{
     /* By using IGNORE if user is assigning a previously created tag,
      * it will not insert it again
     */
-    $q = "INSERT IGNORE INTO tags (`userID`, `name`) VALUES ";
+    $q = "INSERT IGNORE INTO tags (`projectID`, `name`) VALUES ";
     $arr = array();
     $cxn = Connection::getInstance();
     foreach($tags as $name){
-      $ins = sprintf("(%d, '%s')", $this->userID, $cxn->esc(trim($name)));
+      $ins = sprintf("(%d, '%s')", $this->projectID, $cxn->esc(trim($name)));
       array_push($arr, $ins);
     }
     $q .= implode(",", $arr);
@@ -64,7 +66,7 @@ class Tags extends Base{
     $q = "INSERT INTO tag_assignments (`userID`, `bookmarkID`, `tagID`) VALUES ";
     $arr = array();
     foreach($tags as $name){
-      $ins = sprintf("(%d, %d, (SELECT tagID FROM tags WHERE userID=%d AND name='%s'))", $this->userID, $bookmarkID, $this->userID, $cxn->esc($name));
+      $ins = sprintf("(%d, %d, (SELECT tagID FROM tags WHERE projectID=%d AND name='%s'))", $this->projectID, $bookmarkID, $this->projectID, $cxn->esc($name));
       array_push($arr, $ins);
     }
     $q .= implode(",", $arr);

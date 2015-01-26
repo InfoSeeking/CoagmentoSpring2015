@@ -22,7 +22,7 @@ function gen_url($param){
         <nav>
           <ul>
             <li><a href="?page=ALL">All</a></li>
-            <li><a href="?page=PAGE_VISITS">Page Visits</a></li>
+            <!--<li><a href="?page=PAGE_VISITS">Page Visits</a></li>-->
             <li><a href="?page=BOOKMARKS">Bookmarks</a></li>
             <li><a href="?page=SNIPPETS">Snippets</a></li>
             <li><a href="?page=SEARCHES">Searches</a></li>
