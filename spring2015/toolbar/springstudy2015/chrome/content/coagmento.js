@@ -361,6 +361,9 @@ function activetask(){
 
 }
 
+function openContactWindow(){
+  window.open(globalUrl + "services/contactUs.php","Contact Us",'directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');
+}
 
 //Save pages
 function savePQ()
@@ -730,16 +733,14 @@ function disableButtons(value)
 {
 	document.getElementById('coagmentoHomeButton').disabled = value;
 	document.getElementById('coagmentoSnipButton').disabled = value;
-    document.getElementById('coagmentoBookmarkButton').disabled = value;
-
+  document.getElementById('coagmentoBookmarkButton').disabled = value;
 	document.getElementById('coagmentoEditorButton').disabled = value;
 	document.getElementById('coagmentoActiveTaskButton').disabled = value;
+  document.getElementById('coagmentoInstructionsButton').disabled = value;
+  document.getElementById('coagmentoContactButton').disabled = value;
 
-    //Added 08/2014
-    document.getElementById('coagmentoInstructionsButton').disabled = value;
-
-    //FIX: Always enable home button
-    document.getElementById('coagmentoHomeButton').disabled = false;
+  //FIX: Always enable home button
+  document.getElementById('coagmentoHomeButton').disabled = false;
 }
 
 
@@ -747,23 +748,24 @@ function disableButtons(value)
 
 function hideButtons(value)
 {
-        //Added 08/2014
-        document.getElementById('coagmentoSnipButton').hidden = value;
+    document.getElementById('coagmentoSnipButton').hidden = value;
     document.getElementById('coagmentoBookmarkButton').hidden = value;
 
-        document.getElementById('coagmentoEditorButton').hidden = value;
-        document.getElementById('coagmentoActiveTaskButton').hidden = value;
-        document.getElementById('coagmentoInstructionsButton').hidden = value;
-        document.getElementById('toolbarseparatorSnip').hidden = value;
+    document.getElementById('coagmentoEditorButton').hidden = value;
+    document.getElementById('coagmentoActiveTaskButton').hidden = value;
+    document.getElementById('coagmentoInstructionsButton').hidden = value;
+    document.getElementById('toolbarseparatorSnip').hidden = value;
     document.getElementById('toolbarseparatorBookmark').hidden = value;
+    document.getElementById('coagmentoContactButton').hidden = value;
+    document.getElementById('toolbarseparatorContact').hidden = value;
 
-        document.getElementById('toolbarseparatorEditor').hidden = value;
-        document.getElementById('toolbarseparatorActiveTask').hidden = value;
-        document.getElementById('toolbarseparatorInstructions').hidden = value;
+    document.getElementById('toolbarseparatorEditor').hidden = value;
+    document.getElementById('toolbarseparatorActiveTask').hidden = value;
+    document.getElementById('toolbarseparatorInstructions').hidden = value;
 
-        //Always show home button
-        document.getElementById('coagmentoHomeButton').hidden = false;
-        document.getElementById('toolbarseparatorHome').hidden = false;
+    //Always show home button
+    document.getElementById('coagmentoHomeButton').hidden = false;
+    document.getElementById('toolbarseparatorHome').hidden = false;
 }
 
 
@@ -773,90 +775,18 @@ function intilizeToolbarSession()
 {
 	if (loggedIn)
 	{
-		if (sessionNumber==1)
-		{
-			googleURL = "https://www.google.com/";
-			//googleURL = "https://www.google.com/webhp?hl=en&output=search&tbs=cdr:1,cd_min:1/1/1990,cd_max:4/26/2013&bav=on.2,or.r_gc.r_pw.r_qf.,cf.osb&ech=1&psi=LuOLT5GbE4L50gGPmszhCg.1334567726497.3&emsg=NCSR&noj=1&ei=LuOLT5GbE4L50gGPmszhCg&complete=0";
-			document.getElementById('coagmentoHomeButton').hidden = false;
-			document.getElementById('coagmentoSnipButton').hidden = false;
-			document.getElementById('coagmentoEditorButton').hidden = false;
-			document.getElementById('coagmentoActiveTaskButton').hidden = false;
-
-
-            //Added 08/2014
-            document.getElementById('coagmentoInstructionsButton').hidden = false;
-            //Added 10/2014
-            document.getElementById('coagmentoBookmarkButton').hidden = false;
-
-
-
-			document.getElementById('toolbarseparatorHome').hidden = false;
-			document.getElementById('toolbarseparatorSnip').hidden = false;
-			document.getElementById('toolbarseparatorEditor').hidden = false;
-			document.getElementById('toolbarseparatorActiveTask').hidden = false;
-
-            //Added 08/2014
-            document.getElementById('toolbarseparatorInstructions').hidden = false;
-            //Added 10/2014
-            document.getElementById('toolbarseparatorBookmark').hidden = false;
-
-
+		if (sessionNumber==1) {
+      googleURL = "https://www.google.com/";
+      hideButtons(false);
 		}
-		else if (sessionNumber==2)
-		{
-            googleURL = "https://www.google.com/";
-//			googleURL = 'https://www.google.com/webhp?hl=en&output=search&tbs=cdr:1,cd_min:1/1/1990,cd_max:3/31/2011&bav=on.2,or.r_gc.r_pw.r_qf.,cf.osb&ech=1&psi=LuOLT5GbE4L50gGPmszhCg.1334567726497.3&emsg=NCSR&noj=1&ei=LuOLT5GbE4L50gGPmszhCg&complete=0';
-			document.getElementById('coagmentoHomeButton').hidden = true;
-			document.getElementById('coagmentoSnipButton').hidden = true;
-
-            document.getElementById('coagmentoEditorButton').hidden = true;
-			document.getElementById('coagmentoActiveTaskButton').hidden = true;
-            //Added 08/2014
-            document.getElementById('coagmentoInstructionsButton').hidden = true;
-            //Added 10/2014
-            document.getElementById('coagmentoBookmarkButton').hidden = true;
-
-
-			document.getElementById('toolbarseparatorHome').hidden = true;
-			document.getElementById('toolbarseparatorSnip').hidden = true;
-			document.getElementById('toolbarseparatorEditor').hidden = true;
-			document.getElementById('toolbarseparatorActiveTask').hidden = true;
-
-            //Added 08/2014
-            document.getElementById('toolbarseparatorInstructions').hidden = true;
-            //Added 10/2014
-            document.getElementById('toolbarseparatorBookmark').hidden = true;
-
+		else if (sessionNumber==2) {
+      googleURL = "https://www.google.com/";
+      hideButtons(true);
 		}
-
 	}
-	else
-	{
-			document.getElementById('coagmentoHomeButton').hidden = true;
-			document.getElementById('coagmentoSnipButton').hidden = true;
-            document.getElementById('coagmentoEditorButton').hidden = true;
-			document.getElementById('coagmentoActiveTaskButton').hidden = true;
-            //Added 08/2014
-            document.getElementById('coagmentoInstructionsButton').hidden = true;
-            //Added 10/2014
-            document.getElementById('coagmentoBookmarkButton').hidden = true;
-
-
-			document.getElementById('toolbarseparatorHome').hidden = true;
-			document.getElementById('toolbarseparatorSnip').hidden = true;
-			document.getElementById('toolbarseparatorEditor').hidden = true;
-			document.getElementById('toolbarseparatorActiveTask').hidden = true;
-
-            //Added 08/2014
-            document.getElementById('toolbarseparatorInstructions').hidden = true;
-            //Added 10/2014
-            document.getElementById('toolbarseparatorBookmark').hidden = true;
-
-
+	else {
+    hideButtons(true);
 	}
-    //FIX: Always show home button
-    document.getElementById('coagmentoHomeButton').hidden = false;
-    document.getElementById('toolbarseparatorHome').hidden = false;
 }
 
 function updateToolbarButtons()

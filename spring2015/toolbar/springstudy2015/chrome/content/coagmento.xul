@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<?xml-stylesheet 
+<?xml-stylesheet
   href="chrome://coagmento/skin/overlay.css"
-  type="text/css" 
+  type="text/css"
 ?>
 <!DOCTYPE overlay SYSTEM "chrome://coagmento/locale/sidebar.dtd">
 <overlay id="coagmento-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -18,9 +18,9 @@
                     disabled="true"
 					hidden="true"
 					oncommand="home()"/>
-                  
+
 				<toolbarseparator id="toolbarseparatorHome" hidden="true"/>
-                
+
                 <toolbarbutton id="coagmentoInstructionsButton"
                 tooltiptext="View system instructions"
                 label="Help"
@@ -38,49 +38,57 @@
 					oncommand="snip()" />
 
  				<toolbarseparator id="toolbarseparatorSnip" hidden="true"/>
-                
+
                 <toolbarbutton id="coagmentoBookmarkButton"
                 tooltiptext="Bookmark current page"
                 label="Bookmark"
                 disabled="true"
                 hidden="true"
                 oncommand="bookmark()" />
-                
+
  				<toolbarseparator id="toolbarseparatorBookmark" hidden="true"/>
-				
+
 				<toolbarbutton id="coagmentoEditorButton"
-					tooltiptext="Access the text editor" 
+					tooltiptext="Access the text editor"
 					label="Write"
                     disabled="true"
                     hidden="true"
 					oncommand="editor()" />
 
  				<toolbarseparator id="toolbarseparatorEditor" hidden="true"/>
- 				
+
  				<toolbarbutton id="coagmentoActiveTaskButton"
-					tooltiptext="View your assigned task" 
-					label="Assignment" 
+					tooltiptext="View your assigned task"
+					label="Assignment"
                     disabled="true"
                     hidden="true"
 					oncommand="activetask()" />
 
  				<toolbarseparator id="toolbarseparatorActiveTask" hidden="true"/>
-                
+
+
+         <toolbarbutton id="coagmentoContactButton"
+           tooltiptext="Contact us"
+           label="Contact"
+                     disabled="true"
+                     hidden="true"
+           oncommand="openContactWindow()" />
+          <toolbarseparator id="toolbarseparatorContact" hidden="true"/>
  				<description class="blue" id="msgs"/>
         </toolbar>
     </toolbox>
 
 	<menupopup id="viewSidebarMenu">
-    	<menuitem key="key_openSidebar" 
+    	<menuitem key="key_openSidebar"
 			observes="viewSidebar"  />
   	</menupopup>
-  
+
 	<keyset id="mainKeyset">
     	<key id="key_openSidebar" command="viewSidebar"
          	key="&openSidebar.commandkey;"
          	modifiers="&openSidebar.modifierskey;" />
   	</keyset>
- 
+
 	<broadcasterset id="mainBroadcasterSet">
     	<broadcaster id="viewSidebar"
                  label="&sidebar.title;"
@@ -91,5 +99,5 @@
                  sidebartitle="&sidebar.title;"
                  oncommand="toggleSidebar('viewSidebar');" />
 	</broadcasterset>
-	
+
 </overlay>
