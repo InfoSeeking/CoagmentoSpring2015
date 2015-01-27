@@ -110,7 +110,7 @@ else
 						<textarea name="notes"><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
 					</div>
 					<div class="row">
-						<label>Tags</label><br/>
+						<label>Tags (separate with comma)</label><br/>
 						<select name="tags[]" id="tag-input" multiple="multiple">
 							<?php
 							//show all user tags

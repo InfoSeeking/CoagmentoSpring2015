@@ -307,7 +307,7 @@ cursor:hand;
 
 
 <li>
-<h4><img src="../img/chat.jpg" width=36 style="vertical-align:middle;border:0" /> Chat<br/><span style="color:gray;font-size:10px;">Chat with collaborators of the active project.</span></h4>
+<h4><img src="../img/chat.jpg" width=36 style="vertical-align:middle;border:0" /> Chat <span style="color:gray;font-size:10px;">Talk to your group.</span></h4>
 <div class="acc-section2">
 
 
@@ -336,8 +336,8 @@ cursor:hand;
 
 
 
-<li>
-<h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; History<br/><span style="color:gray;font-size:10px;">See personal/shared history and objects.</span></h4>
+<li style="padding-top: 20px">
+<h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; History <span style="color:gray;font-size:10px;">See group history and objects.</span></h4>
 <div class="acc-section2">
 <div id="history" class="acc-content2">
 <ul id="tabs" class="shadetabs">
@@ -378,13 +378,15 @@ tabs.init();
 
 
 <script type="text/javascript">
+/*
+Removed to auto show sections
 
 var parentAccordion=new TINY.accordion.slider("parentAccordion");
 parentAccordion.init("acc2","h4",0,-1);
 
 var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
 nestedAccordion.init("nested","h4",1,-1,"acc-selected");
-
+*/
 </script>
 
 <?php

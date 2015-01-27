@@ -32,7 +32,7 @@
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
-        $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1";
+        $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 ORDER BY timestamp DESC";
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
 
