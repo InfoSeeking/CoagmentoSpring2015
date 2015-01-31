@@ -34,13 +34,12 @@
     if (isset($_SESSION['orderBy'.$table])){
       $orderBy = $_SESSION['orderBy'.$table];
     }
-    $query = "SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,B.note
-       FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ORDER BY ".$orderBy;
+    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ORDER BY ".$orderBy;
     if($filter != -1){
       $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,B.note
          FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID  ORDER BY ".$orderBy, $filter);
     }
-    
+
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
