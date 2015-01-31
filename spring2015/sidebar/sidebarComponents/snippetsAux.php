@@ -10,17 +10,17 @@
 		if (isset($_SESSION['CSpace_projectID']))
 			$projectID = $_SESSION['CSpace_projectID'];
 		$orderBy = $_SESSION['orderBySnippets'];*/
-                echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:reload('sidebarComponents/snippets.php','snippetsBox')\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
-		echo "<div id=\"floatSnippetLayer\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
-		echo "<div id=\"floatSnippetLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
-		echo "<table width=100% cellspacing=0>\n";
-		echo "<tr>";
-		/*echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','userName asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','userName desc','snippetsBox','snippets.php')\"></td>";
-		echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','title asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','title desc','snippetsBox','snippets.php')\"></td>";
-		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','finalRating asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','finalRating desc','snippetsBox','snippets.php')\"></td>";
-		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','snippetID asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Snippets','snippetID desc','snippetsBox','snippets.php')\"></td>";
-		//echo "<td></td>";*/
-		echo "</tr>";
+    echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:refreshSnippets()\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
+    echo "<div id=\"floatSnippetLayer\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
+    echo "<div id=\"floatSnippetLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
+    echo "<table width=100% cellspacing=0>\n";
+    echo "<tr>";
+    echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','userName asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','userName desc','snippetsBox','snippets.php')\"></td>";
+    echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','title asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','title desc','snippetsBox','snippets.php')\"></td>";
+    //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','finalRating asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','finalRating desc','snippetsBox','snippets.php')\"></td>";
+     echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','snippetID asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','snippetID desc','snippetsBox','snippets.php')\"></td>";
+     echo "<td></td>";
+    echo "</tr>";
 
 //    TODO: May not have been part of this code.  Delete?
 //    echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
@@ -32,7 +32,13 @@
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
-        $query = "SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 ORDER BY timestamp DESC";
+        $table = "snippets";
+        $orderBy = "snippetID ASC";
+        if (isset($_SESSION['orderBy'.$table])){
+          $orderBy = $_SESSION['orderBy'.$table];
+        }
+
+        $query = "SELECT * FROM (SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
 
@@ -69,9 +75,10 @@
                 }
 
 
-                echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span> </td><td><span style=\"font-size:10px\">";
+                echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span></td>";
+                echo "<td><span style=\"font-size:10px\">";
                 //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
-                $viewSnipetOnWindow = "window.open('viewSnippet.php?value=$snippetID','Snippet View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600')";
+                $viewSnipetOnWindow = "window.open('viewSnippet.php?value=$snippetID','Snippet View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
                 echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
 //                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
                 //			if ($url)
@@ -87,7 +94,7 @@
                 echo "<input type=\"hidden\" id=\"url$snippetID\" value=\"$url\">";
                 echo "<input type=\"hidden\" id=\"time$snippetID\" value=\"$time\">";
                 //$ratingRepresentation = getRatingRepresentation($finalRating, $snippetID,'snippets','floatSnippetLayer','snippetsBox','snippets.php');
-                echo "<td align=\"center\"></td>";
+                // echo "<td align=\"center\"></td>";
                 echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatSnippetLayer',null,'$snippetID')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 
                 //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt

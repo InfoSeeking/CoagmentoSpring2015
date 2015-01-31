@@ -147,6 +147,11 @@
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
 
+	setInterval ("function(){reload('sidebarComponents/snippets.php','snippetsBox');}", 5000);
+	setInterval ("function(){reload('sidebarComponents/bookmarks.php','bookmarksBox');}", 5000);
+	setInterval ("function(){reload('sidebarComponents/searches.php','queriesBox');}", 5000);
+
+
 	var InfiniteAjaxRequest = function () {
 		 jQuery.ajax({
     	        url: uri,
@@ -344,7 +349,7 @@ cursor:hand;
 
 <li><a href="sidebarComponents/bookmarks.php" rel="tabscontainer" class="selected">Bookmarks</a></li>
 
-<li><a href="sidebarComponents/snippets.php" rel="tabscontainer" class="selected">Snippets</a></li>
+<li><a href="sidebarComponents/snippets.php" rel="tabscontainer">Snippets</a></li>
 
 <li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
 
