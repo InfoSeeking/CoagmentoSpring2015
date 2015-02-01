@@ -6,7 +6,7 @@
 
   if (!Base::getInstance()->isSessionActive())
   {
-		exit("Not logged in, please <a href='index.php'>log in here</a>");
+		exit("Not logged in, please <a href='/spring2015/index.php'>log in here</a>");
 	}
 
   $base = Base::getInstance();
@@ -60,7 +60,7 @@
 <body class="body">
 	<div id="container">
 		<h2>Contact Us</h2>
-		<p>Are you having issues with the extension? Questions on how to use it? Let us know</p>
+		<p>Have a problem or question about Coagmento? Email us:</p>
 		<form action="#" method="post">
 			<div class="row">
 				<label>Your email <br/>(so we can contact you)</label><input name="email" type="email" required />

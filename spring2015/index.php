@@ -4,12 +4,12 @@
 	require_once('core/Base.class.php');
 	require_once('core/Action.class.php');
 	require_once('core/Util.class.php');
-
     //Variable for determining if the study is closed
     $closed = false;
 
 	//If you want to set session variables use Base::getInstance(). Do not create a new Base object for that
 	// If login information was sent
+
 	if (isset($_POST['userName'])&&(!Base::getInstance()->isSessionActive()))
 	{
 		$userName = $_POST['userName'];
@@ -42,7 +42,6 @@
             }
         }
 		//END TEMP: restart test_1
-
 		// Check if second session login has passed 48 hours since completing first session
 		$qGetUserID = "SELECT userID from users WHERE userName='$userName' AND password_sha1='$password'";
 		$cGetUserID = Connection::getInstance();
@@ -76,7 +75,6 @@
 
 
 
-
         $query = "SELECT userID, projectID, username, study FROM users WHERE userName='$userName' AND password_sha1='$password' AND status = 1";
 
         $connection = Connection::getInstance();
@@ -85,7 +83,6 @@
         $localTime = $_POST['localTime'];
         $localDate = $_POST['localDate'];
         $localTimestamp = $_POST['localTimestamp'];
-
         if (mysql_num_rows($results)==1) {
             $line = mysql_fetch_array($results, MYSQL_ASSOC);
             $userID = $line['userID'];
@@ -113,13 +110,12 @@
             //$base->setQuestionID(-1);
             //Save action
             Util::getInstance()->saveAction('login',0,$base); //Try later to insert machine name; otherwise work with IP
-
             //Next stage
 
-            $stage = new Stage();
-            if ($stage->getCurrentStage()<0)
+            $stage = new Stage(); //causing storage error (1/28/2015)
+            if ($stage->getCurrentStage()<0){
                 $stage->moveToNextStage();
-
+						}
             else
             {
                 $base->setStageID($stage->getCurrentStage());
@@ -127,6 +123,7 @@
                 $base->setMaxTimeQuestion($stage->getMaxTimeQuestion());
 
             }
+
             $page = $stage->getCurrentPage();
 
             if($page == "index.php"){
@@ -140,6 +137,7 @@
             echo "<tr><td align=center>Username/password didn't match or you are not authorized to access this.</td></tr>\n";
             echo "</table>\n";
         }
+
 	}
 	else
 	{
