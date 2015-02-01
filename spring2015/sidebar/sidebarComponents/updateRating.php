@@ -19,11 +19,11 @@
     //                $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'updateRating_$type', 'itemID:$itemID:$value','$ip')";
     //                $results2 = mysql_query($aquery) or die(" ". mysql_error());
 
-    
+
 	if ((isset($_SESSION['CSpace_userID']))) {
 		$query1 = "UPDATE rating SET `active`='0' WHERE `idResource`='$itemID' AND `type`='$type' AND `active`='1' AND `userID`='$userID' AND `projectID`='$projectID'";
 		$results = mysql_query($query1) or die(" ". mysql_error());
-        
+
 		$query2 = "INSERT INTO rating (`idResource`, `type`, `value`, `userID`, `projectID`, `active`, `time`, `date`, `timestamp`) VALUES ('$itemID', '$type', '$value', '$userID', '$projectID', '1', '$time', '$date', '$timestamp')";
 		$results = mysql_query($query2) or die(" ". mysql_error());
 		$webPage = $_GET['webPage'];

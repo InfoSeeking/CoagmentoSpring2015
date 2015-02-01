@@ -15,11 +15,11 @@
         echo "<div id=\"floatQueryLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
 		echo "<table width=100% cellspacing=0>\n";
 		echo "<tr>";
-		/*echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','userName asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','userName desc','queriesBox','searches.php')\"></td>";
-		echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','query asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','query desc','queriesBox','searches.php')\"></td>";
-		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','finalRating asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','finalRating desc','queriesBox','searches.php')\"></td>";
-		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','queryID asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','queryID desc','queriesBox','searches.php')\"></td>";
-		//echo "<td></td>";*/
+		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','userName asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','userName desc','queriesBox','searches.php')\"></td>";
+		echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','query asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','query desc','queriesBox','searches.php')\"></td>";
+		// echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','finalRating asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Queries','finalRating desc','queriesBox','searches.php')\"></td>";
+		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','queryID asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','queryID desc','queriesBox','searches.php')\"></td>";
+		echo "<td></td>";
 		echo "</tr>";
         //retrieve username, query, and query ID
         $base = Base::getInstance();
@@ -27,7 +27,13 @@
         $userID = $base->getUserID();
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
-        $query = "SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 ORDER BY timestamp DESC";
+        $table = "queries";
+        $orderBy = "queryID ASC";
+        if (isset($_SESSION['orderBy'.$table])){
+          $orderBy = $_SESSION['orderBy'.$table];
+        }
+
+        $query = "SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID  ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
 
@@ -48,15 +54,22 @@
             $date = strftime("%m/%d", $date);
 			$url = $line['url'];
             $queryAux = substr($queryVal, 0, 200)." (" . $source . ")";
+
+            $queryShown = $queryAux;
+            if (strlen($queryShown)>25) {
+                $queryShown = substr($queryShown, 0, 20);
+                $queryShown = $queryShown . '..';
+            }
+
             echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span>&nbsp;</td><td><span style=\"font-size:10px\">";
 
             if ($url){
-                $viewSearchOnWindow = "window.open('viewSearch.php?value=$queryID','Search View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600')";
-                echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showQuery('floatQueryLayer',null,'$queryID','text')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$queryAux</a></span></td>\n";
+                $viewSearchOnWindow = "window.open('viewSearch.php?value=$queryID','Search View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
+                echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showQuery('floatQueryLayer',null,'$queryID','text')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$queryShown</a></span></td>\n";
 //                echo "<font color=blue><a onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=sidebar-query&value='+$queryID,null)\" href=\"$url\" class=\"tt\" target=\"_new\" style=\"font-size:10px\">$queryAux</a></span></td>\n";
 //				echo "<font color=blue><a onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=sidebar-query&value='+$queryID,null)\" href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\">$queryAux</a></span></td>\n";
 			}else{
-				echo "$queryAux</span></td>\n";
+				echo "$queryShown</span></td>\n";
             }
             echo "<input type=\"hidden\" id=\"queryurl$queryID\" value=\"$url\">";
 
@@ -64,7 +77,7 @@
 			echo "<input type=\"hidden\" id=\"queryValue$queryID\" value=\"$queryVal\">";
             echo "<input type=\"hidden\" id=\"time$queryID\" value=\"$time\">";
 			//$ratingRepresentation = getRatingRepresentation($finalRating,$queryID,'queries','floatQueryLayer','queriesBox','searches.php');
-			echo "<td align=\"center\"></td>";
+			// echo "<td align=\"center\"></td>";
 			echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatQueryLayer',null,'$queryID')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 			//echo "<td align=\"right\"><img src=\"images/copy.gif\" height=\"18\" width=\"18\" alt=\"Copy\" class=\"cursorType\" onclick=\"javascript:copyToClipboard('queryValue$queryID')\"></td>";
 
@@ -97,10 +110,5 @@
 
 
 
-		//}
-		//echo "</table>\n";
-		//}
-	//else {
-	//	echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
-	//}
+
 ?>

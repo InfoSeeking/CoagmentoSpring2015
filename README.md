@@ -12,3 +12,8 @@ Error log located in /www/coagmento.org/logs/error_log
 Spring 2015 Developer Notes:
 
 ProjectID will be used for groups
+
+
+
+Bugs
+- file accumulation at /var/spool/mail/chirags.  Do a tail on it, time permitting.

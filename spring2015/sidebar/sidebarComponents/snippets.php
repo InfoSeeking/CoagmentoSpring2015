@@ -26,7 +26,7 @@
 					$height = "250px";
 ?>
 <div id="snippetsBox" style="height:<?php echo $height?>;overflow:auto;">
-<?php 
+<?php
 	require_once("snippetsAux.php");
 ?>
 </div>
