@@ -12,6 +12,10 @@
 	$page = "";
 	//echo "Allow Comm: ".$stage->getAllowCommunication();
     $projectID = $base->getProjectID();
+		 	$b = $base->getAllowCommunication();
+			$br = $base->getAllowBrowsing();
+		 	$s = $base->getStageID();
+		 Util::getInstance()->saveAction("testing sidebar $b $br $s",$s = $base->getStageID(),$base);
 
 	/*---COMMENTED OUT ON 05/23/2014-----*/
 	if ($base->getAllowCommunication()==1)

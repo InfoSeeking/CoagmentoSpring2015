@@ -5,7 +5,7 @@
 
 // Toolbar related functions
 // Add a listener to the current window.
-window.addEventListener("load", function() { coagmentoToolbar.init();toggleSidebar('viewSidebar',true); }, false);
+window.addEventListener("load", function() { coagmentoToolbar.init();toggleSidebar('viewSidebar',true);}, false);
 //window.addEventListener("load", function() { coagmentoToolbar.init(); }, false);
 
 
@@ -105,6 +105,7 @@ function checkStageBrowsability()
            if (xmlHttpConnection.readyState == 4 && xmlHttpConnection.status == 200) {
                  var serverResponse = xmlHttpConnection.responseText;
                  var url = window.content.document.location;
+//                alert ("stageBrowsability " + toString(serverResponse));
                  if (serverResponse==1)
                  {
                 	 allowBrowsingFlag = true;
@@ -193,9 +194,13 @@ register: function() {
             var oHttp = aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
             if (oHttp.loadFlags & Components.interfaces.nsIHttpChannel.LOAD_INITIAL_DOCUMENT_URI) {
                 //is top level load
+//                alert("checkbrowsobserver" + isExclusive);
                 checkStageBrowsability();
+//                alert("done - checkbrowsobserver" + isExclusive);
                 cleanAlert();
+//                alert("done - clean" + isExclusive);
                 savePQ();
+//                alert("done - savePQ" + isExclusive);
             }
         }
     }
@@ -307,25 +312,31 @@ var coagmentoToolbar =
 
 		init: function()
 		{
+            
 			 var container = gBrowser.tabContainer;
 
 			 //container.addEventListener('DOMSubtreeModified',coagmentoToolbar.delay, false);
 			 container.addEventListener('DOMSubtreeModified',onChange, false);
-//			 container.addEventListener("load", onPageLoad, true);
+			 container.addEventListener("load", onPageLoad, true);
  			 container.addEventListener("TabOpen", tabAdded, false);
 			 container.addEventListener("TabClose", tabClosed, false);
 			 container.addEventListener("TabSelect", tabSelected, false);
+            
              //Added 08/2014
              gBrowser.addEventListener("copy", copyData, false);
 
              //Added 1/2015
              gBrowser.addEventListener("paste", pasteData, false);
+//             var appcontent = document.getElementById("appcontent");   // browser
+//             if(appcontent)
+//                 appcontent.addEventListener("DOMContentLoaded", coagmentoToolbar.onPageLoad, true);
+//             var messagepane = document.getElementById("messagepane"); // mail
+//             if(messagepane)
+//                 messagepane.addEventListener("load", function () { coagmentoToolbar.onPageLoad(); }, true);
 
 			 coagmentoObserver.register();
 
-
              coagmentoCheckStageObserver.register();
-
 
 	         //populateSidebar();
 			/*var appcontent = document.getElementById("appcontent");   // browser
@@ -676,18 +687,19 @@ function checkConnectivity()
      xmlHttpConnection.onreadystatechange=function(){
            if (xmlHttpConnection.readyState == 4 && xmlHttpConnection.status == 200) {
                  var serverResponse = xmlHttpConnection.responseText;
+//               alert("Connection Status " + serverResponse);
                  if (serverResponse!=0)
                  {
 					if (serverResponse!=-1) //If response == 1 then session active
 					 {
                          loggedIn = true;
 						 sessionNumber = serverResponse;
-						 intilizeToolbarSession();
+						 initializeToolbarSession();
 					 }
                      else
 					{					 //If response == -1 then NO session active
                          loggedIn = false;
-						 intilizeToolbarSession();
+						 initializeToolbarSession();
 					}
                      xmlHttpConnection.abort();
                      clearTimeout(xmlHttpTimeout);
@@ -700,6 +712,7 @@ function checkConnectivity()
                      clearTimeout(xmlHttpTimeout);
                      serverDown();
                      xmlHttpConnection.abort();
+                     isExclusive = false;
                  }
            }
      };
@@ -731,7 +744,7 @@ function serverDown()
 
 function disableButtons(value)
 {
-	document.getElementById('coagmentoHomeButton').disabled = value;
+	document.getElementById('coagmentoConnectDisconnectButton').disabled = value;
 	document.getElementById('coagmentoSnipButton').disabled = value;
   document.getElementById('coagmentoBookmarkButton').disabled = value;
 	document.getElementById('coagmentoEditorButton').disabled = value;
@@ -740,7 +753,7 @@ function disableButtons(value)
   document.getElementById('coagmentoContactButton').disabled = value;
 
   //FIX: Always enable home button
-  document.getElementById('coagmentoHomeButton').disabled = false;
+  document.getElementById('coagmentoConnectDisconnectButton').disabled = false;
 }
 
 
@@ -764,28 +777,35 @@ function hideButtons(value)
     document.getElementById('toolbarseparatorInstructions').hidden = value;
 
     //Always show home button
-    document.getElementById('coagmentoHomeButton').hidden = false;
-    document.getElementById('toolbarseparatorHome').hidden = false;
+    document.getElementById('coagmentoConnectDisconnectButton').hidden = false;
+    document.getElementById('toolbarseparatorConnectDisconnect').hidden = false;
 }
 
 
 
 
-function intilizeToolbarSession()
+function initializeToolbarSession()
 {
 	if (loggedIn)
 	{
-		if (sessionNumber==1) {
-      googleURL = "https://www.google.com/";
-      hideButtons(false);
+		if (sessionNumber==1)
+		{
+//            alert('initialize to true 1');
+			googleURL = "https://www.google.com/";
+            hideButtons(false);
 		}
-		else if (sessionNumber==2) {
-      googleURL = "https://www.google.com/";
-      hideButtons(true);
+		else if (sessionNumber==2)
+		{
+//            alert('initialize to true 2');
+            googleURL = "https://www.google.com/";
+            hideButtons(true);
 		}
 	}
-	else {
-    hideButtons(true);
+	else
+	{
+//        alert('NOT LOGGED IN!  HIDE!');
+        hideButtons(true);
+        
 	}
 }
 
@@ -795,11 +815,16 @@ function updateToolbarButtons()
   {
 	if (loggedIn)
     {
-		if (allowBrowsingFlag)
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Disconnect";
+//        alert('logged in');
+		if (allowBrowsingFlag){
 			disableButtons(false);
+        }
 	}
     else
     {
+//        alert('not logged in');
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Connect";
     	disableButtons(true);
 	}
   }
@@ -807,10 +832,97 @@ function updateToolbarButtons()
 
 //Sidebar functions
 function populateSidebar() {
-	var sidebar = top.document.getElementById('sidebar');
-    var urlplace = globalUrl+"sidebar/sidebar.php";
+    var sidebar = top.document.getElementById('sidebar');
+    var urlplace = globalUrl+"sidebar/loginOnSideBar.php";
 	sidebar.setAttribute("src", urlplace);
+//    	var sidebar = top.document.getElementById('sidebar');
+//        var urlplace = globalUrl+"sidebar/sidebar.php";
+//    	sidebar.setAttribute("src", urlplace);
 }
+
+function updateLoginStatus()
+{
+    checkConnectivity();
+    updateToolbarButtons();
+}
+
+
+function logout()
+{
+	var xmlHttpTimeout;
+	if (isExclusive==false)
+	{
+        isExclusive = true;
+        var xmlHttpConnection = new XMLHttpRequest();
+        xmlHttpConnection.open('GET', globalUrl+'logout.php', true);
+        xmlHttpConnection.onreadystatechange=function(){
+            if (xmlHttpConnection.readyState == 4 && xmlHttpConnection.status == 200) {
+                var serverResponse = xmlHttpConnection.responseText;
+                //               alert("Connection Status " + serverResponse);
+                if (serverResponse!=0)
+                {
+					if (serverResponse==1) //If response == 1 then session active
+                    {
+                        loggedIn = false;
+                        initializeToolbarSession();
+                    }
+                    xmlHttpConnection.abort();
+                    clearTimeout(xmlHttpTimeout);
+//                    updateToolbarButtons();
+                    isExclusive = false;
+                }
+                else
+                {
+                    clearTimeout(xmlHttpTimeout);
+                    serverDown();
+                    xmlHttpConnection.abort();
+                    isExclusive = false;
+                }
+            }
+        };
+        
+        xmlHttpConnection.send(null);
+        xmlHttpTimeout = setTimeout(function (){
+                                    serverDown();
+                                    xmlHttpConnection.abort();
+                                    clearTimeout(xmlHttpTimeout);
+                                    },5000);
+	}
+    
+	// Added 06/04/14
+	else
+	{
+		setTimeout(logout,10);
+        
+	}
+};
+
+
+
+
+//Change connection status from the toolbar
+function changeConnectionStatus()
+{
+    if (document.getElementById("coagmentoConnectDisconnectButton").label == "Disconnect")
+    {
+        if(confirm('Are you sure you want to logout?'))
+        {
+            logout();
+            var broadcaster = top.document.getElementById('viewSidebar');
+            if (broadcaster.hasAttribute('checked'))
+                toggleSidebar('viewSidebar',false);
+            updateLoginStatus();
+        }
+    }
+    else
+    {
+        toggleSidebar('viewSidebar',false);
+        toggleSidebar('viewSidebar',true);
+        populateSidebar();
+    }
+}
+
+
 
 
 /***********************************************************************************************

@@ -12,14 +12,13 @@
                  class="chromeclass-toolbar" context="toolbar-context-menu"
                  hidden="false" persist="hidden">
 
-                <toolbarbutton id="coagmentoHomeButton"
-					tooltiptext="Go to home page"
-					label="Home"
-                    disabled="true"
-					hidden="true"
-					oncommand="home()"/>
+                <toolbarbutton id="coagmentoConnectDisconnectButton" style="font-size: 11px; font-weight:bold"
+                tooltiptext="Connect/disconnect with Coagmento"
+                label="Connect"
+                disabled="false"
+                oncommand="changeConnectionStatus()"/>
 
-				<toolbarseparator id="toolbarseparatorHome" hidden="true"/>
+                <toolbarseparator id="toolbarseparatorConnectDisconnect" hidden="true"/>
 
                 <toolbarbutton id="coagmentoInstructionsButton"
                 tooltiptext="View system instructions"

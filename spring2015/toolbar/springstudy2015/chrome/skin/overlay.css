@@ -10,9 +10,9 @@ toolbarbutton{
 	style="font-size: 12px; font-weight:bold";
 }
 
-#coagmentoHomeButton {
+#coagmentoConnectDisconnectButton {
     list-style-image: url("chrome://coagmento/skin/cutemenu.png");
-  -moz-image-region: rect(32px 144px 48px 128px);
+  -moz-image-region: rect(160px 64px 176px 48px);
   -moz-box-orient: horizontal;
 }
 
