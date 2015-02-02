@@ -21,8 +21,8 @@
     $projectID = $base->getProjectID();
 		 	$b = $base->getAllowCommunication();
 			$br = $base->getAllowBrowsing();
-		 	$s = $base->getStageID();
-		 Util::getInstance()->saveAction("testing sidebar $b $br $s",$s = $base->getStageID(),$base);
+		 	$s = isset($_SESSION['CSpace_userID']);
+		  Util::getInstance()->saveAction("testing sidebar $b $br $s",$base->getStageID(),$base);
 
 	/*---COMMENTED OUT ON 05/23/2014-----*/
 	if ($base->getAllowCommunication()==1)
@@ -158,9 +158,9 @@
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
 
-	setInterval ("function(){reload('sidebarComponents/snippets.php','snippetsBox');}", 5000);
-	setInterval ("function(){reload('sidebarComponents/bookmarks.php','bookmarksBox');}", 5000);
-	setInterval ("function(){reload('sidebarComponents/searches.php','queriesBox');}", 5000);
+	// setInterval ("reload('sidebarComponents/snippets.php','snippetsBox')", 5000);
+	// setInterval ("refreshBookmarks()", 5000);
+	// setInterval ("reload('sidebarComponents/searches.php','queriesBox')", 5000);
 
 
 	var InfiniteAjaxRequest = function () {

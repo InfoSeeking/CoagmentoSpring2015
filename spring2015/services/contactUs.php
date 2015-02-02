@@ -32,6 +32,8 @@
 <html>
 <head>
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
+	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
+	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
 	<title>Contact Us</title>
 	<style type="text/css">
 	#container{
@@ -63,7 +65,7 @@
 	<div id="container">
 		<h2>Contact Us</h2>
 		<p>Have a problem or question about Coagmento? Email us:</p>
-		<form action="#" method="post">
+		<form action="#" class="pure-form" method="post">
 			<div class="row">
 				<label>Your email <br/>(so we can contact you)</label><input name="email" type="email" required />
 			</div>
@@ -71,7 +73,7 @@
 				<label>Message</label><br/><textarea name="message" required></textarea>
 			</div>
 			<div class="row">
-				<input type="submit" value="Send email" />
+				<button type="submit" class="pure-button pure-button-primary" >Send email</button>
 			</div>
 		</form>
 	</div>

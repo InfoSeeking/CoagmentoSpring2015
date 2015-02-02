@@ -36,7 +36,7 @@
 			// $questionID = $qIDline['questionID'];
 
 
-        	Util::getInstance()->saveAction("View My Task",$questionID, $base);
+
 //        	Util::getInstance()->saveActionWithLocalTime("View My Task",$questionID,$base,$localTime,$localDate,$localTimestamp);
 
       //  	 	$query = "SELECT question
@@ -52,12 +52,13 @@
                 $connection = Connection::getInstance();
                 $userID = $base->getUserID();
                 $userID = $base->getProjectID();
-                $query = "SELECT Q.question as question FROM recruits R,questions_study Q WHERE R.projectID='$projectID' AND R.userID='$userID' AND R.instructorID+1=Q.questionID ORDER BY recruitsID ASC";
+                $query = "SELECT Q.question as question,Q.questionID as questionID FROM recruits R,questions_study Q WHERE R.projectID='$projectID' AND R.userID='$userID' AND R.instructorID+1=Q.questionID ORDER BY recruitsID ASC";
                 $results = $connection->commit($query);
                 $question1 = '';
-
                 $line = mysql_fetch_array($results,MYSQL_ASSOC);
 								$question1 = $line['question'];
+								$questionID = $line['questionID'];
+								Util::getInstance()->saveAction("View My Task",$questionID, $base);
 
 
 ?>
