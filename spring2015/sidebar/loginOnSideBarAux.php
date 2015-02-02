@@ -29,7 +29,6 @@
 			$userName = $_POST['userName'];
 			$password = sha1($_POST['password']);
 			$query = "SELECT * FROM users WHERE username='$userName' AND password_sha1='$password' AND status=1";
-			echo $query;
 			$results = $connection->commit($query);
 			$line = mysql_fetch_array($results, MYSQL_ASSOC);
 
