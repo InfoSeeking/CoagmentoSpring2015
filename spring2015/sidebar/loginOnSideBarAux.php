@@ -79,7 +79,6 @@
 						WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."' AND action='login'";
 
 
-						//Util::getInstance()->saveAction('min time stamp query',0,$base);
 
 
 
@@ -91,7 +90,6 @@
 
 						if ($line['min_timestamp']<>'')
 						{
-								//Util::getInstance()->saveAction('min time stamp query inside IF',0,$base);
 
 								$base->setTaskStartTimestamp($line['min_timestamp']);
 						}
@@ -100,7 +98,6 @@
 						{
 
 								$topicAreaID=1;
-								Util::getInstance()->saveAction('taskact',0,$base);
 								$question = "";
 								$questionID = "";
 								$answer = "";
@@ -163,7 +160,6 @@
 										$results = $connection->commit($qQuery);
 										$line = mysql_fetch_array($results, MYSQL_ASSOC);
 										$numRows = mysql_num_rows($results);
-										Util::getInstance()->saveAction('whatinternals',0,$base);
 
 										if ($numRows>0)
 										{

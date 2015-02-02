@@ -1,9 +1,13 @@
 <?php
 //	session_name('XULSession'); // Set session name
 	session_start();
-        if (isset($_SESSION['CSpace_userID']))
+	require_once('../core/Base.class.php');
+	require_once('../core/Util.class.php');
+	$base = Base::getInstance();
+        if (isset($_SESSION['CSpace_userID'])){
+					Util::getInstance()->saveAction('Migrating from loginOnSideBar',0,$base);
             header("Location: http://www.coagmento.org/spring2015/sidebar/sidebar.php");
-        else {
+        }else {
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,6 +27,10 @@
 			<tr><td> Password </td><td> <input name="password" type="password" size=20 /></td></tr>
 			<tr><td colspan=2 align="center"><input type="submit" value="Login"/></td></tr>
 			<tr><td colspan=2><br/></td></tr>
+		</table></form>
+		<table>
+			<tr><td>Forget your password? <a style="color:blue;text-decoration:underline;cursor:pointer;font-size:12px;" onclick="javascript:window.open('http://coagmento.org/spring2015/services/generatePassword.php','Forgot Password','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');return false;">Click here</a> to generate a new one.</td></tr>
+			<tr><td colspan=2><br/></td></tr>
 			<tr><td>
                             </td>
                             <td>
@@ -30,7 +38,6 @@
                             </td>
                         </tr>
 		</table>
-</form>
                          </body>
                         </html>
 <?php

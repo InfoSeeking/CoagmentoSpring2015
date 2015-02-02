@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Snippets</title>
+<title>Bookmarks</title>
 <style type="text/css">
 	.cursorType{
 		cursor:pointer;

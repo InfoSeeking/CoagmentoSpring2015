@@ -366,7 +366,7 @@ function editor()
 function activetask(){
 	//loadURL(globalUrl+"services/viewMyStuff.php?=true");
 
-	window.open(globalUrl+"services/viewMyStuff.php?=true",'Active Task View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=300,left=600');
+	window.open(globalUrl+"services/viewMyStuff.php?=true",'Active Task View','directories=no, personalbar=no, resizable=yes, toolbar=no, location=no, status=no, menubar=no, scrollbars=yes,width=550,height=400,left=600'); //resizable=no,
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes');
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View');
 
