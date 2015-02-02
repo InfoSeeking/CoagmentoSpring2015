@@ -107,7 +107,7 @@
         echo "<input type=\"hidden\" id=\"url$bookmarkID\" value=\"$url\">";
         echo "<input type=\"hidden\" id=\"time$bookmarkID\" value=\"$time\">";
         $ratingRepresentation = getBookmarkRatingRepresentation($rating, $bookmarkID,'Bookmarks','floatBookmarkLayer','bookmarksBox','bookmarks.php');
-        //echo "<td align=\"center\">$ratingRepresentation</td>";
+        echo "<td align=\"center\">$ratingRepresentation</td>";
         echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$date</span></td>";
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt

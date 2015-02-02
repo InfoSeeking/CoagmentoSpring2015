@@ -323,7 +323,9 @@ cursor:hand;
 
 
 <li>
+<!--
 <h4><img src="../img/chat.jpg" width=36 style="vertical-align:middle;border:0" /> Chat <span style="color:gray;font-size:10px;">Talk to your group.</span></h4>
+-->
 <div class="acc-section2">
 
 
@@ -352,8 +354,10 @@ cursor:hand;
 
 
 
-<li style="padding-top: 20px">
+<li style="padding-top: 10px">
+	<!--
 <h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; History <span style="color:gray;font-size:10px;">See group history and objects.</span></h4>
+-->
 <div class="acc-section2">
 <div id="history" class="acc-content2">
 <ul id="tabs" class="shadetabs">
@@ -403,6 +407,29 @@ parentAccordion.init("acc2","h4",0,-1);
 var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
 nestedAccordion.init("nested","h4",1,-1,"acc-selected");
 */
+
+var last_activity_time = null;
+function attemptActivityRefresh(){
+	if(!last_activity_time){
+		last_activity_time = (new Date()).getTime();
+		return;
+	}
+	var curtime = (new Date()).getTime();
+	if(curtime - last_activity_time > 1000){
+		console.log("Refreshing");
+		//ping to update activity
+		jQuery.ajax({
+			url: homeURL + "services/refreshActivity.php"
+		});
+		last_activity_time = curtime;
+	}
+}
+jQuery("body").on("mousemove", function(){
+	attemptActivityRefresh();
+});
+jQuery("body").on("keyup", function(){
+	attemptActivityRefresh();
+});
 </script>
 
 <?php
@@ -413,7 +440,7 @@ nestedAccordion.init("nested","h4",1,-1,"acc-selected");
 ?>
 
 <?php
-printf("<small>Activity detected %d seconds ago</small>", time() - $_SESSION["LAST_ACTIVE"]);
+//printf("<small>Activity detected %d seconds ago</small>", time() - $_SESSION["LAST_ACTIVE"]);
 ?>
 
 </body>
