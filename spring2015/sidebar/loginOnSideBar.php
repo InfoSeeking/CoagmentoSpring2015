@@ -13,24 +13,31 @@
 			<link rel="Coagmento icon" type="image/x-icon" href="http://www.coagmento.org/spring2015/img/favicon.ico">
 			<title>Coagmento</title>
 			<link rel="stylesheet" href="css/styles.css" type="text/css" />
+			<style type="text/css">
+				#container{
+					text-align: center;
+				}
+			</style>
 			</head>
 			<body>
-        <form action="loginOnSideBarAux.php" method=post>
-		<table>
-			<tr><td align=center colspan=2 <span style="font-weight:bold;">Login to your Account</span></td></tr>
-			<tr><td colspan=2><br/></td></tr>
-			<tr><td> Username </td><td> <input name="userName" type="text" size=20 /></td></tr>
-			<tr><td> Password </td><td> <input name="password" type="password" size=20 /></td></tr>
-			<tr><td colspan=2 align="center"><input type="submit" value="Login"/></td></tr>
-			<tr><td colspan=2><br/></td></tr>
-			<tr><td>
-                            </td>
-                            <td>
+      <div id="container">
+      	  <form action="loginOnSideBarAux.php" method=post>
+      			<table>
+      				<tr><td align=center colspan=2 <span style="font-weight:bold;">Login to your Account</span></td></tr>
+      				<tr><td colspan=2><br/></td></tr>
+      				<tr><td> Username </td><td> <input name="userName" type="text" size=20 /></td></tr>
+      				<tr><td> Password </td><td> <input name="password" type="password" size=20 /></td></tr>
+      				<tr><td colspan=2 align="center"><input type="submit" value="Login"/></td></tr>
+      				<tr><td colspan=2><br/></td></tr>
+      				<tr><td>
+      	                    </td>
+      	                    <td>
 
-                            </td>
-                        </tr>
-		</table>
-</form>
+      	                    </td>
+      	                </tr>
+      			</table>
+      	</form>
+      </div>
                          </body>
                         </html>
 <?php

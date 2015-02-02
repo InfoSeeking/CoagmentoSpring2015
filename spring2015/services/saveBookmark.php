@@ -5,6 +5,7 @@
 		require_once('../core/Tags.class.php');
 
     $base = Base::getInstance();
+		$base->registerActivity();
     $userID = $base->getUserID();
     $projectID = $base->getProjectID();
 

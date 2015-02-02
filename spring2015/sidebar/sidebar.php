@@ -10,6 +10,13 @@
 	$settings = Settings::getInstance();
 	$homeURL = $settings->getHomeURL();
 	$page = "";
+
+	$base->checkTimeout();
+
+	if(!$base->isSessionActive()){
+			header("Location: loginOnSideBar.php");
+			exit("NO");
+	}
 	//echo "Allow Comm: ".$stage->getAllowCommunication();
     $projectID = $base->getProjectID();
 		 	$b = $base->getAllowCommunication();
@@ -405,7 +412,9 @@ nestedAccordion.init("nested","h4",1,-1,"acc-selected");
   }
 ?>
 
-
+<?php
+printf("<small>Activity detected %d seconds ago</small>", time() - $_SESSION["LAST_ACTIVE"]);
+?>
 
 </body>
 </html>
