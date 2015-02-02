@@ -4,10 +4,10 @@
 
 	require_once('../core/Settings.class.php');
 	require_once('../core/Base.class.php');
-    
+
     if (Base::getInstance()->isSessionActive())
     {
-    
+
     $base = Base::getInstance();
     $userID = $base->getUserID();
     $query = "SELECT numUsers from users WHERE userID='$userID'";
@@ -44,7 +44,7 @@ function goto(to_show,to_zoom){
             //            document.getElementById(to_show_array[i]+"_div").style.display="none";
         }
     }
-    
+
     if(to_zoom !== ""){
         document.getElementById(to_zoom).scrollIntoView();
     }
@@ -89,7 +89,7 @@ function back(){
     if(current_index < 0){
         current_index = 0;
     }
-    
+
     if(current_index == 0){
         document.getElementById("back_button").style.display = "none";
         document.getElementById("next_button").style.display = "block";
@@ -105,8 +105,8 @@ function back(){
 function validate(form)
 {
     var result = form.confirmReadInstructions.checked;
-    
-    
+
+
     if (!result)
     {
         document.getElementById("alert").style.display = "block";
@@ -214,11 +214,11 @@ while you research.
 <span id="Toolbar"><center><strong><h3>Toolbar</h3></strong></center></span><br/>
 The Toolbar consists of five buttons:
 <ol>
-<li><span id="Home"><strong>Home</strong></span> - Displays your current stage and a link for returning where you left off.<br/><br/></li>
-<li><span id="Help"><strong>Help</strong></span> - Displays these instructions.<br/><br/></li>
-<li><span id="Snip"><strong>Snip</strong></span> - Saves portions of text from a webpage. To save text, select the desired text by dragging the mouse, and then click the Snip button. The snipped text and the URL are automatically saved and appear in the Sidebar.<br/><br/></li>
-<li><span id="Bookmark"><strong>Bookmark</strong></span> - Saves the URL of the website you are viewing. Make a note of why you saved this web page and what it will be useful for when you write your paper. Rate the quality of the page by clicking on a star rating. Your saved URLs will appear in the History section of the Sidebar, along with your notes and star ratings. <br/><br/></li>
-<li><span id="Task_Pad"><strong>Task Pad</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.<br/><br/></li>
+<li><span id="Home"><strong>Home</strong></span> - Displays your current stage and a link for returning where you left off.</li>
+<li><span id="Help"><strong>Help</strong></span> - Displays these instructions.</li>
+<li><span id="Snip"><strong>Snip</strong></span> - Saves portions of text from a webpage. To save text, select the desired text by dragging the mouse, and then click the Snip button. The snipped text and the URL are automatically saved and appear in the Sidebar.</li>
+<li><span id="Bookmark"><strong>Bookmark</strong></span> - Saves the URL of the website you are viewing. Make a note of why you saved this web page and what it will be useful for when you write your paper. Rate the quality of the page by clicking on a star rating. Your saved URLs will appear in the History section of the Sidebar, along with your notes and star ratings.</li>
+<li><span id="Task_Pad"><strong>Task Pad</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.</li>
 <li><span id="Active_Task"><strong>Research Topic</strong></span> - Reminds you of your research topic you entered when you registered for the study.<br/></li>
 </ol>
 </div>
@@ -232,14 +232,13 @@ The Sidebar consist of:<br/>
 <?php
     if($num_users > 1){
         echo "";
-        echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.<br/><br/>";
+        echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
         echo "</li>";
     }
     ?>
 
-<li><span id="History"><strong>History</strong></span> - Contains your snippets, bookmarks, comments and ratings. Click on a link to open it. A popup window will appear, containing the snippet and a link to the originating web page. Click the URL to open the original page. You can also change the ratings for a saved web page.<br/><br/>
+<li><span id="History"><strong>History</strong></span> - Contains your snippets, bookmarks, comments and ratings. Click on a link to open it. A popup window will appear, containing the snippet and a link to the originating web page. Click the URL to open the original page. You can also change the ratings for a saved web page.
 </li>
-</ul>
 <br/>
 </li>
 </ol>
@@ -251,7 +250,7 @@ The Sidebar consist of:<br/>
 
 <?php
     if($num_users>1){
-        
+
         ?>
 
 <div id="Tips_div" style="display:block;">
