@@ -195,8 +195,8 @@ class Base {
   }
 
   public function checkTimeout(){
-    //currently thirty seconds
-    if($this->isSessionActive() && isset($_SESSION["LAST_ACTIVE"]) && time() - $_SESSION["LAST_ACTIVE"] > 10){
+    //currently thirty minutes
+    if($this->isSessionActive() && isset($_SESSION["LAST_ACTIVE"]) && time() - $_SESSION["LAST_ACTIVE"] > 1800){
       session_destroy();
       $this->setAllowCommunication(0);
       $this->setAllowBrowsing(0);
