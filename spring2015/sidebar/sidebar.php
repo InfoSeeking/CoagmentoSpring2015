@@ -82,7 +82,7 @@
         $params["displaytabclosebutton"] = FALSE;
         $params["display_pfc_logo"] = FALSE;
         $params["showwhosonline"] = FALSE;
-        $params["btn_sh_whosonline"] = TRUE;
+        $params["btn_sh_whosonline"] = false;
         $params["displaytabimage"]= FALSE;
         $params["height"]= "180px";
         //$params["startwithsound"] = TRUE;
@@ -106,8 +106,11 @@
         $params['admins'] = array('admin'  => 'soportechat');
         $params['skip_proxies'] = array('censor','noflood');
         $params["refresh_delay"] = 500;
-//        $params["isadmin"] = TRUE;
 
+				$params["btn_sh_smileys"] = false;
+
+				//To refresh cache, set this flag to true, then in chat box type /rehash
+//        $params["isadmin"] = TRUE;
         $chat = new phpFreeChat($params);
 	}
 
@@ -132,9 +135,11 @@
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/tabview/assets/skins/sam/tabview.css" />
 <style>
-*{
-	margin: 0px;
-	padding: 0px;
+#pfc_cmd_container{
+	display: none;
+}
+#pfc_bbcode_container{
+	display: none;
 }
 </style>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
@@ -376,7 +381,7 @@ cursor:hand;
 
 
 </ul>
-<div id="tabsdivcontainer" style="border:1px solid gray; width:285px; margin-bottom: 1em; padding: 10px">  </div>
+<div id="tabsdivcontainer" style="border:1px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div>
 <script type="text/javascript">
 var tabs=new ddajaxtabs("tabs", "tabsdivcontainer");
 tabs.setpersist(true);
