@@ -187,9 +187,6 @@ class Base {
     }
     //END TEMP
 
-
-
-
   public function registerActivity(){
     $_SESSION["LAST_ACTIVE"] = time();
   }
@@ -204,6 +201,7 @@ class Base {
       return false;
     }
   }
+
 	//GETTERS
     public function isUserActive()
 	{
@@ -711,7 +709,9 @@ class Base {
 
     public function getQuestionIDReviewTask(){
         if(!isset($this->questionID)){
-            $query = "SELECT * FROM questions_progress WHERE projectID='".$this->projectID."' AND stageID='".Stage::SESSION_ONE_MAIN_TASK."' ORDER BY questionID DESC";
+            $projectID = $this->getProjectID();
+            $userID = $this->getUserID();
+            $query = "SELECT Q.questionID as questionID FROM recruits R,questions_study Q WHERE R.projectID='$projectID' AND R.userID='$userID' AND R.instructorID+1=Q.questionID ORDER BY recruitsID ASC";
             $connection = Connection::getInstance();
             $results = $connection->commit($query);
             $line = mysql_fetch_array($results, MYSQL_ASSOC);
