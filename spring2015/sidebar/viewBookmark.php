@@ -102,7 +102,7 @@ else
 						echo "<p class='feedback'>Tag updated!</p>";
 					}
 					?>
-					<h3><?php echo $title ?></h3>
+					<h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3>
 					<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></h4>
 
 					<div class="row">

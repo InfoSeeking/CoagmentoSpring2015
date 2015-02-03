@@ -165,32 +165,32 @@ while you research.
 
 <!--- <center><center><strong><u><h3>Table of Contents</h3></u></strong></center></center>
 <ul>
-<!--<li><a href="javascript:goto('System_Overview','')">System Overview</a></li>
-<li><a href="javascript:goto('Toolbar','')">Toolbar</a></li>
+<!--<li><a href="javascript:goto('System_Overview','')">System Overview</li>
+<li><a href="javascript:goto('Toolbar','')">Toolbar</li>
 <ul>
-<li><a href="javascript:goto('Toolbar','Home')">Home</a></li>
-<li><a href="javascript:goto('Toolbar','Help')">Help</a></li>
-<li><a href="javascript:goto('Toolbar','Snip')">Snip</a></li>
-<li><a href="javascript:goto('Toolbar','Bookmark')">Bookmark</a></li>
-<li><a href="javascript:goto('Toolbar','Task_Pad')">Task Pad</a></li>
-<li><a href="javascript:goto('Toolbar','Active_Task')">Active Task</a></li>
+<li><a href="javascript:goto('Toolbar','Home')">Home</li>
+<li><a href="javascript:goto('Toolbar','Help')">Help</li>
+<li><a href="javascript:goto('Toolbar','Snip')">Snip</li>
+<li><a href="javascript:goto('Toolbar','Bookmark')">Bookmark</li>
+<li><a href="javascript:goto('Toolbar','Task_Pad')">Task Pad</li>
+<li><a href="javascript:goto('Toolbar','Active_Task')">Active Task</li>
 </ul>
-<li><a href="javascript:goto('Sidebar','')">Sidebar</a></li>
+<li><a href="javascript:goto('Sidebar','')">Sidebar</li>
 <ul>
-<li><a href="javascript:goto('Sidebar','Chat')">Chat</a></li>
-<li><a href="javascript:goto('Sidebar','History')">History</a></li>
-<li><a href="javascript:goto('Sidebar','Submit')">Submit (consensus)</a></li>
+<li><a href="javascript:goto('Sidebar','Chat')">Chat</li>
+<li><a href="javascript:goto('Sidebar','History')">History</li>
+<li><a href="javascript:goto('Sidebar','Submit')">Submit (consensus)</li>
 </ul>
-<li><a href="javascript:goto('Requirements','')">Requirements</a></li>
-<li><a href="javascript:goto('Tips','')">Tips</a></li>
+<li><a href="javascript:goto('Requirements','')">Requirements</li>
+<li><a href="javascript:goto('Tips','')">Tips</li>
 <ul>
-<li><a href="javascript:goto('Tips','Working_with_a_Partner')">Working with a Partner</a></li>
-<li><a href="javascript:goto('Tips','General')">General</a></li>
+<li><a href="javascript:goto('Tips','Working_with_a_Partner')">Working with a Partner</li>
+<li><a href="javascript:goto('Tips','General')">General</li>
 </ul>
 </ul>
 
 <hr/>
-<!--<li><a href="javascript:goto('Caution','')">Caution!</a></li>-->
+<!--<li><a href="javascript:goto('Caution','')">Caution!</li>-->
 
 
 
@@ -211,23 +211,24 @@ while you research.
 
 <br>
 <div id="Toolbar_div" style="display:block;">
-<span id="Toolbar"><center><strong><h3>Toolbar</h3></strong></center></span><br/>
+<span id="Toolbar"><center><strong><h3>Toolbar</h3></strong></center></span>
 The Toolbar consists of five buttons:
 <ol>
-<li><span id="Home"><strong>Home</strong></span> - Displays your current stage and a link for returning where you left off.</li>
+<li><span id="Home"><strong>Connect/Disconnect</strong></span> - Logs in and out of Coagmento</li>
 <li><span id="Help"><strong>Help</strong></span> - Displays these instructions.</li>
 <li><span id="Snip"><strong>Snip</strong></span> - Saves portions of text from a webpage. To save text, select the desired text by dragging the mouse, and then click the Snip button. The snipped text and the URL are automatically saved and appear in the Sidebar.</li>
-<li><span id="Bookmark"><strong>Bookmark</strong></span> - Saves the URL of the website you are viewing. Make a note of why you saved this web page and what it will be useful for when you write your paper. Rate the quality of the page by clicking on a star rating. Your saved URLs will appear in the History section of the Sidebar, along with your notes and star ratings.</li>
-<li><span id="Task_Pad"><strong>Task Pad</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.</li>
-<li><span id="Active_Task"><strong>Research Topic</strong></span> - Reminds you of your research topic you entered when you registered for the study.<br/></li>
+<li><span id="Bookmark"><strong>Bookmark</strong></span> - Saves the URL of the website you are viewing. Make a note of why you saved this web page and what it will be useful for when you write your paper. Rate the quality of the page by clicking on a star rating. Add tags that describe your bookmark by typing or selecting from the pulldown list. Your saved URLs will appear in the History section of the Sidebar, along with your notes and star ratings.</li>
+<li><span id="Task_Pad"><strong>Write</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.</li>
+<li><span id="Active_Task"><strong>Assignment</strong></span> - Reminds you of your research topic you entered when you registered for the study.</li>
+<li><span><strong>Contact Us</strong> - Use this contact form to ask questions about Coagmento or get help</span></li>
 </ol>
 </div>
 
-<br>
+<br/>
 <div id="Sidebar_div" style="display:block;">
 
 <span id="Sidebar"><center><strong><h3>Sidebar</h3></strong></center></span>
-The Sidebar consist of:<br/>
+The Sidebar consists of:<br/>
 <ol>
 <?php
     if($num_users > 1){
@@ -237,7 +238,7 @@ The Sidebar consist of:<br/>
     }
     ?>
 
-<li><span id="History"><strong>History</strong></span> - Contains your snippets, bookmarks, comments and ratings. Click on a link to open it. A popup window will appear, containing the snippet and a link to the originating web page. Click the URL to open the original page. You can also change the ratings for a saved web page.
+<li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars.
 </li>
 <br/>
 </li>
@@ -255,10 +256,11 @@ The Sidebar consist of:<br/>
 
 <div id="Tips_div" style="display:block;">
 
-<span id="Working_with_a_Partner"><center><strong><h3>Working with a Partner</h3></strong></center></span><br/>
+<span id="Working_with_a_Partner"><center><strong><h3>Working Collaboratively</h3></strong></center></span>
 <ul>
-<li>Share specific information or arguments from pages by using the <a href="javascript:goto('Sidebar','Chat')">Chat box</a>, the <a href="javascript:goto('Toolbar','Snip')">Snip tool</a>, or by cutting and pasting extracts from the pages into the <a href="javascript:goto('Toolbar','Task_Pad')">Task Pad</a>.</li>
-<li>Focus your time on finding and selecting information and building a consensus with your partner about which bits of information are best supported. Use the <a href="javascript:goto('Toolbar','Task_Pad')">Task Pad</a> to collate this information.</li>
+<li>Work together with your group to search for information on your topic, evaluate its quality, and synthesize what you've all learned into your written report.</li>
+<li>Share specific information or arguments from pages by using the Chat box, the Snip tool, or by cutting and pasting extracts from the pages into the Task Pad.</li>
+<li>Focus your time on finding and selecting information and building a consensus with your partner about which bits of information are best supported. Use the Task Pad to collate this information.</li>
 <li>Use the star ratings in the History/Bookmarks section of the side bar to rate the best sources.</li>
 <li>Remember to explain to your partner what you're doing, and justify your reasoning.</li>
 </ul>
