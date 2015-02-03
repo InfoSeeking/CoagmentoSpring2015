@@ -6,7 +6,7 @@
 	$base = Base::getInstance();
         if (isset($_SESSION['CSpace_userID'])){
 					Util::getInstance()->saveAction('Migrating from loginOnSideBar',0,$base);
-            header("Location: http://www.coagmento.org/spring2015/sidebar/sidebar.php");
+            header("Location: sidebar.php");
         }else {
 
 ?>
