@@ -1,8 +1,7 @@
 
-<tml>
+<html>
 <head>
-<title>View Course Writeups</span><br/><br/></th></tr>
-<tr><td><hr/></td></tr></title>
+<title>View Course Writeups</title>
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/tables.css">
@@ -44,13 +43,21 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 <table class="body" width="90%">
 <tr><td><center><h2>View Student Writeups</h2></center></td></tr>
 </table>
-<form class="pure-form" id="login_form" action="getCourseWriteups.php" method="post" onsubmit="return validate(this)">
-<table class="body">
-<tr><td>Username</td><td>&nbsp;&nbsp; <input type="text" id="username" name="username" size=20 required/></td></tr>
-<tr><td>Password</td><td>&nbsp;&nbsp; <input type="password" id="password" name="password" size=20 required/></td></tr>
-<tr><td colspan="2"><br/></td></tr>
-<tr><td colspan="2" align="center"><button class="pure-button pure-button-primary" type="submit"/>Submit</button></td></tr>
-</table>
+<form class="pure-form" id="login_form" action="#" method="post">
+<fieldset>
+
+<div class="row">
+<label for="username">Username</label></td><td>&nbsp;&nbsp; <input type="text" id="username" name="username" size=20 required />
+</div>
+
+<div class="row">
+<labe for="password"l>Password</label></td><td>&nbsp;&nbsp; <input type="password" id="password" name="password" size=20 required />
+</div>
+
+<div class="row">
+  <button type="submit" class="pure-button pure-button-primary" >Submit</button>
+</div>
+</fieldset>
 </center>
 </form>
 </div>
