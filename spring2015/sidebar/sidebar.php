@@ -22,7 +22,7 @@
 		 	$b = $base->getAllowCommunication();
 			$br = $base->getAllowBrowsing();
 		 	$s = isset($_SESSION['CSpace_userID']);
-		  Util::getInstance()->saveAction("testing sidebar $b $br $s",$base->getStageID(),$base);
+		  // Util::getInstance()->saveAction("testing sidebar $b $br $s",$base->getStageID(),$base);
 
 	/*---COMMENTED OUT ON 05/23/2014-----*/
 	if ($base->getAllowCommunication()==1)
