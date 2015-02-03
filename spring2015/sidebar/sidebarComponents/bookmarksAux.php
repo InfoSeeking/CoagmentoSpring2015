@@ -81,8 +81,8 @@
             if (!$title)
                 $title = $url;
 
-            if (strlen($title)>25) {
-                $title = substr($title, 0, 20);
+            if (strlen($title)>28) {
+                $title = substr($title, 0, 25);
                 $title = $title . '..';
             }
 //        }

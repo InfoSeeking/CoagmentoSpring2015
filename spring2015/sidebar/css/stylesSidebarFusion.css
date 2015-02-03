@@ -86,7 +86,7 @@ code {font-family:"Courier New",Courier}
 #acc {width:320px; list-style:none; color:#033; margin-left:0px; text-align:left;}
 #acc2 {list-style:none; color:#033; margin-left:-10px; text-align:left;}
 #acc h3 {width:320px; border:1px solid #9ac1c9; padding:4px 4px 6px; font-weight:bold; margin-top:3px; cursor:pointer;}
-#acc2 h4 {width:314px; border:1px solid #9ac1c9; padding:2px 2px 3px; font-weight:bold; margin-top:3px; cursor:pointer;}
+#acc2 h4 {width:98%; border:1px solid #9ac1c9; padding:2px 1%; font-weight:bold; margin-top:3px; cursor:pointer;}
 #acc .acc-section {overflow:hidden; background:#fff}
 #acc .acc-content {width:100%; padding:5px; margin-left:0px; border:0px dotted #9ac1c9; border-top:none; background:#EFFFEF}
 #acc2 .acc-section2 {background:#fff}
