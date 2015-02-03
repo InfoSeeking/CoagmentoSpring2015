@@ -334,9 +334,7 @@ cursor:hand;
 
 
 <li>
-<!--
-<h4><img src="../img/chat.jpg" width=36 style="vertical-align:middle;border:0" /> Chat <span style="color:gray;font-size:10px;">Talk to your group.</span></h4>
--->
+<h4><img src="../img/chat.jpg" width=32 style="vertical-align:middle;border:0" /> Chat <span style="color:gray;font-size:10px;">Talk to your group.</span></h4>
 <div class="acc-section2">
 
 
@@ -366,9 +364,7 @@ cursor:hand;
 
 
 <li style="padding-top: 10px">
-	<!--
 <h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; History <span style="color:gray;font-size:10px;">See group history and objects.</span></h4>
--->
 <div class="acc-section2">
 <div id="history" class="acc-content2">
 <ul id="tabs" class="shadetabs">
