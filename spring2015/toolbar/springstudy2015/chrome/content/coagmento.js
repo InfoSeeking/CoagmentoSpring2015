@@ -312,7 +312,7 @@ var coagmentoToolbar =
 
 		init: function()
 		{
-            
+
 			 var container = gBrowser.tabContainer;
 
 			 //container.addEventListener('DOMSubtreeModified',coagmentoToolbar.delay, false);
@@ -321,7 +321,7 @@ var coagmentoToolbar =
  			 container.addEventListener("TabOpen", tabAdded, false);
 			 container.addEventListener("TabClose", tabClosed, false);
 			 container.addEventListener("TabSelect", tabSelected, false);
-            
+
              //Added 08/2014
              gBrowser.addEventListener("copy", copyData, false);
 
@@ -355,12 +355,12 @@ var coagmentoToolbar =
 
 function editor()
 {
-	var url = globalUrl+"services/getTextEditor.php";
-    //1/12/14 edit: open in new tab
-    win = window.open(url);
-    win.focus();
+  var url = globalUrl+"services/getTextEditor.php";
+  //1/12/14 edit: open in new tab
+  // win = window.open(url);
+  // win.focus();
 
-    //	loadURL(url);
+  loadURL(url);
 }
 
 function activetask(){
@@ -805,7 +805,7 @@ function initializeToolbarSession()
 	{
 //        alert('NOT LOGGED IN!  HIDE!');
         hideButtons(true);
-        
+
 	}
 }
 
@@ -880,7 +880,7 @@ function logout()
                 }
             }
         };
-        
+
         xmlHttpConnection.send(null);
         xmlHttpTimeout = setTimeout(function (){
                                     serverDown();
@@ -888,12 +888,12 @@ function logout()
                                     clearTimeout(xmlHttpTimeout);
                                     },5000);
 	}
-    
+
 	// Added 06/04/14
 	else
 	{
 		setTimeout(logout,10);
-        
+
 	}
 };
 
