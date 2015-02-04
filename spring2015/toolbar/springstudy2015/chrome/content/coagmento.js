@@ -329,7 +329,7 @@ var coagmentoToolbar =
              gBrowser.addEventListener("paste", pasteData, false);
 
 
-              
+
 //             var appcontent = document.getElementById("appcontent");   // browser
 //             if(appcontent)
 //                 appcontent.addEventListener("DOMContentLoaded", coagmentoToolbar.onPageLoad, true);
@@ -363,7 +363,8 @@ function editor()
   // win = window.open(url);
   // win.focus();
 
-  loadURL(url);
+  gBrowser.selectedTab = gBrowser.addTab(url);
+  // loadURL(url);
 }
 
 function activetask(){
