@@ -329,7 +329,7 @@ var coagmentoToolbar =
              gBrowser.addEventListener("paste", pasteData, false);
 
 
-              
+
 //             var appcontent = document.getElementById("appcontent");   // browser
 //             if(appcontent)
 //                 appcontent.addEventListener("DOMContentLoaded", coagmentoToolbar.onPageLoad, true);
@@ -362,8 +362,14 @@ function editor()
   //1/12/14 edit: open in new tab
   // win = window.open(url);
   // win.focus();
+<<<<<<< HEAD
   gBrowser.selectedTab = gBrowser.addTab(globalUrl + "services/getTextEditor.php");
   //loadURL(url);
+=======
+
+  gBrowser.selectedTab = gBrowser.addTab(url);
+  // loadURL(url);
+>>>>>>> a6bfacd8f56e257800b9dc76daccd8b09b8ce9e5
 }
 
 function activetask(){
