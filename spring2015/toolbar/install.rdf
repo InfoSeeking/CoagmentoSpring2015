@@ -14,8 +14,7 @@
                    em:creator="Chirag Shah and Roberto Gonzalez-Ibanez, Rutgers University"
                    em:description="Coagmento extension for Firefox"
                    em:homepageURL="http://www.coagmento.org/"
-                   em:updateURL="http://www.coagmento.org/toolbar/update.rdf"
-                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9YmxbPlgF4w/Bb3RKmiBG5ZsMtTmASN6TkWAN9s4rXCLNeNBhfMMgMwcHEvacRH4C7KBBcombfrwE9ZxArRBwUYTyr+0URQSewnLhz3PcYipnLzEK2CF7XxqBJLiIzIancTrocJTzDbEcBqRBaEV1hKib0faLMt+2J2P/pcw/VQIDAQAB">
+                   >
     <em:targetApplication RDF:resource="rdf:#$dTvr01"/>
   </RDF:Description>
 </RDF:RDF>
