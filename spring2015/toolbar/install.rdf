@@ -1,20 +1,36 @@
 <?xml version="1.0"?>
-<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
-         xmlns:NC="http://home.netscape.com/NC-rdf#"
-         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$dTvr01"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="3.0"
-                   em:maxVersion="11.*" />
-  <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:id="support@coagmento.org"
-                   em:name="Coagmento"
-                   em:version="3.6.1"
-                   em:type="2"
-                   em:creator="Chirag Shah and Roberto Gonzalez-Ibanez, Rutgers University"
-                   em:description="Coagmento extension for Firefox"
-                   em:homepageURL="http://www.coagmento.org/"
-                   >
-    <em:targetApplication RDF:resource="rdf:#$dTvr01"/>
-  </RDF:Description>
-</RDF:RDF>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+
+    <em:id>{c4177d70-ac1c-11e4-89d3-123b93f75cba}</em:id>
+    <em:name>Coagmento Spring 2015 Study</em:name>
+    <em:version>3.6.1</em:version>
+    <em:description></em:description>
+    <em:creator>Chirag Shah, Matt Mitsui, and Kevin Albertson - Rutgers University</em:creator>
+    <!-- optional items -->
+    <!--
+    <em:contributor>A person who helped you</em:contributor>
+    <em:contributor>Another one</em:contributor>
+    <em:homepageURL>http://sampleextension.mozdev.org/</em:homepageURL>
+    <em:optionsURL>chrome://sampleext/content/settings.xul</em:optionsURL>
+    <em:aboutURL>chrome://sampleext/content/about.xul</em:aboutURL>
+    <em:iconURL>chrome://sampleext/skin/mainicon.png</em:iconURL>
+    <em:updateURL>http://sampleextension.mozdev.org/update.rdf</em:updateURL>
+    -->
+    <em:type>2</em:type> <!-- type=extension -->
+
+    <!-- Firefox -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>0.9</em:minVersion>
+        <em:maxVersion>38.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+
+  </Description>
+
+</RDF>
