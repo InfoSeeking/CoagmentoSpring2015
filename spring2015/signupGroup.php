@@ -199,7 +199,7 @@
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','$username','$password_sha1','1','1','0','$NUM_USERS','1')";
+                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
                     $results = $connection->commit($query);
 
 

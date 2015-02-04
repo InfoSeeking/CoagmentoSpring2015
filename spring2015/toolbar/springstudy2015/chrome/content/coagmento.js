@@ -327,6 +327,9 @@ var coagmentoToolbar =
 
              //Added 1/2015
              gBrowser.addEventListener("paste", pasteData, false);
+
+
+              
 //             var appcontent = document.getElementById("appcontent");   // browser
 //             if(appcontent)
 //                 appcontent.addEventListener("DOMContentLoaded", coagmentoToolbar.onPageLoad, true);

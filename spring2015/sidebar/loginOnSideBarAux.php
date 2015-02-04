@@ -99,6 +99,13 @@
 						{
 
 								$topicAreaID=1;
+
+								$q = "SELECT I.instructorID as instructorID FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID";
+								$r = $connection->commit($q);
+								$l = mysql_fetch_array($r, MYSQL_ASSOC);
+								$topicAreaID=$l['instructorID'];
+
+
 								$question = "";
 								$questionID = "";
 								$answer = "";
