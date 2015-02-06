@@ -67,6 +67,7 @@ else
     <head>
 			<title>Bookmark View</title>
 			<link href="../lib/select2/select2.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../lib/jquery-2.1.3.min.js"></script>
 			<script type="text/javascript" src="../lib/select2/select2.full.min.js"></script>
 			<style>
 				#container{
@@ -130,9 +131,38 @@ else
 				</div>
 			</form>
 	<script>
+	var previous_tags = $("#tag-input").val() || [];
 	$("#tag-input").select2({
 		tags: true,
 		tokenSeparators: [',']
+	}).on("change", function(el){
+		var changeType = ""; //add or remove
+		var changeTag = "";
+		var current_tags = $(this).val();
+		for(var i = 0; i < current_tags.length; i++){
+			var t = current_tags[i];
+			var loc = previous_tags.indexOf(t);
+			if(loc != -1){
+				previous_tags.splice(loc, 1);
+			} else {
+				//added new tag
+				changeType = "add";
+				changeTag = t;
+				break;
+			}
+		}
+		if(changeType == ""){
+			//ought to be exactly one tag left
+			changeType = "remove";
+			if(previous_tags.length == 1){
+				changeTag = previous_tags[0];
+			}
+		}
+		previous_tags = current_tags;
+		if(changeType != ""){
+			//send ajax request to add action TODO
+			console.log(changeTag, changeType);
+		}
 	});
 	</script>
 </body>

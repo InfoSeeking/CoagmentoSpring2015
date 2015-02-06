@@ -28,7 +28,7 @@
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
         $table = "queries";
-        $orderBy = "queryID ASC";
+        $orderBy = "queryID DESC";
         if (isset($_SESSION['orderBy'.$table])){
           $orderBy = $_SESSION['orderBy'.$table];
         }
