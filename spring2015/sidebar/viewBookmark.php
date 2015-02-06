@@ -159,7 +159,8 @@ else
 			}
 		}
 		previous_tags = current_tags;
-		if(changeType != ""){
+		changeTag = changeTag.trim();
+		if(changeType != "" && changeTag != ""){
 			//send ajax request to add action TODO
 			$.ajax({
 				url: "insertAction.php",

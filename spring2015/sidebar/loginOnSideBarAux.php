@@ -138,6 +138,7 @@
 
 										$connection = Connection::getInstance();
 										$results = $connection->commit($qQuery);
+
 										$line = mysql_fetch_array($results, MYSQL_ASSOC);
 										$question = $line['question'];
 										$answer = $line['answer'];
