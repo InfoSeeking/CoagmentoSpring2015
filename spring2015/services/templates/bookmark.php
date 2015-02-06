@@ -49,10 +49,50 @@
       </form>
 
       <script>
-        $("#tag-input").select2({
-          tags: true,
-          tokenSeparators: [',']
-        });
+      var previous_tags = $("#tag-input").val() || [];
+      $("#tag-input").select2({
+        tags: true,
+        tokenSeparators: [',']
+      }).on("change", function(el){
+        var changeType = ""; //add or remove
+        var changeTag = "";
+        var current_tags = $(this).val();
+        for(var i = 0; i < current_tags.length; i++){
+          var t = current_tags[i];
+          var loc = previous_tags.indexOf(t);
+          if(loc != -1){
+            previous_tags.splice(loc, 1);
+          } else {
+            //added new tag
+            changeType = "add";
+            changeTag = t;
+            break;
+          }
+        }
+        if(changeType == ""){
+          //ought to be exactly one tag left
+          changeType = "remove";
+          if(previous_tags.length == 1){
+            changeTag = previous_tags[0];
+          }
+        }
+        previous_tags = current_tags;
+        if(changeType != ""){
+          //send ajax request to add action TODO
+          $.ajax({
+            url: "insertAction.php",
+            type: "GET",
+            data : {
+              "action" : "tag_" + changeType,
+              "value" : changeTag
+            },
+            success: function(){
+              console.log(changeTag, changeType);
+              console.log("Recorded");
+            }
+          })
+        }
+      });
       </script>
     </body>
 </html>

@@ -161,7 +161,18 @@ else
 		previous_tags = current_tags;
 		if(changeType != ""){
 			//send ajax request to add action TODO
-			console.log(changeTag, changeType);
+			$.ajax({
+				url: "insertAction.php",
+				type: "GET",
+				data : {
+					"action" : "tag_" + changeType,
+					"value" : changeTag
+				},
+				success: function(){
+					console.log(changeTag, changeType);
+					console.log("Recorded");
+				}
+			})
 		}
 	});
 	</script>
