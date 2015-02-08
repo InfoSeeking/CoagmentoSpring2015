@@ -33,7 +33,7 @@
         $connection = Connection::getInstance();
         $questionID = $base->getQuestionID();
         $table = "snippets";
-        $orderBy = "snippetID ASC";
+        $orderBy = "snippetID DESC";
         if (isset($_SESSION['orderBy'.$table])){
           $orderBy = $_SESSION['orderBy'.$table];
         }
