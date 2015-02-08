@@ -3,7 +3,7 @@
     require_once('../../core/Connection.class.php');
     require_once('../../core/Base.class.php');
     require_once('../../core/Util.class.php');
-    
+
 	if ((isset($_SESSION['CSpace_userID']))) {
 		$type = $_GET['type'];
 		$itemID = $_GET['itemID'];
@@ -24,15 +24,15 @@
         else if ($type=="files")
             $query1 = "UPDATE files SET `status`='0' WHERE `id`='$itemID' AND `userID`='$userID' AND `projectID`='$projectID'";
         else if ($type=="bookmarks")
-            $query1 = "UPDATE files SET `status`='0' WHERE `bookmarkID`='$itemID' AND `userID`='$userID' AND `projectID`='$projectID'";
-                     
+            $query1 = "UPDATE bookmarks SET `status`='0' WHERE `bookmarkID`='$itemID' AND `userID`='$userID' AND `projectID`='$projectID'";
+
         if ($query1 != "")
         {
             $results = $connection->commit($query1);
             $timestamp = $base->getTimestamp();
             $date = $base->getDate();
             $time = $base->getTime();
-            
+
             $webPage = $_GET['webPage'];
             $ip=$_SERVER['REMOTE_ADDR'];
             $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'delete_$type', '$itemID','$ip')";

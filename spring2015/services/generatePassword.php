@@ -40,7 +40,9 @@
 			$pwd_sha1 = sha1($pwd);
 
 			//store in database
-			$q = sprintf("INSERT INTO contact_messages (`message`, `email`, `userID`, `username`) VALUES ('DEBUG: Forgotten Password', '%s', %d, '%s')", $message, $email, $userID, $username);
+			$message = "We're sorry to hear you lost your password.  We have provided your new login information below.\n\nUsername: $userName\nPassword: $pwd\n\nPlease keep these for your records.";
+			$m = $message;
+			$q = sprintf("INSERT INTO contact_messages (`message`, `email`, `userID`, `username`) VALUES ('COAG: Forgotten Password', '%s', %d, '%s')", $email, $userID, $userName);
 			$cxn->commit($q);
 
 
@@ -48,7 +50,6 @@
 			$cxn->commit($q);
 
 
-			$m = "We're sorry to hear you lost your password.  We have provided your new login information below.\n\nUsername: $userName\nPassword: $pwd\n\nPlease keep these for your records.";
 			//send ourselves an email
 			$email_message = $m;
 			mail($stg->getContactEmails(), "Coagmento Spring 2015 - New Password", $email_message);
@@ -121,13 +122,13 @@
 				method: "post",
 				success: function(resp){
 					if(resp == "email-sent"){
-						alert("This e-mail was sent.  You may now close your window");
+						alert("This e-mail was sent.  You may now close your window.");
 						window.close();
 					} else if (resp=="wrong-email"){
 						alert("Our records do not match the e-mail you gave.  Please try again.");
 
 					}else {
-						alert("Something went wrong, could not send email");
+						alert("Something went wrong, could not send email"+resp);
 					}
 				}
 			})
