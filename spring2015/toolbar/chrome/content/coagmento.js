@@ -497,15 +497,25 @@ function pasteData()
 function copyData()
 {
 
-	checkConnectivity();
-	if (loggedIn)
-	{
-		/*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+  checkConnectivity();
+  if (loggedIn)
+  {
+    /*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
          var url = window.content.document.location;
          url = encodeURIComponent(url);
          var title = encodeURIComponent(document.title);*/
+         var snippet = '';
+         if ((document.commandDispatcher.focusedElement) && (document.commandDispatcher.focusedElement.nodeName  == "TEXTAREA" ||
+             (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
+              document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "text") || (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
+                                                                                     document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "search"))){
+                 ta = document.commandDispatcher.focusedElement;
+                 snippet = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+             }else{
+                 snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+             }
 
-		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+
         lastSnippet = snippet;
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
@@ -550,7 +560,7 @@ function copyData()
 
 //        document.getElementById('msgs').textContent = " Snippet Saved!";
 //        setTimeout('cleanAlert()', 3000);
-	}
+  }
 };
 
 
@@ -558,15 +568,28 @@ function copyData()
 //Function to collect highlighted passage from the page as a snippet.
 function snip()
 {
-	checkConnectivity();
-	if (loggedIn)
-	{
-		/*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
-		var url = window.content.document.location;
-		url = encodeURIComponent(url);
-		var title = encodeURIComponent(document.title);*/
+  checkConnectivity();
+  if (loggedIn)
+  {
+    /*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+    var url = window.content.document.location;
+    url = encodeURIComponent(url);
+    var title = encodeURIComponent(document.title);*/
 
-		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+    var snippet = '';
+
+        if ((document.commandDispatcher.focusedElement) && (document.commandDispatcher.focusedElement.nodeName  == "TEXTAREA" ||
+            (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
+             document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "text") || (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
+                                                                                                         document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "search"))){
+                ta = document.commandDispatcher.focusedElement;
+                snippet = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+            }else{
+                snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+
+            }
+
+
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
         var title = document.title;
@@ -604,7 +627,7 @@ function snip()
 
         document.getElementById('msgs').textContent = " Snippet Saved!";
         setTimeout('cleanAlert()', 5000);
-	}
+  }
 };
 
 
