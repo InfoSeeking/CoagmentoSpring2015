@@ -22,7 +22,6 @@ if (Base::getInstance()->isSessionActive())
 
 		$connection = Connection::getInstance();
 		$results = $connection->commit($query);
-		$line = mysql_fetch_array();
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$port = $line['port'];
 

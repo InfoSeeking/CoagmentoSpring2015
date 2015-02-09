@@ -30,7 +30,7 @@
 			$password = sha1($_POST['password']);
 			$query = "SELECT * FROM users WHERE username='$userName' AND password_sha1='$password' AND status=1";
 			$results = $connection->commit($query);
-			$line = mysql_fetch_array($results, MYSQL_ASSOC);
+
 
 
 
@@ -57,13 +57,41 @@
                         </body>
                         </html>
 	<?php
-			}
+}
 			else {
+				$line = mysql_fetch_array($results, MYSQL_ASSOC);
 
 
 				$userID = $line['userID'];
 				$projectID = $line['projectID'];
 				$studyID = $line['study'];
+
+				if(is_null($projectID) || $projectID <= 0){
+					?>
+																<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+							<html xmlns="http://www.w3.org/1999/xhtml">
+							<head>
+							<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+							<link rel="Coagmento icon" type="image/x-icon" href="http://www.coagmento.org/spring2015/img/favicon.ico">
+							<title>Coagmento</title>
+							<link rel="stylesheet" href="css/styles.css" type="text/css" />
+
+							</head>
+							<body>
+							<center>
+							<br/>
+							<br/>
+							<table class="body">
+							<tr><td>It seems you have not yet been assigned to a group in our system.  Please wait until you have been assigned to log in.</td></tr>
+																</table>
+																</center>
+																</body>
+																</html>
+					<?php
+					exit();
+				}else{
+
+				}
 
 				$base->setUserName($userName);
 				$base->setUserID($userID);
@@ -75,133 +103,127 @@
 				Util::getInstance()->saveAction('login',0,$base);
 
 				//Retrieve from DB task and set starting time
-						$query = "SELECT min(timestamp) min_timestamp
-						FROM actions
-						WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."' AND action='login'";
+				$query = "SELECT min(timestamp) min_timestamp
+				FROM actions
+				WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."' AND action='login'";
 
 
 
 
+
+				$connection = Connection::getInstance();
+				$results = $connection->commit($query);
+				$line = mysql_fetch_array($results, MYSQL_ASSOC);
+				$limit = $base->getMaxTime();
+
+
+				if ($line['min_timestamp']<>'')
+				{
+
+						$base->setTaskStartTimestamp($line['min_timestamp']);
+				}
+
+				if ($base->isTaskActive())
+				{
+
+						$topicAreaID=1;
+
+						$q = "SELECT I.instructorID as instructorID FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID";
+						$r = $connection->commit($q);
+						$l = mysql_fetch_array($r, MYSQL_ASSOC);
+						$topicAreaID=$l['instructorID'];
+
+
+						$question = "";
+						$questionID = "";
+						$answer = "";
+						$altAnswer = "";
+
+						//SELECT QUESTION IF THERE IS ONE OPEN
+						$collaborativeStudy = 1;
+						$query = "SELECT qProgressID, questionID, startTimestamp
+						FROM questions_progress
+						WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."' and (endTimestamp IS NULL OR responses<2) and skip<>$collaborativeStudy";
 
 						$connection = Connection::getInstance();
 						$results = $connection->commit($query);
-						$line = mysql_fetch_array($results, MYSQL_ASSOC);
-						$limit = $base->getMaxTime();
+						$numRows = mysql_num_rows($results);
+						$qProgressID = 0;
 
-
-						if ($line['min_timestamp']<>'')
+						//IF QUESTION OPEN EXIST
+						if ($numRows>0)
 						{
+								$line = mysql_fetch_array($results, MYSQL_ASSOC);
+								$qProgressID = $line['qProgressID'];
+								$questionID = $line['questionID'];
+								$questionStartingTimestamp = $line['startTimestamp'];
 
-								$base->setTaskStartTimestamp($line['min_timestamp']);
-						}
-
-						if ($base->isTaskActive())
-						{
-
-								$topicAreaID=1;
-
-								$q = "SELECT I.instructorID as instructorID FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID";
-								$r = $connection->commit($q);
-								$l = mysql_fetch_array($r, MYSQL_ASSOC);
-								$topicAreaID=$l['instructorID'];
-
-
-								$question = "";
-								$questionID = "";
-								$answer = "";
-								$altAnswer = "";
-
-								//SELECT QUESTION IF THERE IS ONE OPEN
-								$collaborativeStudy = 1;
-								$query = "SELECT qProgressID, questionID, startTimestamp
-								FROM questions_progress
-								WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."' and (endTimestamp IS NULL OR responses<2) and skip<>$collaborativeStudy";
+								//Retrieve question
+								$qQuery = "SELECT question, answer, altAnswer
+								FROM questions_study
+								WHERE questionID = '$questionID'
+								AND topicAreaID = $topicAreaID"; //Added topic area ID
 
 								$connection = Connection::getInstance();
-								$results = $connection->commit($query);
-								$numRows = mysql_num_rows($results);
-								$qProgressID = 0;
+								$results = $connection->commit($qQuery);
 
-								//IF QUESTION OPEN EXIST
+								$line = mysql_fetch_array($results, MYSQL_ASSOC);
+								$question = $line['question'];
+								$answer = $line['answer'];
+								$altAnswer = $line['altAnswer'];
+
+								$base->setQuestionID($questionID);
+								$base->setQuestion($question);
+								$base->setQuestionStartTimestamp($questionStartingTimestamp);
+
+								Util::getInstance()->saveAction('Question Progress: Revisit',$qProgressID,$base);
+						}
+						else //IF PREVIOUS QUESTION WAS RESPONDED OR NO QUESTIONS HAS BEEN RESPONDED
+						{
+								//echo "NEW QUESTION<br />";
+								//Retrieve new question
+								//Added topic area ID
+
+								$qQuery = "SELECT questionID, question, answer, altAnswer
+								FROM questions_study
+								WHERE stageID='".$base->getStageID()."'
+								AND topicAreaID = $topicAreaID
+								AND NOT questionID in (SELECT questionID FROM questions_progress WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."')
+								AND NOT `order` is NULL
+								ORDER BY `order` ASC
+								LIMIT 1";
+
+								$connection = Connection::getInstance();
+								$results = $connection->commit($qQuery);
+								$line = mysql_fetch_array($results, MYSQL_ASSOC);
+								$numRows = mysql_num_rows($results);
+
 								if ($numRows>0)
 								{
-										$line = mysql_fetch_array($results, MYSQL_ASSOC);
-										$qProgressID = $line['qProgressID'];
 										$questionID = $line['questionID'];
-										$questionStartingTimestamp = $line['startTimestamp'];
-
-										//Retrieve question
-										$qQuery = "SELECT question, answer, altAnswer
-										FROM questions_study
-										WHERE questionID = '$questionID'
-										AND topicAreaID = $topicAreaID"; //Added topic area ID
-
-										$connection = Connection::getInstance();
-										$results = $connection->commit($qQuery);
-
-										$line = mysql_fetch_array($results, MYSQL_ASSOC);
 										$question = $line['question'];
 										$answer = $line['answer'];
 										$altAnswer = $line['altAnswer'];
 
-										$base->setQuestionID($questionID);
-										$base->setQuestion($question);
-										$base->setQuestionStartTimestamp($questionStartingTimestamp);
-
-										Util::getInstance()->saveAction('Question Progress: Revisit',$qProgressID,$base);
-								}
-								else //IF PREVIOUS QUESTION WAS RESPONDED OR NO QUESTIONS HAS BEEN RESPONDED
-								{
-										//echo "NEW QUESTION<br />";
-										//Retrieve new question
-										//Added topic area ID
-
-										$qQuery = "SELECT questionID, question, answer, altAnswer
-										FROM questions_study
-										WHERE stageID='".$base->getStageID()."'
-										AND topicAreaID = $topicAreaID
-										AND NOT questionID in (SELECT questionID FROM questions_progress WHERE stageID = '".$base->getStageID()."' and projectID = '".$base->getProjectID()."')
-										AND NOT `order` is NULL
-										ORDER BY `order` ASC
-										LIMIT 1";
+										$qQuery = "INSERT INTO questions_progress (userID, projectID, stageID, questionID, startDate, startTime, startTimestamp)
+										VALUES ('".$base->getUserID()."','".$base->getProjectID()."','".$base->getStageID()."','$questionID','".$base->getDate()."','".$base->getTime()."','".$base->getTimestamp()."')";
 
 										$connection = Connection::getInstance();
 										$results = $connection->commit($qQuery);
-										$line = mysql_fetch_array($results, MYSQL_ASSOC);
-										$numRows = mysql_num_rows($results);
-
-										if ($numRows>0)
-										{
-												$questionID = $line['questionID'];
-												$question = $line['question'];
-												$answer = $line['answer'];
-												$altAnswer = $line['altAnswer'];
-
-												$qQuery = "INSERT INTO questions_progress (userID, projectID, stageID, questionID, startDate, startTime, startTimestamp)
-												VALUES ('".$base->getUserID()."','".$base->getProjectID()."','".$base->getStageID()."','$questionID','".$base->getDate()."','".$base->getTime()."','".$base->getTimestamp()."')";
-
-												$connection = Connection::getInstance();
-												$results = $connection->commit($qQuery);
-												$qProgressID = $connection->getLastID();
+										$qProgressID = $connection->getLastID();
 
 
 
 
-												$base->setQuestionID($questionID);
-												$base->setQuestion($question);
-												$base->setQuestionStartTimestamp($base->getTimestamp());
+										$base->setQuestionID($questionID);
+										$base->setQuestion($question);
+										$base->setQuestionStartTimestamp($base->getTimestamp());
 
-												Util::getInstance()->saveAction('Question Progress: Start',$qProgressID,$base);
-										}
+										Util::getInstance()->saveAction('Question Progress: Start',$qProgressID,$base);
 								}
 						}
+				}
 
-
-/*
-
-asldkjalsdjalskjdlaksjdlkjklasjdlakjsldkjasldkjalskjd
-
-*/
 
 				// setcookie("CSpace_userID", $userID);
 				$base->setAllowBrowsing(1);

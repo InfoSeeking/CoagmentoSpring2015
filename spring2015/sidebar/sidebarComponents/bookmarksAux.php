@@ -13,6 +13,7 @@
     echo "<tr>";
     echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName desc','bookmarksBox','bookmarks.php')\"></td>";
     echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title desc','bookmarksBox','bookmarks.php')\"></td>";
+    echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating desc','bookmarksBox','bookmarks.php')\"></td>";//echo "<td></td>";
     //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating desc','bookmarksBox','bookmarks.php')\"></td>";
      echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID desc','bookmarksBox','bookmarks.php')\"></td>";
      echo "<td></td>";
@@ -30,7 +31,7 @@
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
     $table = "bookmarks";
-    $orderBy = "bookmarkID ASC";
+    $orderBy = "bookmarkID DESC";
     if (isset($_SESSION['orderBy'.$table])){
       $orderBy = $_SESSION['orderBy'.$table];
     }

@@ -3,7 +3,7 @@ function extractQuery($referrer)
 {
 	$ref = $referrer;
 	$queryString = false;
-	
+
 	$se_stuff = array();
 	$se_stuff[] = array("google.com", "q", "Google");
 	$se_stuff[] = array("google.co.uk", "q", "Google");
@@ -14,8 +14,8 @@ function extractQuery($referrer)
 	$se_stuff[] = array("yahoo.co.uk", "p", "Yahoo");
 	$se_stuff[] = array("aol.com", "query", "AOL");
 	$se_stuff[] = array("msn.com", "q", "MSN");
-	$se_stuff[] = array("live.com", "q", "Live");	
-	$se_stuff[] = array("bing.com", "q", "Bing");	
+	$se_stuff[] = array("live.com", "q", "Live");
+	$se_stuff[] = array("bing.com", "q", "Bing");
 	$se_stuff[] = array("netscape.com", "query", "Netscape");
 	$se_stuff[] = array("netzero.net", "query", "NetZero");
 	$se_stuff[] = array("altavista.com", "q", "Altavista");
@@ -36,6 +36,14 @@ function extractQuery($referrer)
 			if(strcmp($se_stuff[$i][0],"google.com")==0 || strcmp($se_stuff[$i][0],"google.co.uk")==0)
 			{
 				$symbol = $se_stuff[$i][1];
+				//Reformulations
+				if(stristr($ref,"#$symbol=")){
+					$temp1 = explode("#$symbol=", $ref, strlen($ref));
+					$temp2 = explode("&", $temp1[count($temp1)-1]);
+					$string = $temp2[0];
+					$queryString = urldecode($string);
+					break;
+				}
 				if(stristr($ref,"?$symbol=") && !stristr($ref,"&$symbol=")){
 					$temp1 = explode("?$symbol=", $ref, strlen($ref));
 					$temp2 = explode("&", $temp1[count($temp1)-1]);
@@ -50,16 +58,9 @@ function extractQuery($referrer)
 					$queryString = urldecode($string);
 					break;
 				}
-				if(stristr($ref,"#$symbol=")){
-					$temp1 = explode("#$symbol=", $ref, strlen($ref));
-					$temp2 = explode("&", $temp1[count($temp1)-1]);
-					$string = $temp2[0];
-					$queryString = urldecode($string);
-					break;
-				}
 			}
-			
-			
+
+
 			// general guery string
 			$symbol = $se_stuff[$i][1];
 			if(stristr($ref,"?$symbol=") && !stristr($ref,"&$symbol=")){
@@ -76,7 +77,7 @@ function extractQuery($referrer)
 				$queryString = urldecode($string);
 				break;
 			}
-					
+
 			/*
 			$symbol = $se_stuff[$i][1];
 			$temp1 = explode("$symbol=", $ref, 2);

@@ -7,6 +7,7 @@
     //Variable for determining if the study is closed
     $closed = false;
 
+
 	//If you want to set session variables use Base::getInstance(). Do not create a new Base object for that
 	// If login information was sent
 
