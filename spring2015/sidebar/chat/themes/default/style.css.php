@@ -17,7 +17,7 @@ div#pfc_container {
 }
 
 div#pfc_container a img { border: 0px; }
-  
+
 #pfc_minmax {
   margin: 0; padding: 0;
   cursor: pointer;
@@ -70,13 +70,13 @@ ul#pfc_channels_list li div {
   border-left: 1px solid #555;
   border-bottom: 1px solid #555;
   background-color: #DDD;
-  vertical-align: bottom;  
+  vertical-align: bottom;
 }
 ul#pfc_channels_list li.selected div {
   background-color: #FFF;
   border-bottom: 1px solid #FFF;
   color: #000;
-  font-weight: bold;  
+  font-weight: bold;
 }
 /* this rule does not work on ie6 ( :hover ) */
 ul#pfc_channels_list li div:hover {
@@ -85,7 +85,7 @@ ul#pfc_channels_list li div:hover {
 ul#pfc_channels_list li a {
   margin: 0; padding: 0;
   color: #000;
-  text-decoration: none;  
+  text-decoration: none;
 }
 ul#pfc_channels_list li a.pfc_tabtitle {
   cursor: pointer;
@@ -109,7 +109,7 @@ div.pfc_chat {
   position: absolute;
   top: 0;
   left: 0;
-  width: 80%;
+  width: 100%;
 /* WARNING: do not fix height in % because it will display blank screens on IE6 */
 /*  height: 100%;*/
   overflow: auto;
@@ -140,7 +140,7 @@ div.pfc_online ul {
   margin: 4px; padding: 0;
   list-style-type: none;
   font-size: 90%;
-  font-weight: bold;  
+  font-weight: bold;
 }
 ul.pfc_nicklist li {
   margin: 0 0 5px 0; padding: 0;
@@ -179,7 +179,7 @@ div.pfc_message {
   margin: 0; padding: 0;
   background-image: url("<?php echo $c->getFileUrlFromTheme('images/newmsg.gif'); ?>");
   background-position: right;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 div.pfc_message img {
   margin: 0; padding: 0;
@@ -188,7 +188,7 @@ div.pfc_message img {
 div.pfc_oldmsg {
   background-image: url("<?php echo $c->getFileUrlFromTheme('images/oldmsg.gif'); ?>");
   background-position: right;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 
 span.pfc_date, span.pfc_heure {
@@ -262,7 +262,7 @@ a#pfc_logo {
   margin: 0; padding: 0;
   float: right;
 }
-#pfc_ping { 
+#pfc_ping {
   margin: 0 5px 0 0; padding: 0;
   float:right;
   font-size: 80%;
@@ -272,7 +272,7 @@ a#pfc_logo img {
 }
 div.pfc_btn {
   margin: 0; padding: 0;
-  display: inline;  
+  display: inline;
   cursor: pointer;
 }
 div.pfc_btn img {

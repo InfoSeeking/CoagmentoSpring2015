@@ -317,7 +317,15 @@ var coagmentoToolbar =
 
 			 //container.addEventListener('DOMSubtreeModified',coagmentoToolbar.delay, false);
 			 container.addEventListener('DOMSubtreeModified',onChange, false);
-			 container.addEventListener("load", onPageLoad, true);
+//			 container.addEventListener("load", onPageLoad, true);
+//            Attempt 2
+             var appcontent = document.getElementById("appcontent");   // browser
+             if(appcontent){
+                appcontent.addEventListener("DOMContentLoaded", onPageLoad, true);
+             }
+//            Attempt 1
+//             if(gBrowser) {gBrowser.addEventListener("DOMContentLoaded", onPageLoad, false);}
+            
  			 container.addEventListener("TabOpen", tabAdded, false);
 			 container.addEventListener("TabClose", tabClosed, false);
 			 container.addEventListener("TabSelect", tabSelected, false);
@@ -358,12 +366,13 @@ var coagmentoToolbar =
 
 function editor()
 {
-  //var url = globalUrl+;
+  var url = globalUrl+"services/getTextEditor.php";
   //1/12/14 edit: open in new tab
   // win = window.open(url);
   // win.focus();
-  gBrowser.selectedTab = gBrowser.addTab(globalUrl + "services/getTextEditor.php");
-  //loadURL(url);
+
+  gBrowser.selectedTab = gBrowser.addTab(url);
+  // loadURL(url);
 }
 
 function activetask(){
@@ -497,25 +506,15 @@ function pasteData()
 function copyData()
 {
 
-  checkConnectivity();
-  if (loggedIn)
-  {
-    /*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+	checkConnectivity();
+	if (loggedIn)
+	{
+		/*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
          var url = window.content.document.location;
          url = encodeURIComponent(url);
          var title = encodeURIComponent(document.title);*/
-         var snippet = '';
-         if ((document.commandDispatcher.focusedElement) && (document.commandDispatcher.focusedElement.nodeName  == "TEXTAREA" ||
-             (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
-              document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "text") || (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
-                                                                                     document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "search"))){
-                 ta = document.commandDispatcher.focusedElement;
-                 snippet = ta.value.substring(ta.selectionStart, ta.selectionEnd);
-             }else{
-                 snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
-             }
 
-
+		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
         lastSnippet = snippet;
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
@@ -560,7 +559,7 @@ function copyData()
 
 //        document.getElementById('msgs').textContent = " Snippet Saved!";
 //        setTimeout('cleanAlert()', 3000);
-  }
+	}
 };
 
 
@@ -568,28 +567,15 @@ function copyData()
 //Function to collect highlighted passage from the page as a snippet.
 function snip()
 {
-  checkConnectivity();
-  if (loggedIn)
-  {
-    /*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
-    var url = window.content.document.location;
-    url = encodeURIComponent(url);
-    var title = encodeURIComponent(document.title);*/
+	checkConnectivity();
+	if (loggedIn)
+	{
+		/*var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+		var url = window.content.document.location;
+		url = encodeURIComponent(url);
+		var title = encodeURIComponent(document.title);*/
 
-    var snippet = '';
-
-        if ((document.commandDispatcher.focusedElement) && (document.commandDispatcher.focusedElement.nodeName  == "TEXTAREA" ||
-            (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
-             document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "text") || (document.commandDispatcher.focusedElement.nodeName  == "INPUT" &&
-                                                                                                         document.commandDispatcher.focusedElement.getAttribute("type").toLowerCase() == "search"))){
-                ta = document.commandDispatcher.focusedElement;
-                snippet = ta.value.substring(ta.selectionStart, ta.selectionEnd);
-            }else{
-                snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
-
-            }
-
-
+		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
         var title = document.title;
@@ -627,7 +613,7 @@ function snip()
 
         document.getElementById('msgs').textContent = " Snippet Saved!";
         setTimeout('cleanAlert()', 5000);
-  }
+	}
 };
 
 
