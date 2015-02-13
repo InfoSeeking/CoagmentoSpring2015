@@ -325,7 +325,7 @@ var coagmentoToolbar =
              }
 //            Attempt 1
 //             if(gBrowser) {gBrowser.addEventListener("DOMContentLoaded", onPageLoad, false);}
-            
+
  			 container.addEventListener("TabOpen", tabAdded, false);
 			 container.addEventListener("TabClose", tabClosed, false);
 			 container.addEventListener("TabSelect", tabSelected, false);
@@ -910,6 +910,7 @@ function logout()
 };
 
 
+var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
 
 //Change connection status from the toolbar
@@ -917,7 +918,7 @@ function changeConnectionStatus()
 {
     if (document.getElementById("coagmentoConnectDisconnectButton").label == "Disconnect")
     {
-        if(confirm('Are you sure you want to logout?'))
+        if(promptService.confirm(null, 'Coagmento', 'Are you sure you want to logout?'))
         {
             logout();
             var broadcaster = top.document.getElementById('viewSidebar');

@@ -105,7 +105,7 @@
         //$params['admins'] = array('admin'  => 'soportechatSummer2011');
         $params['admins'] = array('admin'  => 'soportechat');
         $params['skip_proxies'] = array('censor','noflood');
-        $params["refresh_delay"] = 500;
+        $params["refresh_delay"] = 2000;
 
 				$params["btn_sh_smileys"] = false;
 
@@ -212,7 +212,7 @@
 									}
 									else
 										//echo "InfiniteAjaxRequest(uri);";
-										echo "setTimeout(\"InfiniteAjaxRequest()\",1500);";
+										echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
 							?>
 						}
 						 else if (data=="1")
@@ -226,7 +226,7 @@
 								}
 								else
 									//echo "InfiniteAjaxRequest(uri);";
-									echo "setTimeout(\"InfiniteAjaxRequest()\",1500);";
+									echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
 						?>
 
 						 }
@@ -240,11 +240,11 @@
 										}
 										else
 											//echo "InfiniteAjaxRequest(uri);";
-											echo "setTimeout(\"InfiniteAjaxRequest()\",1500);";
+											echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
 								?>
     	            }
     	            else
-    	            	setTimeout("InfiniteAjaxRequest()",1500);
+    	            	setTimeout("InfiniteAjaxRequest()",2000);
     	        },
     	        error: function(xhr, ajaxOptions, thrownError) {
     	        }
@@ -422,7 +422,7 @@ function attemptActivityRefresh(){
 		return;
 	}
 	var curtime = (new Date()).getTime();
-	if(curtime - last_activity_time > 1000){
+	if(curtime - last_activity_time > 10000){
 		console.log("Refreshing");
 		//ping to update activity
 		jQuery.ajax({
