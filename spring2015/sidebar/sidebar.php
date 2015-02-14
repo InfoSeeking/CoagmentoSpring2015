@@ -169,9 +169,9 @@
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
 
-	// setInterval ("reload('sidebarComponents/snippets.php','snippetsBox')", 5000);
-	// setInterval ("refreshBookmarks()", 5000);
-	// setInterval ("reload('sidebarComponents/searches.php','queriesBox')", 5000);
+	//  setInterval ("reload('sidebarComponents/snippets.php','snippetsBox')", 10000);
+	//  setInterval ("refreshBookmarks()", 10000);
+	//  setInterval ("reload('sidebarComponents/searches.php','queriesBox')", 10000);
 
 
 	var InfiniteAjaxRequest = function () {
