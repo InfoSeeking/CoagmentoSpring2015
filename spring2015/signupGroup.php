@@ -4,6 +4,9 @@
 ?>
 <html>
 <head>
+	<link rel="stylesheet" href="study_styles/custom/text.css">
+	<link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
+	<link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
 <title>Interactive Search Study: Sign Up</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <style type="text/css">
@@ -234,9 +237,9 @@
                 $message .= "\r\n";
                 $message .= "<title>Interactive study participation confirmation email</title></head>\n<body>\n";
                 $message .= "\r\n";
-                $message .= "Hello,<br/><br/>Thank you for your interest in taking part in our study. The details of your session are shown below.<br/><br/>";
+                $message .= "Thank you for your interest in taking part in our study. The details are shown below.<br/>";
                 $message .= "\r\n";
-                $message .= "<strong>Participant name(s)</strong><br/>";
+                $message .= "<strong>Participant name:</strong><br/>";
 
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $firstName = $_POST["firstName_$x"];
@@ -244,34 +247,61 @@
                     $message .= $firstName." ".$lastName."<br/>";
                     $message .= "\r\n";
                 }
+								$instructorName = $_POST["instructor_1"];
+								$studyDates = "";
+								if(strpos($instructorName,"Belkin") !== false){
+									$instructorName = "Professor Belkin";
+									$studyDates = "March 6 through May 3";
+								}else if(strpos($instructorName,"Wacholder") !== false){
+									$instructorName = "Professor Wacholder";
+									$studyDates = "March 23 through May 4";
+								}
 
 
-                $message .= "<strong>Your scheduled time:</strong> $sessionday<br/>";
-                $message .= "\r\n";
+								$username = $_POST["username_1"];
+								$password = $_POST["pwd_1"];
+								$message .= "Username: $username<br/>\r\n";
+								$message .= "Password: $password<br/>\r\n";
 
-                $message .= "The study will take place in <strong>Room 413 of Alexander Library</strong>.<br/><br/>";
-                $message .= "\r\n";
-                $message .= "Please arrive <strong>AT LEAST 5 MINUTES BEFORE</strong> the start of the study to fill out paperwork. The study will start exactly on time. <br/><br/>";
-                $message .= "\r\n";
-                $message .= "You must complete the <strong>ENTIRE</strong> one hour study to be paid.<br/><br/>";
-                $message .= "\r\n";
-
-                if($NUM_USERS<2){
-                    $message .= "You will receive $15 for your participation in this study.<br/><br/>";
-                    $message .= "\r\n";
-                }else{
-                    $message .= "Each of you will receive $20 for your participation in this study.<br/><br/>";
-                    $message .= "\r\n";
-                }
-
-                $message .= "You are eligible for a cash $20 first prize and $10 second prize for best performers.<br/><br/>";
+                $message .= "<strong>Your ITI 220 instructor:</strong><br/>$instructorName<br/><br/>";
                 $message .= "\r\n";
 
 
 
 
+
+
+
+
+
+
+
+                $message .= "The study will run $studyDates.<br/><br/>";
                 $message .= "\r\n";
-                $message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>mmitsui@scarletmail.rutgers.edu<br/>";
+                $message .= "You will use the Coagmento collaborative search system while you work on your on IT Market Sector Analysis report.<br/><br/>";
+                $message .= "\r\n";
+								$message .= "You will receive <strong>$40 cash</strong> for your participation in this study.<br/><br/>";
+								$message .= "\r\n";
+								$message .= "Your group is also eligible for <strong>an additional $40 cash prize</strong> for best performers, measured by amount of activity using the Coagmento tool.<br/><br/>";
+								$message .= "\r\n";
+								$message .= "Note that you will be eligible for compensation only if you complete the study and follow all instructions.<br/><br/>";
+
+                // if($NUM_USERS<2){
+                //     $message .= "You will receive $15 for your participation in this study.<br/><br/>";
+                //     $message .= "\r\n";
+                // }else{
+                //     $message .= "Each of you will receive $20 for your participation in this study.<br/><br/>";
+                //     $message .= "\r\n";
+                // }
+
+                // $message .= "You are eligible for a cash $20 first prize and $10 second prize for best performers.<br/><br/>";
+                // $message .= "\r\n";
+
+
+
+
+                $message .= "\r\n";
+                $message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
                 $message .= "\r\n";
                 $message .= "</body></html>";
 
@@ -292,7 +322,7 @@
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:chris.leeder@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
 
                 for($x=1;$x<=$NUM_USERS;$x++){
@@ -307,6 +337,14 @@
                     $password = $_POST["pwd_$x"];
                     $instructorName = $_POST["instructor_$x"];
 
+										$studyDates = "";
+										if(strpos($instructorName,"Belkin") !== false){
+											$instructorName = "Professor Belkin";
+											$studyDates = "March 6 - May 3";
+										}else if(strpos($instructorName,"Wacholder") !== false){
+											$instructorName = "Professor Wacholder";
+											$studyDates = "March 23 - May 4";
+										}
 
                     if($NUM_USERS>=2){
                         echo "<tr><td><br><br></td></tr>";
@@ -322,7 +360,7 @@
 
 //                    echo "<tr><td>Year in college: $year</td></tr>\n";
 //                    echo "<tr><td>Sex: $sex</td></tr>\n";
-                    echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and Evaluating Electronic Information class: $instructorName</td></tr>\n";
+                    echo "<tr><td>Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class: $instructorName</td></tr>\n";
 //                    echo "<tr><td>Research topic: $researchtopic</td></tr>\n";
 
 
@@ -332,11 +370,20 @@
                     echo "<tr><td><br><br></td></tr>";
                 }
 
+								$instructorName = $_POST["instructor_1"];
+								$studyDates = "";
+								if(strpos($instructorName,"Belkin") !== false){
+									$instructorName = "Professor Belkin";
+									$studyDates = "March 6 - May 3";
+								}else if(strpos($instructorName,"Wacholder") !== false){
+									$instructorName = "Professor Wacholder";
+									$studyDates = "March 23 - May 4";
+								}
 
 
-                echo "<tr><td><strong>Study session: $sessionday</strong></td></tr>\n";
-                echo "<tr><td><strong>Please come to your scheduled session at least 5 minutes early to fill out some paperwork.</strong></td></tr>\n";
-                echo "<br><br>";
+
+                echo "<tr><td><strong>Study dates: $studyDates</strong></td></tr>\n";
+								echo "<br><br>";
 
                 echo "<tr><td><hr/>You can close this window now or navigate away. We will contact you soon via email.</td></tr>\n";
                 echo "</table>\n";
