@@ -63,7 +63,10 @@
         //$userName = TODO : use a username.  Make map from userID to username, for each user in the project.
         $userIDItem = $line['userID'];
         $userName = isset($userMap[$userIDItem]) ? $userMap[$userIDItem] : "";
-        $rating = $line['rating'];
+        $rating = 0;
+        if (isset($line['rating'])){
+          $rating = $line['rating'];
+        }
 
         $note = $line['note'];
 
