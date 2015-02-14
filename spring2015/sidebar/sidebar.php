@@ -146,7 +146,7 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/connection/connection-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/tabview/tabview-min.js"></script>
-
+<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 <script type="text/javascript" src="js/utilities-old.js"></script>
 <script type="text/javascript" src="ajaxtabs/ajaxtabs.js"></script>
 
@@ -169,9 +169,53 @@
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
 
-	//  setInterval ("reload('sidebarComponents/snippets.php','snippetsBox')", 10000);
-	//  setInterval ("refreshBookmarks()", 10000);
-	//  setInterval ("reload('sidebarComponents/searches.php','queriesBox')", 10000);
+
+	var pubnub = PUBNUB.init({
+													publish_key:'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa',
+													subscribe_key:'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'
+													});
+
+	var res = pubnub.subscribe({
+									channel:
+									<?php
+									$base = Base::getInstance();
+									$connection = Connection::getInstance();
+									$projectID = $base->getProjectID();
+									$stageID = $base->getStageID();
+									$query = "SELECT MIN(userID) as userID from users WHERE projectID='$projectID'";
+									$results = $connection->commit($query);
+									$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
+									$userIDBroadcast = $lineBroadcast['userID'];
+
+									 echo "\"spr15-$stageID-$projectID-$userIDBroadcast\"";
+									?>,
+
+
+
+														connect: function(){},
+														disconnect: function(){alert("Disconnected")},
+														reconnect: function(){alert("Reconnected")},
+														error: function(){alert("Network Error")},
+
+
+									message:function(m){
+
+										if(m.message=="refresh-snippets"){
+											reload('sidebarComponents/snippets.php','snippetsBox');
+										}else if(m.message=="refresh-bookmarks"){
+											refreshBookmarks();
+										}else if(m.message=="refresh-searches"){
+											reload('sidebarComponents/searches.php','queriesBox');
+										}
+										// pubnub.unsubscribe({channel:
+										<?php
+										// php echo "\"surr-$stageID-$projectID-$userID\"";
+										?>
+										// });
+									}
+
+									});
+
 
 
 	var InfiniteAjaxRequest = function () {

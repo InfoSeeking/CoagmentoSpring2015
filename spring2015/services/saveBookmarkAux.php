@@ -5,11 +5,15 @@
     require_once('../core/Base.class.php');
     require_once('../core/Util.class.php');
     require_once('../core/Tags.class.php');
+		use Pubnub\Pubnub;
+
+		require_once('../sidebar/pubnub-lib/autoloader.php');
 
 
     if (Base::getInstance()->isSessionActive())
     {
 
+			$pubnub = new Pubnub(array('publish_key'=>'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa','subscribe_key'=>'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'));
     $ip=$_SERVER['REMOTE_ADDR'];
     $connection = Connection::getInstance();
     $base = Base::getInstance();
@@ -55,6 +59,14 @@
     $bookmarkID = $connection->getLastID();
     $tags = new Tags();
     $tags->assignTagsToBookmark($bookmarkID, $_POST["tags"]);
+
+
+		$query = "SELECT MIN(userID) as userID from users WHERE projectID='$projectID'";
+		$results = $connection->commit($query);
+		$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
+		$userIDBroadcast = $lineBroadcast['userID'];
+		$message = array('message'=>'refresh-bookmarks');
+		$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-".$userIDBroadcast,$message);
     echo "<script>window.close()</script>";
 
 
