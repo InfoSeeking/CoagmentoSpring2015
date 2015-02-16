@@ -60,6 +60,12 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
     	Collaborative Search Study: Registration for Participation
     </title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <style>
+    select {
+      font-size:13px;
+    }
+    </style>
 <script type="text/javascript">
 
 	var alertColor = "Red";
@@ -474,7 +480,7 @@ for($x=1;$x<=$NUM_USERS;$x++){
 
   echo "<div class=\"pure-control-group\">";
   echo "<label name=\"instructor_$x\">Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class</label>";
-  echo "<select name=\"instructor_$x\" id=\"instructor_$x\" required><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select>";
+  echo "<select name=\"instructor_$x\" id=\"instructor_$x\" required><option disabled selected>--Select one--</option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select>";
   echo "</div>";
 
   echo "</fieldset>";
@@ -488,7 +494,7 @@ for($x=1;$x<=$NUM_USERS;$x++){
   // echo "<tr><td bgcolor=\"#F2F2F2\">Sex</td><td bgcolor=\"#F2F2F2\"><div id=\"sexdiv_$x\"><input type=\"radio\"  name=\"sex_$x\" value=\"F\" />Female  <input type=\"radio\" name=\"sex_$x\" value=\"M\" />Male</div></td></tr>";
   // echo "<tr><td>Section of your<br>04:192:201 Communication in <br>Relationships class</td><td> <input type=\"text\" size=25 name=\"coursename_$x\" value=\"\" /></td></tr>";
 
-  // echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and<br/>Evaluating Electronic<br/>Information class</td><td><select name=\"instructor_$x\" id=\"instructor_$x\"><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select></td></tr>";
+  // echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and<br/>Evaluating Electronic<br/>Information class</td><td><select name=\"instructor_$x\" id=\"instructor_$x\"><option disabled selected>--Select one--</option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select></td></tr>";
   // echo "<tr><td bgcolor=\"#F2F2F2\">Your research topic</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25 name=\"researchtopic_$x\" value=\"\" /></td></tr>";
 
   // echo "</table><br><br>";
@@ -505,7 +511,7 @@ echo "<fieldset>";
 echo "<hr>";
 echo "<div class=\"pure-control-group\">";
 echo "<label name=\"year_$x\">Year in college</label>";
-echo "<select name=\"year_$x\" id=\"year_$x\" required><option disabled selected></option><option>Freshman</option><option>Sophomore</option><option>Junior</option><option>Senior</option></select>";
+echo "<select name=\"year_$x\" id=\"year_$x\" required><option disabled selected>--Select one--</option><option>Freshman</option><option>Sophomore</option><option>Junior</option><option>Senior</option></select>";
 echo "</div><br>";
 
 echo "<div class=\"pure-control-group\">";
@@ -539,31 +545,31 @@ echo "</label>";
 echo "</div>";
 echo "</div><br>";
 
-echo "<div id=\"outcome_satisfaction_div_$x\" class=\"pure-control-group\" style=\"display:none\">";
+echo "<div style=\"display: none; padding-left:60px; background-color:#F2F2F2\" id=\"outcome_satisfaction_div_$x\" class=\"pure-control-group\">";
 echo "<label for=\"outcome_satisfaction_$x\">If yes, how satisfied were you with the outcome of your group project?</label>";
-echo "<select name=\"outcome_satisfaction_$x\" id=\"outcome_satisfaction_$x\" required><option disabled selected></option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"outcome_satisfaction_$x\" id=\"outcome_satisfaction_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "<br></div>";
 
 
-echo "<div id=\"experience_satisfaction_div_$x\" class=\"pure-control-group\" style=\"display:none\">";
-echo "<label for=\"experience_satisfaction_$x\">If yes, how satisfied were you with your group work experience?</label>";
-echo "<select name=\"experience_satisfaction_$x\" id=\"experience_satisfaction_$x\" required><option disabled selected></option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<div style=\"display: none; padding-left:60px; background-color:#F2F2F2\" id=\"experience_satisfaction_div_$x\" class=\"pure-control-group\">";
+echo "<label for=\"experience_satisfaction_$x\" >If yes, how satisfied were you with your group work experience?</label>";
+echo "<select name=\"experience_satisfaction_$x\" id=\"experience_satisfaction_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "<br></div>";
 
 
 echo "<div class=\"pure-control-group\">";
 echo "<label for=\"topic_knowledge_$x\">How knowledgeable are you now about your research topic?</label>";
-echo "<select name=\"topic_knowledge_$x\" id=\"topic_knowledge_$x\" required><option disabled selected></option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"topic_knowledge_$x\" id=\"topic_knowledge_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "</div><br>";
 
 echo "<div class=\"pure-control-group\">";
 echo "<label for=\"search_experience_$x\">How experienced are you with tasks that require searching for information from multiple sources and synthesizing it in a report?</label>";
-echo "<select name=\"search_experience_$x\" id=\"search_experience_$x\" required><option disabled selected></option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"search_experience_$x\" id=\"search_experience_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "</div><br>";
 
 echo "<div class=\"pure-control-group\">";
 echo "<label for=\"motivation_$x\">How motivated are you to work on this project?</label>";
-echo "<select name=\"motivation_$x\" id=\"motivation_$x\" required><option disabled selected></option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"motivation_$x\" id=\"motivation_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "</div>";
 
 echo "</fieldset>";
@@ -574,7 +580,7 @@ echo "</div>";
 
 
 
-echo "<label><h4>The following are some work strategies that can be useful during group projects. <br>Please rank in order the top three that you think are most important<br>for successful group work:</h4></label>";
+echo "<label><h4>The following are some work strategies that can be useful during group projects.</h4><h4>Please rank in order the top three that you think are most important<br>for successful group work.  Please enter \"1\" for the most important, <br>\"2\" for the second most important, and \"3\" for the third. <br>Choose only three responses.</h4></label>";
 echo "<div class=\"pure-form-aligned\">";
 echo "<div id=\"work_strategies_div\">";
 echo "<fieldset>";
@@ -594,7 +600,7 @@ $args = array(
 foreach($args as $value){
   $pref = $value[1];
   $description = $value[0];
-  echo "<div class=\"pure-control-group\">";
+  echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">";
   echo "<label for=\"".$pref."_$x\">$description</label>";
   echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return event.charCode >= 49 && event.charCode <= 51' name=\"".$pref."_$x\" type=\"text\">";
   echo "</div>";
@@ -606,7 +612,7 @@ echo "</div>";
 
 
 
-echo "<label ><h4>The following are some obstacles or challenges that may occur during group projects. <br>Please rank in order the top three that you think you might encounter <br>while completing this group project:</h4></label>";
+echo "<label ><h4>The following are some obstacles or challenges that may occur during group projects.</h4><h4>Please rank in order the top three that you think you might encounter <br>while completing this group project.  Please enter \"1\" for the most important, <br>\"2\" for the second most important, and \"3\" for the third. <br>Choose only three responses.</h4></label>";
 echo "<div class=\"pure-form-aligned\">";
 echo "<div id=\"obstacles_div\">";
 
@@ -625,7 +631,7 @@ array("lack of motivation","obs_lack_motivation"));
 foreach($args as $value){
   $pref = $value[1];
   $description = $value[0];
-  echo "<div class=\"pure-control-group\">";
+  echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">";
   echo "<label for=\"".$pref."_$x\">$description</label>";
   echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return event.charCode >= 49 && event.charCode <= 51' name=\"".$pref."_$x\" type=\"text\">";
   echo "</div>";
