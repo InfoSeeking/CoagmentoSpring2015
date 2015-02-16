@@ -33,7 +33,7 @@
           $orderBy = $_SESSION['orderBy'.$table];
         }
 
-        $query = "SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID  ORDER BY ".$orderBy;
+        $query = "SELECT * FROM (SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID as secondUserID,userName FROM users) b ON b.secondUserID=a.userID  GROUP BY a.userID,a.`query`) c ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
 

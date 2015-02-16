@@ -18,6 +18,7 @@ if (!isset($_GET['value']))
 }
 
 $bookmarkID = $_GET['value'];
+$updated = false;
 
 if (isset($_POST["action"]) && $_POST["action"] == "update"){
 		$notes = $_POST["notes"];

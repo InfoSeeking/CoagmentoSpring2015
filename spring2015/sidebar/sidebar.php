@@ -121,9 +121,9 @@
 <?php
 	$base = Base::getInstance();
 	// Temporary fix for disabling toolbar buttons when clicked Finish
-	if(isset($_GET['disallowbrowsing'])){
-		$base->setAllowBrowsing(0);
-	}
+	// if(isset($_GET['disallowbrowsing'])){
+	// 	$base->setAllowBrowsing(0);
+	// }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -146,7 +146,7 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/connection/connection-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/tabview/tabview-min.js"></script>
-
+<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 <script type="text/javascript" src="js/utilities-old.js"></script>
 <script type="text/javascript" src="ajaxtabs/ajaxtabs.js"></script>
 
@@ -169,15 +169,122 @@
 	var homeURL = "<?php echo $homeURL;?>"
 	var uri = homeURL+"services/checkStageSidebar.php";
 
-	// setInterval ("reload('sidebarComponents/snippets.php','snippetsBox')", 5000);
-	// setInterval ("refreshBookmarks()", 5000);
-	// setInterval ("reload('sidebarComponents/searches.php','queriesBox')", 5000);
+
+	var pubnub_checkStageSidebar = PUBNUB.init({
+													publish_key:'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa',
+													subscribe_key:'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'
+													});
+
+	var res_checkStageSidebar = pubnub_checkStageSidebar.subscribe({
+									channel:
+									<?php
+									$base = Base::getInstance();
+									$connection = Connection::getInstance();
+									$userID = $base->getUserID();
+									$stageID = $base->getStageID();
+									$query = "SELECT userID from users WHERE projectID='$userID'";
+									$results = $connection->commit($query);
+									$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
+									$userIDBroadcast = $lineBroadcast['userID'];
+
+									echo "\"spr15-$stageID-$projectID-checkStage$userIDBroadcast\"";
+									?>,
+
+
+
+														connect: function(){},
+														disconnect: function(){alert("Disconnected")},
+														reconnect: function(){alert("Reconnected")},
+														error: function(){alert("Network Error")},
+
+
+									message:function(m){
+										// alert("message: "+m);
+										if (m.message == "1"){
+
+											<?php
+
+											if (!(isset($_GET['show'])))
+											{
+												// 2/14/15: removed temporarily to test InfiniteAjaxRequest
+												echo "document.location = '".$homeURL."sidebar/sidebar.php?show=true';\n";
+												//echo "return;";
+											}
+											else{
+												//echo "InfiniteAjaxRequest(uri);";
+												// echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+											}
+											?>
+
+										}else if(m.message =="3"){
+											<?php
+											if (!(isset($_GET['clean'])))
+											{
+												echo "document.location = '".$homeURL."sidebar/sidebar.php?clean=true';\n";
+												//echo "document.location = '".$homeURL."sidebar/sidebar.php';\n";
+												//echo "return;";
+											}
+											?>
+										}
+									}
+
+									});
+
+
+
+	var pubnub = PUBNUB.init({
+													publish_key:'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa',
+													subscribe_key:'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'
+													});
+
+	var res = pubnub.subscribe({
+									channel:
+									<?php
+									$base = Base::getInstance();
+									$connection = Connection::getInstance();
+									$projectID = $base->getProjectID();
+									$stageID = $base->getStageID();
+									$query = "SELECT MIN(userID) as userID from users WHERE projectID='$projectID'";
+									$results = $connection->commit($query);
+									$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
+									$userIDBroadcast = $lineBroadcast['userID'];
+
+									 echo "\"spr15-$stageID-$projectID-$userIDBroadcast\"";
+									?>,
+
+
+
+														connect: function(){},
+														disconnect: function(){alert("Disconnected")},
+														reconnect: function(){alert("Reconnected")},
+														error: function(){alert("Network Error")},
+
+
+									message:function(m){
+
+										if(m.message=="refresh-snippets"){
+											reload('sidebarComponents/snippets.php','snippetsBox');
+										}else if(m.message=="refresh-bookmarks"){
+											refreshBookmarks();
+										}else if(m.message=="refresh-searches"){
+											reload('sidebarComponents/searches.php','queriesBox');
+										}
+										// pubnub.unsubscribe({channel:
+										<?php
+										// php echo "\"surr-$stageID-$projectID-$userID\"";
+										?>
+										// });
+									}
+
+									});
+
 
 
 	var InfiniteAjaxRequest = function () {
 		 jQuery.ajax({
     	        url: uri,
     	        success: function(data) {
+								// alert(data);
     	            // do something with "data"
     	             //alert("hi1: "+data);
     	            if (data!="0")
@@ -210,9 +317,11 @@
 										//echo "document.location = '".$homeURL."sidebar/sidebar.php?show=true';\n";
 										//echo "return;";
 									}
-									else
+									else{
 										//echo "InfiniteAjaxRequest(uri);";
-										echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+										// echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+									}
+
 							?>
 						}
 						 else if (data=="1")
@@ -224,9 +333,10 @@
 									echo "document.location = '".$homeURL."sidebar/sidebar.php?show=true';\n";
 									//echo "return;";
 								}
-								else
+								else{
 									//echo "InfiniteAjaxRequest(uri);";
-									echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+									// echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+								}
 						?>
 
 						 }
@@ -238,13 +348,18 @@
 											//echo "document.location = '".$homeURL."sidebar/sidebar.php';\n";
 											//echo "return;";
 										}
-										else
+										else{
 											//echo "InfiniteAjaxRequest(uri);";
-											echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+											// echo "setTimeout(\"InfiniteAjaxRequest()\",2000);";
+
+										}
+
 								?>
     	            }
-    	            else
-    	            	setTimeout("InfiniteAjaxRequest()",2000);
+    	            else{
+										setTimeout("InfiniteAjaxRequest()",2000);
+									}
+
     	        },
     	        error: function(xhr, ajaxOptions, thrownError) {
     	        }

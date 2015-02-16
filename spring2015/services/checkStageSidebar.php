@@ -6,6 +6,8 @@
 	$base = Base::getInstance();
 
 
+// 2/14/15: 'refreshsidebar' never activated, so "4" never echoed
+//  Same for "5"
 	/*----- Chat communication is not required since this is for single participant------*/
 
 	$allowCommunication = $base->getAllowCommunication();
@@ -13,13 +15,13 @@
 	{
 	  //Experimental: VERY RISKY ECHO!  Don't know if this echo "5" will work...
 	  if(isset($_SESSION['refreshQuestionSidebar']) && ($_SESSION['refreshQuestionSidebar']) == 1){
-	  	$_SESSION['refreshQuestionSidebar'] = 0;
-	  	echo "5";
+	  	// $_SESSION['refreshQuestionSidebar'] = 0;
+	  	// echo "5";
 	  }
 	  else if (isset($_SESSION['refreshSidebar']) && ($_SESSION['refreshSidebar']) == 1)
 	  {
-		$_SESSION['refreshSidebar'] = 0;
-		echo "4";
+		// $_SESSION['refreshSidebar'] = 0;
+		// echo "4";
 	  }
 //	  else if (!$base->isTaskInTime())
 //	  {
