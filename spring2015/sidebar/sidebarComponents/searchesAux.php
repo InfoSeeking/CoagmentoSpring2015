@@ -32,14 +32,23 @@
         if (isset($_SESSION['orderBy'.$table])){
           $orderBy = $_SESSION['orderBy'.$table];
         }
-
-        $query = "SELECT * FROM (SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID as secondUserID,userName FROM users) b ON b.secondUserID=a.userID  GROUP BY a.userID,a.`query`) c ORDER BY ".$orderBy;
+        $only_mine = isset($_SESSION['only_mine']) ? $_SESSION['only_mine'] : false;
+        $only_mine_clause = sprintf(" WHERE a.userID=%d", $base->getUserID());
+        if(!$only_mine){
+          $only_mine_clause = "";
+        }
+        $query = "SELECT * FROM (SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID as secondUserID,userName FROM users) b ON b.secondUserID=a.userID " . $only_mine_clause . " GROUP BY a.userID,a.`query`) c ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
 
         $numRows = mysql_num_rows($results);
 
         $userMap = User::getIDMap($projectID);
+
+        echo "<br/><select id='only_mine_select' onchange='updateOnlyMine(refreshSearches)'>";
+        echo "<option value='show_all'>Show everyone's data</option>";
+        echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
+        echo "</select>";
 
         while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
             $queryID = $line['queryID'];

@@ -30,7 +30,7 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
-    $only_mine = isset($_GET['only_mine']) ? true : false;
+    $only_mine = isset($_SESSION['only_mine']) ? $_SESSION['only_mine'] : false;
     $table = "bookmarks";
     $orderBy = "bookmarkID DESC";
     if (isset($_SESSION['orderBy'.$table])){
@@ -49,8 +49,8 @@
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
-    
-    echo "<br/><select id='only_mine_select' onchange='refreshBookmarks()'>";
+
+    echo "<br/><select id='only_mine_select' onchange='updateOnlyMine(refreshBookmarks)'>";
     echo "<option value='show_all'>Show everyone's data</option>";
     echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
     echo "</select>";

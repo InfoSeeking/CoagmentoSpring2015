@@ -955,7 +955,28 @@ function getCookie (name) {
 function refreshBookmarks(){
 	var dropdown = document.getElementById("tagfilter");
 	var filter = dropdown.options[dropdown.selectedIndex].value;
+	reload('sidebarComponents/bookmarks.php?filter=' + filter,'bookmarksBox');
+}
+
+function refreshSnippets(){
+	reload('sidebarComponents/snippets.php','snippetsBox');
+}
+
+function refreshSearches(){
+	reload('sidebarComponents/searches.php','queriesBox');
+}
+function updateOnlyMine(callback){
 	var only_mine_dropdown = document.getElementById("only_mine_select");
-	var only_mine =  only_mine_dropdown.options[only_mine_dropdown.selectedIndex].value == "only_mine" ? "&only_mine" : "";
-	reload('sidebarComponents/bookmarks.php?filter=' + filter + only_mine,'bookmarksBox');
+	var only_mine = only_mine_dropdown.options[only_mine_dropdown.selectedIndex].value == "only_mine";
+	jQuery.ajax({
+		url : "sidebarComponents/updateOnlyMine.php",
+		data : {
+			"only_mine" : only_mine
+		},
+		success: function(){
+			if(callback){
+				callback.call();
+			}
+		}
+	})
 }
