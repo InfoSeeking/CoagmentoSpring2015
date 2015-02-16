@@ -30,13 +30,13 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
-    $only_mine = isset($_GET['only_mine']) ? intval($_GET['only_mine']) : false;
+    $only_mine = isset($_GET['only_mine']) ? true : false;
     $table = "bookmarks";
     $orderBy = "bookmarkID DESC";
     if (isset($_SESSION['orderBy'.$table])){
       $orderBy = $_SESSION['orderBy'.$table];
     }
-    $only_mine_clause = sprintf(" AND b.userID=%d", $base->getUserId());
+    $only_mine_clause = sprintf(" AND b.userID=%d", $base->getUserID());
     if(!$only_mine){
       $only_mine_clause = "";
     }
@@ -49,11 +49,14 @@
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
+    
+    echo "<br/><select id='only_mine_select' onchange='refreshBookmarks()'>";
+    echo "<option value='show_all'>Show everyone's data</option>";
+    echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
+    echo "</select>";
 
     echo "<p>Filter by tag: ";
     echo "<select id='tagfilter' onchange='refreshBookmarks()' class='tags'><option value='-1'>Show all</option>";
-
-
     foreach($tags as $t){
       $extra = $t["tagID"] == $filter ? "selected" : "";
       printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);
