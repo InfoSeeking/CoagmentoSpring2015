@@ -30,15 +30,20 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
+    $only_mine = isset($_GET['only_mine']) ? intval($_GET['only_mine']) : false;
     $table = "bookmarks";
     $orderBy = "bookmarkID DESC";
     if (isset($_SESSION['orderBy'.$table])){
       $orderBy = $_SESSION['orderBy'.$table];
     }
-    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ORDER BY ".$orderBy;
+    $only_mine_clause = sprintf(" AND b.userID=%d", $base->getUserId());
+    if(!$only_mine){
+      $only_mine_clause = "";
+    }
+    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
     if($filter != -1){
       $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,B.note
-         FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID  ORDER BY ".$orderBy, $filter);
+         FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ". $only_mine_clause . " ORDER BY ".$orderBy, $filter);
     }
 
     $results = $connection->commit($query);
