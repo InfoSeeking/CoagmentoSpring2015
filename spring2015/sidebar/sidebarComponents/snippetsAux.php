@@ -10,7 +10,7 @@
 		if (isset($_SESSION['CSpace_projectID']))
 			$projectID = $_SESSION['CSpace_projectID'];
 		$orderBy = $_SESSION['orderBySnippets'];*/
-    echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:reload('sidebarComponents/snippets.php','snippetsBox')\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
+    // echo "<a alt=\"Refresh\" class=\"cursorType\" onclick=\"javascript:reload('sidebarComponents/snippets.php','snippetsBox')\" style=\"font-size:12px; font-weight: bold; color:orange\">Reload</a>\n";
     echo "<div id=\"floatSnippetLayer\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<div id=\"floatSnippetLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<table width=100% cellspacing=0>\n";
