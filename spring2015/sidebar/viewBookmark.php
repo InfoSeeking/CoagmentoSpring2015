@@ -117,7 +117,7 @@ else {
 					</div>
 					<div class="row">
 						<label>Tags (separate with comma)</label><br/>
-						<select name="tags[]" id="tag-input" multiple="multiple">
+						<select name="tags[]" id="tag-input" multiple="multiple" <?php echo $disabled; ?>>
 							<?php
 							//show all user tags
 							foreach($available_tags as $tag){
