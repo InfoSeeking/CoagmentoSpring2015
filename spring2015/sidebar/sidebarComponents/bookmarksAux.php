@@ -30,25 +30,33 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
+    $only_mine = isset($_GET['only_mine']) ? true : false;
     $table = "bookmarks";
     $orderBy = "bookmarkID DESC";
     if (isset($_SESSION['orderBy'.$table])){
       $orderBy = $_SESSION['orderBy'.$table];
     }
-    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ORDER BY ".$orderBy;
+    $only_mine_clause = sprintf(" AND b.userID=%d", $base->getUserID());
+    if(!$only_mine){
+      $only_mine_clause = "";
+    }
+    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
     if($filter != -1){
       $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,B.note
-         FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID  ORDER BY ".$orderBy, $filter);
+         FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ". $only_mine_clause . " ORDER BY ".$orderBy, $filter);
     }
 
     $results = $connection->commit($query);
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
+    
+    echo "<br/><select id='only_mine_select' onchange='refreshBookmarks()'>";
+    echo "<option value='show_all'>Show everyone's data</option>";
+    echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
+    echo "</select>";
 
     echo "<p>Filter by tag: ";
     echo "<select id='tagfilter' onchange='refreshBookmarks()' class='tags'><option value='-1'>Show all</option>";
-
-
     foreach($tags as $t){
       $extra = $t["tagID"] == $filter ? "selected" : "";
       printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);

@@ -100,7 +100,7 @@
         $params["dyn_params"] = array("nick"); //,"frozen_channels");
         $params["max_channels"] = 1;
         //$params['frozen_nick'] = true;
-        $params["max_msg"] = 0;
+        $params["max_msg"] = 20;
         //$params["max_nick_len"]   = 20;
         //$params['admins'] = array('admin'  => 'soportechatSummer2011');
         $params['admins'] = array('admin'  => 'soportechat');
