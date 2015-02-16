@@ -56,12 +56,16 @@ $userID = $line['userID'];
 $rating = $line['rating'];
 $note = $line['note'];
 
-
+$disabled = "";
 $user = "";
-if ($base->getUserID()==$userID)
+if ($base->getUserID()==$userID){
 	$user = "You";
-else
+}
+else {
 	$user = $username;
+	$disabled = "disabled";
+}
+
 ?>
 
 <html>

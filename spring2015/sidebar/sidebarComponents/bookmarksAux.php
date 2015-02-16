@@ -51,7 +51,7 @@
     $numRows = mysql_num_rows($results);
 
 
-    echo "<br/><select id='only_mine_select' onchange='refreshBookmarks()'>";
+    echo "<br/><select id='only_mine_select' onchange='updateOnlyMine(refreshBookmarks)'>";
     echo "<option value='show_all'>Show everyone's data</option>";
     echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
     echo "</select>";
