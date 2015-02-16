@@ -367,9 +367,9 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 			<tr>
 			  <td colspan=2>
 				<ul>
-				<li>This is a study signup form. <strong>All the fields are required</strong>.</li>
-				<li>To sign up, please fill up the registration details below and we will get back to you with the follow up instructions.</li>
-				<li>Once you complete this form, we will contact you if there is any issue with your requested participation and with follow up instructions. <strong></strong></li>
+				<li>Use this form to register for the paid research study in ITI 220. <strong>All the fields are required</strong>.</li>
+				<li>Please fill in your participant details, then answer the questionnaire below and click Submit.</li>
+				<li>You will receive a confirmation email.</li>
 				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>
 				</td>
@@ -415,6 +415,87 @@ Registration
 
 echo "<input type=\"hidden\" name=\"num_users\" value=\"$NUM_USERS\">";
 for($x=1;$x<=$NUM_USERS;$x++){
+
+
+  //Registration
+  // echo "<table class=\"style1\" border=\"1\">";
+  if($x==1 && $NUM_USERS==1){
+  echo "<h3>Enter Participant details</h3>";
+  // echo "<tr><th colspan=2 align=center bgcolor=\"#F2F2F2\">Enter Participant details</th></tr>";
+  }else{
+  echo "<h3>Participant $x</h3>";
+  // echo "<tr><th colspan=2 align=center bgcolor=\"#F2F2F2\">Participant $x</th></tr>";
+
+  }
+
+  // echo "<tr><td>First name</td><td> <input type=\"text\" size=25 name=\"firstName_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Last name</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\"  size=25 name=\"lastName_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td>Primary Email</td><td> <input type=\"text\"  size=25 name=\"email1_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Email</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25  name=\"reEmail_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td>Username</td><td> <input type=\"text\"  size=25 name=\"username_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td>Password</td><td> <input type=\"password\"  size=25 name=\"pwd_$x\" value=\"\" /></td></tr>";
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Pasword</td><td bgcolor=\"#F2F2F2\"> <input type=\"password\" size=25  name=\"repwd_$x\" value=\"\" /></td></tr>";
+  echo "<div class=\"pure-form-aligned\">";
+  echo "<fieldset>";
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"firstName_$x\">First Name</label>";
+  echo "<input id=\"firstName_$x\" name=\"firstName_$x\" type=\"text\" placeholder=\"First Name\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"lastName_$x\">Last Name</label>";
+  echo "<input id=\"lastName_$x\" name=\"lastName_$x\" type=\"text\" placeholder=\"Last Name\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"email1_$x\">Primary Email</label>";
+  echo "<input id=\"email1_$x\" name=\"email1_$x\" type=\"text\" placeholder=\"Primary Email\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"reEmail_$x\">Confirm Email</label>";
+  echo "<input id=\"reEmail_$x\" name=\"reEmail_$x\" type=\"text\" placeholder=\"Confirm Email\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"username_$x\">Username</label>";
+  echo "<input id=\"username_$x\" size=25 name=\"username_$x\" type=\"text\" placeholder=\"Username\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"pwd_$x\">Password</label>";
+  echo "<input id=\"pwd_$x\" size=25 name=\"pwd_$x\" type=\"password\" placeholder=\"Password\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"repwd_$x\">Confirm Pasword</label>";
+  echo "<input id=\"repwd_$x\" size=25 name=\"repwd_$x\" type=\"password\" placeholder=\"Confirm Pasword\" required>";
+  echo "</div>";
+
+  echo "<div class=\"pure-control-group\">";
+  echo "<label name=\"instructor_$x\">Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class</label>";
+  echo "<select name=\"instructor_$x\" id=\"instructor_$x\" required><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select>";
+  echo "</div>";
+
+  echo "</fieldset>";
+  echo "</div>";
+
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Pasword</td><td bgcolor=\"#F2F2F2\"> <input type=\"password\" size=25  name=\"repwd_$x\" value=\"\" /></td></tr>";
+
+
+  //echo "<tr><td>Your year in college</td><td><div id=\"yeardiv_$x\"><input type=\"radio\" name=\"year_$x\" value=\"Freshman\" />Freshman  <input type=\"radio\" name=\"year_$x\" value=\"Sophomore\" />Sophomore<input type=\"radio\" name=\"year_$x\" value=\"Junior\" />Junior <input type=\"radio\" name=\"year_$x\" value=\"Senior\" />Senior </div></td></tr>";
+
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Sex</td><td bgcolor=\"#F2F2F2\"><div id=\"sexdiv_$x\"><input type=\"radio\"  name=\"sex_$x\" value=\"F\" />Female  <input type=\"radio\" name=\"sex_$x\" value=\"M\" />Male</div></td></tr>";
+  // echo "<tr><td>Section of your<br>04:192:201 Communication in <br>Relationships class</td><td> <input type=\"text\" size=25 name=\"coursename_$x\" value=\"\" /></td></tr>";
+
+  // echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and<br/>Evaluating Electronic<br/>Information class</td><td><select name=\"instructor_$x\" id=\"instructor_$x\"><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select></td></tr>";
+  // echo "<tr><td bgcolor=\"#F2F2F2\">Your research topic</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25 name=\"researchtopic_$x\" value=\"\" /></td></tr>";
+
+  // echo "</table><br><br>";
+  if($NUM_USERS >1){
+    echo "<hr>";
+  }
+
 
 //Demographic Survey
 
@@ -602,87 +683,8 @@ echo "</div>";
 echo "</div>";
 
 echo "</fieldset>";
-echo "<hr />";
+// echo "<hr />";
 echo "</div>";
-
-//Registration
-// echo "<table class=\"style1\" border=\"1\">";
-if($x==1 && $NUM_USERS==1){
-echo "<h3>Enter Participant details</h3>";
-// echo "<tr><th colspan=2 align=center bgcolor=\"#F2F2F2\">Enter Participant details</th></tr>";
-}else{
-echo "<h3>Participant $x</h3>";
-// echo "<tr><th colspan=2 align=center bgcolor=\"#F2F2F2\">Participant $x</th></tr>";
-
-}
-
-// echo "<tr><td>First name</td><td> <input type=\"text\" size=25 name=\"firstName_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td bgcolor=\"#F2F2F2\">Last name</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\"  size=25 name=\"lastName_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td>Primary Email</td><td> <input type=\"text\"  size=25 name=\"email1_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Email</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25  name=\"reEmail_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td>Username</td><td> <input type=\"text\"  size=25 name=\"username_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td>Password</td><td> <input type=\"password\"  size=25 name=\"pwd_$x\" value=\"\" /></td></tr>";
-// echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Pasword</td><td bgcolor=\"#F2F2F2\"> <input type=\"password\" size=25  name=\"repwd_$x\" value=\"\" /></td></tr>";
-echo "<div class=\"pure-form-aligned\">";
-echo "<fieldset>";
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"firstName_$x\">First Name</label>";
-echo "<input id=\"firstName_$x\" name=\"firstName_$x\" type=\"text\" placeholder=\"First Name\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"lastName_$x\">Last Name</label>";
-echo "<input id=\"lastName_$x\" name=\"lastName_$x\" type=\"text\" placeholder=\"Last Name\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"email1_$x\">Primary Email</label>";
-echo "<input id=\"email1_$x\" name=\"email1_$x\" type=\"text\" placeholder=\"Primary Email\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"reEmail_$x\">Confirm Email</label>";
-echo "<input id=\"reEmail_$x\" name=\"reEmail_$x\" type=\"text\" placeholder=\"Confirm Email\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"username_$x\">Username</label>";
-echo "<input id=\"username_$x\" size=25 name=\"username_$x\" type=\"text\" placeholder=\"Username\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"pwd_$x\">Password</label>";
-echo "<input id=\"pwd_$x\" size=25 name=\"pwd_$x\" type=\"password\" placeholder=\"Password\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label for=\"repwd_$x\">Confirm Pasword</label>";
-echo "<input id=\"repwd_$x\" size=25 name=\"repwd_$x\" type=\"password\" placeholder=\"Confirm Pasword\" required>";
-echo "</div>";
-
-echo "<div class=\"pure-control-group\">";
-echo "<label name=\"instructor_$x\">Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class</label>";
-echo "<select name=\"instructor_$x\" id=\"instructor_$x\" required><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select>";
-echo "</div>";
-
-echo "</fieldset>";
-echo "</div>";
-
-// echo "<tr><td bgcolor=\"#F2F2F2\">Confirm Pasword</td><td bgcolor=\"#F2F2F2\"> <input type=\"password\" size=25  name=\"repwd_$x\" value=\"\" /></td></tr>";
-
-
-//echo "<tr><td>Your year in college</td><td><div id=\"yeardiv_$x\"><input type=\"radio\" name=\"year_$x\" value=\"Freshman\" />Freshman  <input type=\"radio\" name=\"year_$x\" value=\"Sophomore\" />Sophomore<input type=\"radio\" name=\"year_$x\" value=\"Junior\" />Junior <input type=\"radio\" name=\"year_$x\" value=\"Senior\" />Senior </div></td></tr>";
-
-// echo "<tr><td bgcolor=\"#F2F2F2\">Sex</td><td bgcolor=\"#F2F2F2\"><div id=\"sexdiv_$x\"><input type=\"radio\"  name=\"sex_$x\" value=\"F\" />Female  <input type=\"radio\" name=\"sex_$x\" value=\"M\" />Male</div></td></tr>";
-// echo "<tr><td>Section of your<br>04:192:201 Communication in <br>Relationships class</td><td> <input type=\"text\" size=25 name=\"coursename_$x\" value=\"\" /></td></tr>";
-
-// echo "<tr><td>Instructor of your<br>04:547:220 Retrieving and<br/>Evaluating Electronic<br/>Information class</td><td><select name=\"instructor_$x\" id=\"instructor_$x\"><option disabled selected></option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select></td></tr>";
-// echo "<tr><td bgcolor=\"#F2F2F2\">Your research topic</td><td bgcolor=\"#F2F2F2\"> <input type=\"text\" size=25 name=\"researchtopic_$x\" value=\"\" /></td></tr>";
-
-// echo "</table><br><br>";
-if($NUM_USERS >1){
-  echo "<hr>";
-}
 
 
 }
