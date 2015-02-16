@@ -156,7 +156,7 @@
 
 
 
-                $query = "SELECT MAX(projectID) as max from recruits WHERE userID <100";
+                $query = "SELECT MAX(projectID) as max from recruits WHERE userID <1000";
                 $results = $connection->commit($query);
                 $line = mysql_fetch_array($results, MYSQL_ASSOC);
 
@@ -205,6 +205,78 @@
                     $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
                     $results = $connection->commit($query);
 
+										$userID = $next_userID;
+
+										$keys = array("userID",
+										"doneproj",
+										"gender",
+										"year",
+										"topic_knowledge",
+										"motivation",
+										"pc",
+										"search_experience",
+										"lk_group_assign_productive",
+										"lk_group_ideas",
+										"lk_group_fun",
+										"lk_alone_efficient",
+										"lk_teacher_efficient",
+										"lk_close_work_learning",
+										"lk_group_work_like",
+										"lk_help_from_members",
+										"lk_one_does_most",
+										"lk_happy_as_leader",
+										"lk_group_fits_habits",
+										"lk_group_discuss_waste",
+										"strat_divide_work",
+										"strat_schedule_meetings",
+										"strat_assign_tasks",
+										"strat_establish_goals",
+										"strat_set_deadlines",
+										"strat_use_collab_tools",
+										"strat_meet_in_person",
+										"strat_meet_virtual",
+										"strat_comm_text",
+										"strat_track_progress",
+										"obs_sched_conflict",
+										"obs_lack_time",
+										"obs_comm_group",
+										"obs_consensus",
+										"obs_coord",
+										"obs_meet_deadlines",
+										"obs_unequal_participation",
+										"obs_lack_leadership",
+										"obs_procrastination",
+										"obs_lack_motivation");
+
+
+
+										$keystr = "(userID,";
+										$valuestr = "($userID,";
+										foreach($keys as $k){
+												if(isset($_POST["$k"."_$x"])){
+													$v = $_POST["$k"."_$x"];
+													$keystr .= "$k,";
+													$valuestr .= "'$v',";
+												}
+										}
+
+										// "outcome_satisfaction"
+										// "experience_satisfaction"
+										if(isset($_POST["doneproj"."_$x"]) && $_POST["doneproj"."_$x"] == "Yes"){
+											$v = $_POST["outcome_satisfaction"."_$x"];
+											$keystr .= "outcome_satisfaction,";
+											$valuestr .= "'$v',";
+
+											$v = $_POST["experience_satisfaction"."_$x"];
+											$keystr .= "experience_satisfaction,";
+											$valuestr .= "'$v',";
+										}
+										$keystr = rtrim($keystr,",");
+										$valuestr = rtrim($valuestr,",");
+										$keystr .= ")";
+										$valuestr .= ")";
+										$query = "INSERT INTO questionnaire_recruitment $keystr VALUES $valuestr";
+										$results = $connection->commit($query);
 
                 }
 
