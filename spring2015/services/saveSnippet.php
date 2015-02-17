@@ -54,12 +54,13 @@ if (Base::getInstance()->isSessionActive())
 	$action->setLocalDate($localDate);
 	$action->save();
 
-	$query = "SELECT MIN(userID) as userID from users WHERE projectID='$projectID'";
+	$query = "SELECT userID from users WHERE projectID='$projectID'";
 	$results = $connection->commit($query);
-	$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
-	$userIDBroadcast = $lineBroadcast['userID'];
-	$message = array('message'=>'refresh-snippets');
-	$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-".$userIDBroadcast,$message);
+	while($lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC)){
+		$userIDBroadcast = $lineBroadcast['userID'];
+		$message = array('message'=>'refresh-snippets');
+		$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-".$userIDBroadcast,$message);
+	}
 
 }
 ?>

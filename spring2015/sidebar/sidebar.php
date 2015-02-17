@@ -261,7 +261,6 @@
 
 
 									message:function(m){
-
 										if(m.message=="refresh-snippets"){
 											reload('sidebarComponents/snippets.php','snippetsBox');
 										}else if(m.message=="refresh-bookmarks"){
