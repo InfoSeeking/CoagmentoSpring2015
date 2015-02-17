@@ -965,18 +965,16 @@ function refreshSnippets(){
 function refreshSearches(){
 	reload('sidebarComponents/searches.php','queriesBox');
 }
-function updateOnlyMine(callback){
-	var only_mine_dropdown = document.getElementById("only_mine_select");
-	var only_mine = only_mine_dropdown.options[only_mine_dropdown.selectedIndex].value == "only_mine";
+function updateOnlyMine(val, callback){
 	jQuery.ajax({
 		url : "sidebarComponents/updateOnlyMine.php",
 		data : {
-			"only_mine" : only_mine
+			"only_mine" : val
 		},
 		success: function(){
 			if(callback){
 				callback.call();
 			}
 		}
-	})
+	});
 }

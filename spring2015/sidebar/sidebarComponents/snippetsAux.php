@@ -21,7 +21,13 @@
      echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','snippetID asc','snippetsBox','snippets.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('snippets','snippetID desc','snippetsBox','snippets.php')\"></td>";
      echo "<td></td>";
     echo "</tr>";
-
+?>
+<tr>
+  <th>User</th>
+  <th>Snippet Text</th>
+  <th>Date</th>
+</tr>
+<?php
 //    TODO: May not have been part of this code.  Delete?
 //    echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
 
@@ -44,10 +50,9 @@
         $query = "SELECT * FROM (SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
-        echo "<br/><select id='only_mine_select' onchange='updateOnlyMine(refreshSnippets)'>";
-        echo "<option value='show_all'>Show everyone's data</option>";
-        echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
-        echo "</select>";
+        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshSnippets)'>";
+        echo ($only_mine ? "Show everyone's data" : "Show only my data");
+        echo "</a>";
         $numRows = mysql_num_rows($results);
 
 
@@ -63,8 +68,14 @@
                 $title = stripslashes($line['title']);
                 $type = $line['type'];
                 $time = $line['time'];
-                $date = strtotime($line['date']);
-                $date = strftime("%m/%d", $date);
+                $date = strtotime($line['date'] . ' ' . $line['time']);
+                $display_date = strftime("%m/%d", $date);
+                //if this is the same day, show the time instead
+                $date_info = getdate($date);
+                $today_info = getdate(time());
+                if($date_info["year"] == $today_info["year"] && $date_info["yday"] == $today_info["yday"]){
+                  $display_date = strftime("%l:%M%p", $date);
+                }
                 $noteAux = substr($note, 0, 20);
 
                 if ($noteAux!="")
@@ -101,7 +112,7 @@
                 echo "<input type=\"hidden\" id=\"time$snippetID\" value=\"$time\">";
                 //$ratingRepresentation = getRatingRepresentation($finalRating, $snippetID,'snippets','floatSnippetLayer','snippetsBox','snippets.php');
                 // echo "<td align=\"center\"></td>";
-                echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatSnippetLayer',null,'$snippetID')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\"><span style=\"font-size:10px\">$date</span></td>";
+                echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatSnippetLayer',null,'$snippetID')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\"><span style=\"font-size:10px\">$display_date</span></td>";
 
                 //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
                 if ($userID==$userIDItem)

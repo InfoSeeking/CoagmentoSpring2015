@@ -3,6 +3,7 @@
     require_once('../../core/Connection.class.php');
     require_once('../../core/Base.class.php');
     require_once('../../core/User.class.php');
+
 	//if ((isset($_SESSION['CSpace_userID']))) {
 		//require_once("functions.php");
 		//require_once("../connect.php"); USE MYSQL CONNECTION
@@ -21,6 +22,13 @@
 		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','queryID asc','queriesBox','searches.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('queries','queryID desc','queriesBox','searches.php')\"></td>";
 		echo "<td></td>";
 		echo "</tr>";
+?>
+<tr>
+  <th>User</th>
+  <th>Search text</th>
+  <th>Date</th>
+</tr>
+<?php
         //retrieve username, query, and query ID
         $base = Base::getInstance();
         $projectID = $base->getProjectID();
@@ -45,10 +53,9 @@
 
         $userMap = User::getIDMap($projectID);
 
-        echo "<br/><select id='only_mine_select' onchange='updateOnlyMine(refreshSearches)'>";
-        echo "<option value='show_all'>Show everyone's data</option>";
-        echo "<option value='only_mine' " . ($only_mine ? "selected" : "") . ">Show only my data</option>";
-        echo "</select>";
+        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshSearches)'>";
+        echo ($only_mine ? "Show everyone's data" : "Show only my data");
+        echo "</a>";
 
         while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
             $queryID = $line['queryID'];
@@ -59,9 +66,15 @@
             $source= $line['source'];
             $time = $line['time'];
             $queryVal = stripslashes($line['query']);
-            $date = strtotime($line['date']);
-            $date = strftime("%m/%d", $date);
-			$url = $line['url'];
+            $date = strtotime($line['date'] . ' ' . $line['time']);
+            $display_date = strftime("%m/%d", $date);
+            //if this is the same day, show the time instead
+            $date_info = getdate($date);
+            $today_info = getdate(time());
+            if($date_info["year"] == $today_info["year"] && $date_info["yday"] == $today_info["yday"]){
+              $display_date = strftime("%l:%M%p", $date);
+            }
+			      $url = $line['url'];
             $queryAux = substr($queryVal, 0, 200)." (" . $source . ")";
 
             $queryShown = $queryAux;
@@ -71,7 +84,6 @@
             }
 
             echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span>&nbsp;</td><td><span style=\"font-size:10px\">";
-
             if ($url){
                 $viewSearchOnWindow = "window.open('viewSearch.php?value=$queryID','Search View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
                 echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showQuery('floatQueryLayer',null,'$queryID','text')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$queryShown</a></span></td>\n";
@@ -87,7 +99,7 @@
             echo "<input type=\"hidden\" id=\"time$queryID\" value=\"$time\">";
 			//$ratingRepresentation = getRatingRepresentation($finalRating,$queryID,'queries','floatQueryLayer','queriesBox','searches.php');
 			// echo "<td align=\"center\"></td>";
-			echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatQueryLayer',null,'$queryID')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\"><span style=\"font-size:10px\">$date</span></td>";
+			echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatQueryLayer',null,'$queryID')\" onmouseout=\"javascript:hideLayer('floatQueryLayer')\"><span style=\"font-size:10px\">$display_date</span></td>";
 			//echo "<td align=\"right\"><img src=\"images/copy.gif\" height=\"18\" width=\"18\" alt=\"Copy\" class=\"cursorType\" onclick=\"javascript:copyToClipboard('queryValue$queryID')\"></td>";
 
 

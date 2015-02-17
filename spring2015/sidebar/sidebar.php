@@ -193,9 +193,9 @@
 
 
 														connect: function(){},
-														disconnect: function(){alert("Disconnected")},
-														reconnect: function(){alert("Reconnected")},
-														error: function(){alert("Network Error")},
+														disconnect: function(){console.log("Disconnected")},
+														reconnect: function(){console.log("Reconnected")},
+														error: function(){console.log("Network Error")},
 
 
 									message:function(m){
@@ -255,9 +255,9 @@
 
 
 														connect: function(){},
-														disconnect: function(){alert("Disconnected")},
-														reconnect: function(){alert("Reconnected")},
-														error: function(){alert("Network Error")},
+														disconnect: function(){console.log("Disconnected")},
+														reconnect: function(){console.log("Reconnected")},
+														error: function(){console.log("Network Error")},
 
 
 									message:function(m){

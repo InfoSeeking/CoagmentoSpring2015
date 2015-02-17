@@ -827,7 +827,7 @@ function updateToolbarButtons()
   {
 	if (loggedIn)
     {
-        document.getElementById("coagmentoConnectDisconnectButton").label = "Disconnect";
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Disconnect from Coagmento";
 //        alert('logged in');
 		if (allowBrowsingFlag){
 			disableButtons(false);
@@ -836,7 +836,7 @@ function updateToolbarButtons()
     else
     {
 //        alert('not logged in');
-        document.getElementById("coagmentoConnectDisconnectButton").label = "Connect";
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Connect to Coagmento";
     	disableButtons(true);
 	}
   }
@@ -845,6 +845,7 @@ function updateToolbarButtons()
 //Sidebar functions
 function populateSidebar() {
     var sidebar = top.document.getElementById('sidebar');
+    //sidebar.width = 500;
     var urlplace = globalUrl+"sidebar/loginOnSideBar.php";
 	sidebar.setAttribute("src", urlplace);
 //    	var sidebar = top.document.getElementById('sidebar');
@@ -916,7 +917,7 @@ var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"
 //Change connection status from the toolbar
 function changeConnectionStatus()
 {
-    if (document.getElementById("coagmentoConnectDisconnectButton").label == "Disconnect")
+    if (loggedIn)
     {
         if(promptService.confirm(null, 'Coagmento', 'Are you sure you want to logout?'))
         {
