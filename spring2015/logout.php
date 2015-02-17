@@ -15,7 +15,7 @@
 		$connection = Connection::getInstance();
 		$results = $connection->commit($query);
 		$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
-		$userIDBroadcast = $lineBroadcast['userID'];
+		$userIDBroadcast = $userID;//$lineBroadcast['userID'];
 		$message = array('message'=>'3');
 		$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-checkStage".$userIDBroadcast,$message);
 			session_destroy();

@@ -185,7 +185,7 @@
 									$query = "SELECT userID from users WHERE projectID='$userID'";
 									$results = $connection->commit($query);
 									$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
-									$userIDBroadcast = $lineBroadcast['userID'];
+									$userIDBroadcast = $base->getUserID();//$lineBroadcast['userID'];
 
 									echo "\"spr15-$stageID-$projectID-checkStage$userIDBroadcast\"";
 									?>,
@@ -247,7 +247,7 @@
 									$query = "SELECT MIN(userID) as userID from users WHERE projectID='$projectID'";
 									$results = $connection->commit($query);
 									$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
-									$userIDBroadcast = $lineBroadcast['userID'];
+									$userIDBroadcast = $base->getUserID();//$lineBroadcast['userID'];
 
 									 echo "\"spr15-$stageID-$projectID-$userIDBroadcast\"";
 									?>,

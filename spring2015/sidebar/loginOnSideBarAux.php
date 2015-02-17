@@ -244,7 +244,8 @@
 				$query = "SELECT userID from users WHERE projectID='$userID'";
 				$results = $connection->commit($query);
 				$lineBroadcast = mysql_fetch_array($results,MYSQL_ASSOC);
-				$userIDBroadcast = $lineBroadcast['userID'];
+				//$userIDBroadcast = $lineBroadcast['userID'];
+				$userIDBroadcast = $userID;
 				$message = array('message'=>'1');
 				$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-checkStage".$userIDBroadcast,$message);
 
