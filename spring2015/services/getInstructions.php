@@ -22,7 +22,7 @@
 </title>
 
 </head>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="../study_styles/custom/text.css">
 <script type="text/javascript" src="../instruments/js/util.js"></script>
 <script type="text/javascript">
@@ -212,7 +212,7 @@ while you research.
 
 <br>
 
-<div class="panel-group" id="accordion">
+<!-- <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -255,12 +255,18 @@ while you research.
       commodo consequat.</div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <div id="Toolbar_div" style="display:block;">
-<span id="Toolbar"><center><strong><h3>Toolbar</h3></strong></center></span>
-The Toolbar consists of five buttons:
+<span id="Toolbar">
+	<!-- <center> -->
+	<hr>
+		<strong><h3>Toolbar</h3>
+		</strong>
+		<!-- </center> -->
+	</span><img src="images/toolbar_demo.png" width="100%" height="auto"//>
+<!-- The Toolbar consists of five buttons:
 <ol>
 <li><span id="Home"><strong>Connect/Disconnect</strong></span> - Logs in and out of Coagmento</li>
 <li><span id="Help"><strong>Help</strong></span> - Displays these instructions.</li>
@@ -269,28 +275,36 @@ The Toolbar consists of five buttons:
 <li><span id="Task_Pad"><strong>Write</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.</li>
 <li><span id="Active_Task"><strong>Assignment</strong></span> - Reminds you of your research topic you entered when you registered for the study.</li>
 <li><span><strong>Contact Us</strong> - Use this contact form to ask questions about Coagmento or get help</span></li>
-</ol>
+</ol> -->
 </div>
 
 <br/>
 <div id="Sidebar_div" style="display:block;">
 
-<span id="Sidebar"><center><strong><h3>Sidebar</h3></strong></center></span>
-The Sidebar consists of:<br/>
-<ol>
+<span id="Sidebar">
+	<!-- <center> -->
+	<hr>
+		<strong>
+			<h3>Sidebar</h3>
+			</strong>
+			<!-- </center> -->
+			</span>
+			<img src="images/sidebar_demo.png" width="100%" height="auto"/>
+<!-- The Sidebar consists of:<br/> -->
+<!-- <ol> -->
 <?php
     if($num_users > 1){
-        echo "";
-        echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
-        echo "</li>";
+        // echo "";
+        // echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
+        // echo "</li>";
     }
     ?>
 
-<li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars.
-</li>
-<br/>
-</li>
-</ol>
+<!-- <li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars. -->
+<!-- </li> -->
+<!-- <br/> -->
+<!-- </li> -->
+<!-- </ol> -->
 
 </div>
 
@@ -303,14 +317,14 @@ The Sidebar consists of:<br/>
         ?>
 
 <div id="Tips_div" style="display:block;">
-
+	<hr>
 <span id="Working_with_a_Partner"><center><strong><h3>Working Collaboratively</h3></strong></center></span>
 <ul>
 <li>Work together with your group to search for information on your topic, evaluate its quality, and synthesize what you've all learned into your written report.</li>
-<li>Share specific information or arguments from pages by using the Chat box, the Snip tool, or by cutting and pasting extracts from the pages into the Task Pad.</li>
-<li>Focus your time on finding and selecting information and building a consensus with your partner about which bits of information are best supported. Use the Task Pad to collate this information.</li>
-<li>Use the star ratings in the History/Bookmarks section of the side bar to rate the best sources.</li>
-<li>Remember to explain to your partner what you're doing, and justify your reasoning.</li>
+<li>Focus your time on finding and selecting quality information and building a consensus with your group about which information is best for your topic.</li>
+<li>Use the star ratings in the History/Bookmarks section of the Sidebar to rate the best sources.</li>
+<li>Remember to use the Chat window to explain to your group what you're doing, and explain your reasoning.</li>
+<li>Use the text editor to save notes, work on your outline, and organize your report.</li>
 </ul>
 <?php
     }
@@ -358,8 +372,8 @@ The Sidebar consists of:<br/>
 </form>
 <br/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>
 
