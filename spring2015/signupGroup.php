@@ -299,7 +299,7 @@
                 // SEND NOTIFICATION EMAIL TO RESEARCHER
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Matthew Mitsui <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
+                $headers .= 'From: Study 220 <study220@rutgers.edu>' . "\r\n";
 
 
 
@@ -311,7 +311,7 @@
                 $message .= "\r\n";
                 $message .= "Thank you for your interest in taking part in our study. The details are shown below.<br/>";
                 $message .= "\r\n";
-                $message .= "<strong>Participant name:</strong><br/>";
+                $message .= "<strong>Participant name: </strong>";
 
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $firstName = $_POST["firstName_$x"];
@@ -332,8 +332,8 @@
 
 								$username = $_POST["username_1"];
 								$password = $_POST["pwd_1"];
-								$message .= "Username: $username<br/>\r\n";
-								$message .= "Password: $password<br/>\r\n";
+								$message .= "<strong>Username:</strong> $username<br/>\r\n";
+								$message .= "<strong>Password:</strong> $password<br/>\r\n";
 
                 $message .= "<strong>Your ITI 220 instructor:</strong><br/>$instructorName<br/><br/>";
                 $message .= "\r\n";
@@ -373,19 +373,22 @@
 
 
                 $message .= "\r\n";
-                $message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
+                $message .= "Feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
+								// $message .= "<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
                 $message .= "\r\n";
                 $message .= "</body></html>";
 
                 //$message = rtrim(chunk_split(base64_encode($message)));
 
 //                mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-                mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+                mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
+								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
-                    $message .= $firstName." ".$lastName."<br/>";
+                    $message = $firstName." ".$lastName.",<br/><br/>".$message;
                     $message .= "\r\n";
                     mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
                 }
@@ -394,7 +397,7 @@
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:chris.leeder@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
 
                 for($x=1;$x<=$NUM_USERS;$x++){

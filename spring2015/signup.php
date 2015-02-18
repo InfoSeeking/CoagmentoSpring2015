@@ -661,27 +661,29 @@ $args = array(
   array("9.	In group work one person often ends up doing most of the work","lk_one_does_most"),
   array("10.	I am happy to take on the role of the leader in a group-work context","lk_happy_as_leader"),
   array("11.	Group-work fits my study habits","lk_group_fits_habits"),
-  array("12.	Group discussions are often a useless waste of time","lk_group_discuss_waste")
+  array("12.	Group discussions are often a waste of time","lk_group_discuss_waste")
 );
 foreach ($args as $value){
   $question = $value[0];
   $pref = $value[1];
+  echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">";
   echo "<label \">$question</label>";
   echo "<div id=\"".$pref."_div_$x\">";
   echo "<div class=\"pure-g\">";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><p>Strongly Disagree</p></div>";
-  echo "<div class=\"pure-u-1-5\"><p>Somewhat Disagree</p></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><p>Neutral</p></div>";
-  echo "<div class=\"pure-u-1-5\"><p>Somewhat Agree</p></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><p>Strongly Agree</p></div>";
+  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_1_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Disagree\">Strongly Disagree</label></div>";
+  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_2_$x\" class=\"pure-radio\"><input id=\"".$pref."_2_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Disagree\">Somewhat Disagree</label></div>";
+  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_3_$x\" class=\"pure-radio\"><input id=\"".$pref."_3_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Neutral\">Neutral</label></div>";
+  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_4_$x\" class=\"pure-radio\"><input id=\"".$pref."_4_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Agree\">Somewhat Agree</label></div>";
+  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_5_$x\" class=\"pure-radio\"><input id=\"".$pref."_5_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Agree\">Strongly Agree</label></div>";
   echo "</div>";
-  echo "<div class=\"pure-g\">";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_1_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Disagree\"></label></div>";
-  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_2_$x\" class=\"pure-radio\"><input id=\"".$pref."_2_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Disagree\"></label></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_3_$x\" class=\"pure-radio\"><input id=\"".$pref."_3_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Neutral\"></label></div>";
-  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_4_$x\" class=\"pure-radio\"><input id=\"".$pref."_4_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Agree\"></label></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_5_$x\" class=\"pure-radio\"><input id=\"".$pref."_5_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Agree\"></label></div>";
   echo "</div>";
+  // echo "<div class=\"pure-g\">";
+  // echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_1_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Disagree\"></label></div>";
+  // echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_2_$x\" class=\"pure-radio\"><input id=\"".$pref."_2_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Disagree\"></label></div>";
+  // echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_3_$x\" class=\"pure-radio\"><input id=\"".$pref."_3_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Neutral\"></label></div>";
+  // echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_4_$x\" class=\"pure-radio\"><input id=\"".$pref."_4_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Agree\"></label></div>";
+  // echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_5_$x\" class=\"pure-radio\"><input id=\"".$pref."_5_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Agree\"></label></div>";
+  // echo "</div>";
   echo "</div>";
 
 }
