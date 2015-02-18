@@ -29,7 +29,7 @@
             <tr align=center><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
           </table>
 
-          <label>Add tags (separate with comma)</label>
+          <label>Add tags (add a <u>comma</u> after every tag)</label>
           <select name="tags[]" id="tag-input" multiple="multiple">
             <?php
             //show all user tags

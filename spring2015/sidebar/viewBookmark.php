@@ -116,7 +116,7 @@ else {
 						<textarea name="notes" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
 					</div>
 					<div class="row">
-						<label>Tags (separate with comma)</label><br/>
+						<label>Tags (add a <u>comma</u> after every tag)</label><br/>
 						<select name="tags[]" id="tag-input" multiple="multiple" <?php if(!$editable) echo "disabled"; ?>>
 							<?php
 							//show all user tags
