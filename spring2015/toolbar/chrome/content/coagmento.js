@@ -5,10 +5,8 @@
 
 // Toolbar related functions
 // Add a listener to the current window.
-window.addEventListener("load", function() { coagmentoToolbar.init();toggleSidebar('viewSidebar',true);}, false);
+window.addEventListener("load", function() { coagmentoToolbar.init();toggleSidebar('viewSidebar',false);}, false);
 //window.addEventListener("load", function() { coagmentoToolbar.init(); }, false);
-
-
 
 var action = "";
 //This should be in an external file containing all the settings
@@ -827,7 +825,7 @@ function updateToolbarButtons()
   {
 	if (loggedIn)
     {
-        document.getElementById("coagmentoConnectDisconnectButton").label = "Disconnect from Coagmento";
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Logout of Coagmento";
 //        alert('logged in');
 		if (allowBrowsingFlag){
 			disableButtons(false);
@@ -836,7 +834,7 @@ function updateToolbarButtons()
     else
     {
 //        alert('not logged in');
-        document.getElementById("coagmentoConnectDisconnectButton").label = "Connect to Coagmento";
+        document.getElementById("coagmentoConnectDisconnectButton").label = "Login to Coagmento";
     	disableButtons(true);
 	}
   }
