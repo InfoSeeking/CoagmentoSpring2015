@@ -28,6 +28,7 @@
 
     $title = addslashes($_POST['title']);
     $source = addslashes($_POST['source']);
+		$site = addslashes($_POST['site']);
 //    $site = $_POST['site'];
 		$host = addslashes($_POST['host']);
 
@@ -47,6 +48,10 @@
         $note = addslashes($_POST['annotation']);
     }
 
+
+
+
+
     $timestamp = $base->getTimestamp();
     $date = $base->getDate();
     $time = $base->getTime();
@@ -54,7 +59,7 @@
 
     Util::getInstance()->saveAction("Save Bookmark - Rating: $rating",$lastID,$base);
 
-    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$source','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
+    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
     $results = $connection->commit($query);
 
     $bookmarkID = $connection->getLastID();

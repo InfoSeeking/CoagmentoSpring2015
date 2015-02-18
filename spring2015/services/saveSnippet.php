@@ -24,11 +24,24 @@ if (Base::getInstance()->isSessionActive())
 	$url = $_GET['URL'];
 
 
-	$entry = explode(".", $url);
+	$new_url = str_replace("http://", "", $url); // Remove 'http://' from the reference
+	$new_url = str_replace("https://", "", $new_url); // Remove 'https://' from the reference
+	$new_url = str_replace("com/", "com.", $new_url);
+	$new_url = str_replace("org/", "org.", $new_url);
+	$new_url = str_replace("edu/", "edu.", $new_url);
+	$new_url = str_replace("gov/", "gov.", $new_url);
+	$new_url = str_replace("us/", "us.", $new_url);
+	$new_url = str_replace("ca/", "ca.", $new_url);
+	$new_url = str_replace("uk/", "uk.", $new_url);
+	$new_url = str_replace("es/", "es.", $new_url);
+	$new_url = str_replace("net/", "net.", $new_url);
+
+	$entry = explode(".", $new_url);
 	$i = 0;
 	$isWebsite = 0;
 			$site = NULL;
 
+	$originalURL = $url;
 	while (isset($entry[$i]) && ($isWebsite == 0))
 	{
 		$entry[$i] = strtolower($entry[$i]);
@@ -78,8 +91,8 @@ if (Base::getInstance()->isSessionActive())
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
 
-	$query = "INSERT INTO snippets (userID, projectID, stageID, questionID, url, title,host, snippet, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, type)
-	 		                VALUES('$userID','$projectID','$stageID', '$questionID','$url','$title','$host','$snippet','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','text')";
+	$query = "INSERT INTO snippets (userID, projectID, stageID, questionID, url, title,source,host, snippet, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, type)
+	 		                VALUES('$userID','$projectID','$stageID', '$questionID','$url','$title','$site','$host','$snippet','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','text')";
 
 	$connection = Connection::getInstance();
 	$results = $connection->commit($query);
