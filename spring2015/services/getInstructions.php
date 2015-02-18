@@ -22,6 +22,7 @@
 </title>
 
 </head>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="../study_styles/custom/text.css">
 <script type="text/javascript" src="../instruments/js/util.js"></script>
 <script type="text/javascript">
@@ -142,19 +143,19 @@ function complete(check)
 <form action="system_instructions.php" method="post" onsubmit="return validate(this)">
 <center><h2>How to use Coagmento</h2></center>
 
-<p>The browser-based Coagmento tool is made of two components:
+<!-- <p>The browser-based Coagmento tool is made of two components:
 the Toolbar and the Sidebar. The Toolbar contains the main functions you will be using
-while you research.
+while you research. -->
 <?php
-    if($num_users > 1){
-        echo "The Sidebar shows the results of your research and lets you chat with your partner.";
-    }else{
-        echo "The Sidebar shows the results of your research.";
-    }
+    // if($num_users > 1){
+    //     echo "The Sidebar shows the results of your research and lets you chat with your partner.";
+    // }else{
+    //     echo "The Sidebar shows the results of your research.";
+    // }
     ?>
-</p>
+<!-- </p> -->
 
-<p>To open the Sidebar press <strong>Ctrl+Shift+S (Windows)</strong> or <strong>&#8984;+Shift+S (Mac)</strong>.</p>
+<!-- <p>To open the Sidebar press <strong>Ctrl+Shift+S (Windows)</strong> or <strong>&#8984;+Shift+S (Mac)</strong>.</p> -->
 <!---<center><span style="font-weight:bold; font-size:20px"><strong>Edusearch Study</strong>: System Instructions</span></center><br/>
 
 <p>One of the transferable skills universities help you learn, is how to work together to find information, and convey that information to others. The tasks here are about trying to help a government minster understand the best supported evidence around a scientific issue - you'll need to work with your partner to find the best supported claims, and then write a summary document for the minister.</p>
@@ -210,9 +211,62 @@ while you research.
 </div>
 
 <br>
+
+<!-- <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Collapsible Group 1</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Collapsible Group 2</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Collapsible Group 3</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</div>
+    </div>
+  </div>
+</div> -->
+
+
 <div id="Toolbar_div" style="display:block;">
-<span id="Toolbar"><center><strong><h3>Toolbar</h3></strong></center></span>
-The Toolbar consists of five buttons:
+<span id="Toolbar">
+	<!-- <center> -->
+	<hr>
+		<strong><h3>Toolbar</h3>
+		</strong>
+		<!-- </center> -->
+	</span><img src="images/toolbar_demo.png" width="100%" height="auto"//>
+<!-- The Toolbar consists of five buttons:
 <ol>
 <li><span id="Home"><strong>Connect/Disconnect</strong></span> - Logs in and out of Coagmento</li>
 <li><span id="Help"><strong>Help</strong></span> - Displays these instructions.</li>
@@ -221,28 +275,36 @@ The Toolbar consists of five buttons:
 <li><span id="Task_Pad"><strong>Write</strong></span> - Opens a built-in text editor to take notes about your sources.  Anything you write here is automatically saved.</li>
 <li><span id="Active_Task"><strong>Assignment</strong></span> - Reminds you of your research topic you entered when you registered for the study.</li>
 <li><span><strong>Contact Us</strong> - Use this contact form to ask questions about Coagmento or get help</span></li>
-</ol>
+</ol> -->
 </div>
 
 <br/>
 <div id="Sidebar_div" style="display:block;">
 
-<span id="Sidebar"><center><strong><h3>Sidebar</h3></strong></center></span>
-The Sidebar consists of:<br/>
-<ol>
+<span id="Sidebar">
+	<!-- <center> -->
+	<hr>
+		<strong>
+			<h3>Sidebar</h3>
+			</strong>
+			<!-- </center> -->
+			</span>
+			<img src="images/sidebar_demo.png" width="100%" height="auto"/>
+<!-- The Sidebar consists of:<br/> -->
+<!-- <ol> -->
 <?php
     if($num_users > 1){
-        echo "";
-        echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
-        echo "</li>";
+        // echo "";
+        // echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
+        // echo "</li>";
     }
     ?>
 
-<li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars.
-</li>
-<br/>
-</li>
-</ol>
+<!-- <li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars. -->
+<!-- </li> -->
+<!-- <br/> -->
+<!-- </li> -->
+<!-- </ol> -->
 
 </div>
 
@@ -255,14 +317,15 @@ The Sidebar consists of:<br/>
         ?>
 
 <div id="Tips_div" style="display:block;">
-
+	<hr>
 <span id="Working_with_a_Partner"><center><strong><h3>Working Collaboratively</h3></strong></center></span>
 <ul>
 <li>Work together with your group to search for information on your topic, evaluate its quality, and synthesize what you've all learned into your written report.</li>
-<li>Share specific information or arguments from pages by using the Chat box, the Snip tool, or by cutting and pasting extracts from the pages into the Task Pad.</li>
-<li>Focus your time on finding and selecting information and building a consensus with your partner about which bits of information are best supported. Use the Task Pad to collate this information.</li>
-<li>Use the star ratings in the History/Bookmarks section of the side bar to rate the best sources.</li>
-<li>Remember to explain to your partner what you're doing, and justify your reasoning.</li>
+<li>Focus your time on finding and selecting quality information and building a consensus with your group about which information is best for your topic.</li>
+<li>Use the star ratings in the History/Bookmarks section of the Sidebar to rate the best sources.</li>
+<li>Remember to use the Chat window to explain to your group what you're doing, and explain your reasoning.</li>
+<li>Use the text editor to save notes, work on your outline, and organize your report.</li>
+<li><strong>While searching, open new tabs in Firefox.  Do not open new browser windows.</strong></li>
 </ul>
 <?php
     }
@@ -309,6 +372,9 @@ The Sidebar consists of:<br/>
 </center>
 </form>
 <br/>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>
 

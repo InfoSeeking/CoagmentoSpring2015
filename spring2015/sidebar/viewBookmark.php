@@ -109,7 +109,7 @@ else {
 					}
 					?>
 					<h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3>
-					<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></h4>
+					<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></strong></h4>
 
 					<div class="row">
 						<label>Notes</label><br/>
@@ -137,6 +137,29 @@ else {
 					<?php endif ?>
 				</div>
 			</form>
+			<hr>
+			<?php
+			
+			$projectID = $base->getProjectID();
+			$query = "SELECT * FROM (SELECT url,userID,projectID FROM bookmarks WHERE bookmarkID = $bookmarkID) a INNER JOIN (SELECT * FROM snippets WHERE projectID='$projectID') b on a.userID=b.userID AND a.url=b.url";
+
+			$connection = Connection::getInstance();
+			$results = $connection->commit($query);
+
+			$count = 1;
+			while ($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+				echo "<p><strong>Snippet $count:</strong> ";
+				$snippet =$line['snippet'];
+				if (trim($snippet)!=""){
+					echo $snippet;
+				}else{
+					echo "(no text)";
+				}
+				echo "</p>";
+				$count += 1;
+			}
+
+			?>
 	<script>
 	var previous_tags = $("#tag-input").val() || [];
 	$("#tag-input").select2({

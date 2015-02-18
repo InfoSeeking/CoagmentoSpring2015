@@ -46,6 +46,12 @@ if (Base::getInstance()->isSessionActive())
         $title = str_replace(" - Mozilla Firefox","",$title);
 		$title = addslashes($title);
 		$url = $originalURL;
+		$host = "";
+		$p = parse_url($url);
+		if ($p){
+			$host = $p['host'];
+			$host = addslashes($host);
+		}
 
 		// Parse the URL to extract the source
 		$url = str_replace("http://", "", $url); // Remove 'http://' from the reference
@@ -103,8 +109,8 @@ if (Base::getInstance()->isSessionActive())
 		$stageID = $base->getStageID();
 		$questionID = $base->getQuestionID();
 
-		$query = "INSERT INTO pages (userID, projectID, stageID, questionID, url, title, source, query, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`)
-				              VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$queryString','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime')";
+		$query = "INSERT INTO pages (userID, projectID, stageID, questionID, url, title, source, host, query, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`)
+				              VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime')";
 
 		$connection = Connection::getInstance();
 		$results = $connection->commit($query);
@@ -167,8 +173,8 @@ if (Base::getInstance()->isSessionActive())
 
 
 
-            $query = "INSERT INTO queries (userID, projectID, stageID, questionID, query, source, url, title, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, status)
-            VALUES ('$userID','$projectID','$stageID','$questionID','$queryString','$site','$originalURL','$title','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','1')";
+            $query = "INSERT INTO queries (userID, projectID, stageID, questionID, query, source, host, url, title, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, status)
+            VALUES ('$userID','$projectID','$stageID','$questionID','$queryString','$site','$host','$originalURL','$title','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','1')";
 
 			$connection = Connection::getInstance();
 			$results = $connection->commit($query);

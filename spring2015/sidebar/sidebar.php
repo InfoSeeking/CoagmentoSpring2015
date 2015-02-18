@@ -481,6 +481,7 @@ cursor:hand;
 
 <li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
 
+<li><a href="sidebarComponents/sources.php" rel="tabsycontainer">Sources</a></li>
 
 </ul>
 <div id="tabsdivcontainer" style="border:1px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div>

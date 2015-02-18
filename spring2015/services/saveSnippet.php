@@ -22,6 +22,57 @@ if (Base::getInstance()->isSessionActive())
 	$base->registerActivity();
 
 	$url = $_GET['URL'];
+
+
+	$new_url = str_replace("http://", "", $url); // Remove 'http://' from the reference
+	$new_url = str_replace("https://", "", $new_url); // Remove 'https://' from the reference
+	$new_url = str_replace("com/", "com.", $new_url);
+	$new_url = str_replace("org/", "org.", $new_url);
+	$new_url = str_replace("edu/", "edu.", $new_url);
+	$new_url = str_replace("gov/", "gov.", $new_url);
+	$new_url = str_replace("us/", "us.", $new_url);
+	$new_url = str_replace("ca/", "ca.", $new_url);
+	$new_url = str_replace("uk/", "uk.", $new_url);
+	$new_url = str_replace("es/", "es.", $new_url);
+	$new_url = str_replace("net/", "net.", $new_url);
+
+	$entry = explode(".", $new_url);
+	$i = 0;
+	$isWebsite = 0;
+			$site = NULL;
+
+	$originalURL = $url;
+	while (isset($entry[$i]) && ($isWebsite == 0))
+	{
+		$entry[$i] = strtolower($entry[$i]);
+		if (($entry[$i] == "com") || ($entry[$i] == "edu") || ($entry[$i] == "org") || ($entry[$i] == "gov") || ($entry[$i] == "info") || ($entry[$i] == "us") || ($entry[$i] == "ca") || ($entry[$i] == "es") || ($entry[$i] == "uk") || ($entry[$i] == "net"))
+		{
+			$isWebsite = 1;
+							if(($entry[$i] == "uk") && strpos($originalURL,'uk.yahoo.com') !== false){
+									$domain = $entry[$i+2];
+									$site = $entry[$i+1];
+							}else if(($entry[$i] == "uk") && strpos($originalURL,'uk.search.yahoo.com') !== false){
+									$domain = $entry[$i+3];
+									$site = $entry[$i+2];
+							}else if(($entry[$i] == "uk") && strpos($originalURL,'.co.uk') !== false){
+									$domain = $entry[$i];
+									$site = $entry[$i-2];
+							}else{
+									$domain = $entry[$i];
+									$site = $entry[$i-1];
+							}
+		}
+		$i++;
+	}
+
+
+	$host = "";
+	$p = parse_url($url);
+	if ($p){
+		$host = $p['host'];
+		$host = addslashes($host);
+	}
+
 	$title = addslashes(htmlspecialchars($_GET['title']));
 	$snippet = addslashes($_GET['snippet']);
 	$title = str_replace(" - Mozilla Firefox","",$title);
@@ -40,8 +91,8 @@ if (Base::getInstance()->isSessionActive())
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
 
-	$query = "INSERT INTO snippets (userID, projectID, stageID, questionID, url, title, snippet, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, type)
-	 		                VALUES('$userID','$projectID','$stageID', '$questionID','$url','$title','$snippet','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','text')";
+	$query = "INSERT INTO snippets (userID, projectID, stageID, questionID, url, title,source,host, snippet, timestamp, date, time, `localTimestamp`, `localDate`, `localTime`, type)
+	 		                VALUES('$userID','$projectID','$stageID', '$questionID','$url','$title','$site','$host','$snippet','$timestamp','$date','$time','$localTimestamp','$localDate','$localTime','text')";
 
 	$connection = Connection::getInstance();
 	$results = $connection->commit($query);

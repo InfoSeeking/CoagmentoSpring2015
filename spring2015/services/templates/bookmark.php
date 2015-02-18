@@ -16,10 +16,15 @@
     <form name="f" action="saveBookmarkAux.php" method=POST>
       <table class="body" width=90%>
         <tr><th>Bookmark the following page: <a href="<?php echo $originalURL ?>"><?php echo $title ?></a><br/><br/></th></tr>
-        <tr><td align=center><em>What is useful about this source? How would you use it in writing your paper?</em><br/><textarea cols=35 rows=6 name="annotation"></textarea><input type="hidden" name="originalURL" value="<?php echo $originalURL ?>"/><input type="hidden" name="source" value="<?php echo $url ?>"/><input type="hidden" name="title" value="<?php echo $title ?>"/><input type="hidden" name="site" value="<?php echo $site ?>"/><input type="hidden" name="queryString" value="<?php echo $queryString ?>"/>'</td></tr>
-        <input type="hidden" name="localDate" value="<?php echo $localDate ?>"/>
-        <input type="hidden" name="localTime" value="<?php echo $localTime ?>"/>
-        <input type="hidden" name="localTimestamp" value="<?php echo $localTimestamp ?>"/>
+        <tr><td align=center><em>What is useful about this source? How would you use it in writing your paper?</em><br/><textarea cols=35 rows=6 name="annotation"></textarea><input type="hidden" name="originalURL" value="<?php echo $originalURL ?>"/>
+          <input type="hidden" name="source" value="<?php echo $url; ?>"/>
+          <input type="hidden" name="host" value="<?php echo $host; ?>"/>
+          <input type="hidden" name="title" value="<?php echo $title; ?>"/>
+          <input type="hidden" name="site" value="<?php echo $site; ?>"/>
+          <input type="hidden" name="queryString" value="<?php echo $queryString; ?>"/>'</td></tr>
+        <input type="hidden" name="localDate" value="<?php echo $localDate; ?>"/>
+        <input type="hidden" name="localTime" value="<?php echo $localTime; ?>"/>
+        <input type="hidden" name="localTimestamp" value="<?php echo $localTimestamp; ?>"/>
         <tr><td align=center><br>How good is this page? Rate it:</td></tr></table>
           <table><tr><td><input type="radio" name="rating" value="1"></td>
             <td><input type="radio" name="rating" value="2"></td>
