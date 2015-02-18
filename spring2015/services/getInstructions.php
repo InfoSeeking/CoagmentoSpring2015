@@ -143,19 +143,19 @@ function complete(check)
 <form action="system_instructions.php" method="post" onsubmit="return validate(this)">
 <center><h2>How to use Coagmento</h2></center>
 
-<p>The browser-based Coagmento tool is made of two components:
+<!-- <p>The browser-based Coagmento tool is made of two components:
 the Toolbar and the Sidebar. The Toolbar contains the main functions you will be using
-while you research.
+while you research. -->
 <?php
-    if($num_users > 1){
-        echo "The Sidebar shows the results of your research and lets you chat with your partner.";
-    }else{
-        echo "The Sidebar shows the results of your research.";
-    }
+    // if($num_users > 1){
+    //     echo "The Sidebar shows the results of your research and lets you chat with your partner.";
+    // }else{
+    //     echo "The Sidebar shows the results of your research.";
+    // }
     ?>
-</p>
+<!-- </p> -->
 
-<p>To open the Sidebar press <strong>Ctrl+Shift+S (Windows)</strong> or <strong>&#8984;+Shift+S (Mac)</strong>.</p>
+<!-- <p>To open the Sidebar press <strong>Ctrl+Shift+S (Windows)</strong> or <strong>&#8984;+Shift+S (Mac)</strong>.</p> -->
 <!---<center><span style="font-weight:bold; font-size:20px"><strong>Edusearch Study</strong>: System Instructions</span></center><br/>
 
 <p>One of the transferable skills universities help you learn, is how to work together to find information, and convey that information to others. The tasks here are about trying to help a government minster understand the best supported evidence around a scientific issue - you'll need to work with your partner to find the best supported claims, and then write a summary document for the minister.</p>
@@ -325,6 +325,7 @@ while you research.
 <li>Use the star ratings in the History/Bookmarks section of the Sidebar to rate the best sources.</li>
 <li>Remember to use the Chat window to explain to your group what you're doing, and explain your reasoning.</li>
 <li>Use the text editor to save notes, work on your outline, and organize your report.</li>
+<li><strong>While searching, open new tabs in Firefox.  Do not open new browser windows.</strong></li>
 </ul>
 <?php
     }
