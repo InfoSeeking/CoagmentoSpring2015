@@ -92,11 +92,28 @@
                 }
 
 
+                $snippet_truncated = $snippet;
+                if (trim($snippet)=="")
+                  $snippet_truncated = "(no text)";
+                  // if (!$title)
+                  //   $snippet_truncated = $url;
+                  // else
+                  //   $snippet_truncated = $title;
+
+                if (strlen($snippet_truncated)>50) {
+                    $snippet_truncated = substr($snippet_truncated, 0, 50);
+                    $snippet_truncated = $snippet_truncated . '..';
+                }
+
+
+
+
+
                 echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span></td>";
                 echo "<td><span style=\"font-size:10px\">";
                 //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
                 $viewSnipetOnWindow = "window.open('viewSnippet.php?value=$snippetID','Snippet View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$snippet_truncated</a></span></td>\n";
 //                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
                 //			if ($url)
                 //				echo "<font color=blue><a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px\">$title</a></span></td>\n";
