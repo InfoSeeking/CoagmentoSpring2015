@@ -56,14 +56,14 @@ $userID = $line['userID'];
 $rating = $line['rating'];
 $note = $line['note'];
 
-$disabled = "";
+$editable = true;
 $user = "";
 if ($base->getUserID()==$userID){
 	$user = "You";
 }
 else {
 	$user = $username;
-	$disabled = "disabled";
+	$editable = false;
 }
 
 ?>
@@ -113,11 +113,11 @@ else {
 
 					<div class="row">
 						<label>Notes</label><br/>
-						<textarea name="notes"><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
+						<textarea name="notes" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
 					</div>
 					<div class="row">
 						<label>Tags (separate with comma)</label><br/>
-						<select name="tags[]" id="tag-input" multiple="multiple" <?php echo $disabled; ?>>
+						<select name="tags[]" id="tag-input" multiple="multiple" <?php if(!$editable) echo "disabled"; ?>>
 							<?php
 							//show all user tags
 							foreach($available_tags as $tag){
@@ -132,7 +132,9 @@ else {
 					</div>
 					<input type="hidden" name="bookmarkID" value="<?php echo $bookmarkID; ?>" />
 					<input type="hidden" name="action" value="update" />
+					<?php if($editable): ?>
 					<input type="submit" value="Update Bookmark" class="submit"/>
+					<?php endif ?>
 				</div>
 			</form>
 	<script>

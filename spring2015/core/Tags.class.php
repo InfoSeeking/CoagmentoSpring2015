@@ -10,7 +10,7 @@ class Tags extends Base{
 
   public function retrieveFromProject($projectID){
     $cxn = Connection::getInstance();
-    $q = sprintf("select * FROM tags WHERE projectID=%d", $projectID);
+    $q = sprintf("select distinct tags.tagID as tagID, tags.name as name FROM tags INNER JOIN tag_assignments ON tags.tagID = tag_assignments.tagID WHERE tags.projectID=%d", $projectID);
     $arr_results = array();
     $results = $cxn->commit($q);
     while($row = mysql_fetch_assoc($results)){
