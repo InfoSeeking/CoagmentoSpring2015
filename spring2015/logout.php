@@ -18,14 +18,14 @@
 		$userIDBroadcast = $userID;//$lineBroadcast['userID'];
 		$message = array('message'=>'3');
 		$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-checkStage".$userIDBroadcast,$message);
-			session_destroy();
-			//Save action
-			$base = new Base();
-			$base->setAllowCommunication(0);
-			$base->setAllowBrowsing(0);
-			Util::getInstance()->saveAction('logout',0,$base);
-			// pubnub 3
-			echo "1";
+		$base->setAllowCommunication(0);
+		$base->setAllowBrowsing(0);
+		session_destroy();
+		//Save action
+
+		Util::getInstance()->saveAction('logout',0,$base);
+		// pubnub 3
+		echo "1";
 	}
 
 
