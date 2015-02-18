@@ -51,8 +51,8 @@
         		$base = Base::getInstance();
                 $connection = Connection::getInstance();
                 $userID = $base->getUserID();
-                $userID = $base->getProjectID();
-                $query = "SELECT Q.question as question,Q.questionID as questionID FROM recruits R,questions_study Q WHERE  R.instructorID+1=Q.questionID ORDER BY recruitsID ASC";
+                $projectID = $base->getProjectID();
+                $query = "SELECT Q.question as question,Q.questionID as questionID FROM recruits R,questions_study Q WHERE  R.instructorID+1=Q.questionID AND R.userID='$userID'";
                 $results = $connection->commit($query);
                 $question1 = '';
                 $line = mysql_fetch_array($results,MYSQL_ASSOC);
@@ -60,6 +60,12 @@
 								$questionID = $line['questionID'];
 								Util::getInstance()->saveAction("View My Task",$questionID, $base);
 
+								$query = "SELECT I.instructorID as instructorID,I.studydates as studydates FROM recruits R,instructors I WHERE  R.instructorID=I.instructorID AND R.userID='$userID'";
+								$results = $connection->commit($query);
+								$line = mysql_fetch_array($results,MYSQL_ASSOC);
+								$duedate = $line['studydates'];
+								$duedate = substr($duedate,strrpos($duedate, "through ")+strlen("through "));
+								
 
 ?>
 
@@ -71,11 +77,16 @@
 	<!--<script type="text/javascript" src="js/utilities.js"></script>-->
 <body>
 			<div class="grayrect">
-<span>
+<p><span>
 <?php
     echo $question1;
     ?>
-</span>
+</span></p>
+<p><strong>The due date is:
+	<?php
+    echo $duedate;
+    ?>
+</strong></p>
 </div>
 </body>
 </html>

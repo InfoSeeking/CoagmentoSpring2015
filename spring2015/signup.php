@@ -547,13 +547,13 @@ echo "</div><br>";
 
 echo "<div style=\"display: none; padding-left:60px; background-color:#F2F2F2\" id=\"outcome_satisfaction_div_$x\" class=\"pure-control-group\">";
 echo "<label for=\"outcome_satisfaction_$x\">If yes, how satisfied were you with the outcome of your group project?</label>";
-echo "<select name=\"outcome_satisfaction_$x\" id=\"outcome_satisfaction_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"outcome_satisfaction_$x\" id=\"outcome_satisfaction_$x\"><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "<br></div>";
 
 
 echo "<div style=\"display: none; padding-left:60px; background-color:#F2F2F2\" id=\"experience_satisfaction_div_$x\" class=\"pure-control-group\">";
 echo "<label for=\"experience_satisfaction_$x\" >If yes, how satisfied were you with your group work experience?</label>";
-echo "<select name=\"experience_satisfaction_$x\" id=\"experience_satisfaction_$x\" required><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
+echo "<select name=\"experience_satisfaction_$x\" id=\"experience_satisfaction_$x\"><option disabled selected>--Select one--</option><option>Not at all</option><option>Some</option><option>A little</option><option>Very</option></select>";
 echo "<br></div>";
 
 
@@ -602,7 +602,7 @@ foreach($args as $value){
   $description = $value[0];
   echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">";
   echo "<label for=\"".$pref."_$x\">$description</label>";
-  echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return event.charCode >= 49 && event.charCode <= 51' name=\"".$pref."_$x\" type=\"text\">";
+  echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51) || (event.charCode >= 97 && event.charCode <= 99)' name=\"".$pref."_$x\" type=\"text\">";
   echo "</div>";
 }
 echo "</div>";
@@ -633,7 +633,7 @@ foreach($args as $value){
   $description = $value[0];
   echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">";
   echo "<label for=\"".$pref."_$x\">$description</label>";
-  echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return event.charCode >= 49 && event.charCode <= 51' name=\"".$pref."_$x\" type=\"text\">";
+  echo "<input id=\"".$pref."_$x\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51) || (event.charCode >= 97 && event.charCode <= 99)' name=\"".$pref."_$x\" type=\"text\">";
   echo "</div>";
 }
 
@@ -677,10 +677,10 @@ foreach ($args as $value){
   echo "</div>";
   echo "<div class=\"pure-g\">";
   echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_1_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Disagree\"></label></div>";
-  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_2_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Disagree\"></label></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_3_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Neutral\"></label></div>";
-  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_4_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Agree\"></label></div>";
-  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_1_$x\" class=\"pure-radio\"><input id=\"".$pref."_5_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Agree\"></label></div>";
+  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_2_$x\" class=\"pure-radio\"><input id=\"".$pref."_2_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Disagree\"></label></div>";
+  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_3_$x\" class=\"pure-radio\"><input id=\"".$pref."_3_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Neutral\"></label></div>";
+  echo "<div class=\"pure-u-1-5\"><label for=\"".$pref."_4_$x\" class=\"pure-radio\"><input id=\"".$pref."_4_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Somewhat Agree\"></label></div>";
+  echo "<div style=\"background-color:#F2F2F2\" class=\"pure-u-1-5\"><label for=\"".$pref."_5_$x\" class=\"pure-radio\"><input id=\"".$pref."_5_$x\" type=\"radio\" name=\"".$pref."_$x\" value=\"Strongly Agree\"></label></div>";
   echo "</div>";
   echo "</div>";
 
