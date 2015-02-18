@@ -64,10 +64,10 @@
 			<?php
 				}
 			?>
-			<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></h4>
+			<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></strong></h4>
 			</div>
 			<hr />
-			<div><p>Snippet: <?php echo $snippet;?></p></div>
+			<div><p><strong>Snippet:</strong> <?php echo $snippet;?></p></div>
 </body>
 </html>
 
