@@ -12,6 +12,11 @@
 	$title = $_GET['title'];
 	$originalURL = $_GET['page'];
 	$url = $originalURL;
+	$host = "";
+	$p = parse_url($url);
+	if ($p){
+		$host = $p['host'];
+	}
 	// Get the date, time, and timestamp
 
     $timestamp = $base->getTimestamp();
