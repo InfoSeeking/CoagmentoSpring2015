@@ -12,8 +12,7 @@
 	$page = "";
 
 	$base->checkTimeout();
-
-	if(!$base->isSessionActive()){
+	if(!$base->isSessionActive() || !$base->getAllowCommunication()){
 			header("Location: loginOnSideBar.php");
 			exit("NO");
 	}
@@ -23,7 +22,6 @@
 			$br = $base->getAllowBrowsing();
 		 	$s = isset($_SESSION['CSpace_userID']);
 		  // Util::getInstance()->saveAction("testing sidebar $b $br $s",$base->getStageID(),$base);
-
 	/*---COMMENTED OUT ON 05/23/2014-----*/
 	if ($base->getAllowCommunication()==1)
 	{
@@ -199,7 +197,6 @@
 
 
 									message:function(m){
-										// alert("message: "+m);
 										if (m.message == "1"){
 
 											<?php
@@ -390,14 +387,9 @@ cursor:hand;
 	$base = Base::getInstance();
 
 
-
 	if ($base->isSessionActive())
 	{
-
-	  if (isset($_GET['show'])) //&&(!(isset($_GET['answer']))))
-	  {
         echo "<body>";
-
 		//first region
 		if ($base->getAllowCommunication()==1)
 		{
@@ -557,7 +549,6 @@ jQuery("body").on("keyup", function(){
 
 		}
 	}
-  }
 ?>
 
 <?php

@@ -3,6 +3,7 @@
     require_once('Connection.class.php');
     require_once('Stage.class.php');
 
+
 //This class contains the basic data that are inserted into the DB in most queries.
 
     //PLEASE DELETE GETTER AND SETTER TO CHECK WHETHER COAGMENTO IS INSTALLED
@@ -194,9 +195,11 @@ class Base {
   public function checkTimeout(){
     //currently thirty minutes
     if($this->isSessionActive() && isset($_SESSION["LAST_ACTIVE"]) && time() - $_SESSION["LAST_ACTIVE"] > 1800){
-      session_destroy();
+      require_once("../pubnub-helper.php");
+      pubnubPublishToUser("3");
       $this->setAllowCommunication(0);
       $this->setAllowBrowsing(0);
+      session_destroy();
     } else {
       return false;
     }
