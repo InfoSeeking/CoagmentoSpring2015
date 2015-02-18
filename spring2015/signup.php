@@ -395,7 +395,7 @@ Registration
 				<li>By participating in this study you will perform online research using an experimental browser plug-in, answer some questionnaires, and be interviewed briefly.</li>
 				<li>You will use the Coagmento collaborative search system while you work on your group project on IT Market Sector Analysis report.</li>
 				<li>You will receive <strong>$40 cash</strong> for participating in the study.</li>
-                <li>Your group is also eligible for an additional <strong>$40 cash</strong> prize per person for best performers, measured by amount of activity using the Coagmento tool.</li>
+                <li>Your group is also eligible for an additional <strong>$20 cash</strong> prize per person for best performers, measured by amount of activity using the Coagmento tool.</li>
 				<li>Note that you will be eligible for compensation only if you complete the study and follow all guidelines.</li>
                 <li><strong>You must currently be enrolled in 04:547:220 Retrieving and Evaluating Electronic Information.</strong></li>
                 <!--<li>Please note that you cannot participate in this study if you already participated in the Coagmento Lab Search Study in <a href="http://coagmento.rutgers.edu/summer2012/studyInfo.php">2012</a>, <a href="http://coagmento.rutgers.edu/studyRecruitment/signup.php">2013</a>, or <a href="http://userstudy2014.coagmento.rutgers.edu/userstudy2014/signup_intro.php">Summer 2014</a>.</li>
