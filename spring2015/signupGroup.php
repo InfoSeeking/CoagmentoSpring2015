@@ -197,12 +197,12 @@
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
 
-                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '', '', '','$projectID','$next_userID','$instructorID')";
+                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '', '', '','0','$next_userID','$instructorID')";
 
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','$projectID','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
+                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','0','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
                     $results = $connection->commit($query);
 
 										$userID = $next_userID;
