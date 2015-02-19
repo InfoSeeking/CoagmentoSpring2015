@@ -3,6 +3,7 @@
 	require_once('../core/Base.class.php');
 	require_once('../core/Connection.class.php');
 	require_once('../core/Util.class.php');
+  require_once('../core/Tags.class.php');
 
     $base = new Base();
 
@@ -13,6 +14,7 @@
         	$sourceName = urldecode($_GET['value']);
 
         	Util::getInstance()->saveAction("View Source",$sourceName, $base);
+          $projectID = $base->getProjectID();
 
           $query = "SELECT * FROM
           (SELECT 'bookmark' as type,url,userID,projectID,`date`,`time`,`timestamp`,host,status,'' as snippet FROM bookmarks
@@ -46,6 +48,7 @@
 		<title>Source View</title>
     </head>
 	<script type="text/javascript" src="js/utilities.js"></script>
+  <link rel="stylesheet" href="../study_styles/custom/background.css">
 <body>
 
 			<div>
@@ -62,14 +65,15 @@
             $connection = Connection::getInstance();
      			  $results = $connection->commit($query);
      			  $numRows = mysql_num_rows($results);
+             echo "<h3>Bookmarks</h3>";
             if($numRows>0){
               $count = 1;
               while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-                echo "<h4>Bookmark $count</h4>";
+                echo "<div class=\"grayrect\"><h4>Bookmark $count</h4>";
                 $userID = $line['userID'];
                 $username = $line['username'];
                 $rating = $line['rating'];
-                $notes = stripslashes($line['notes']);
+                $notes = stripslashes($line['note']);
                 if ($base->getUserID()==$userID){
                   $user = "You";
                 }
@@ -77,7 +81,7 @@
                   $user = $username;
                 }
                 $time = $line['time'];
-
+                //
                   // Saved by
                   echo "<p>Saved By: $user</p>";
                   // Saved by
@@ -87,13 +91,14 @@
                   // Notes
                   echo "<p>Notes: $notes</p>";
                   // Tags
-                  echo "<p>Tags:";
-                  $used_tags = Tags::retrieveFromBookmark($bookmarkID);
-                  foreach ($used_tags as $t){
-                    echo "$t; ";
-                  }
+                  echo "<p>Tags: ";
+                  $used_tags = Tags::retrieveFromBookmark($line['bookmarkID']);
+                   foreach ($used_tags as $t){
+                     echo $t['name']."; ";
+                   }
                   echo "</p>";
                 $count += 1;
+                echo "</p></div><br>";
               }
             }
             echo "<hr>";
@@ -103,10 +108,11 @@
               $connection = Connection::getInstance();
        			  $results = $connection->commit($query);
        			  $numRows = mysql_num_rows($results);
+               echo "<h3>Snippets</h3>";
                if($numRows>0){
                  $count = 1;
                  while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-                   echo "<h4>Snippet $count</h4>";
+                   echo "<div class=\"grayrect\"><h4>Snippet $count</h4>";
                    $userID = $line['userID'];
                    $username = $line['username'];
                    if ($base->getUserID()==$userID){
@@ -116,6 +122,7 @@
                    	$user = $username;
                    }
                    $time = $line['time'];
+                   $snippet = $line['snippet'];
                      // Saved by
                      echo "<p>Saved By: $user</p>";
                      // Saved by
@@ -123,6 +130,8 @@
                      // Snippet
                      echo "<p>Snippet: $snippet</p>";
                      $count += 1;
+
+                     echo "</div><br>";
                  }
                }
 			?>
@@ -131,12 +140,26 @@
 			<!-- <h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3> -->
 			 		<!-- from this <strong><a onclick="javascript:addAction('Revisit Page From Snippet','<?php echo $snippetID;?>')" href="<?php echo $url; ?>" target="_new">link</a></strong></div> -->
 			<?php
-				}
+    }else{
+      echo "HELLO!";
+    }
 			?>
-			<!-- <h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></strong></h4> -->
+			<!-- <h4>Saved by <strong> -->
+      <?php
+      // echo $user;
+      ?>
+      <!-- </strong> at <strong> -->
+      <?php
+      // echo $time;
+      ?>
+      <!-- </strong></h4> -->
 			</div>
 			<hr />
-			<!-- <div><p><strong>Snippet:</strong> <?php echo $snippet;?></p></div> -->
+			<!-- <div><p><strong>Snippet:</strong>  -->
+      <?php
+      // echo $snippet;
+      ?>
+      <!-- </p></div> -->
 </body>
 </html>
 
