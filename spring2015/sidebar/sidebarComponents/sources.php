@@ -6,7 +6,7 @@ session_start();
   <html>
     <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-      <title>Searches</title>
+      <title>Sources</title>
 	<style type="text/css">
 		.cursorType{
 		cursor:pointer;
@@ -25,9 +25,9 @@ session_start();
 //				else
 					$height = "250px";
 ?>
-<div id="queriesBox" style="height:<?php echo $height?>;overflow:auto;">
+<div id="sourcesBox" style="height:<?php echo $height?>;overflow:auto;">
 <?php
-	require_once("searchesAux.php");
+	require_once("sourcesAux.php");
 ?>
 </div>
 </body>
