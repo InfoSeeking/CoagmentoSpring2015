@@ -586,16 +586,16 @@ echo "<div id=\"work_strategies_div\">";
 echo "<fieldset>";
 
 $args = array(
-  array("dividing work between group members","strat_divide_work"),
-  array("scheduling regular meetings","strat_schedule_meetings"),
   array("assigning specific tasks","strat_assign_tasks"),
+  array("communicating through email or text messages","strat_comm_text"),
+  array("dividing work between group members","strat_divide_work"),
   array("establishing goals","strat_establish_goals"),
-  array("setting deadlines","strat_set_deadlines"),
-  array("using collaborative tools such as Google Docs","strat_use_collab_tools"),
   array("meeting in person","strat_meet_in_person"),
   array("meeting virtually through tools such as Skype or Google Hangouts","strat_meet_virtual"),
-  array("communicating through email or text messages","strat_comm_text"),
-  array("tracking progress","strat_track_progress"));
+  array("scheduling regular meetings","strat_schedule_meetings"),
+  array("setting deadlines","strat_set_deadlines"),
+  array("tracking progress","strat_track_progress"),
+  array("using collaborative tools such as Google Docs","strat_use_collab_tools"));
 
 foreach($args as $value){
   $pref = $value[1];
@@ -617,16 +617,18 @@ echo "<div class=\"pure-form-aligned\">";
 echo "<div id=\"obstacles_div\">";
 
 
-$args = array(array("scheduling conflicts","obs_sched_conflict"),
-array("lack of time","obs_lack_time"),
-array("communication with group members","obs_comm_group"),
+$args = array(
+
 array("achieving consensus","obs_consensus"),
+array("communication with group members","obs_comm_group"),
 array("coordination between group members","obs_coord"),
-array("meeting deadlines","obs_meet_deadlines"),
-array("unequal participation","obs_unequal_participation"),
 array("lack of leadership","obs_lack_leadership"),
+array("lack of motivation","obs_lack_motivation"),
+array("lack of time","obs_lack_time"),
+array("meeting deadlines","obs_meet_deadlines"),
 array("procrastination","obs_procrastination"),
-array("lack of motivation","obs_lack_motivation"));
+array("scheduling conflicts","obs_sched_conflict"),
+array("unequal participation","obs_unequal_participation"));
 
 foreach($args as $value){
   $pref = $value[1];
