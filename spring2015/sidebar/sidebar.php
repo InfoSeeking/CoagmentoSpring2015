@@ -259,11 +259,13 @@
 
 									message:function(m){
 										if(m.message=="refresh-snippets"){
-											reload('sidebarComponents/snippets.php','snippetsBox');
+											refreshSnippets();
 										}else if(m.message=="refresh-bookmarks"){
 											refreshBookmarks();
+											refreshSources();
 										}else if(m.message=="refresh-searches"){
-											reload('sidebarComponents/searches.php','queriesBox');
+											refreshSearches();
+											refreshSources();
 										}
 										// pubnub.unsubscribe({channel:
 										<?php

@@ -953,17 +953,27 @@ function getCookie (name) {
 
 //bookmark scripts
 function refreshBookmarks(){
+	//only send request if the user is currently looking at this tab
+	if(tabs.currentTabIndex != 0){return;}
 	var dropdown = document.getElementById("tagfilter");
 	var filter = dropdown.options[dropdown.selectedIndex].value;
 	reload('sidebarComponents/bookmarks.php?filter=' + filter,'bookmarksBox');
 }
-
 function refreshSnippets(){
+	//only send request if the user is currently looking at this tab
+	if(tabs.currentTabIndex != 1){return;}
 	reload('sidebarComponents/snippets.php','snippetsBox');
 }
-
 function refreshSearches(){
+	//only send request if the user is currently looking at this tab
+	if(tabs.currentTabIndex != 2){return;}
 	reload('sidebarComponents/searches.php','queriesBox');
+}
+function refreshSources(){
+	//only send request if the user is currently looking at this tab
+	if(tabs.currentTabIndex != 3){return;}
+	console.log("Refreshing sources");
+	reload('sidebarComponents/sources.php','sourcesBox');
 }
 function updateOnlyMine(val, callback){
 	jQuery.ajax({

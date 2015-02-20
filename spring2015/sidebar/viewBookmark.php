@@ -116,7 +116,7 @@ else {
 						<textarea name="notes" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
 					</div>
 					<div class="row">
-						<label>Tags (add a <u>comma</u> after every tag)</label><br/>
+						<label>Tags (press <u>enter</u> after every tag)</label><br/>
 						<select name="tags[]" id="tag-input" multiple="multiple" <?php if(!$editable) echo "disabled"; ?>>
 							<?php
 							//show all user tags
@@ -139,7 +139,7 @@ else {
 			</form>
 			<hr>
 			<?php
-			
+
 			$projectID = $base->getProjectID();
 			$query = "SELECT * FROM (SELECT url,userID,projectID FROM bookmarks WHERE bookmarkID = $bookmarkID) a INNER JOIN (SELECT * FROM snippets WHERE projectID='$projectID') b on a.userID=b.userID AND a.url=b.url";
 
@@ -163,8 +163,7 @@ else {
 	<script>
 	var previous_tags = $("#tag-input").val() || [];
 	$("#tag-input").select2({
-		tags: true,
-		tokenSeparators: [',']
+		tags: true
 	}).on("change", function(el){
 		var changeType = ""; //add or remove
 		var changeTag = "";
