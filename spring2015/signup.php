@@ -63,31 +63,31 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 					required: true
 				},";
 
-        $messages = "firstName_1: \"required\",
-            lastName_1: \"required\",
+        $messages = "firstName_1: {required:\"<span style='color:red'>Please enter your first name.</span>\"},
+            lastName_1: {required:\"<span style='color:red'>Please enter your last name.</span>\"},
             username_1: {
-    					required: true
+    					required: \"<span style='color:red'>Please enter a username.</span>\"
     				},
             pwd_1: {
-    					required: true,
+    					required: \"<span style='color:red'>Please enter a password.</span>\",
     				},
             repwd_1: {
-    					required: true,
-    					equalTo: \"#pwd_1\"
+    					required: \"<span style='color:red'>Please enter a password.</span>\",
+    					equalTo: \"<span style='color:red'>Please enter the same password again.</span>\"
     				},
             email1_1: {
-    					required: true,
-    					email: true
+    					required: \"<span style='color:red'>Please enter your e-mail address.</span>\",
+    					email: \"<span style='color:red'>Please enter a valid e-mail address.</span>\"
     				},
             reEmail_1: {
-    					required: true,
-    					email: true,
-              equalTo: \"#email1_1\"
+    					required: \"<span style='color:red'>Please enter your e-mail address.</span>\",
+    					email: \"<span style='color:red'>Please enter a valid e-mail address.</span>\",
+              equalTo: \"<span style='color:red'>Please enter the same e-mail address again.</span>\",
     				},
             instructor_1: {
-    					required: true
-    				}";
-    echo $questionnaire->printValidation("spr2015_regform",$rules);
+    					required: \"<span style='color:red'>Please enter your instructor.</span>\",
+    				},";
+    echo $questionnaire->printValidation("spr2015_regform",$rules,$messages);
     ?>
 
 
@@ -249,8 +249,6 @@ echo "<div style=\"max-width:600\">";
 // Likert
 $questionnaire->printQuestions(11);
 
-
-
 echo "</div>";
 echo "</div>";
 
@@ -262,7 +260,6 @@ echo "</div>";
 ?>
         <hr>
         	<button class="pure-button pure-button-primary" type="submit">Submit</button>
-					<div style="display: none; background: Red; text-align:center;" id="alertForm"><strong>Please Complete the Fields in Red and Try Again</strong></div>
     </form>
 </div>
 </body>

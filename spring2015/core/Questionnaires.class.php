@@ -140,7 +140,7 @@ class Questionnaires
 		public function printValidation($formid,$rules,$messages){
 			// jQUery.validator.addMethod
 			echo "jQuery.validator.addMethod(\"rankedorder\", function(value, element) {
-					return isRankedOrderValid(value);}, \"Please specify the correct ranked order according to the description above.\");";
+					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify the correct ranked order according to the description above.</span>\");";
 			echo "\$().ready(function(){";
 				echo "\$(\"#$formid\").validate({";
 					// Ignore none
@@ -148,7 +148,7 @@ class Questionnaires
 					// Rules
 					echo "rules: {";
 					echo $rules;
-					for($i = 0; $i <=count($this->questions); $i++){
+					for($i = 0; $i <=count($this->questions)-1; $i++){
 						$q = $this->questions[$i];
 						$type = $q['question_type'];
 						$key = $q['key'];
@@ -179,9 +179,49 @@ class Questionnaires
 						}
 
 					}
-					echo "}";
+					echo "},";
 					// Messages
+
+					echo "messages: {";
+					echo $messages;
+					for($i = 0; $i <=count($this->questions)-1; $i++){
+						$q = $this->questions[$i];
+						$type = $q['question_type'];
+						$key = $q['key'];
+						if($type == 'radio'){
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'select'){
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'likert'){
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}
+					}
+					echo "},";
 					// Extra
+
+				echo "			errorPlacement: function(error, element)
+    			{
+        if ( element.is(\":radio\") )
+        {
+            error.appendTo( element.parents('.container') );
+        }
+        else
+        { // This is the default behavior
+            error.insertAfter( element );
+        }
+    		}";
 
 				echo "});";
 
@@ -194,7 +234,7 @@ class Questionnaires
 
 			echo "<div class=\"pure-control-group\">";
 			echo "<label name=\"$key\">$question</label>";
-			echo "<div id=\"$key"."_div_1\">";
+			echo "<div id=\"$key"."_div_1\" class=\"container\">";
 			echo "<label for=\"$key"."_1\" class=\"pure-radio\">";
 			foreach($data->{'options'} as $optionkey=>$optionvalue){
 				echo "<input id=\"$key"."_1\" type=\"radio\" name=\"$key"."_1\" value=\"$optionvalue\"> $optionkey ";
@@ -243,7 +283,7 @@ class Questionnaires
 			$pref = $key;
 			echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
 			echo "<label \">$question</label>\n";
-			echo "<div id=\"".$pref."_div_1\">\n";
+			echo "<div id=\"".$pref."_div_1\" class=\"container\">\n";
 			echo "<div class=\"pure-g\">\n";
 			$count = 1;
 			foreach($data->{'options'} as $k=>$v){
@@ -251,7 +291,11 @@ class Questionnaires
 				if(($count)%2){
 					$style = "style=\"background-color:#F2F2F2\"";
 				}
-				echo "<div $style class=\"pure-u-1-5\"><label for=\"".$pref."_1_1\" class=\"pure-radio\"><input id=\"".$pref."_1_1\" type=\"radio\" name=\"".$pref."_1\" value=\"$v\">$k</label></div>\n";
+				echo "<div $style class=\"pure-u-1-5\">";
+				echo "<label for=\"".$pref."_1_1\" class=\"pure-radio\">";
+				echo "<input id=\"".$pref."_1_1\" type=\"radio\" name=\"".$pref."_1\" value=\"$v\">$k";
+				echo "</label>";
+				echo "</div>\n";
 				$count += 1;
 			}
 			echo "</div>\n";

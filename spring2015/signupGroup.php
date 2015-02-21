@@ -249,7 +249,7 @@
 								$message .= "\r\n";
 								$message .= "Your group is also eligible for <strong>an additional $20 cash prize</strong> per person for best performers, measured by amount of activity using the Coagmento tool.<br/><br/>";
 								$message .= "\r\n";
-								$message .= "Note that you will be eligible for compensation only if you complete the study and follow all instructions.<br/><br/>";
+								$message .= "Note: To receive payment you must complete the study and answer the three online questionnaires.<br/><br/>";
 
 
                 $message .= "\r\n";

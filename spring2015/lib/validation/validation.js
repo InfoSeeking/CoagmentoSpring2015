@@ -120,11 +120,9 @@ function validatePwd(field1, field2) {
 }
 
 function isRankedOrderValid(divid) {
-  alert('divid'+divid);
     var inputs = document.getElementById(divid).getElementsByTagName('input');
     var count = 0;
     for (i = inputs.length - 1; i > -1; i--) {
-      // alert("ID: "+inputs[i].id)
         if (inputs[i].value != "") {
             alert('value'+inputs[i]+""+inputs.length)
             count += 1;
@@ -132,14 +130,12 @@ function isRankedOrderValid(divid) {
     }
 
     if (count != 3) {
-        alert('falsecount');
         return false;
     }
 
     for (i = inputs.length - 1; i > -1; i--) {
         for (j = i - 1; j > -1; j--) {
             if (inputs[i].value == inputs[j].value && inputs[i].value != "" && inputs[i].value != "") {
-              alert('falseeq');
                 return false;
             }
         }
