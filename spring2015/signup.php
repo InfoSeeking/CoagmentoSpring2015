@@ -35,255 +35,64 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
     }
     </style>
     <?php echo $questionnaire->printPreamble();?>
+    <script>
+    <?php
+
+    $rules = "firstName_1: \"required\",
+        lastName_1: \"required\",
+        username_1: {
+					required: true
+				},
+        pwd_1: {
+					required: true,
+				},
+        repwd_1: {
+					required: true,
+					equalTo: \"#pwd_1\"
+				},
+        email1_1: {
+					required: true,
+					email: true
+				},
+        reEmail_1: {
+					required: true,
+					email: true,
+          equalTo: \"#email1_1\"
+				},
+        instructor_1: {
+					required: true
+				},";
+
+        $messages = "firstName_1: \"required\",
+            lastName_1: \"required\",
+            username_1: {
+    					required: true
+    				},
+            pwd_1: {
+    					required: true,
+    				},
+            repwd_1: {
+    					required: true,
+    					equalTo: \"#pwd_1\"
+    				},
+            email1_1: {
+    					required: true,
+    					email: true
+    				},
+            reEmail_1: {
+    					required: true,
+    					email: true,
+              equalTo: \"#email1_1\"
+    				},
+            instructor_1: {
+    					required: true
+    				}";
+    echo $questionnaire->printValidation("spr2015_regform",$rules);
+    ?>
+
+
+    </script>
 <script type="text/javascript">
-
-	var alertColor = "Red";
-	var okColor = "White";
-
-
-	function validateForm(form)
-	{
-		var isValid = 1;
-		form.action = "signupGroup.php";
-
-        <?php
-        for($x=1;$x<=$NUM_USERS;$x++){
-
-            echo "isValid &= validateSelectField(document.getElementById(\"year_$x\"));\n";
-
-            echo "if(isRadioSelected(document.getElementsByName(\"doneproj_$x\"),\"doneproj_div_$x\") && radioSelectedValue(document.getElementsByName(\"doneproj_$x\"))==\"Yes\"){\n";
-              echo "isValid &= validateSelectField(document.getElementById(\"outcome_satisfaction_$x\"));\n";
-              echo "isValid &= validateSelectField(document.getElementById(\"experience_satisfaction_$x\"));\n";
-            echo "}\n";
-            echo "isValid &= validateSelectField(document.getElementById(\"topic_knowledge_$x\"));\n";
-            echo "isValid &= validateSelectField(document.getElementById(\"search_experience_$x\"));\n";
-            echo "isValid &= validateSelectField(document.getElementById(\"motivation_$x\"));\n";
-
-
-            echo "isValid &= isRadioSelected(document.getElementsByName(\"gender_$x\"),\"gender_div_$x\");\n";
-            echo "isValid &= isRadioSelected(document.getElementsByName(\"doneproj_$x\"),\"doneproj_div_$x\");\n";
-            echo "isValid &= isRadioSelected(document.getElementsByName(\"pc_$x\"),\"pc_div_$x\");\n";
-
-
-            $args = array(
-              "lk_group_assign_productive",
-              "lk_group_ideas",
-              "lk_group_fun",
-              "lk_alone_efficient",
-              "lk_teacher_efficient",
-              "lk_close_work_learning",
-              "lk_help_from_members",
-              "lk_group_work_like",
-              "lk_one_does_most",
-              "lk_happy_as_leader",
-              "lk_group_fits_habits",
-              "lk_group_discuss_waste"
-            );
-
-            foreach($args as $pref){
-              echo "isValid &= isRadioSelected(document.getElementsByName(\"".$pref."_$x\"),\"".$pref."_div_$x\");\n";
-            }
-
-            echo "isValid &= isRankedOrderValid(\"work_strategies_div\");\n";
-            echo "isValid &= isRankedOrderValid(\"obstacles_div\");\n";
-
-
-          // Older stuff
-            echo "isValid &= validateField(form.firstName_$x);\n";
-            echo "isValid &= validateField(form.lastName_$x);\n";
-            echo "isValid &= validateEmail(form.email1_$x,form.reEmail_$x);\n";
-            echo "isValid &= validateField(form.username_$x);\n";
-            echo "isValid &= validateField(form.pwd_$x);\n";
-            echo "isValid &= validateField(form.repwd_$x);\n";
-            echo "isValid &= validateSelectField(document.getElementById(\"instructor_$x\"));\n";
-            echo "isValid &= validatePwd(form.pwd_$x,form.repwd_$x);\n";
-            echo "isValid &= validateField(form.instructor_$x);\n";
-
-        }
-        ?>
-		if (isValid==1)
-		{
-			document.getElementById("alertForm").style.display = "none";
-			return true;
-		}
-		else
-		{
-			document.getElementById("alertForm").style.display = "block";
-			return false;
-		}
-	}
-
-	function isCheckboxSelected(checkbox, obj)
-	{
-		if (checkbox.checked)
-		{
-			document.getElementById(obj).style.backgroundColor = okColor;
-			return true;
-		}
-
-		document.getElementById(obj).style.backgroundColor = alertColor;
-
-		return false;
-	}
-
-  function isRankedOrderValid(divid){
-    var inputs = document.getElementById(divid).getElementsByTagName('input');
-    var count = 0;
-    for (i=inputs.length-1; i > -1; i--) {
-      if(inputs[i].value != ""){
-        count += 1;
-      }
-    }
-
-    if (count != 3){
-      for (i=inputs.length-1; i > -1; i--) {
-        inputs[i].style.backgroundColor = alertColor;
-      }
-      return false;
-    }else{
-      for (i=inputs.length-1; i > -1; i--) {
-        inputs[i].style.backgroundColor = okColor;
-      }
-    }
-
-    for (i=inputs.length-1; i > -1; i--) {
-      for (j=i-1; j > -1; j--) {
-        if(inputs[i].value==inputs[j].value && inputs[i].value!="" && inputs[i].value!=""){
-          for (k=inputs.length-1; k > -1; k--) {
-            inputs[k].style.backgroundColor = alertColor;
-          }
-          return false;
-        }
-      }
-    }
-
-    for (i=inputs.length-1; i > -1; i--) {
-      inputs[i].style.backgroundColor = okColor;
-    }
-    return true;
-
-  }
-
-	function validateField(field)
-	{
-		if (field.value == "")
-		{
-			changeColor(field,alertColor);
-			return false;
-		}
-		else
-		{
-			changeColor(field,okColor);
-			return true;
-		}
-	}
-
-  function validateSelectField(field)
-  {
-
-      if (field.value == "")
-      {
-          changeColor(field,alertColor);
-          return false;
-      }
-      else
-      {
-          changeColor(field,okColor);
-          return true;
-      }
-  }
-
-	function isRadioSelected(radioButtons, obj)
-	{
-
-		for (i=radioButtons.length-1; i > -1; i--) {
-			if (radioButtons[i].checked)
-			{
-				document.getElementById(obj).style.backgroundColor = okColor;
-				return true;
-			}
-        }
-
-		document.getElementById(obj).style.backgroundColor = alertColor;
-
-		return false;
-	}
-
-  function radioSelectedValue(radioButtons)
-  {
-
-    for (i=radioButtons.length-1; i > -1; i--) {
-      if (radioButtons[i].checked)
-      {
-        // alert(radioButtons[i].value);
-        return radioButtons[i].value;
-      }
-    }
-
-    return false;
-  }
-
-  function showHideRadio(radioButtons,showdiv){
-    for (i=radioButtons.length-1; i > -1; i--) {
-          if (radioButtons[i].checked)
-          {
-            if(radioButtons[i].value == "Yes"){
-              document.getElementById(showdiv).style.display="block";
-            }else if (radioButtons[i].value == "No"){
-              document.getElementById(showdiv).style.display="none";
-            }
-          }
-      }
-  }
-
-	function validateEmail(field1, field2)
-	{
-		if (field1.value != field2.value)
-		{
-			changeColor(field1,alertColor);
-			changeColor(field2,alertColor);
-			return false;
-		}
-		else
-			if (!isValidadEmail(field1.value))
-			{
-				changeColor(field1,alertColor);
-				changeColor(field2,alertColor);
-				return false;
-			}
-			else
-			{
-				changeColor(field1,okColor);
-				changeColor(field2,okColor);
-				return true;
-			}
-	}
-
-	function validateEmail2(field1)
-	{
-		if ((field1.value.length != 0) && !isValidadEmail(field1.value))
-		{
-				changeColor(field1,alertColor);
-				return false;
-			}
-			else
-			{
-				changeColor(field1,okColor);
-				return true;
-			}
-	}
-
-	function changeColor(field,color)
-	{
-		field.style.background = color;
-	}
-
-	function isValidadEmail(email)
-	{
-		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(email);
-	}
-
 	function viewDetails(check)
 	{
 		if (check.checked)
@@ -291,27 +100,6 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 		else
 			document.getElementById("singleStudyDetails").style.display = "none";
 	}
-
-
-	function validatePwd(field1, field2)
-	{
-		if (field1.value != field2.value || field1.value.length < 1)
-		{
-			changeColor(field1,alertColor);
-			changeColor(field2,alertColor);
-			return false;
-		}
-
-		else
-		{
-			changeColor(field1,okColor);
-			changeColor(field2,okColor);
-			return true;
-		}
-	}
-
-
-
 </script>
 <style type="text/css">
 		.cursorType{
@@ -366,10 +154,8 @@ Registration
 					</div>
 
 
-<form class="pure-form" method="post" onsubmit="return validateForm(this)">
+<form id="spr2015_regform" class="pure-form" method="post" onsubmit="signupGroup.php">
 <?php
-
-
 echo "<input type=\"hidden\" name=\"num_users\" value=\"$NUM_USERS\">";
 for($x=1;$x<=$NUM_USERS;$x++){
 

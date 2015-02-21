@@ -1,6 +1,6 @@
 <?php
 require_once('Connection.class.php');
-// Possible validators:
+// Possible validators (currently using jQuery validation):
 // Parsley: http://parsleyjs.org
 // jQuery Validation: http://jqueryvalidation.org
 // List: http://blog.revrise.com/web-form-validation-javascript-libraries/
@@ -49,7 +49,6 @@ class Questionnaires
 			if($orderBy != NULL){
 				$query .= " ORDER BY $orderBy";
 			}
-			echo $query;
 			$results = $cxn->commit($query);
 			if (!$results){
 				return false;
@@ -74,12 +73,7 @@ class Questionnaires
 			}
 		}
 
-
-		public function populateQuestions(){
-
-		}
-
-		public function isQuestionnaireComplete($userID,$projectID,$questionnaire_name){
+		public function isQuestionnaireComplete($userID,$projectID,$questionnaire_name,$answers_database=''){
 		}
 
 
@@ -118,14 +112,15 @@ class Questionnaires
 
 			}
 			for($i = $min; $i <=$max; $i++){
-				if($this->questions[$i]['question_type']=='select'){
-					$this->printSelect($this->questions[$i]['question'],$this->questions[$i]['key'],$this->questions[$i]['question_data']);
-				}else if($this->questions[$i]['question_type']=='radio'){
-					$this->printRadio($this->questions[$i]['question'],$this->questions[$i]['key'],$this->questions[$i]['question_data']);
-				}else if($this->questions[$i]['question_type']=='rankorder'){
-					$this->printRankOrder($this->questions[$i]['question'],$this->questions[$i]['key'],$this->questions[$i]['question_data']);
-				}else if($this->questions[$i]['question_type']=='likert'){
-					$this->printLikert($this->questions[$i]['question'],$this->questions[$i]['key'],$this->questions[$i]['question_data']);
+				$q = $this->questions[$i];
+				if($q['question_type']=='select'){
+					$this->printSelect($q['question'],$q['key'],$q['question_data']);
+				}else if($q['question_type']=='radio'){
+					$this->printRadio($q['question'],$q['key'],$q['question_data']);
+				}else if($q['question_type']=='rankedorder'){
+					$this->printRankedOrder($q['question'],$q['key'],$q['question_data']);
+				}else if($q['question_type']=='likert'){
+					$this->printLikert($q['question'],$q['key'],$q['question_data']);
 				}
 				echo "<br>";
 			}
@@ -135,13 +130,63 @@ class Questionnaires
 			//Prints <link rel= ...>
 			echo "<script src=\"lib/jquery-2.1.3.min.js\"></script>";
 			echo "<script src=\"lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
+			echo "<script src=\"lib/validation/validation.js\"></script>";
 		}
 
 		public function printPostamble(){
 			echo "";
 		}
 
-		public function printValidation(){
+		public function printValidation($formid,$rules,$messages){
+			// jQUery.validator.addMethod
+			echo "jQuery.validator.addMethod(\"rankedorder\", function(value, element) {
+					return isRankedOrderValid(value);}, \"Please specify the correct ranked order according to the description above.\");";
+			echo "\$().ready(function(){";
+				echo "\$(\"#$formid\").validate({";
+					// Ignore none
+					echo "ignore:\"\",\n";
+					// Rules
+					echo "rules: {";
+					echo $rules;
+					for($i = 0; $i <=count($this->questions); $i++){
+						$q = $this->questions[$i];
+						$type = $q['question_type'];
+						$key = $q['key'];
+						if($type == 'radio'){
+							echo "$key"."_1 :{required: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'select'){
+							echo "$key"."_1 :{required: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'likert'){
+							echo "$key"."_1 :{required: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'rankedorder'){
+							echo "$key"."_div_key :{rankedorder: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}
+
+					}
+					echo "}";
+					// Messages
+					// Extra
+
+				echo "});";
+
+			echo "});";
+
 
 		}
 
@@ -172,10 +217,11 @@ class Questionnaires
 
 		}
 
-		public function printRankOrder($question,$key,$data){
+		public function printRankedOrder($question,$key,$data){
 
 			echo "<label>$question</label>\n";
 			echo "<div class=\"pure-form-aligned\">\n";
+			echo "<input type=\"hidden\" name=\"$key"."_div_key\" value=\"$key"."_div\">";
 			echo "<div id=\"$key"."_div\">\n";
 			echo "<fieldset>\n";
 

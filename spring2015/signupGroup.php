@@ -93,7 +93,7 @@
                     $firstName= stripslashes($_POST["firstName_$x"]);
                     $lastName = stripslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
-                    $sex = $_POST["sex_$x"];
+                    $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
                     $coursename = addslashes($_POST["coursename_$x"]);
                     $researchtopic = $_POST["researchtopic_$x"];
