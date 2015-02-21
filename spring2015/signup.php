@@ -34,6 +34,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
       font-size:13px;
     }
     </style>
+    <?php echo $questionnaire->printPreamble();?>
 <script type="text/javascript">
 
 	var alertColor = "Red";
@@ -479,6 +480,7 @@ echo "</div>";
     </form>
 </div>
 </body>
+<?php $questionnaire->printPostamble();?>
 </html>
 <?php
 	}

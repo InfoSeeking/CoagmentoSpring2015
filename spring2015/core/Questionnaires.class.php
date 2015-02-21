@@ -1,5 +1,9 @@
 <?php
 require_once('Connection.class.php');
+// Possible validators:
+// Parsley: http://parsleyjs.org
+// jQuery Validation: http://jqueryvalidation.org
+// List: http://blog.revrise.com/web-form-validation-javascript-libraries/
 
 // Documentation for questions
 // Radio:
@@ -38,11 +42,14 @@ class Questionnaires
 
 		public function populateQuestionsFromDatabase($questionnaire_name,$orderBy = NULL){
 			$cxn = Connection::getInstance();
+			$db_selected = self::$db_selected;
+
 			$query = "SELECT * from $db_selected";
+
 			if($orderBy != NULL){
 				$query .= " ORDER BY $orderBy";
 			}
-
+			echo $query;
 			$results = $cxn->commit($query);
 			if (!$results){
 				return false;
@@ -86,7 +93,7 @@ class Questionnaires
 
 
 		public function clearCache(){
-
+			$this->questions = array();
 		}
 
 		public function popQuestion(){
@@ -126,7 +133,12 @@ class Questionnaires
 
 		public function printPreamble(){
 			//Prints <link rel= ...>
-			// Also <script ...> for validationl
+			echo "<script src=\"lib/jquery-2.1.3.min.js\"></script>";
+			echo "<script src=\"lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
+		}
+
+		public function printPostamble(){
+			echo "";
 		}
 
 		public function printValidation(){
