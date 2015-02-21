@@ -37,72 +37,10 @@
 
         return $randomString;
     }
-//    $query = "SELECT sessionday, COUNT(*) as ct from recruits GROUP BY sessionday";
-//
-//    $connection = Connection::getInstance();
-//
-//    $tuesday_limit = 24;
-//    $friday_limit = 24;
-//    $tbd_limit = 24;
-//    $monday_limit = 24;
-//    $wednesday_limit = 24;
-//    $late_tuesday_limit = 24;
-//
-//    $results = $connection->commit($query);
-//    $tuesday_actual = 0;
-//    $friday_actual = 0;
-//    $tbd_actual = 0;
-//    $monday_actual = 0;
-//    $wednesday_actual = 0;
-//    $late_tuesday_actual = 0;
-//    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-//        if(strpos($line['sessionday'],'Friday 11/7 1:00-2:00 PM') !== false){
-//            $tuesday_actual = $line['ct'];
-//        }else if(strpos($line['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
-//            $friday_actual = $line['ct'];
-//        }else if(strpos($line['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
-//            $tbd_actual = $line['ct'];
-//        }else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
-//            $monday_actual = $line['ct'];
-//        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
-//            $late_tuesday_actual = $line['ct'];
-//        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
-//            $wednesday_actual = $line['ct'];
-//        }
-//    }
-//    $left = 1;
-//
-//    if (isset($_POST['sessionday'])){
-//        if(strpos($_POST['sessionday'],'TFriday 11/7 1:00-2:00 PM') !== false){
-//            $left = $tuesday_limit - $tuesday_actual;
-//        }else if(strpos($_POST['sessionday'],'Friday 11/7 3:00-4:00 PM') !== false){
-//            $left = $friday_limit - $friday_actual;
-//        }else if(strpos($_POST['sessionday'],'Thursday 11/6 10:00-11:00 AM') !== false){
-//            $left = $tbd_limit - $tbd_actual;
-//        }
-//        else if(strpos($line['sessionday'],'Monday 11/10 2:00-3:00 PM') !== false){
-//            $left = $monday_limit - $monday_actual;
-//        }else if(strpos($line['sessionday'],'Tuesday 11/11 3:00-4:00 PM') !== false){
-//            $left = $late_tuesday_limit - $late_tuesday_actual;
-//        }else if(strpos($line['sessionday'],'Wednesday 11/12 3:00-4:00 PM') !== false){
-//            $left = $wednesday_limit - $wednesday_actual;
-//        }
-//    }
-//    if (isset($_POST['sessionday']) && $left <= 0){
     if(0){
         echo "<p style='background-color:red;'>We apologize, but the day that you've chosen is already taken.</p>";
         echo "<p>The following are the remaining days with available openings:</p>";
         echo "<ul style=\"list-style-type: none;\">";
-//        if($tbd_limit - $tbd_actual > 0){
-//            echo "<li>Thursday 11/6 10:00-11:00 AM</li>";
-//        }
-//        if($tuesday_limit - $tuesday_actual > 0){
-//        echo "<li>Friday 11/7 1:00-2:00 PM</li>";
-//        }
-//        if($friday_limit - $friday_actual > 0){
-//        echo "<li>Friday 11/7 3:00-4:00 PM</li>";
-//        }
-
         echo "</ul>";
         echo "<p>Please click the button below to return to the sign up form.</p>";
         echo "<input type=\"button\" value=\"Go Back\" onClick=\"javascript:history.go(-1)\" />";
@@ -122,40 +60,12 @@
 			$connection = Connection::getInstance();
 			$base = new Base();
 
-//            $query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
-//            $connection = Connection::getInstance();
-//            $results = $connection->commit($query);
-//
-//            $ct_array = array();
-//
-//            while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-//                if($line['k'] == 1 && $line['v'] < 21){
-//                    $closed = false;
-//                }
-//                else if($line['k'] == 2 && $line['v'] < 14){
-//                    $closed = false;
-//                }
-//                $ct_array[$line['k']] = $line['v'];
-//            }
-//
-//            $section_closed = false;
-//            if($_POST['num_users'] == 2 && $ct_array[$_POST['num_users']]>=14){
-//                $section_closed = true;
-//            }else if ($_POST['num_users'] == 1 && $ct_array[$_POST['num_users']]>=21){
-//                $section_closed = true;
-//            }
-
 
             $closed = false;
             $section_closed = false;
 
             if(!$closed && !$section_closed){
                 $NUM_USERS = 1;
-//                $NUM_USERS = $_POST['num_users'];
-
-
-
-
                 $query = "SELECT MAX(projectID) as max from recruits WHERE userID <1000";
                 $results = $connection->commit($query);
                 $line = mysql_fetch_array($results, MYSQL_ASSOC);
@@ -179,13 +89,11 @@
                     $next_userID = $line['max']+1;
                     $password = $_POST["pwd_$x"];
                     $password_sha1 = sha1($password);
-//                    $password = random_password_generator();
-//                    $password_sha1 = sha1($password);
 
                     $firstName= stripslashes($_POST["firstName_$x"]);
                     $lastName = stripslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
-                    $sex = $_POST["sex_$x"];
+                    $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
                     $coursename = addslashes($_POST["coursename_$x"]);
                     $researchtopic = $_POST["researchtopic_$x"];
@@ -281,21 +189,6 @@
                 }
 
 
-
-
-
-
-
-                //Convert the binary flag native language English to 'yes' or 'no'
-    //				if($english==1)
-    //				{
-    //					$english_text = "Yes";
-    //				}
-    //				else
-    //				{
-    //					$english_text = "No";
-    //				}
-
                 // SEND NOTIFICATION EMAIL TO RESEARCHER
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -356,31 +249,15 @@
 								$message .= "\r\n";
 								$message .= "Your group is also eligible for <strong>an additional $20 cash prize</strong> per person for best performers, measured by amount of activity using the Coagmento tool.<br/><br/>";
 								$message .= "\r\n";
-								$message .= "Note that you will be eligible for compensation only if you complete the study and follow all instructions.<br/><br/>";
-
-                // if($NUM_USERS<2){
-                //     $message .= "You will receive $15 for your participation in this study.<br/><br/>";
-                //     $message .= "\r\n";
-                // }else{
-                //     $message .= "Each of you will receive $20 for your participation in this study.<br/><br/>";
-                //     $message .= "\r\n";
-                // }
-
-                // $message .= "You are eligible for a cash $20 first prize and $10 second prize for best performers.<br/><br/>";
-                // $message .= "\r\n";
-
-
+								$message .= "Note: To receive payment you must complete the study and answer the three online questionnaires.<br/><br/>";
 
 
                 $message .= "\r\n";
                 $message .= "Feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
-								// $message .= "<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
-                $message .= "\r\n";
+								$message .= "\r\n";
                 $message .= "</body></html>";
 
-                //$message = rtrim(chunk_split(base64_encode($message)));
 
-//                mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
                 mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
 								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
 								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
@@ -404,10 +281,6 @@
                     $email1 = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
-//                    $year = $_POST["year_$x"];
-//                    $sex = $_POST["sex_$x"];
-//                    $coursename = $_POST["coursename_$x"];
-//                    $researchtopic = $_POST["researchtopic_$x"];
                     $username =$_POST["username_$x"];
                     $password = $_POST["pwd_$x"];
                     $instructorName = $_POST["instructor_$x"];
@@ -425,20 +298,12 @@
                         echo "<tr><td><br><br></td></tr>";
                         echo "<tr><td><strong>Participant $x</strong></td></tr>\n";
                     }
-
-
                     echo "<tr><td>First name: $firstName</td></tr>\n";
                     echo "<tr><td>Last name: $lastName</td></tr>\n";
                     echo "<tr><td>Email: $email1</td></tr>\n";
                     echo "<tr><td>Username: $username</td></tr>\n";
                     echo "<tr><td>Password: $password</td></tr>\n";
-
-//                    echo "<tr><td>Year in college: $year</td></tr>\n";
-//                    echo "<tr><td>Sex: $sex</td></tr>\n";
                     echo "<tr><td>Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class: $instructorName</td></tr>\n";
-//                    echo "<tr><td>Research topic: $researchtopic</td></tr>\n";
-
-
                 }
 
                 if($NUM_USERS>=2){
@@ -455,23 +320,17 @@
 									$studyDates = "March 23 - May 4";
 								}
 
-
-
                 echo "<tr><td><strong>Study dates: $studyDates</strong></td></tr>\n";
 								echo "<br><br>";
-
                 echo "<tr><td><hr/>You can close this window now or navigate away. We will contact you soon via email.</td></tr>\n";
                 echo "</table>\n";
             }else if($closed){
-
                 echo "<p style='background-color:red;'>Sorry! The user study registration is currently closed.</p>\n";
                 echo "<br/><br/>\n";
                 echo "<hr/>\n";
                 echo "<p>The number of participants required has been reached at this point.</p>\n";
                 echo "<p>If more user participation is required, we will reopen the study registration and send another round of recruitment emails.</p>\n";
                 echo "<hr/>\n";
-
-
             }else if ($section_closed){
                 echo "<br/><br/>\n";
                 echo "<hr/>\n";

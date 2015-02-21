@@ -2,19 +2,19 @@
 require_once('core/Connection.class.php');
 
 //$query = "SELECT COUNT(*) AS num_recruits FROM recruits";
-//$connection = Connection::getInstance();			
+//$connection = Connection::getInstance();
 //$results = $connection->commit($query);
 //$line = mysql_fetch_array($results, MYSQL_ASSOC);
 $num_recruits = 0;
     $recruit_limit =72; // Current Recruitment Limit as of 10/6/2014
-    
+
 $closed=true;
 
-    
+
 //$query = "SELECT a.ct as k, COUNT(a.ct) as v from (SELECT projectID, COUNT(projectID) as ct FROM recruits GROUP BY projectID) a GROUP BY a.ct";
 //$connection = Connection::getInstance();
 //$results = $connection->commit($query);
-//    
+//
 //    $ct_array = array();
 //
 //    while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
@@ -26,9 +26,9 @@ $closed=true;
 //        }
 //        $ct_array[$line['k']] = $line['v'];
 //    }
-    
+
     $closed = false;
-    
+
 if($num_recruits<=$recruit_limit && !$closed)
 {
 
@@ -40,25 +40,25 @@ if($num_recruits<=$recruit_limit && !$closed)
     </title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript">
-	
+
 	var alertColor = "Red";
 	var okColor = "White";
-	
+
 
 	function validateForm(form)
 	{
 		var isValid = 1;
 		form.action = "signup.php";
         return true;
-        
+
 //        var radios = document.getElementsByName('num_users');
 //        if (radios.length >=2){
 //            isValid &= isRadioSelected(form.num_users);
 //        }else{
 //            isValid &= radios[0].checked;
 //        }
-//        
-//        
+//
+//
 //        if (isValid==1)
 //		{
 //			document.getElementById("alertForm").style.display = "none";
@@ -78,7 +78,7 @@ function isRadioSelected(radioButtons, obj)
         {
             return true;
         }
-    
+
     return false;
 }
 
@@ -123,10 +123,10 @@ function isRadioSelected(radioButtons, obj)
 <p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers. You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary. This study has been approved by the Rutgers Institutional Review Board (IRB Study #E13-046), and will be supervised by Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
 				</td>
 			</tr>
-<!-- 
+<!--
 Registration
 -->
-                  
+
                                                                                                                                                                                                                 </table>
                                                                                                                                                                                                                                                                                                     <hr>
                                                                                                                                                                                                                                                                                                     <table>
@@ -134,11 +134,11 @@ Registration
 				<td>
                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                                                                                 <td align="center" colspan=2>To continue with the participation registration, please click on the continue button.</td></tr>
-						
+
                                                                                                                                                                                                                                                                                                                 <tr>
-                                                                                                                                                       
+
                                                                                                                                                                                                                                                                                                                 </table>
-                                                                                                                                                                                                                                                                                                
+
                                                                                                                                                                                                                                                                                                                 <table class="style1" width=90%>
                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                                                                                 <td align="center" colspan=2>
@@ -146,11 +146,11 @@ Registration
                                                                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                                                                                 </tr>
                                                                                                                                                                                                                                                                                                                 <tr>
-                    
+
 					<td align="center" colspan=2>
 						<input type="submit" value="Continue" style="width:100px; height:40px;" />
 					</td>
-				</tr>	
+				</tr>
 				</td>
 			</tr>
 		</table>
@@ -186,9 +186,7 @@ echo "</html>";
                                                                                                                                                                                                                                                                                                                                          echo "<tr><td align=center>Our study is currently closed at this time, and we are currently not accepting new recruits.  We apologize for any inconvenience.</td></tr>\n";
                                                                                                                                                                                                                                                                                                                                          echo "</table></body>\n";
                                                                                                                                                                                                                                                                                                                                          echo "</html>";
-                                                                                                                                                                                                                                                                                                                 
+
                                                                                                                                                                                                                                                                                                                  }
 
 ?>
-
-
