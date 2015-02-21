@@ -1,6 +1,6 @@
 <?php
 	require_once('core/Connection.class.php');
-    
+
     $closed=false;
     if(!$closed){
 ?>
@@ -11,18 +11,19 @@
     </title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript">
-	
+
 	var alertColor = "Red";
 	var okColor = "White";
-	
+
 
 	function validateForm(form)
 	{
+		//hello
 		var isValid = 1;
 		form.action = "signup.php";
 	}
-	
-	
+
+
 	function enableAccept(check)
 	{
 		if (check.checked)
@@ -30,8 +31,8 @@
 		else
 			document.getElementById("acceptReg").disabled = true;
 	}
-	
-	
+
+
 
 </script>
 <style type="text/css">
@@ -61,8 +62,8 @@
 				<li><strong>Approximate # of Participants: </strong>	60</li>
 				<li><strong>Participation limitations: </strong>	Normal or corrected to normal vision and hearing, normal motor control, and at least 18 years old</li>
 				</ul>
-				
-				
+
+
 				<p><strong>General:</strong> You are being asked to participate in a research project.</p>
 				<p><strong>Study Description: </strong> We are conducting a study to understand users' search behavior in the information seeking process. We wish to obtain feedback on the functions and usefulness of our interactive search system, and on your experience while performing search tasks.</p>
 <p><strong>Procedures:</strong> If you decide to be in this study, you will attend a session in a lab at the Alexander Library during which you will search for sources for your 01:355:201 Research in the Disciplines assignment using a custom Firefox plugin. Instruction will be given in using the plugin. </p>
@@ -79,7 +80,7 @@
 					<br>Office of Research and Sponsored Programs
 					<br>3 Rutgers Plaza
 					<br>New Brunswick, NJ 08901-8559
-					<br>Tel: 848-932-0150 
+					<br>Tel: 848-932-0150
 					<br>Email: <a href="mailto:humansubjects@orsp.rutgers.edu?subject=IRB Protocol #E13-046 Study inquiry">humansubjects@orsp.rutgers.edu</a>
 					<br>
 					<br>
@@ -87,18 +88,18 @@
 
 			</td>
 			</tr>
-	
+
 			<tr>
 				<td>
 					<p><input type="checkbox" name="readConsent" id="readConsent" onclick="enableAccept(this)" /><strong> I HAVE READ AND UNDERSTOOD THE TERMS AND CONDITIONS AND LIKE TO PROVIDE MY CONSENT TO PARTICIPATE IN THIS STUDY. </strong></p>
 				</td
-			</tr>	
+			</tr>
 			<tr>
 					<td align="center" colspan=2>
 						<input type="submit" id="acceptReg" value="Accept" disabled=true style="width:100px; height:40px;"/>
 						<input type="hidden" id="consentRead" name="consentRead"/>
 					</td>
-					
+
 			</tr>
 		</table>
     </form>
@@ -119,5 +120,3 @@
         echo "</html>";
     }
 ?>
-
-
