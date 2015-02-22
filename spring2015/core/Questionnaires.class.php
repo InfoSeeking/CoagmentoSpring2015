@@ -143,7 +143,7 @@ class Questionnaires
 		public function printValidation($formid,$rules,$messages){
 			// jQUery.validator.addMethod
 			echo "jQuery.validator.addMethod(\"rankedorder\", function(value, element) {
-					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify the correct ranked order according to the description above.</span>\");";
+					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify a ranked order according to the description above.</span>\");";
 			echo "\$().ready(function(){";
 				echo "\$(\"#$formid\").validate({";
 					// Ignore none
@@ -192,19 +192,19 @@ class Questionnaires
 						$type = $q['question_type'];
 						$key = $q['key'];
 						if($type == 'radio'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'select'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'likert'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
