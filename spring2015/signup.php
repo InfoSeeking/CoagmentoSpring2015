@@ -20,9 +20,6 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 <html>
 <head>
   <link rel="stylesheet" href="study_styles/custom/text.css">
-  <link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
-  <link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
-  <link rel="stylesheet" href="study_styles/pure-release-0.5.0/grids-min.css">
   <!-- <link rel="stylesheet" href="study_styles/pure-release-0.5.0/pure-min.css"> -->
 	<title>
     	Collaborative Search Study: Registration for Participation

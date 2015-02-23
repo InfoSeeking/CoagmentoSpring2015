@@ -131,6 +131,9 @@ class Questionnaires
 
 		public function printPreamble(){
 			//Prints <link rel= ...>
+			echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/buttons.css\">";
+			echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/forms.css\">";
+		  echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/grids-min.css\">";
 			echo "<script src=\"lib/jquery-2.1.3.min.js\"></script>";
 			echo "<script src=\"lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
 			echo "<script src=\"lib/validation/validation.js\"></script>";
