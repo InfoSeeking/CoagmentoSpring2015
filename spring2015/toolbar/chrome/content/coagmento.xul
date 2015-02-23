@@ -20,14 +20,14 @@
 
                 <toolbarseparator id="toolbarseparatorConnectDisconnect" hidden="true"/>
 
-                <toolbarbutton id="coagmentoInstructionsButton"
-                tooltiptext="View system instructions"
-                label="Help"
+                <toolbarbutton id="coagmentoWorkspaceButton"
+                tooltiptext="Go to your Coagmento Workspace"
+                label="Workspace"
                 disabled="true"
                 hidden="true"
-                oncommand="instructions()" />
+                oncommand="workspace()" />
 
-                <toolbarseparator id="toolbarseparatorInstructions" hidden="true"/>
+                <toolbarseparator id="toolbarseparatorWorkspace" hidden="true"/>
 
 				<toolbarbutton id="coagmentoSnipButton"
 					tooltiptext="Snip highlighted text from the current page"
@@ -73,6 +73,15 @@
                      hidden="true"
            oncommand="openContactWindow()" />
           <toolbarseparator id="toolbarseparatorContact" hidden="true"/>
+
+          <toolbarbutton id="coagmentoInstructionsButton"
+          tooltiptext="View system instructions"
+          label="Help"
+          disabled="true"
+          hidden="true"
+          oncommand="instructions()" />
+
+          <toolbarseparator id="toolbarseparatorInstructions" hidden="true"/>
  				<description class="blue" id="msgs"/>
         </toolbar>
     </toolbox>

@@ -5,7 +5,11 @@
 
 // Toolbar related functions
 // Add a listener to the current window.
-window.addEventListener("load", function() { coagmentoToolbar.init();toggleSidebar('viewSidebar',false);}, false);
+window.addEventListener("load", function() {
+  coagmentoToolbar.init();
+  toggleSidebar('viewSidebar',true);
+  toggleSidebar('viewSidebar',false);
+  }, false);
 //window.addEventListener("load", function() { coagmentoToolbar.init(); }, false);
 
 var action = "";
@@ -674,6 +678,10 @@ function instructions(){
     var url = globalUrl+"services/getInstructions.php";
     loadURL(url);
 }
+function workspace(){
+  var url = globalUrl+"workspace";
+  loadURL(url);
+}
 
 function cleanAlert()
 {
@@ -761,6 +769,7 @@ function disableButtons(value)
 	document.getElementById('coagmentoActiveTaskButton').disabled = value;
   document.getElementById('coagmentoInstructionsButton').disabled = value;
   document.getElementById('coagmentoContactButton').disabled = value;
+  document.getElementById('coagmentoWorkspaceButton').disabled = value;
 
   //FIX: Always enable home button
   document.getElementById('coagmentoConnectDisconnectButton').disabled = false;
@@ -773,7 +782,8 @@ function hideButtons(value)
 {
     document.getElementById('coagmentoSnipButton').hidden = value;
     document.getElementById('coagmentoBookmarkButton').hidden = value;
-
+    document.getElementById('coagmentoWorkspaceButton').hidden = value;
+    document.getElementById('toolbarseparatorWorkspace').hidden = value;
     document.getElementById('coagmentoEditorButton').hidden = value;
     document.getElementById('coagmentoActiveTaskButton').hidden = value;
     document.getElementById('coagmentoInstructionsButton').hidden = value;

@@ -53,8 +53,19 @@ toolbarbutton{
   -moz-box-orient: horizontal;
 }
 
+#coagmentoWorkspaceButton {
+    list-style-image: url("chrome://coagmento/skin/cutemenu.png");
+  -moz-image-region: rect(32px 144px 48px 128px);
+  -moz-box-orient: horizontal;
+}
+
 .blue {
     color:blue;
     font-weight:bold;
     font-size:140%;
+}
+
+#sidebar{
+  min-width: 375px !important;
+  max-width: 375px !important;
 }
