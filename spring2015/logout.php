@@ -12,6 +12,8 @@
 		$base = Base::getInstance();
 		$base->setAllowCommunication(0);
 		$base->setAllowBrowsing(0);
+		// Currently the ONLY way to make this work with our server's version of PHP
+		unset($GLOBALS[_SESSION]['CSpace_userID']);
 		session_destroy();
 		//Save action
 
