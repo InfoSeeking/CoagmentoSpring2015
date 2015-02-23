@@ -63,6 +63,7 @@ class Bookmark extends Base {
     $cxn = Connection::getInstance();
     $query = sprintf("DELETE FROM bookmarks WHERE bookmarkID=%d", $bookmarkID);
     $cxn->commit($query);
+    Tags::deleteForBookmark($bookmarkID);
   }
 
 

@@ -133,6 +133,9 @@ ul{
   font-size: 12px;
   margin-left: 5px;
 }
+#feed li.search-hidden{
+  display: none;
+}
 #feed li.item-bookmark{
   background: #FFFFD4;
 }
@@ -148,6 +151,9 @@ ul{
 #feed li.item-source .related-section{
   padding: 10px;
   display: none;
+}
+#feed li.item-source .related-section .bookmarks{
+  padding-bottom: 20px;
 }
 #feed li.item-bookmark .tag-input{
   width: 300px;
@@ -183,4 +189,10 @@ table.contributions td{
 }
 table.contributions tr:nth-child(odd) td{
   background: #FFF;
+}
+#searchbar_input{
+  font-size: 16px;
+  padding: 2px 5px;
+  width: 100%;
+  margin-bottom: 10px;
 }

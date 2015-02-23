@@ -37,6 +37,9 @@ function gen_url($param){
         </nav>
       </header>
       <div class="left_col">
+        <div class="searchbar">
+          <input type="text" placeholder="Search" id="searchbar_input" />
+        </div>
         <?php
         if($PAGE == "BOOKMARKS"):
         ?>
@@ -73,7 +76,7 @@ function gen_url($param){
       <br class="clear" />
     </div>
     <script type="text/html" id="bookmark_template">
-      <li class="item-<%= label.toLowerCase() %>">
+      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <div>
             <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
@@ -123,8 +126,7 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="page_template">
-
-      <li class="item-<%= label.toLowerCase() %>">
+      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
           <span><a href="<%= url %>"><%= pretty_url %></a></span>
@@ -139,7 +141,7 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="snippet_template">
-      <li class="item-<%= label.toLowerCase() %>">
+      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
           <a href="<%= url %>"><%= title %></a>
@@ -155,7 +157,7 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="query_template">
-      <li class="item-<%= label.toLowerCase() %>">
+      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
           <a href="<%= url %>"><%= query %></a>
@@ -170,7 +172,7 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="source_template">
-      <li class="item-<%= label.toLowerCase() %>">
+      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
           <span> <%= source %></span>
@@ -192,6 +194,7 @@ function gen_url($param){
     <script src="assets/js/simple_template.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/CSPACE.js"></script>
+    <script src="assets/js/lunr.js"></script>
     <script type="text/javascript" src="../lib/select2/select2.full.min.js"></script>
 
     <script>
@@ -203,6 +206,7 @@ function gen_url($param){
       $(".tag-input").select2({
     		tags: true
     	})
+
     }());
     </script>
   </body>
