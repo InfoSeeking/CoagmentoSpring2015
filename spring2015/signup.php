@@ -154,7 +154,7 @@ Registration
 					</div>
 
 
-<form id="spr2015_regform" class="pure-form" method="post" onsubmit="signupGroup.php">
+<form id="spr2015_regform" class="pure-form" method="post" action="signupGroup.php">
 <?php
 echo "<input type=\"hidden\" name=\"num_users\" value=\"$NUM_USERS\">";
 for($x=1;$x<=$NUM_USERS;$x++){

@@ -122,7 +122,10 @@ class Questionnaires
 				}else if($q['question_type']=='likert'){
 					$this->printLikert($q['question'],$q['key'],$q['question_data']);
 				}
-				echo "<br>";
+				if($q['question_type']!='select'){
+					echo "<br>";
+				}
+
 			}
 		}
 
@@ -140,7 +143,7 @@ class Questionnaires
 		public function printValidation($formid,$rules,$messages){
 			// jQUery.validator.addMethod
 			echo "jQuery.validator.addMethod(\"rankedorder\", function(value, element) {
-					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify the correct ranked order according to the description above.</span>\");";
+					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify a ranked order according to the description above.</span>\");";
 			echo "\$().ready(function(){";
 				echo "\$(\"#$formid\").validate({";
 					// Ignore none
@@ -189,19 +192,19 @@ class Questionnaires
 						$type = $q['question_type'];
 						$key = $q['key'];
 						if($type == 'radio'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'select'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'likert'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select the correct option.</span>\"}";
+							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
@@ -225,6 +228,30 @@ class Questionnaires
 
 				echo "});";
 
+				echo "var doneyes = $(\"#doneproj_1-Yes\");
+				var doneno = $(\"#doneproj_1-No\");
+				var initial = doneyes.is(\":checked\");
+				doneyes.click(function(){
+					document.getElementById('experience_satisfaction_1_div').style.display=\"block\";
+					document.getElementById('outcome_satisfaction_1_div').style.display=\"block\";
+					document.getElementById('experience_satisfaction_1').disabled=false;
+					document.getElementById('outcome_satisfaction_1').disabled=false;
+				});
+				doneno.click(function(){
+					document.getElementById('experience_satisfaction_1_div').style.display=\"none\";
+					document.getElementById('outcome_satisfaction_1_div').style.display=\"none\";
+					document.getElementById('experience_satisfaction_1').disabled=true;
+					document.getElementById('outcome_satisfaction_1').disabled=true;
+				});
+				document.getElementById('experience_satisfaction_1_div').style.display=\"none\";
+				document.getElementById('experience_satisfaction_1_div').style.paddingLeft=\"60px\";
+				document.getElementById('experience_satisfaction_1_div').style.backgroundColor=\"#F2F2F2\";
+				document.getElementById('outcome_satisfaction_1_div').style.display=\"none\";
+				document.getElementById('outcome_satisfaction_1_div').style.paddingLeft=\"60px\";
+				document.getElementById('outcome_satisfaction_1_div').style.backgroundColor=\"#F2F2F2\";
+				// style=\"display: none; padding-left:60px; background-color:#F2F2F2\"
+				";
+
 			echo "});";
 
 
@@ -237,7 +264,7 @@ class Questionnaires
 			echo "<div id=\"$key"."_div_1\" class=\"container\">";
 			echo "<label for=\"$key"."_1\" class=\"pure-radio\">";
 			foreach($data->{'options'} as $optionkey=>$optionvalue){
-				echo "<input id=\"$key"."_1\" type=\"radio\" name=\"$key"."_1\" value=\"$optionvalue\"> $optionkey ";
+				echo "<input id=\"$key"."_1-$optionvalue\" type=\"radio\" name=\"$key"."_1\" value=\"$optionvalue\"> $optionkey ";
 			}
 			echo "</label>";
 			echo "</div>";
@@ -246,6 +273,7 @@ class Questionnaires
 
 		public function printSelect($question,$key,$data){
 			echo "<div class=\"pure-control-group\">\n";
+			echo "<div id=\"$key"."_1_div\">";
 			echo "<label name=\"$key"."_1\">$question</label>\n";
 			echo "<select name=\"$key"."_1\" id=\"$key"."_1\" required>\n";
 			echo "<option disabled selected>--Select one--</option>\n";
@@ -253,6 +281,8 @@ class Questionnaires
 				echo "<option>$optionvalue</option>\n";
 			}
 			echo "</select>\n";
+			echo "<br>\n";
+			echo "</div>\n";
 			echo "</div>\n\n";
 
 		}

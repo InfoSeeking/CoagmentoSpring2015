@@ -124,7 +124,6 @@ function isRankedOrderValid(divid) {
     var count = 0;
     for (i = inputs.length - 1; i > -1; i--) {
         if (inputs[i].value != "") {
-            alert('value'+inputs[i]+""+inputs.length)
             count += 1;
         }
     }
