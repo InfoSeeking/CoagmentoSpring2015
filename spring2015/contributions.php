@@ -1,5 +1,4 @@
 <table class="contributions">
-  <thead><tr><th>User</th><th>Saved Bookmarks</th><th>Saved Snippets</th><th>Saved Searches</th></thead>
 <?php
 /*
 Small script to echo out summary of user contributions
@@ -28,8 +27,34 @@ while($row = mysql_fetch_assoc($results)){
   $group[$row["username"]]["searches"] = $row["count"];
 }
 
+//print top row
+printf("<tr><th>Stats</th>");
 foreach($group as $user => $data){
-  printf("<tr><td>%s</td><td>%d</td><td>%d</td><td>%d</td>", $user, $data["bookmarks"], $data["snippets"], $data["searches"]);
+  printf("<td>%s</td>", $user);
 }
+printf("</tr>");
+
+//print bookmarks
+printf("<tr><th>Bookmarks</th>");
+foreach($group as $user => $data){
+  printf("<td>%s</td>", $data["bookmarks"]);
+}
+printf("</tr>");
+
+//snippets
+//print bookmarks
+printf("<tr><th>Snippets</th>");
+foreach($group as $user => $data){
+  printf("<td>%s</td>", $data["snippets"]);
+}
+printf("</tr>");
+
+//searches
+//print bookmarks
+printf("<tr><th>Searches</th>");
+foreach($group as $user => $data){
+  printf("<td>%s</td>", $data["searches"]);
+}
+printf("</tr>");
 ?>
 </table>

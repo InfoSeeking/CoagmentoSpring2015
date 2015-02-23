@@ -18,13 +18,20 @@ function gen_url($param){
 
   </head>
   <body class="pg_<?php echo $PAGE ?>">
-    <div id="container">
+    <div id="header_container">
       <header class="page_header">
-        <hgroup>
-          <h1>Coagmento Workspace</h1>
+
+        <hgroup class='left-side'>
+          <img src="assets/img/clogo.png" alt="Coagmento Logo" />
           <h2>Welcome <?php echo $username ?></h2>
         </hgroup>
-        <nav>
+        <div class='left-side'>
+          <?php require_once("../contributions.php"); ?>
+        </div>
+        <div class='left-side'>
+          Questionaires:
+        </div>
+        <nav class='clear'>
           <ul>
             <li><a class="<?php if($PAGE == 'ALL') echo 'current ' ?>" href="?page=ALL">All</a></li>
             <!--<li><a class="<?php if($PAGE == 'PAGE_VISITS') echo 'current ' ?>" href="?page=PAGE_VISITS">Page Visits</a></li>-->
@@ -32,10 +39,13 @@ function gen_url($param){
             <li><a class="<?php if($PAGE == 'SNIPPETS') echo 'current ' ?>" href="?page=SNIPPETS">Snippets</a></li>
             <li><a class="<?php if($PAGE == 'SEARCHES') echo 'current ' ?>" href="?page=SEARCHES">Search History</a></li>
             <li><a class="<?php if($PAGE == 'SOURCES') echo 'current ' ?>" href="?page=SOURCES">Sources</a></li>
-            <li><a class="<?php if($PAGE == 'CONTRIBUTIONS') echo 'current ' ?>" href="?page=CONTRIBUTIONS">User Contributions</a></li>
+            <!-- <li><a class="<?php if($PAGE == 'CONTRIBUTIONS') echo 'current ' ?>" href="?page=CONTRIBUTIONS">User Contributions</a></li> -->
           </ul>
         </nav>
       </header>
+    </div>
+
+    <div id="container">
       <div class="left_col">
         <div class="searchbar">
           <input type="text" placeholder="Search" id="searchbar_input" />
