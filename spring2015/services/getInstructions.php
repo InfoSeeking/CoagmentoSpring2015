@@ -265,7 +265,7 @@ while you research. -->
 		<strong><h3>Toolbar</h3>
 		</strong>
 		<!-- </center> -->
-	</span><img src="images/toolbar_demo.png" width="100%" height="auto"//>
+	</span><center><img src="images/toolbar_demo.png" width="80%" height="auto"/></center>
 <!-- The Toolbar consists of five buttons:
 <ol>
 <li><span id="Home"><strong>Connect/Disconnect</strong></span> - Logs in and out of Coagmento</li>
@@ -289,7 +289,7 @@ while you research. -->
 			</strong>
 			<!-- </center> -->
 			</span>
-			<img src="images/sidebar_demo.png" width="100%" height="auto"/>
+			<center><img src="images/sidebar_demo.png" width="80%" height="auto"/></center>
 <!-- The Sidebar consists of:<br/> -->
 <!-- <ol> -->
 <?php
