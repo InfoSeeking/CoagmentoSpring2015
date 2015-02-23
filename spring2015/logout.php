@@ -13,6 +13,7 @@
 		$base->setAllowCommunication(0);
 		$base->setAllowBrowsing(0);
 		session_destroy();
+		unset($_SESSION['CSpace_userID']);
 		//Save action
 
 		Util::getInstance()->saveAction('logout',0,$base);

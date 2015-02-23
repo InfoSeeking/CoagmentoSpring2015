@@ -106,8 +106,16 @@ var CSPACE = (function(){
           ed["lunr_id"] = lunr_id;
           var new_el = $(tmpl("source_template", ed));
           root.append(new_el);
-          displayFeed(d["bookmarks"], $(new_el).find(".bookmarks"));
-          displayFeed(d["snippets"], $(new_el).find(".snippets"));
+          if(d["bookmarks"].length == 0){
+            new_el.find(".bookmarks_heading").hide();
+          } else {
+            displayFeed(d["bookmarks"], $(new_el).find(".bookmarks"));
+          }
+          if(d["snippets"].length == 0){
+            new_el.find(".snippets_heading").hide();
+          } else {
+            displayFeed(d["snippets"], $(new_el).find(".snippets"));
+          }
           lunr_index.add({
             id: lunr_id,
             title: ed["source"]

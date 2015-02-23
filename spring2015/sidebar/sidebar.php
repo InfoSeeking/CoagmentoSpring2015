@@ -85,7 +85,7 @@
         $params["height"]= "180px";
         //$params["startwithsound"] = TRUE;
         $params["max_text_len"] = 5000;
-        $params["timeout"] = 10000;
+        $params["timeout"] = 1800000; // this is in MILLISECONDS, not SECONDS
         //$params["date_format"] = "m/d/Y";
         //$params["time_format"] = "H:i";
         //$params["short_url_width"] = 20;
@@ -108,7 +108,7 @@
 				$params["btn_sh_smileys"] = false;
 
 				//To refresh cache, set this flag to true, then in chat box type /rehash
-      //  $params["isadmin"] = TRUE;
+        //$params["isadmin"] = TRUE;
         $chat = new phpFreeChat($params);
 	}
 

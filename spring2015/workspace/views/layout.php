@@ -17,7 +17,7 @@ function gen_url($param){
     <link href="../lib/select2/select2.css" rel="stylesheet" type="text/css" />
 
   </head>
-  <body>
+  <body class="pg_<?php echo $PAGE ?>">
     <div id="container">
       <header class="page_header">
         <hgroup>
@@ -26,13 +26,13 @@ function gen_url($param){
         </hgroup>
         <nav>
           <ul>
-            <li><a href="?page=ALL">All</a></li>
-            <!--<li><a href="?page=PAGE_VISITS">Page Visits</a></li>-->
-            <li><a href="?page=BOOKMARKS">Bookmarks</a></li>
-            <li><a href="?page=SNIPPETS">Snippets</a></li>
-            <li><a href="?page=SEARCHES">Search History</a></li>
-            <li><a href="?page=SOURCES">Sources</a></li>
-            <li><a href="?page=CONTRIBUTIONS">User Contributions</a></li>
+            <li><a class="<?php if($PAGE == 'ALL') echo 'current ' ?>" href="?page=ALL">All</a></li>
+            <!--<li><a class="<?php if($PAGE == 'PAGE_VISITS') echo 'current ' ?>" href="?page=PAGE_VISITS">Page Visits</a></li>-->
+            <li><a class="<?php if($PAGE == 'BOOKMARKS') echo 'current ' ?>" href="?page=BOOKMARKS">Bookmarks</a></li>
+            <li><a class="<?php if($PAGE == 'SNIPPETS') echo 'current ' ?>" href="?page=SNIPPETS">Snippets</a></li>
+            <li><a class="<?php if($PAGE == 'SEARCHES') echo 'current ' ?>" href="?page=SEARCHES">Search History</a></li>
+            <li><a class="<?php if($PAGE == 'SOURCES') echo 'current ' ?>" href="?page=SOURCES">Sources</a></li>
+            <li><a class="<?php if($PAGE == 'CONTRIBUTIONS') echo 'current ' ?>" href="?page=CONTRIBUTIONS">User Contributions</a></li>
           </ul>
         </nav>
       </header>
@@ -191,10 +191,10 @@ function gen_url($param){
           <a class="related">See related bookmarks and snippets</a>
         </div>
         <div class="related-section">
-          <h4>Related Bookmarks</h4>
+          <h4 class="bookmarks_heading">Related Bookmarks</h4>
           <div class="bookmarks">
           </div>
-          <h4>Related Snippets</h4>
+          <h4 class="snippets_heading">Related Snippets</h4>
           <div class="snippets">
           </div>
         </div>
