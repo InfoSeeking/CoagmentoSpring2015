@@ -2,14 +2,15 @@ var CSPACE = (function(){
   var that = {};
   var all_tags = [];
   var lunr_index;
-
-  that.init = function(PAGE,feed_data, at){
+  var userID;
+  that.init = function(PAGE,feed_data, at, uid){
     lunr_index = lunr(function () {
       this.field('title', {boost: 10})
       this.field('body', {boost: 5})
       this.field('url')
       this.ref('id')
     });
+    userID = uid;
     window.lunr_index = lunr_index;
     for(var i = 0; i < at.length; i++){
       all_tags.push(at[i].name);
@@ -39,7 +40,9 @@ var CSPACE = (function(){
           ed["label"] = "Bookmark";
           ed["tags"] = ed["tagList"] ? ed["tagList"].split(",") : [];
           ed["all_tags"] = all_tags;
+          ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
+
           //make searchable
           lunr_index.add({
             id: lunr_id,
@@ -55,6 +58,7 @@ var CSPACE = (function(){
           ed["pretty_url"] = url.length > 150 ? url.substring(0,150) + "..." : url;
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["label"] = "Page";
+          ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
           root.append(tmpl("page_template", ed));
           lunr_index.add({
@@ -68,6 +72,7 @@ var CSPACE = (function(){
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["shortened_snippet"] = ed["snippet"].length > 50 ? ed["snippet"].substring(0,50) + "..." : ed["snippet"];
           ed["label"] = "Snippet";
+          ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
           root.append(tmpl("snippet_template", ed));
           lunr_index.add({
@@ -85,6 +90,7 @@ var CSPACE = (function(){
           var ed = $.extend({}, d); //extended data
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["label"] = "Search";
+          ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
           root.append(tmpl("query_template", ed));
           lunr_index.add({
@@ -96,6 +102,7 @@ var CSPACE = (function(){
         case "source":
           var ed = $.extend({}, d); //extended data
           ed["label"] = "Source";
+          ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
           var new_el = $(tmpl("source_template", ed));
           root.append(new_el);

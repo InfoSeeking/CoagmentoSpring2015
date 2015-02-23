@@ -24,6 +24,7 @@ if(!in_array($PAGE, $valid_pages)){
 }
 
 $username = $base->getUserName();
+$userID = $base->getUserID();
 $feed_data = array(); //sorted by date
 $tag_data = array(); //only for bookmarks page
 

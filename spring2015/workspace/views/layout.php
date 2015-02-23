@@ -100,11 +100,14 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+          <% if(editable){ %>
           <div class="sub-right">
             <a href="#" class="delete" data-id="<%= bookmarkID %>">Delete</a>
             <a href="#" class="edit" data-state="closed">Edit</a>
           </div>
+          <% } %>
         </div>
+        <% if(editable){ %>
         <div class="more">
           <form>
             <p class="feedback"></p>
@@ -123,6 +126,7 @@ function gen_url($param){
             <a href="#" class="save" data-id="<%= bookmarkID %>">Save Changes</a>
           </form>
         </div>
+        <% } %>
       </li>
     </script>
     <script type="text/html" id="page_template">
@@ -135,7 +139,9 @@ function gen_url($param){
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
+            <% if(editable){ %>
             <a class="delete" data-id="<%= pageID %>">Delete</a>
+            <% } %>
           </div>
         </div>
       </li>
@@ -151,7 +157,9 @@ function gen_url($param){
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
+            <% if(editable){ %>
             <a class="delete" data-id="<%= snippetID %>">Delete</a>
+            <% } %>
           </div>
         </div>
       </li>
@@ -166,7 +174,9 @@ function gen_url($param){
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
+            <% if(editable){ %>
             <a class="delete" data-id="<%= queryID %>">Delete</a>
+            <% } %>
           </div>
         </div>
       </li>
@@ -200,7 +210,7 @@ function gen_url($param){
     <script>
     (function(){
       <?php
-      printf("CSPACE.init('%s',%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data));
+      printf("CSPACE.init('%s',%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID);
       ?>
 
       $(".tag-input").select2({
