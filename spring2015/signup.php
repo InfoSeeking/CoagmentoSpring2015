@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('core/Connection.class.php');
 require_once('core/Questionnaires.class.php');
 
@@ -14,7 +15,9 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 	{
         $NUM_USERS = 1;
         $questionnaire = Questionnaires::getInstance();
+				$questionnaire->clearCache();
         $questionnaire->populateQuestionsFromDatabase("spring2015","questionID ASC");
+
 
 	?>
 <html>

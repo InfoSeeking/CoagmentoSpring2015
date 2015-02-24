@@ -1,12 +1,12 @@
 <?php
+	session_start();
 	require_once('core/Connection.class.php');
 	require_once('core/Base.class.php');
+	require_once('core/Questionnaires.class.php');
 ?>
 <html>
 <head>
 	<link rel="stylesheet" href="study_styles/custom/text.css">
-	<link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
-	<link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
 <title>Interactive Search Study: Sign Up</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <style type="text/css">
@@ -19,6 +19,9 @@
 
 <body class="style1">
 <?php
+		$questionnaire = Questionnaires::getInstance();
+		// print_r($questionnaire->getQuestions());
+		// Check if questionnaire is compelte.
 
     function random_password_generator($length = 10) {
         $char_lower = 'abcdefghijklmnopqrstuvwxyz';
@@ -71,121 +74,51 @@
                 $line = mysql_fetch_array($results, MYSQL_ASSOC);
 
                 $projectID = $line['max']+1;
-                $sessionday = $_POST['sessionday'];
+                // $sessionday = $_POST['sessionday'];
 
                 for($x=1; $x<=$NUM_USERS; $x++){
                     //ADDING PARTICIPANT REGISTRATION DETAILS
-
                     $instructorName = $_POST["instructor_$x"];
                     $query = "SELECT instructorID from instructors WHERE instructorName='$instructorName'";
                     $results = $connection->commit($query);
                     $line = mysql_fetch_array($results, MYSQL_ASSOC);
-
                     $instructorID = $line['instructorID'];
-
                     $query = "SELECT MAX(userID) as max FROM recruits WHERE userID <1000";
                     $results = $connection->commit($query);
                     $line = mysql_fetch_array($results,MYSQL_ASSOC);
                     $next_userID = $line['max']+1;
                     $password = $_POST["pwd_$x"];
                     $password_sha1 = sha1($password);
-
                     $firstName= stripslashes($_POST["firstName_$x"]);
                     $lastName = stripslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
                     $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
-                    $coursename = addslashes($_POST["coursename_$x"]);
-                    $researchtopic = $_POST["researchtopic_$x"];
+                    // $coursename = addslashes($_POST["coursename_$x"]);
+                    // $researchtopic = $_POST["researchtopic_$x"];
                     $username =$_POST["username_$x"];
-
-
                     $time = $base->getTime();
                     $date = $base->getDate();
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
 
                     $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '', '', '','0','$next_userID','$instructorID')";
-
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
                     $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','0','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
                     $results = $connection->commit($query);
-
 										$userID = $next_userID;
 
-										$keys = array("userID",
-										"doneproj",
-										"gender",
-										"year",
-										"topic_knowledge",
-										"motivation",
-										"pc",
-										"search_experience",
-										"lk_group_assign_productive",
-										"lk_group_ideas",
-										"lk_group_fun",
-										"lk_alone_efficient",
-										"lk_teacher_efficient",
-										"lk_close_work_learning",
-										"lk_group_work_like",
-										"lk_help_from_members",
-										"lk_one_does_most",
-										"lk_happy_as_leader",
-										"lk_group_fits_habits",
-										"lk_group_discuss_waste",
-										"strat_divide_work",
-										"strat_schedule_meetings",
-										"strat_assign_tasks",
-										"strat_establish_goals",
-										"strat_set_deadlines",
-										"strat_use_collab_tools",
-										"strat_meet_in_person",
-										"strat_meet_virtual",
-										"strat_comm_text",
-										"strat_track_progress",
-										"obs_sched_conflict",
-										"obs_lack_time",
-										"obs_comm_group",
-										"obs_consensus",
-										"obs_coord",
-										"obs_meet_deadlines",
-										"obs_unequal_participation",
-										"obs_lack_leadership",
-										"obs_procrastination",
-										"obs_lack_motivation");
-
-
-
-										$keystr = "(userID,";
-										$valuestr = "($userID,";
-										foreach($keys as $k){
-												if(isset($_POST["$k"."_$x"])){
-													$v = $_POST["$k"."_$x"];
-													$keystr .= "$k,";
-													$valuestr .= "'$v',";
-												}
+										foreach($_POST as $k=>$v){
+											// echo "KEY: $k, VALUE: $v";
+											if(strpos($k,"_$x")==strlen($k)-strlen("_$x")){
+												$keytoadd = substr($k,0,-strlen("_$x"));
+												// echo "ADDING ANSWER:".(string)$keytoadd;
+												$questionnaire->addAnswer($keytoadd,$v);
+											}
 										}
-
-										// "outcome_satisfaction"
-										// "experience_satisfaction"
-										if(isset($_POST["doneproj"."_$x"]) && $_POST["doneproj"."_$x"] == "Yes"){
-											$v = $_POST["outcome_satisfaction"."_$x"];
-											$keystr .= "outcome_satisfaction,";
-											$valuestr .= "'$v',";
-
-											$v = $_POST["experience_satisfaction"."_$x"];
-											$keystr .= "experience_satisfaction,";
-											$valuestr .= "'$v',";
-										}
-										$keystr = rtrim($keystr,",");
-										$valuestr = rtrim($valuestr,",");
-										$keystr .= ")";
-										$valuestr .= ")";
-										$query = "INSERT INTO questionnaire_recruitment $keystr VALUES $valuestr";
-										$results = $connection->commit($query);
-
+										$questionnaire->commitAnswersToDatabase(array("$userID"),array('userID'),'questionnaire_recruitment');
                 }
 
 
@@ -258,16 +191,16 @@
                 $message .= "</body></html>";
 
 
-                mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
-								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
+                // mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
+								// mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+								// mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
                     $message = $firstName." ".$lastName.",<br/><br/>".$message;
                     $message .= "\r\n";
-                    mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
+                    // mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
                 }
 
 

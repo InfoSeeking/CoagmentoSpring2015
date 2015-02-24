@@ -14,20 +14,30 @@ require_once('Connection.class.php');
 // Rank order: variable number for rank order (current=3)
 // Likert: variable number for Likert (current=5)
 // What to do about registration information? We arguably want to put that in another table
-
+// Account for different types of input format (addslashes, etc.)
 
 class Questionnaires
 {
 	private static $instance;
-	private static $db_selected = "questionnaire_questions";
-	private $link;
-	private $lastID;
-	private static $questions;
+	private $db_selected = "questionnaire_questions";
+	private $questions;
+	private $answers;
 
 	// Cache of questions
 
 	public function __construct() {
 		$this->questions = array();
+		if(isset($_SESSION['Questionnaires_questions'])){
+			$this->questions = $_SESSION['Questionnaires_questions'];
+			// echo "SET!".(string)isset($_SESSION['Questionnaires_questions']);
+		}else{
+			// echo "NOT SET!".(string)isset($_SESSION['Questionnaires_questions']);
+		}
+		$_SESSION['Questionnaires_questions'] = $this->questions;
+
+
+
+		$this->answers = array();
 	}
 
 	public static function getInstance()
@@ -39,10 +49,13 @@ class Questionnaires
         return self::$instance;
     }
 
+		public function getQuestions(){
+			return $this->questions;
+		}
 
 		public function populateQuestionsFromDatabase($questionnaire_name,$orderBy = NULL){
 			$cxn = Connection::getInstance();
-			$db_selected = self::$db_selected;
+			$db_selected = $this->db_selected;
 
 			$query = "SELECT * from $db_selected";
 
@@ -60,44 +73,165 @@ class Questionnaires
 					$type = $line['question_type'];
 					$data = json_decode($line['question_data']);
 					$key = $line['key'];
-					array_push($this->questions,array(
-						'questionID'=>$questionID,
-						'question'=>$question,
-						'question_type'=>$type,
-						'question_data'=>$data,
-						'key'=>$key
-					));
-
+					$this->addQuestion($questionID,$question,$type,$data,$key);
 				}
 				return true;
 			}
 		}
 
-		public function isQuestionnaireComplete($userID,$projectID,$questionnaire_name,$answers_database=''){
+		public function isQuestionnaireComplete($questionnaire_name,$wherevals,$wherekeys=array('userID','projectID'),$answers_database=''){
+			$n_questions = -1;
+			$wherestr = "WHERE ";
+			for($i = 0; $i < count($wherevals);$i+=1){
+				$wherestr .= "".$wherekeys[$i]."='".(string)$wherevals[$i]."' AND ";
+			}
+			$wherestr .= "question_cat='$questionnaire_name'";
+
+			if ($answers_database != ''){
+				$n_questions = 1;
+			}else{
+				$n_questions = count($this->questions);
+				$answers_database = $this->db_selected;
+			}
+			$query = "SELECT * FROM $answers_database $wherestr";
+
+			$cxn = Connection::getInstance();
+			$results = $cxn->commit();
+			return mysql_num_rows($results) == $n_questions;
+
 		}
 
 
-		public function addQuestion(){
+		public function addQuestion($questionID,$question,$type,$data,$key){
+			array_push($this->questions,array(
+				'questionID'=>$questionID,
+				'question'=>$question,
+				'question_type'=>$type,
+				'question_data'=>$data,
+				'key'=>$key
+			));
 
+			$_SESSION['Questionnaires_questions'] = $this->questions;
 		}
 
 		public function addQuestionAt($index){
-
+			$to_insert = array(
+				'questionID'=>$questionID,
+				'question'=>$question,
+				'question_type'=>$type,
+				'question_data'=>$data,
+				'key'=>$key
+			);
+			array_splice( $this->questions, $index, 0, $to_insert );
+			$_SESSION['Questionnaires_questions'] = $this->questions;
 		}
 
+		public function addAnswer($key,$answer){
+			foreach($this->questions as $v){
+				if($v['key']==$key){
+					$this->answers["$key"] = $answer;
+					// echo "ANSWER ADDED!";
+					return;
+				}else if($v['question_type']=="rankedorder"){
+					// echo "RANKED ORDER!!!";
+					// print_r(json_encode($v['question_data']));
+					// echo "ENDV";
+					foreach($v['question_data']->{'options'} as $text=>$rokey){
+						// echo "ROKEY: $rokey";
+						if($rokey == $key){
+							$this->answers["$key"] = $answer;
+							// echo "ANSWER ADDED!";
+							return;
+						}
+					}
+
+				}
+			}
+		}
 
 		public function clearCache(){
 			$this->questions = array();
+			$_SESSION['Questionnaires_questions'] = $this->questions;
+			$this->answers = array();
 		}
 
 		public function popQuestion(){
-
+			array_pop($this->question);
+			$_SESSION['Questionnaires_questions'] = $this->questions;
 		}
 
 		public function removeQuestionAt($index){
-
+			unset($this->question[$index]); // remove item at index 0
+			$this->question = array_values($this->question); // 'reindex' array
+			$_SESSION['Questionnaires_questions'] = $this->questions;
 		}
 
+
+		public function commitAnswersToDatabase($extravals,$extrakeys=array('userID','projectID'),$answers_database=''){
+
+			if($answers_database != ''){
+				// echo "FIRST!";
+				// If optional database given, commit: columns by key, respective column values, to given database
+				$query = "INSERT INTO ";
+				$keystr = "(";
+				$valstr = "(";
+				$query .= "$answers_database ";
+				for ($i = 0; $i < count($extrakeys);$i++){
+					$k = $extrakeys[$i];
+					$v = $extravals[$i];
+					$keystr .= "$k,";
+					$valstr .= "'$v',";
+				}
+
+				foreach($this->answers as $anskey=>$ansval){
+					$k = $anskey;
+					$v = $ansval;
+					$keystr .= "$k,";
+					$valstr .= "'$v',";
+				}
+
+				$keystr = rtrim($keystr,",");
+				$valstr = rtrim($valstr,",");
+				$keystr .= ")";
+				$valstr .= ")";
+				$query .= "$keystr VALUES $valstr";
+				// echo "$query";
+				$cxn = Connection::getInstance();
+				return $cxn->commit($query);
+			}else{
+				// echo "SECOND!";
+				// Default things to commit to database: userID, projectID, questionID, answer
+				foreach($this->answers as $anskey=>$ansval){
+					// Please specify userID,projectID
+
+					$query = "INSERT INTO ";
+					$keystr = "(";
+					$valstr = "(";
+					$query .= $this->db_selected." ";
+					for ($i = 0; $i < count($extrakeys);$i++){
+						$k = $extrakeys[$i];
+						$v = $extravals[$i];
+						$keystr .= "$k,";
+						$valstr .= "'$v',";
+					}
+
+					$keystr .= "$anskey,";
+					$valstr .= "'$ansval',";
+
+					$keystr = rtrim($keystr,",");
+					$valstr = rtrim($valstr,",");
+					$keystr .= ")";
+					$valstr .= ")";
+					$query .= "$keystr VALUES $valstr";
+					// echo "$query";
+					$cxn = Connection::getInstance();
+					return $cxn->commit($query);
+
+				}
+
+			}
+
+		}
 		public function printQuestions($min=-1,$max=INF){
 			if($min==-1){
 				$min = 0;
