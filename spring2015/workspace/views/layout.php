@@ -1,9 +1,12 @@
 <?php
 function gen_url($param){
+  global $PAGE, $sorting, $sorting_order, $current_tag;
   $defaults = array(
-  "page" => "ALL",
-  "bookmark_tag_filter" => "",
-  "sorting" => ""
+  "page" => $PAGE,
+  "bookmark_tag_filter" => $current_tag,
+  "sorting" => $sorting,
+  "sorting_order" => $sorting_order,
+  "only_mine" => false
   );
   $param = array_merge($defaults, $param);
   return "?" . http_build_query($param);
@@ -26,10 +29,10 @@ function gen_url($param){
           <h2>Welcome <?php echo $username ?></h2>
         </hgroup>
         <div class='left-side'>
-          <?php require_once("../contributions.php"); ?>
+          Questionaire deadlines will go here
         </div>
-        <div class='left-side'>
-          Questionaires:
+        <div class='right-side'>
+          <?php require_once("../contributions.php"); ?>
         </div>
         <nav class='clear'>
           <ul>
@@ -47,33 +50,7 @@ function gen_url($param){
 
     <div id="container">
       <div class="left_col">
-        <div class="searchbar">
-          <input type="text" placeholder="Search" id="searchbar_input" />
-        </div>
-        <?php
-        if($PAGE == "BOOKMARKS"):
-        ?>
-        <div id="bookmark_filters">
-          <h4>Filter by tag</h4>
-          <ul>
-          <?php
-            foreach($tag_data as $tag){
-              echo "<li>";
-              $param = array(
-                "bookmark_tag_filter" => $tag["name"],
-                "page" => "BOOKMARKS"
-              );
-              printf("<a href='%s'>%s</a>", gen_url($param), $tag["name"]);
-              echo "</li>";
-            }
-          ?>
-          </ul>
-        </div><!-- /#bookmark_filters -->
-        <?php
-        endif;
-        ?>
-        <div class="sorting">
-        </div>
+        <?php require_once("views/aside.php"); ?>
       </div>
       <div class="right_col">
         <ul id="feed"></ul>
@@ -110,12 +87,19 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+
+          <a href="#" class="bookmark-related">See related snippets</a>
+
           <% if(editable){ %>
           <div class="sub-right">
             <a href="#" class="delete" data-id="<%= bookmarkID %>">Delete</a>
             <a href="#" class="edit" data-state="closed">Edit</a>
           </div>
           <% } %>
+        </div>
+        <div class="bookmark-related-section">
+          <h4>Related Snippets</h4>
+          <div class="bookmark-snippets"></div>
         </div>
         <% if(editable){ %>
         <div class="more">
@@ -150,7 +134,7 @@ function gen_url($param){
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
             <% if(editable){ %>
-            <a class="delete" data-id="<%= pageID %>">Delete</a>
+            <a class="delete" href="#" data-id="<%= pageID %>">Delete</a>
             <% } %>
           </div>
         </div>
@@ -168,7 +152,7 @@ function gen_url($param){
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
             <% if(editable){ %>
-            <a class="delete" data-id="<%= snippetID %>">Delete</a>
+            <a class="delete" href="#" data-id="<%= snippetID %>">Delete</a>
             <% } %>
           </div>
         </div>
@@ -185,7 +169,7 @@ function gen_url($param){
           <span class="date"><%= pretty_date %></span>
           <div class="sub-right">
             <% if(editable){ %>
-            <a class="delete" data-id="<%= queryID %>">Delete</a>
+            <a class="delete" href="#" data-id="<%= queryID %>">Delete</a>
             <% } %>
           </div>
         </div>
@@ -198,7 +182,7 @@ function gen_url($param){
           <span> <%= source %></span>
         </div>
         <div class="sub">
-          <a class="related">See related bookmarks and snippets</a>
+          <a href="#" class="related">See related bookmarks and snippets</a>
         </div>
         <div class="related-section">
           <h4 class="bookmarks_heading">Related Bookmarks</h4>

@@ -27,8 +27,12 @@ $username = $base->getUserName();
 $userID = $base->getUserID();
 $feed_data = array(); //sorted by date
 $tag_data = array(); //only for bookmarks page
-
+$current_tag = "";
 $projectID = $base->getProjectID();
+$sorting = isset($_GET["sorting"]) ? $_GET["sorting"] : "timestamp";
+$sorting_order = isset($_GET["sorting_order"]) ? $_GET["sorting_order"] : "DESC";
+$sorting_query = $sorting . " " . $sorting_order;
+
 switch($PAGE){
   case "ALL":
     $bookmarks = extend_data(Bookmark::retrieveWithTagsFromProject($projectID), "bookmark");
@@ -42,9 +46,27 @@ switch($PAGE){
   case "BOOKMARKS":
     $raw_bookmarks = array();
     if(!empty($_GET["bookmark_tag_filter"])){
-      $raw_bookmarks = Bookmark::retrieveFromProjectAndTag($projectID, $_GET["bookmark_tag_filter"]);
+      $current_tag = $_GET["bookmark_tag_filter"];
+      $raw_bookmarks = Bookmark::retrieveFromProjectAndTag($projectID, $_GET["bookmark_tag_filter"], $sorting_query);
     } else {
-      $raw_bookmarks = Bookmark::retrieveWithTagsFromProject($projectID);
+      $raw_bookmarks = Bookmark::retrieveWithTagsFromProject($projectID, $sorting_query);
+    }
+    $snippets = extend_data(Snippet::retrieveFromProject($projectID), "snippet");
+    $urlToSnippets = array();//maps urls to snippets
+    foreach($snippets as $snippet){
+      $s = $snippet["data"];
+      $url = $s["url"];
+      if(!isset($urlToSnippets[$url])){
+        $urlToSnippets[$url] = array();
+      }
+      array_push($urlToSnippets[$url], $snippet);
+    }
+    foreach($raw_bookmarks as $key => $val){
+      $bookmark = $raw_bookmarks[$key];
+      $url = $bookmark["url"];
+      if(isset($urlToSnippets[$url])){
+        $raw_bookmarks[$key]["snippets"] = $urlToSnippets[$url];
+      }
     }
     $bookmarks = extend_data($raw_bookmarks, "bookmark");
     $tag_data = Tags::retrieveFromProject($projectID);
@@ -55,11 +77,11 @@ switch($PAGE){
     $feed_data = $pages;
   break;
   case "SNIPPETS":
-    $snippets = extend_data(Snippet::retrieveFromProject($projectID), "snippet");
+    $snippets = extend_data(Snippet::retrieveFromProject($projectID, $sorting_query), "snippet");
     $feed_data = $snippets;
   break;
   case "SEARCHES":
-    $searches = extend_data(Query::retrieveFromProject($projectID), "search");
+    $searches = extend_data(Query::retrieveFromProject($projectID, $sorting_query), "search");
     $feed_data = $searches;
     break;
   case "SOURCES":

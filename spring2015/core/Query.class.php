@@ -14,9 +14,9 @@ class Query extends Base {
 
   }
 
-  public static function retrieveFromProject($projectID, $start=0, $limit=200){
+  public static function retrieveFromProject($projectID, $sorting="timestamp DESC"){
     $cxn=Connection::getInstance();
-    $query = sprintf("SELECT queries.*, users.username FROM queries, users WHERE queries.projectID=%d AND queries.userID=users.userID ORDER BY queries.timestamp DESC LIMIT %d, %d", $projectID, $start, $limit);
+    $query = sprintf("SELECT queries.*, users.username FROM queries, users WHERE queries.projectID=%d AND queries.userID=users.userID ORDER BY %s", $projectID, $cxn->esc($sorting));
     $queries = array();
     $results = $cxn->commit($query);
     while($record = mysql_fetch_assoc($results)){

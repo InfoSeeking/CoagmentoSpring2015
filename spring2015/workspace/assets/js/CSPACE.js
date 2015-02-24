@@ -50,7 +50,13 @@ var CSPACE = (function(){
             body: ed["note"],
             url: ed["url"]
           });
-          root.append(tmpl("bookmark_template", ed));
+          var new_el = $(tmpl("bookmark_template", ed));
+          root.append(new_el);
+          if(!d["snippets"] || d["snippets"].length == 0){
+            new_el.find(".bookmark-related").hide();
+          } else {
+            displayFeed(d["snippets"], $(new_el).find(".bookmark-snippets"));
+          }
           break;
         case "page":
           var ed = $.extend({}, d); //extended data
@@ -126,6 +132,14 @@ var CSPACE = (function(){
   }
 
   function initEventListeners(){
+    $("#sorting").on("change", function(e){
+      var url = $(this).val();
+      window.location = url;
+    });
+    $("#sorting_order").on("change", function(e){
+      var url = $(this).val();
+      window.location = url;
+    });
     $("#searchbar_input").on("keyup", function(e){
       var text = $(this).val().trim();
       if(text == ""){
@@ -177,7 +191,7 @@ var CSPACE = (function(){
       $(this).attr("data-state", state);
       e.preventDefault();
     });
-    $("#feed li .related").on("click", function(e){
+    $("#feed li.item-source .related").on("click", function(e){
       var more = $(this).parents("li").find(".related-section");
       var state = $(this).attr("data-state");
       if(state == "open"){
@@ -192,11 +206,26 @@ var CSPACE = (function(){
       $(this).attr("data-state", state);
       e.preventDefault();
     });
+    $("#feed li.item-bookmark .bookmark-related").on("click", function(e){
+      var more = $(this).parents("li").find(".bookmark-related-section");
+      var state = $(this).attr("data-state");
+      if(state == "open"){
+        $(this).html("Show related snippets");
+        state = "closed";
+        more.hide();
+      } else {
+        $(this).html("Hide related snippets");
+        state = "open";
+        more.show();
+      }
+      $(this).attr("data-state", state);
+      e.preventDefault();
+    });
     initDeleteListeners();
   }
 
   function initDeleteListeners(){
-    $(".item-bookmark .delete").on("click", function(e){
+    $(".item-bookmark > .sub-right .delete").on("click", function(e){
       e.preventDefault();
       var id = $(this).attr("data-id");
       var item = $(this).parents(".item-bookmark");
@@ -209,6 +238,7 @@ var CSPACE = (function(){
           "bookmarkID" : id
         },
         success: function(resp){
+          console.log("Bookmark deleted");
           item.fadeOut(500, function(){item.detach();});
         },
         error: function(){
@@ -230,6 +260,7 @@ var CSPACE = (function(){
           "snippetID" : id
         },
         success: function(resp){
+          console.log("Snippet deleted");
           item.fadeOut(500, function(){item.detach();});
         },
         error: function(){
