@@ -33,7 +33,7 @@ body{
 }
 .page_header .left-side{
   float: left;
-  margin-right: 80px;
+  margin-right: 40px;
 }
 .page_header .right-side{
   float: right;
@@ -235,13 +235,17 @@ table.contributions th{
   text-align: right;
 }
 table.contributions td{
-  background: #EEE;
+  background: #FFF;
   padding: 1px 2px;
   font-size: 11px;
   font-family: "Arial";
+  text-align: center;
 }
-table.contributions tr:nth-child(odd) td, table.contributions tr:nth-child(odd) th{
-  background: #FFF;
+table.contributions tr:first-child td{
+  border-bottom: 1px black solid;
+}
+table.contributions tr td:nth-child(odd){
+  background: #EEF;
 }
 #searchbar_input{
   font-size: 16px;
