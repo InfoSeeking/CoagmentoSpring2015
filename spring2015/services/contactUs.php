@@ -43,7 +43,13 @@
 	form{
 		width: 500px;
 	}
-
+	h2{
+		padding: 0px;
+		margin: 5px 0px;
+	}
+	p {
+		margin: 5px 0px;
+	}
 	.row{
 		margin-bottom: 10px;
 	}

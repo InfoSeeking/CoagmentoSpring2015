@@ -46,8 +46,14 @@
 <html>
     <head>
 		<title>Source View</title>
+		<style type="text/css">
+		.grayrect h4, .grayrect p{
+			margin: 0px 2px;
+		}
+		</style>
     </head>
 	<script type="text/javascript" src="js/utilities.js"></script>
+
   <link rel="stylesheet" href="../study_styles/custom/background.css">
 <body>
 

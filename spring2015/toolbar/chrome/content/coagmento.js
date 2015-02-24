@@ -167,7 +167,7 @@ function checkStageBrowsability()
 function onPageLoad()
 {
 	//validSearchEngine();
-	checkStageBrowsability();
+	//checkStageBrowsability();
 	cleanAlert();
 	savePQ();
 }
@@ -680,7 +680,7 @@ function instructions(){
 }
 function workspace(){
   var url = globalUrl+"workspace";
-  loadURL(url);
+  gBrowser.selectedTab = gBrowser.addTab(url);
 }
 
 function cleanAlert()
@@ -753,10 +753,12 @@ function checkConnectivity()
 
 function serverDown()
 {
+  /*
     connectionFlag = false;
     loggedIn = false;
     disableButtons(true);
     isExclusive = false;
+  */
 };
 
 
