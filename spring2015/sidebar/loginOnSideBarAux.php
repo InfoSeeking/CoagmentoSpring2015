@@ -249,7 +249,7 @@
 				$userIDBroadcast = $userID;
 				$message = array('message'=>'1');
 				$res=$pubnub->publish("spr15-".$base->getStageID()."-".$base->getProjectID()."-checkStage".$userIDBroadcast,$message);
-
+				$_SESSION['login_first'] = true;
 				header("Location: sidebar.php");
 				// exit();
 			}
