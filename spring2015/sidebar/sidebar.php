@@ -375,13 +375,13 @@
 			// }
 			// echo "alert('REALLY SET?:".(string)$out."');";
 
-			if(isset($_SESSION['login_first']) && $_SESSION['login_first']){
-				$_SESSION['login_first'] = false;
-				// echo "alert('hello');";
-				echo "content.location = 'http://coagmento.org/spring2015/workspace/'";
-			}else{
-				// echo "alert('goodbye');";
-			}
+			// if(isset($_SESSION['login_first']) && $_SESSION['login_first']){
+			// 	$_SESSION['login_first'] = false;
+			// 	// echo "alert('hello');";
+			// 	echo "content.location = 'http://coagmento.org/spring2015/workspace/'";
+			// }else{
+			// 	// echo "alert('goodbye');";
+			// }
 			?>
     	//setTimeout("InfiniteAjaxRequest()",3000);
 </script>
