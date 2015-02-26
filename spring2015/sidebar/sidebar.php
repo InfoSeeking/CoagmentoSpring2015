@@ -490,9 +490,12 @@ cursor:hand;
 
 <li style="padding-top: 0px">
 <h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; History <span style="color:gray;font-size:10px;"></span></h4>
+
 <div class="acc-section2 tabs">
+<!-- <div class="acc-section2 tabs"> -->
 <div id="history" class="acc-content2">
-<ul id="tabs"  class="shadetabs" style="background-color: #EEF3FA">
+	<ul id="tabs"  class="shadetabs">
+<!-- <ul id="tabs"  class="shadetabs" style="background-color: #EEF3FA"> -->
 
 <li><a href="sidebarComponents/bookmarks.php?clicktab=true"  rel="tabscontainer" class="selected">Bookmarks</a></li>
 
@@ -503,7 +506,10 @@ cursor:hand;
 <li><a href="sidebarComponents/sources.php?clicktab=true" rel="tabsycontainer">Sources</a></li>
 
 </ul>
-<div id="tabsdivcontainer" style="background: -moz-linear-gradient(#FFFFFF 60%, #a9cce4, #1A5A98 ); border:0px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div>
+
+
+<div id="tabsdivcontainer" style="border:1px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div>
+<!-- <div id="tabsdivcontainer" style="background: -moz-linear-gradient(#FFFFFF 60%, #a9cce4, #1A5A98 ); border:0px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div> -->
 <script type="text/javascript">
 var tabs=new ddajaxtabs("tabs", "tabsdivcontainer");
 tabs.setpersist(true);

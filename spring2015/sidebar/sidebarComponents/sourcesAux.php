@@ -48,7 +48,7 @@
         // $query = "SELECT * FROM (SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID as secondUserID,userName FROM users) b ON b.secondUserID=a.userID " . $only_mine_clause . " GROUP BY a.userID,a.`query`) c ORDER BY ".$orderBy;
         $query = "SELECT * FROM (SELECT userID,`host`,projectID,MIN(`date`) as `date`,MIN(`time`) as `time`,MIN(`timestamp`) as `timestamp` FROM (SELECT userID,projectID,`date`,`time`,`timestamp`,host,status FROM bookmarks UNION ALL SELECT userID,projectID,`date`,`time`,`timestamp`,host,status from snippets) a WHERE projectID='$projectID' AND status=1 AND host IS NOT NULL GROUP BY host) d ORDER BY ".$orderBy;
         $results = $connection->commit($query);
-        $bgColor = '#F0F6FA';
+        $bgColor = '#E8E8E8';
 
         $numRows = mysql_num_rows($results);
 

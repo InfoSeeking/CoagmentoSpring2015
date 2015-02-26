@@ -35,7 +35,8 @@ body {
 .body {
 	font: 100% Verdana, Arial, Helvetica, sans-serif;
 	padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
-	background: #1A5A98;
+	background: #FFFFFF;
+	/*background: #1A5A98;*/
 	font-size:12px;
 }
 .style1 {
