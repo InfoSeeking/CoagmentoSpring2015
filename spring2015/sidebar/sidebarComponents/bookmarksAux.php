@@ -54,7 +54,7 @@
     }
 
     $results = $connection->commit($query);
-    $bgColor = '#E8E8E8';
+    $bgColor = '#F0F6FA';
     $numRows = mysql_num_rows($results);
 
     echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshBookmarks)'>";
@@ -152,10 +152,10 @@
 
         echo "</tr>";
 
-        if ($bgColor == '#E8E8E8')
+        if ($bgColor == '#7EB3DD')
             $bgColor = '#FFFFFF';
         else
-            $bgColor = '#E8E8E8';
+            $bgColor = '#7EB3DD';
 
     }
     echo "</table>\n";

@@ -47,7 +47,7 @@
         }
         $query = "SELECT * FROM (SELECT * FROM (SELECT * FROM queries WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID as secondUserID,userName FROM users) b ON b.secondUserID=a.userID " . $only_mine_clause . " GROUP BY a.userID,a.`query`) c ORDER BY ".$orderBy;
         $results = $connection->commit($query);
-        $bgColor = '#E8E8E8';
+        $bgColor = '#F0F6FA';
 
         $numRows = mysql_num_rows($results);
 
@@ -113,10 +113,10 @@
 
             echo "</tr>";
 
-            if ($bgColor == '#E8E8E8')
+            if ($bgColor == '#a9cce4')
 				$bgColor = '#FFFFFF';
 			else
-				$bgColor = '#E8E8E8';
+				$bgColor = '#a9cce4';
         }
         echo "</table>\n";
 
