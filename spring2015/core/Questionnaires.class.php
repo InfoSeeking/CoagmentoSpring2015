@@ -22,6 +22,8 @@ class Questionnaires
 	private $db_selected = "questionnaire_questions";
 	private $questions;
 	private $answers;
+	private $suffix = "";
+	private $basedirectory="";
 
 	// Cache of questions
 
@@ -52,13 +54,18 @@ class Questionnaires
 		public function getQuestions(){
 			return $this->questions;
 		}
+		public function setBaseDirectory($dir){
+			$this->basedirectory = $dir;
+		}
 
 		public function populateQuestionsFromDatabase($questionnaire_name,$orderBy = NULL){
 			$cxn = Connection::getInstance();
 			$db_selected = $this->db_selected;
 
-			$query = "SELECT * from $db_selected";
-
+			$query = "SELECT * from $db_selected WHERE question_cat='$questionnaire_name'";
+			if($questionnaire_name == 'spring2015'){
+				$this->suffix="_1";
+			}
 			if($orderBy != NULL){
 				$query .= " ORDER BY $orderBy";
 			}
@@ -85,22 +92,26 @@ class Questionnaires
 			for($i = 0; $i < count($wherevals);$i+=1){
 				$wherestr .= "".$wherekeys[$i]."='".(string)$wherevals[$i]."' AND ";
 			}
-			$wherestr .= "question_cat='$questionnaire_name'";
+
 
 			if ($answers_database != ''){
 				$n_questions = 1;
+				$wherestr = substr($wherestr,0,-4);
 			}else{
 				$n_questions = count($this->questions);
 				$answers_database = $this->db_selected;
+				$wherestr .= "question_cat='$questionnaire_name'";
 			}
+
 			$query = "SELECT * FROM $answers_database $wherestr";
 
 			$cxn = Connection::getInstance();
-			$results = $cxn->commit();
+			$results = $cxn->commit($query);
+			$nrows = mysql_num_rows($results);
+			$yes = mysql_num_rows($results) == $n_questions;
 			return mysql_num_rows($results) == $n_questions;
 
 		}
-
 
 		public function addQuestion($questionID,$question,$type,$data,$key){
 			array_push($this->questions,array(
@@ -195,7 +206,7 @@ class Questionnaires
 				$keystr .= ")";
 				$valstr .= ")";
 				$query .= "$keystr VALUES $valstr";
-				// echo "$query";
+				echo "$query";
 				$cxn = Connection::getInstance();
 				return $cxn->commit($query);
 			}else{
@@ -255,6 +266,8 @@ class Questionnaires
 					$this->printRankedOrder($q['question'],$q['key'],$q['question_data']);
 				}else if($q['question_type']=='likert'){
 					$this->printLikert($q['question'],$q['key'],$q['question_data']);
+				}else if($q['question_type']=='text'){
+					$this->printText($q['question'],$q['key'],$q['question_data']);
 				}
 				if($q['question_type']!='select'){
 					echo "<br>";
@@ -265,20 +278,21 @@ class Questionnaires
 
 		public function printPreamble(){
 			//Prints <link rel= ...>
-			echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/buttons.css\">";
-			echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/forms.css\">";
-		  echo "<link rel=\"stylesheet\" href=\"study_styles/pure-release-0.5.0/grids-min.css\">";
-			echo "<script src=\"lib/jquery-2.1.3.min.js\"></script>";
-			echo "<script src=\"lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
-			echo "<script src=\"lib/validation/validation.js\"></script>";
+			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/buttons.css\">";
+			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/forms.css\">";
+		  echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/grids-min.css\">";
+			echo "<script src=\"".$this->basedirectory."lib/jquery-2.1.3.min.js\"></script>";
+			echo "<script src=\"".$this->basedirectory."lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
+			echo "<script src=\"".$this->basedirectory."lib/validation/validation.js\"></script>";
 		}
 
 		public function printPostamble(){
 			echo "";
 		}
 
-		public function printValidation($formid,$rules,$messages){
+		public function printValidation($formid,$rules="",$messages=""){
 			// jQUery.validator.addMethod
+			$suffix = $this->suffix;
 			echo "jQuery.validator.addMethod(\"rankedorder\", function(value, element) {
 					return isRankedOrderValid(value);}, \"<span style='color:red'>Please specify a ranked order according to the description above.</span>\");";
 			echo "\$().ready(function(){";
@@ -293,25 +307,31 @@ class Questionnaires
 						$type = $q['question_type'];
 						$key = $q['key'];
 						if($type == 'radio'){
-							echo "$key"."_1 :{required: true}";
+							echo "$key"."$suffix :{required: true}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'select'){
-							echo "$key"."_1 :{required: true}";
+							echo "$key"."$suffix :{required: true}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'likert'){
-							echo "$key"."_1 :{required: true}";
+							echo "$key"."$suffix :{required: true}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'rankedorder'){
 							echo "$key"."_div_key :{rankedorder: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'text'){
+							echo "$key"."_div_key :{required: true}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
@@ -329,19 +349,25 @@ class Questionnaires
 						$type = $q['question_type'];
 						$key = $q['key'];
 						if($type == 'radio'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
+							echo "$key"."$suffix :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'select'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
+							echo "$key"."$suffix :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
 							echo "\n";
 						}else if($type == 'likert'){
-							echo "$key"."_1 :{required: \"<span style='color:red'>Please select an option.</span>\"}";
+							echo "$key"."$suffix :{required: \"<span style='color:red'>Please select an option.</span>\"}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'text'){
+							echo "$key"."$suffix :{required: \"<span style='color:red'>Please enter your response.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
@@ -365,29 +391,31 @@ class Questionnaires
 
 				echo "});";
 
-				echo "var doneyes = $(\"#doneproj_1-Yes\");
-				var doneno = $(\"#doneproj_1-No\");
+				if($suffix=="_1"){
+				echo "var doneyes = $(\"#doneproj$suffix-Yes\");
+				var doneno = $(\"#doneproj$suffix-No\");
 				var initial = doneyes.is(\":checked\");
 				doneyes.click(function(){
-					document.getElementById('experience_satisfaction_1_div').style.display=\"block\";
-					document.getElementById('outcome_satisfaction_1_div').style.display=\"block\";
-					document.getElementById('experience_satisfaction_1').disabled=false;
-					document.getElementById('outcome_satisfaction_1').disabled=false;
+					document.getElementById('experience_satisfaction$suffix"."_div').style.display=\"block\";
+					document.getElementById('outcome_satisfaction$suffix"."_div').style.display=\"block\";
+					document.getElementById('experience_satisfaction$suffix').disabled=false;
+					document.getElementById('outcome_satisfaction$suffix').disabled=false;
 				});
 				doneno.click(function(){
-					document.getElementById('experience_satisfaction_1_div').style.display=\"none\";
-					document.getElementById('outcome_satisfaction_1_div').style.display=\"none\";
-					document.getElementById('experience_satisfaction_1').disabled=true;
-					document.getElementById('outcome_satisfaction_1').disabled=true;
+					document.getElementById('experience_satisfaction$suffix"."_div').style.display=\"none\";
+					document.getElementById('outcome_satisfaction$suffix"."_div').style.display=\"none\";
+					document.getElementById('experience_satisfaction$suffix').disabled=true;
+					document.getElementById('outcome_satisfaction$suffix').disabled=true;
 				});
-				document.getElementById('experience_satisfaction_1_div').style.display=\"none\";
-				document.getElementById('experience_satisfaction_1_div').style.paddingLeft=\"60px\";
-				document.getElementById('experience_satisfaction_1_div').style.backgroundColor=\"#F2F2F2\";
-				document.getElementById('outcome_satisfaction_1_div').style.display=\"none\";
-				document.getElementById('outcome_satisfaction_1_div').style.paddingLeft=\"60px\";
-				document.getElementById('outcome_satisfaction_1_div').style.backgroundColor=\"#F2F2F2\";
+				document.getElementById('experience_satisfaction$suffix"."_div').style.display=\"none\";
+				document.getElementById('experience_satisfaction$suffix"."_div').style.paddingLeft=\"60px\";
+				document.getElementById('experience_satisfaction$suffix"."_div').style.backgroundColor=\"#F2F2F2\";
+				document.getElementById('outcome_satisfaction$suffix"."_div').style.display=\"none\";
+				document.getElementById('outcome_satisfaction$suffix"."_div').style.paddingLeft=\"60px\";
+				document.getElementById('outcome_satisfaction$suffix"."_div').style.backgroundColor=\"#F2F2F2\";
 				// style=\"display: none; padding-left:60px; background-color:#F2F2F2\"
 				";
+				}
 
 			echo "});";
 
@@ -395,13 +423,14 @@ class Questionnaires
 		}
 
 		public function printRadio($question,$key,$data){
+			$suffix = $this->suffix;
 
 			echo "<div class=\"pure-control-group\">";
 			echo "<label name=\"$key\">$question</label>";
-			echo "<div id=\"$key"."_div_1\" class=\"container\">";
-			echo "<label for=\"$key"."_1\" class=\"pure-radio\">";
+			echo "<div id=\"$key"."_div$suffix\" class=\"container\">";
+			echo "<label for=\"$key"."$suffix\" class=\"pure-radio\">";
 			foreach($data->{'options'} as $optionkey=>$optionvalue){
-				echo "<input id=\"$key"."_1-$optionvalue\" type=\"radio\" name=\"$key"."_1\" value=\"$optionvalue\"> $optionkey ";
+				echo "<input id=\"$key"."$suffix-$optionvalue\" type=\"radio\" name=\"$key"."$suffix\" value=\"$optionvalue\"> $optionkey ";
 			}
 			echo "</label>";
 			echo "</div>";
@@ -409,10 +438,11 @@ class Questionnaires
 		}
 
 		public function printSelect($question,$key,$data){
+			$suffix = $this->suffix;
 			echo "<div class=\"pure-control-group\">\n";
-			echo "<div id=\"$key"."_1_div\">";
-			echo "<label name=\"$key"."_1\">$question</label>\n";
-			echo "<select name=\"$key"."_1\" id=\"$key"."_1\" required>\n";
+			echo "<div id=\"$key"."$suffix"."_div\">";
+			echo "<label name=\"$key"."$suffix\">$question</label>\n";
+			echo "<select name=\"$key"."$suffix\" id=\"$key"."$suffix\" required>\n";
 			echo "<option disabled selected>--Select one--</option>\n";
 			foreach($data->{'options'} as $optionkey=>$optionvalue){
 				echo "<option>$optionvalue</option>\n";
@@ -425,6 +455,7 @@ class Questionnaires
 		}
 
 		public function printRankedOrder($question,$key,$data){
+			$suffix = $this->suffix;
 
 			echo "<label>$question</label>\n";
 			echo "<div class=\"pure-form-aligned\">\n";
@@ -436,8 +467,8 @@ class Questionnaires
 			  $pref = $k;
 			  $description = $q;
 			  echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">\n";
-			  echo "<label for=\"".$pref."_1\">$description</label>\n";
-			  echo "<input id=\"".$pref."_1\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51) || (event.charCode >= 97 && event.charCode <= 99)' name=\"".$pref."_1\" type=\"text\">\n";
+			  echo "<label for=\"".$pref."$suffix\">$description</label>\n";
+			  echo "<input id=\"".$pref."$suffix\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51) || (event.charCode >= 97 && event.charCode <= 99)' name=\"".$pref."$suffix\" type=\"text\">\n";
 			  echo "</div>\n";
 			}
 			echo "</fieldset>\n";
@@ -447,10 +478,11 @@ class Questionnaires
 		}
 
 		public function printLikert($question,$key,$data){
+			$suffix = $this->suffix;
 			$pref = $key;
 			echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
 			echo "<label \">$question</label>\n";
-			echo "<div id=\"".$pref."_div_1\" class=\"container\">\n";
+			echo "<div id=\"".$pref."_div$suffix\" class=\"container\">\n";
 			echo "<div class=\"pure-g\">\n";
 			$count = 1;
 			foreach($data->{'options'} as $k=>$v){
@@ -458,9 +490,10 @@ class Questionnaires
 				if(($count)%2){
 					$style = "style=\"background-color:#F2F2F2\"";
 				}
+				$countstr = "_$count";
 				echo "<div $style class=\"pure-u-1-5\">";
-				echo "<label for=\"".$pref."_1_1\" class=\"pure-radio\">";
-				echo "<input id=\"".$pref."_1_1\" type=\"radio\" name=\"".$pref."_1\" value=\"$v\">$k";
+				echo "<label for=\"".$pref."$suffix$countstr\" class=\"pure-radio\">";
+				echo "<input id=\"".$pref."$suffix$countstr\" type=\"radio\" name=\"".$pref."$suffix\" value=\"$v\">$k";
 				echo "</label>";
 				echo "</div>\n";
 				$count += 1;
@@ -468,6 +501,18 @@ class Questionnaires
 			echo "</div>\n";
 			echo "</div>\n";
 			echo "</div>\n\n";
+		}
+
+		public function printText($question,$key,$data){
+			$suffix = $this->suffix;
+			echo "<div class=\"pure-control-group\">\n";
+			echo "<div id=\"$key"."$suffix"."_div\">";
+			echo "<label name=\"$key"."$suffix\">$question</label>\n";
+			echo "<textarea name=\"$key"."$suffix\" id=\"$key"."$suffix\" rows=\"3\" cols=\"40\" required></textarea>\n";
+			echo "<br>\n";
+			echo "</div>\n";
+			echo "</div>\n\n";
+
 		}
 
 

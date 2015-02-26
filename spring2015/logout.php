@@ -13,7 +13,7 @@
 		$base->setAllowCommunication(0);
 		$base->setAllowBrowsing(0);
 		// Currently the ONLY way to make this work with our server's version of PHP
-		unset($GLOBALS[_SESSION]['CSpace_userID']);
+		unset($GLOBALS[$_SESSION]['CSpace_userID']);
 		session_destroy();
 		unset($_SESSION['CSpace_userID']);
 		//Save action
