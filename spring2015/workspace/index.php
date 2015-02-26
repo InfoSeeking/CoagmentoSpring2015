@@ -7,6 +7,7 @@ require_once("../core/Snippet.class.php");
 require_once("../core/Query.class.php");
 require_once("../core/Tags.class.php");
 require_once("assets/php/util.php");
+require_once("../core/Connection.class.php");
 
 $base = new Base();
 if(!$base->isUserActive()){
@@ -25,6 +26,13 @@ if(!in_array($PAGE, $valid_pages)){
 
 $username = $base->getUserName();
 $userID = $base->getUserID();
+$cxn = Connection::getInstance();
+$res = $cxn->commit("SELECT * FROM recruits WHERE userID='$userID'");
+$firstName = '';
+while($line=mysql_fetch_array($res,MYSQL_ASSOC)){
+  $firstName=$line['firstName'];
+}
+
 $feed_data = array(); //sorted by date
 $tag_data = array(); //only for bookmarks page
 $current_tag = "";
