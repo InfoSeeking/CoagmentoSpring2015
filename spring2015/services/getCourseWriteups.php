@@ -111,6 +111,12 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 		$connection = Connection::getInstance();
 		$results = $connection->commit($query);
+    $base = Base::getInstance();
+
+
+
+
+
 
 
 		if (mysql_num_rows($results) > 0) //insert session one end stage if necessary
@@ -122,28 +128,77 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
             $instructorID = $line['instructorID'];
             $port = $line['etherpadPort'];
 
-            $connection = Connection::getInstance();
-            $base = Base::getInstance();
-
-
             $query = "SELECT projectID FROM recruits R WHERE R.instructorID='$instructorID' GROUP BY R.projectID";
-
             $results = $connection->commit($query);
 
 						echo "<tbody>";
             while($line = mysql_fetch_array($results,MYSQL_ASSOC)){
+
+
                 $projectID=$line['projectID'];
                 $namequery = "SELECT firstName, lastName FROM recruits WHERE projectID='$projectID'";
 
-								echo "<tr>";
-								echo "<td><ul>";
-								$nameresults = $connection->commit($namequery);
-                while($nameline = mysql_fetch_array($nameresults,MYSQL_ASSOC)){
-										$firstName = $nameline['firstName'];
-										$lastName = $nameline['lastName'];
-										echo "<li>$firstName $lastName</li>";
+
+                $cxn = Connection::getInstance();
+                $group = array();
+
+                $q = "SELECT * FROM (select username,userID FROM users WHERE users.projectID=$projectID) b INNER JOIN (SELECT userID, firstName, lastName FROM recruits) a ON a.userID=b.userID ORDER BY lastName";
+                if(mysql_num_rows($cxn->commit($q))==0){
+                  continue;
                 }
-								echo "</ul></td>";
+
+								echo "<tr>";
+								echo "<td>";
+								// $nameresults = $connection->commit($namequery);
+                // while($nameline = mysql_fetch_array($nameresults,MYSQL_ASSOC)){
+								// 		$firstName = $nameline['firstName'];
+								// 		$lastName = $nameline['lastName'];
+								// 		echo "<li>$firstName $lastName</li>";
+                // }
+                $cxn = Connection::getInstance();
+                $group = array();
+
+                $q = "SELECT * FROM (select username,userID FROM users WHERE users.projectID=$projectID) b INNER JOIN (SELECT userID, firstName, lastName FROM recruits) a ON a.userID=b.userID ORDER BY lastName";
+                $inner_results = $cxn->commit($q);
+                while($row = mysql_fetch_assoc($inner_results)){
+                  $group[$row['firstName']." ".$row['lastName']] = array(
+                    "bookmarks" => 0,
+                    "snippets" => 0,
+                    "searches" => 0
+                  );
+                }
+
+                foreach(array("bookmarks","snippets","searches") as $name){
+                  if($name == "searches"){
+                    $name = "queries";
+                  }
+                  $q =  "select u.firstName,u.lastName, b.userID, count(b.userID) as count from $name b, recruits u where b.projectID=$projectID AND b.userID = u.userID group by userID";
+                  $bss_results = $cxn->commit($q);
+                  if($name == "queries"){
+                    $name = "searches";
+                  }
+                  while($row = mysql_fetch_assoc($bss_results)){
+                    $group[$row['firstName']." ".$row['lastName']]["$name"] = $row["count"];
+                  }
+                }
+
+                echo "<table>";
+                echo "<tr><th>Name</th><th>Bookmarks</th><th>Snippets</th><th>Searches</th></tr>";
+                foreach($group as $name=>$data){
+                  $nbookmarks = $data["bookmarks"];
+                  $nsnippets = $data["snippets"];
+                  $nsearches = $data["searches"];
+                  echo "<tr>";
+                  echo "<td>$name</td>";
+                  echo "<td>$nbookmarks</td>";
+                  echo "<td>$nsnippets</td>";
+                  echo "<td>$nsearches</td>";
+                  echo "</tr>";
+                }
+                echo "</table>";
+
+								// echo "</ul>";
+                echo "</td>";
 
 								$padID = "spring2015_report-$projectID--1-";
 								$url = "http://coagmentopad.rutgers.edu:".$port."/api/1/getReadOnlyID?apikey=".$apikey."&padID=".$padID;
