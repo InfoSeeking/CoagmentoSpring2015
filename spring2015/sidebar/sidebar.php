@@ -494,13 +494,13 @@ cursor:hand;
 <div id="history" class="acc-content2">
 <ul id="tabs"  class="shadetabs" style="background-color: #EEF3FA">
 
-<li><a href="sidebarComponents/bookmarks.php"  rel="tabscontainer" class="selected">Bookmarks</a></li>
+<li><a href="sidebarComponents/bookmarks.php?clicktab=true"  rel="tabscontainer" class="selected">Bookmarks</a></li>
 
-<li><a href="sidebarComponents/snippets.php" rel="tabscontainer">Snippets</a></li>
+<li><a href="sidebarComponents/snippets.php?clicktab=true" rel="tabscontainer">Snippets</a></li>
 
-<li><a href="sidebarComponents/searches.php" rel="tabsycontainer">Searches</a></li>
+<li><a href="sidebarComponents/searches.php?clicktab=true" rel="tabsycontainer">Searches</a></li>
 
-<li><a href="sidebarComponents/sources.php" rel="tabsycontainer">Sources</a></li>
+<li><a href="sidebarComponents/sources.php?clicktab=true" rel="tabsycontainer">Sources</a></li>
 
 </ul>
 <div id="tabsdivcontainer" style="background: -moz-linear-gradient(#FFFFFF 60%, #a9cce4, #1A5A98 ); border:0px solid gray; width:96%; margin-bottom: 1em; padding: 2%">  </div>

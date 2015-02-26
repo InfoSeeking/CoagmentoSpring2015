@@ -1,6 +1,15 @@
 <?php
 if (session_id() == "")
       session_start();
+
+require_once('../../core/Base.class.php');
+require_once('../../core/Util.class.php');
+
+if(isset($_GET['clicktab'])){
+  $base = Base::getInstance();
+  Util::getInstance()->saveAction("Clicked Sidebar Tab: sources",0, $base);
+}
+
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

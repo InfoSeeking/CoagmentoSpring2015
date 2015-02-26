@@ -5,6 +5,13 @@
 
 	require_once('../core/Base.class.php');
 	require_once('../core/Connection.class.php');
+	require_once('../core/Util.class.php');
+
+	if(isset($_GET['clicktab'])){
+	  $base = Base::getInstance();
+	  Util::getInstance()->saveAction("Clicked Sidebar Tab: snippets",0, $base);
+	}
+
 
 	$base = Base::getInstance();
 
