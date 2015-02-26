@@ -56,7 +56,8 @@ if (!$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("
 
 
 <form id="spr2015_q_second" class="pure-form" method="post" action="questionnaire_second.php">
-  <table class="style1" width=90%>
+  <center>
+    <table class="style1" width=90%>
     <tr><td>
   <?php
 
@@ -72,7 +73,7 @@ if (!$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("
   ?>
 				<input type="hidden" id="questionnaire_second" name="questionnaire_second"/>
         	<button class="pure-button pure-button-primary" type="submit">Submit</button>
-        </td></tr></table>
+        </td></tr></table></center>
     </form>
 
 

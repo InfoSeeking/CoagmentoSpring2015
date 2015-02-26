@@ -52,11 +52,11 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
   </head>
   <body class="style1">
 
-  	<h3>Collaborative Search Study: Questionnaire #3</h3>
+  	<h3>Collaborative Search Study: Questionnaire #3 (1/2)</h3>
 
 
   <form id="spr2015_q_third" class="pure-form" method="post" action="questionnaire_third.php">
-    <table class="style1" width=90%>
+    <center><table class="style1" width=90%>
       <tr><td>
     <?php
 
@@ -77,7 +77,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
     ?>
   				<input type="hidden" id="questionnaire_third" name="questionnaire_third"/>
           	<button class="pure-button pure-button-primary" type="submit">Submit</button>
-          </td></tr></table>
+          </td></tr></table></center>
       </form>
 
 
@@ -115,7 +115,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
   <head>
     <link rel="stylesheet" href="../study_styles/custom/text.css">
   	<title>
-      	Collaborative Search Study: Questionnaire #3 (1/2)
+      	Collaborative Search Study: Questionnaire #3
       </title>
       <link rel="stylesheet" type="text/css" href="../styles.css" />
 
@@ -143,7 +143,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
 
 
   <form id="spr2015_q_third_parttwo" class="pure-form" method="post" action="questionnaire_third.php">
-    <table class="style1" width=90%>
+    <center><table class="style1" width=90%>
       <tr><td>
     <?php
 
@@ -197,7 +197,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
     ?>
   				<input type="hidden" id="questionnaire_third_parttwo" name="questionnaire_third_parttwo"/>
           	<button class="pure-button pure-button-primary" type="submit">Submit</button>
-          </td></tr></table>
+          </td></tr></table></center>
       </form>
 
 
