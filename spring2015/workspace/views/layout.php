@@ -26,10 +26,10 @@ function gen_url($param){
 
         <hgroup class='left-side'>
           <img src="assets/img/clogo.png" alt="Coagmento Logo" />
-          <h2>Welcome <?php echo $username ?></h2>
+          <h2>Welcome, <?php echo $firstName ?>!</h2>
         </hgroup>
         <div class='left-side'>
-          Questionaire deadlines will go here
+          <!-- Questionaire deadlines will go here -->
         </div>
         <div class='right-side'>
           <?php require_once("../contributions.php"); ?>

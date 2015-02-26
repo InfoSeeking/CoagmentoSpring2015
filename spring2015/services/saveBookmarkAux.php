@@ -55,14 +55,17 @@
     $timestamp = $base->getTimestamp();
     $date = $base->getDate();
     $time = $base->getTime();
-    $lastID = $connection->getLastID();
+    // $lastID = $connection->getLastID();
 
-    Util::getInstance()->saveAction("Save Bookmark - Rating: $rating",$lastID,$base);
+
 
     $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
     $results = $connection->commit($query);
 
+
+
     $bookmarkID = $connection->getLastID();
+		Util::getInstance()->saveActionWithLocalTime("Save Bookmark - Rating: $rating",$bookmarkID,$base,$localTime,$localDate,$localTimestamp);
     $tags = new Tags();
     $tags->assignTagsToBookmark($bookmarkID, $_POST["tags"]);
 

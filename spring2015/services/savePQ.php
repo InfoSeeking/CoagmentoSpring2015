@@ -48,7 +48,7 @@ if (Base::getInstance()->isSessionActive())
 		$url = $originalURL;
 		$host = "";
 		$p = parse_url($url);
-		if ($p && ){
+		if ($p && isset($p['host'])){
 			$host = $p['host'];
 			$host = addslashes($host);
 		}else{

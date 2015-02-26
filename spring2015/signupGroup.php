@@ -191,9 +191,9 @@
                 $message .= "</body></html>";
 
 
-                // mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
-								// mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-								// mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
+                mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
+								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];

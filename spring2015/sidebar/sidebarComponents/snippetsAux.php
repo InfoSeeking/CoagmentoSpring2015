@@ -49,7 +49,7 @@
         }
         $query = "SELECT * FROM (SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
         $results = $connection->commit($query);
-        $bgColor = '#F0F6FA';
+        $bgColor = '#E8E8E8';
         echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshSnippets)'>";
         echo ($only_mine ? "Show everyone's data" : "Show only my data");
         echo "</a>";
