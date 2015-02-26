@@ -3,6 +3,7 @@
 	require_once('../core/Connection.class.php');
 	require_once('../core/Settings.class.php');
 	require_once('../core/Base.class.php');
+	require_once('../core/Util.class.php');
 
   if (!Base::getInstance()->isSessionActive())
   {
@@ -18,15 +19,23 @@
 		$userID = $base->getUserID();
 		$email = $cxn->esc($_POST["email"]);
 		//store in database
-		$q = sprintf("INSERT INTO contact_messages (`message`, `email`, `userID`, `username`) VALUES ('%s', '%s', %d, '%s')", $message, $email, $userID, $username);
-		$cxn->commit($q);
+		$timestamp = $base->getTimestamp();
+    $date = $base->getDate();
+    $time = $base->getTime();
+		$q = sprintf("INSERT INTO contact_messages (`message`, `email`, `userID`, `username`,`timestamp`,`date`,`time`) VALUES ('%s', '%s', %d, '%s','%d','%s','%s')", $message, $email, $userID, $username,$timestamp,(string)$date,(string)$time);
+		$results = $cxn->commit($q);
+		$contactID = $cxn->getLastID();
 
 		//send ourselves an email
 		$email_message = sprintf("Email : %s\nUsername/ID : %s/%d\nMessage: %s\n", $email, $username, $userID, $message);
 		mail($stg->getContactEmails(), "Coagmento Spring 2015 contact message", $email_message);
 		$confirmation = "We've received your recent contact message: '" . $message . "' We will try to respond as soon as possible. If you don't hear back in 24 hours, send an email to study220@rutgers.edu";
 		mail($email, "Coagmento Spring 2015 confirmation", $confirmation);
+		Util::getInstance()->saveAction("Sent Contact Us",$contactID, $base);
 		exit("email-sent");
+	}else{
+		Util::getInstance()->saveAction("View Contact Form",0, $base);
+
 	}
 ?>
 <html>

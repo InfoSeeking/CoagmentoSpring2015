@@ -95,7 +95,7 @@
 			}else{
 				echo "$sourceShown</span></td>\n";
             }
-            echo "<input type=\"hidden\" id=\"queryurl$sourceID\" value=\"$url\">";
+            echo "<input type=\"hidden\" id=\"queryurl$sourceID\" value=\"$source\">";
 
             echo "<input type=\"hidden\" id=\"querysource$sourceID\" value=\"$source\">";
 			echo "<input type=\"hidden\" id=\"queryValue$sourceID\" value=\"$source\">";

@@ -10,9 +10,9 @@
 	{
 		$userID = $base->getUserID();
 		$projectID=$base->getProjectID();
-//			$localTime = $_GET['localTime'];
-//			$localDate = $_GET['localDate'];
-//			$localTimestamp = $_GET['localTimestamp'];
+		$localTime = $_GET['localTime'];
+		$localDate = $_GET['localDate'];
+		$localTimestamp = $_GET['localTimestamp'];
 
       //   $userID = $base->getUserID();
       //   $query = "SELECT numUsers from users WHERE userID='$userID'";
@@ -58,14 +58,15 @@
                 $line = mysql_fetch_array($results,MYSQL_ASSOC);
 								$question1 = $line['question'];
 								$questionID = $line['questionID'];
-								Util::getInstance()->saveAction("View My Task",$questionID, $base);
+								Util::getInstance()->saveActionWithLocalTime("View My Task",$questionID,$base,$localTime,$localDate,$localTimestamp);
+								// Util::getInstance()->saveAction("View My Task",$questionID, $base);
 
 								$query = "SELECT I.instructorID as instructorID,I.studydates as studydates FROM recruits R,instructors I WHERE  R.instructorID=I.instructorID AND R.userID='$userID'";
 								$results = $connection->commit($query);
 								$line = mysql_fetch_array($results,MYSQL_ASSOC);
 								$duedate = $line['studydates'];
 								$duedate = substr($duedate,strrpos($duedate, "through ")+strlen("through "));
-								
+
 
 ?>
 

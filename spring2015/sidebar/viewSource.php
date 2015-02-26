@@ -65,7 +65,7 @@
 				if ($base->getAllowBrowsing())
 				{
 
-          $query = "SELECT *,(SELECT username from users b where bookmarks.userID = b.userID) from bookmarks WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
+          $query = "SELECT *,(SELECT username from users b where bookmarks.userID = b.userID) as username from bookmarks WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
 
 
             $connection = Connection::getInstance();
@@ -109,7 +109,7 @@
             }
             echo "<hr>";
 
-            $query = "SELECT *,(SELECT username from users b where snippets.userID = b.userID) from snippets WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
+            $query = "SELECT *,(SELECT username from users b where snippets.userID = b.userID) as username from snippets WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
 
               $connection = Connection::getInstance();
        			  $results = $connection->commit($query);
@@ -143,8 +143,8 @@
 			?>
 
 
-			<!-- <h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3> -->
-			 		<!-- from this <strong><a onclick="javascript:addAction('Revisit Page From Snippet','<?php echo $snippetID;?>')" href="<?php echo $url; ?>" target="_new">link</a></strong></div> -->
+			<!-- <h3><a href="<?php /*echo $url;*/ ?>" target="_new"><?php /*echo $title;*/ ?></a></h3> -->
+			 		<!-- from this <strong><a onclick="javascript:addAction('Revisit Page From Snippet','<?php /*echo $snippetID;*/ ?>')" href="<?php /*echo $url;*/ ?>" target="_new">link</a></strong></div> -->
 			<?php
     }else{
       echo "HELLO!";

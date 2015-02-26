@@ -3,6 +3,7 @@
 
     require_once('../core/Base.class.php');
 		require_once('../core/Tags.class.php');
+		require_once('../core/Util.class.php');
 
     $base = Base::getInstance();
 		$base->registerActivity();
@@ -25,6 +26,8 @@
     $localDate = $_GET['localDate'];
 	$localTime = $_GET['localTime'];
 	$localTimestamp = $_GET['localTimestamp'];
+
+	Util::getInstance()->saveActionWithLocalTime("Create Bookmark ",0,$base,$localTime,$localDate,$localTimestamp);
 
 
 ?>
