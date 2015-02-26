@@ -132,6 +132,10 @@ var CSPACE = (function(){
   }
 
   function initEventListeners(){
+    $("#tag_filter").on("change", function(e){
+      var url = $(this).val();
+      window.location = url;
+    });
     $("#sorting").on("change", function(e){
       var url = $(this).val();
       window.location = url;

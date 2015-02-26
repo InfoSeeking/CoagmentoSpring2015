@@ -81,7 +81,15 @@ function gen_url($param){
           <p><b>Notes:</b> <%= note %> </p>
           <% } %>
           <% if(rating > 0) { %>
-            <p><b>Rating:</b> <span class="rating"><%= rating %>/5</span></p>
+            <p><b>Rating:</b>
+              <span class="rating">
+                <% for(var i = 0; i < rating; i++){ %>
+                  <img src="assets/img/star_filled.png" />
+                <% } %>
+                <% for(var i = rating; i < 5; i++){ %>
+                  <img src="assets/img/star_unfilled.png" />
+                <% } %>
+              </span></p>
           <% } %>
         </div><!--/top-->
         <div class="sub">

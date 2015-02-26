@@ -7,8 +7,7 @@ if($PAGE == "BOOKMARKS"):
 ?>
 <div id="bookmark_filters">
   <h4>Filter by tag</h4>
-  <!-- <ul> -->
-  <select onchange="location = this.options[this.selectedIndex].value;">
+  <select id="tag_filter">
   <?php
     $all_param = array(
       "bookmark_tag_filter" => false,
@@ -24,19 +23,8 @@ if($PAGE == "BOOKMARKS"):
       printf("%s</option>", $tag["name"]);
       echo "</li>";
     }
-    // printf("<li class='%s'><a href='%s'>All Tags</a></li>", $current_tag ? "" : "current ", gen_url($all_param));
-    // foreach($tag_data as $tag){
-    //   printf("<li class='%s'>", $tag["name"] == $current_tag ? "current " : " ");
-    //   $param = array(
-    //     "bookmark_tag_filter" => $tag["name"],
-    //     "page" => "BOOKMARKS"
-    //   );
-    //   printf("<a href='%s'>%s</a>", gen_url($param), $tag["name"]);
-    //   echo "</li>";
-    // }
   ?>
   </select>
-  <!-- </ul> -->
 </div><!-- /#bookmark_filters -->
 <?php
 endif;
@@ -56,10 +44,10 @@ if($PAGE == "BOOKMARKS"):
 <select id="sorting">
   <?php
   $params["sorting"] = "timestamp";
-  $params["sorting_order"] = "ASC";
-  printf("<option value='%s' %s>Time saved [Most recent first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   $params["sorting_order"] = "DESC";
-  printf("<option value='%s' %s>Time saved [Earliest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  printf("<option value='%s' %s>Time saved [Newest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  $params["sorting_order"] = "ASC";
+  printf("<option value='%s' %s>Time saved [Oldest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
 
   $params["sorting"] = "rating";
   $params["sorting_order"] = "ASC";
@@ -88,9 +76,9 @@ elseif($PAGE == "SNIPPETS"):
   <?php
   $params["sorting"] = "timestamp";
   $params["sorting_order"] = "DESC";
-  printf("<option value='%s' %s>Time saved [Most recent first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  printf("<option value='%s' %s>Time saved [Newest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   $params["sorting_order"] = "ASC";
-  printf("<option value='%s' %s>Time saved [Earliest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  printf("<option value='%s' %s>Time saved [Oldest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
 
   $params["sorting"] = "snippet";
   $params["sorting_order"] = "ASC";
@@ -112,33 +100,13 @@ elseif($PAGE == "SEARCHES"):
 <select id="sorting">
   <?php
   $params["sorting"] = "timestamp";
-  $params["sorting_order"] = "ASC";
-  printf("<option value='%s' %s>Time saved [Most recent first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   $params["sorting_order"] = "DESC";
-  printf("<option value='%s' %s>Time saved [Earliest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
-
-  $params["sorting"] = "query";
+  printf("<option value='%s' %s>Time saved [Newest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   $params["sorting_order"] = "ASC";
-  printf("<option value='%s' %s>Search text [A to Z]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
-  $params["sorting_order"] = "DESC";
-  printf("<option value='%s' %s>Search text [Z to A]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  printf("<option value='%s' %s>Time saved [Oldest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   ?>
 </select>
 <?php endif; ?>
 
 
-<?php if($has_sorting): ?>
-  <!-- <select id="sorting_order">
-    <?php
-    // $params = array(
-    //   "page" => $PAGE,
-    //   "sorting" => $sorting
-    // );
-    // $params["sorting_order"] = "DESC";
-    // printf("<option value='%s' %s>Highest to lowest</option>", gen_url($params), $params["sorting_order"] == $sorting_order ? "selected" : "");
-    // $params["sorting_order"] = "ASC";
-    // printf("<option value='%s' %s>Lowest to highest</option>", gen_url($params), $params["sorting_order"] == $sorting_order ? "selected" : "");
-    ?>
-  </select> -->
-<?php endif; ?>
 </div>
