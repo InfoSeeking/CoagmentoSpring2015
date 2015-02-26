@@ -7,24 +7,36 @@ if($PAGE == "BOOKMARKS"):
 ?>
 <div id="bookmark_filters">
   <h4>Filter by tag</h4>
-  <ul>
+  <!-- <ul> -->
+  <select onchange="location = this.options[this.selectedIndex].value;">
   <?php
     $all_param = array(
       "bookmark_tag_filter" => false,
       "page" => "BOOKMARKS"
     );
-    printf("<li class='%s'><a href='%s'>All Tags</a></li>", $current_tag ? "" : "current ", gen_url($all_param));
+    printf("<option value='%s' %s>All Tags</option>", gen_url($all_param), $all_param["bookmark_tag_filter"] == $current_tag ? "selected" : "");
     foreach($tag_data as $tag){
-      printf("<li class='%s'>", $tag["name"] == $current_tag ? "current " : " ");
       $param = array(
         "bookmark_tag_filter" => $tag["name"],
         "page" => "BOOKMARKS"
       );
-      printf("<a href='%s'>%s</a>", gen_url($param), $tag["name"]);
+      printf("<option value='%s' %s>", gen_url($param), $param["bookmark_tag_filter"] == $current_tag ? "selected" : "");
+      printf("%s</option>", $tag["name"]);
       echo "</li>";
     }
+    // printf("<li class='%s'><a href='%s'>All Tags</a></li>", $current_tag ? "" : "current ", gen_url($all_param));
+    // foreach($tag_data as $tag){
+    //   printf("<li class='%s'>", $tag["name"] == $current_tag ? "current " : " ");
+    //   $param = array(
+    //     "bookmark_tag_filter" => $tag["name"],
+    //     "page" => "BOOKMARKS"
+    //   );
+    //   printf("<a href='%s'>%s</a>", gen_url($param), $tag["name"]);
+    //   echo "</li>";
+    // }
   ?>
-  </ul>
+  </select>
+  <!-- </ul> -->
 </div><!-- /#bookmark_filters -->
 <?php
 endif;
