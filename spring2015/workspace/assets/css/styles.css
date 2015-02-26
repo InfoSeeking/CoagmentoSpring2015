@@ -161,20 +161,30 @@ ul{
 #feed li.search-hidden{
   display: none;
 }
-.pg_All #feed li.item-bookmark{
+#feed li.item-bookmark{
   border-color: #F5F531;
+}
+.pg_All #feed li.item-bookmark{
   border-top-width: 18px;
+}
+#feed li.item-snippet{
+  border-color: #65F778;
 }
 .pg_All #feed li.item-snippet{
   border-color: #65F778;
   border-top-width: 18px;
 }
+#feed li.item-search{
+  border-color: #FFCCA8;
+}
 .pg_All #feed li.item-search{
   border-color: #FFCCA8;
   border-top-width: 18px;
 }
-.pg_All #feed li.item-source{
+#feed li.item-source{
   border-color: #E1B1FC;
+}
+.pg_All #feed li.item-source{  
   border-top-width: 18px;
 }
 #feed li.item-source .related-section, #feed li.item-bookmark .bookmark-related-section{
