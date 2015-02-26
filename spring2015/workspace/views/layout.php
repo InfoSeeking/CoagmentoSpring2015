@@ -1,4 +1,5 @@
 <?php
+require_once("../contributions.php");
 function gen_url($param){
   global $PAGE, $sorting, $sorting_order, $current_tag;
   $defaults = array(
@@ -26,13 +27,12 @@ function gen_url($param){
 
         <hgroup class='left-side'>
           <img src="assets/img/clogo.png" alt="Coagmento Logo" />
-          <h2>Welcome, <?php echo $firstName ?>!</h2>
         </hgroup>
         <div class='left-side'>
           <!-- Questionaire deadlines will go here -->
         </div>
         <div class='right-side'>
-          <?php require_once("../contributions.php"); ?>
+          <?php printContributionTable(); ?>
         </div>
         <nav class='clear'>
           <ul>
@@ -53,12 +53,28 @@ function gen_url($param){
         <?php require_once("views/aside.php"); ?>
       </div>
       <div class="right_col">
-        <ul id="feed"></ul>
         <?php
-        if($PAGE == "CONTRIBUTIONS"){
-          require_once("../contributions.php");
-        }
+        if($PAGE == "ALL"):
+          $group = getGroupCounts();
+          $sum = array(
+            "bookmarks" => 0,
+            "snippets" => 0,
+            "searches" => 0
+          );
+          foreach($group as $username => $counts){
+            $sum["bookmarks"] += $counts["bookmarks"];
+            $sum["snippets"] += $counts["snippets"];
+            $sum["searches"] += $counts["searches"];
+          }
         ?>
+      <div class="welcome">
+        <p>Welcome, <?php echo $firstName ?>!</p>
+        <p>Your group has done <b><?php echo $sum["searches"]; ?></b> searches, saved <b><?php echo $sum["bookmarks"]; ?></b> bookmarks, and saved <b><?php echo $sum["snippets"]; ?></b> snippets.</p>
+      </div>
+        <?php
+        endif;
+        ?>
+        <ul id="feed"></ul>
       </div>
       <br class="clear" />
     </div>
@@ -170,7 +186,7 @@ function gen_url($param){
       <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <a href="<%= url %>"><%= query %></a>
+          <a href="<%= url %>"><%= query %> (<%= source %>)</a>
         </div>
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
