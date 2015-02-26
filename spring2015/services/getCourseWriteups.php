@@ -227,7 +227,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 									if($valid){
 											$readOnlyID = addslashes($data->{'data'}->{'readOnlyID'});
 											$url = "http://coagmentopad.rutgers.edu:".$port."/p/".$readOnlyID;
-											echo "<center><button onclick=\"javascript:window.open('$url','_blank')\">Get Pad</button></center>";
+											echo "<center><button class=\"pure-button pure-button-primary\" onclick=\"javascript:window.open('$url','_blank')\">Get Pad</button></center>";
 									}else{
 											echo "(No pad text available.)";
 									}
@@ -243,7 +243,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 								}else{
 									$url = "http://coagmentopad.rutgers.edu:".$port."/p/".$readOnlyID;
-									echo "<center><button onclick=\"javascript:window.open('$url','_blank')\">Get Pad</button></center>";
+									echo "<center><button class=\"pure-button pure-button-primary\" onclick=\"javascript:window.open('$url','_blank')\">Get Pad</button></center>";
 								}
 								echo "</td>";
 								echo "</tr>";
