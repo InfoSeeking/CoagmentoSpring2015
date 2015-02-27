@@ -32,6 +32,7 @@ var lastCopyURL = "";
 var lastTitle = "";
 var lastSnippet = "";
 var copied = false;
+var first = true;
 
 var googleURL = "	";
 
@@ -368,7 +369,20 @@ var coagmentoToolbar =
 
 function editor()
 {
-  var url = globalUrl+"services/getTextEditor.php";
+
+  var currentTime = new Date();
+  var month = currentTime.getMonth() + 1;
+  var day = currentTime.getDate();
+  var year = currentTime.getFullYear();
+  var localDate = year + "%2F" + month + "%2F" + day;
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  var localTime = hours + "%3A" + minutes + "%3A" + seconds;
+  var localTimestamp = currentTime.getTime();
+
+
+  var url = globalUrl+"services/getTextEditor.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
   //1/12/14 edit: open in new tab
   // win = window.open(url);
   // win.focus();
@@ -379,15 +393,36 @@ function editor()
 
 function activetask(){
 	//loadURL(globalUrl+"services/viewMyStuff.php?=true");
+    var currentTime = new Date();
+    var month = currentTime.getMonth() + 1;
+    var day = currentTime.getDate();
+    var year = currentTime.getFullYear();
+    var localDate = year + "%2F" + month + "%2F" + day;
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+    var localTime = hours + "%3A" + minutes + "%3A" + seconds;
+    var localTimestamp = currentTime.getTime();
 
-	window.open(globalUrl+"services/viewMyStuff.php?=true",'Active Task View','directories=no, personalbar=no, resizable=yes, toolbar=no, location=no, status=no, menubar=no, scrollbars=yes,width=550,height=400,left=600'); //resizable=no,
+
+	window.open(globalUrl+"services/viewMyStuff.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate,'Active Task View','directories=no, personalbar=no, resizable=yes, toolbar=no, location=no, status=no, menubar=no, scrollbars=yes,width=550,height=400,left=600'); //resizable=no,
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes');
 	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View');
 
 }
 
 function openContactWindow(){
-  window.open(globalUrl + "services/contactUs.php","Contact Us",'directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');
+    var currentTime = new Date();
+    var month = currentTime.getMonth() + 1;
+    var day = currentTime.getDate();
+    var year = currentTime.getFullYear();
+    var localDate = year + "%2F" + month + "%2F" + day;
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+    var localTime = hours + "%3A" + minutes + "%3A" + seconds;
+    var localTimestamp = currentTime.getTime();
+    window.open(globalUrl + "services/contactUs.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate,"Contact Us",'directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');
 }
 
 //Save pages
@@ -516,7 +551,10 @@ function copyData()
          url = encodeURIComponent(url);
          var title = encodeURIComponent(document.title);*/
 
-		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString().trim();
+        if(snippet.length <= 0){
+            return;
+        }
         lastSnippet = snippet;
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
@@ -577,7 +615,10 @@ function snip()
 		url = encodeURIComponent(url);
 		var title = encodeURIComponent(document.title);*/
 
-		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString();
+		var snippet = document.commandDispatcher.focusedWindow.getSelection().toString().trim();
+        if(snippet.length <= 0){
+            return;
+        }
         var url = gBrowser.selectedBrowser.currentURI.spec;
         url = encodeURIComponent(url);
         var title = document.title;
@@ -675,7 +716,18 @@ function bookmark()
 
 
 function instructions(){
-    var url = globalUrl+"services/getInstructions.php";
+  var currentTime = new Date();
+  var month = currentTime.getMonth() + 1;
+  var day = currentTime.getDate();
+  var year = currentTime.getFullYear();
+  var localDate = year + "%2F" + month + "%2F" + day;
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  var localTime = hours + "%3A" + minutes + "%3A" + seconds;
+  var localTimestamp = currentTime.getTime();
+
+    var url = globalUrl+"services/getInstructions.php?fromtoolbar=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
     loadURL(url);
 }
 function workspace(){
@@ -805,11 +857,15 @@ function hideButtons(value)
 
 
 
-
 function initializeToolbarSession()
 {
 	if (loggedIn)
 	{
+
+        if(first && top.document.getElementById('viewSidebar').getAttribute('checked')){
+            first = false;
+            gBrowser.selectedTab = gBrowser.addTab(globalUrl+"workspace/");
+        }
 		if (sessionNumber==1)
 		{
 //            alert('initialize to true 1');
@@ -825,6 +881,7 @@ function initializeToolbarSession()
 	}
 	else
 	{
+        first = true;
 //        alert('NOT LOGGED IN!  HIDE!');
         hideButtons(true);
 

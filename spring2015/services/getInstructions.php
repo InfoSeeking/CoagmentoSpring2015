@@ -4,9 +4,20 @@
 
 	require_once('../core/Settings.class.php');
 	require_once('../core/Base.class.php');
+	require_once('../core/Util.class.php');
+
 
     if (Base::getInstance()->isSessionActive())
     {
+
+			if(isset($_GET['fromtoolbar']) && $_GET['fromtoolbar']){
+				$localTime = $_GET['localTime'];
+				$localDate = $_GET['localDate'];
+				$localTimestamp = $_GET['localTimestamp'];
+				Util::getInstance()->saveActionWithLocalTime("Clicked Instructions Button", 0, Base::getInstance(), $localTime, $localDate, $localTimestamp);
+				header("Location: getInstructions.php");
+				exit();
+			}
 
     $base = Base::getInstance();
     $userID = $base->getUserID();

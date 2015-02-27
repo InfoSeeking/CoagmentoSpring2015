@@ -3,7 +3,7 @@
 	require_once('../core/Settings.class.php');
 	require_once('../core/Base.class.php');
     require_once('../core/Connection.class.php');
-
+		require_once('../core/Util.class.php');
 
 if (Base::getInstance()->isSessionActive())
 {
@@ -13,6 +13,9 @@ if (Base::getInstance()->isSessionActive())
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
     $userName = $base->getUserName();
+		$localTime = $_GET['localTime'];
+		$localDate = $_GET['localDate'];
+		$localTimestamp = $_GET['localTimestamp'];
 
     $topicAreaID = $base->getTopicAreaID();
 
@@ -24,6 +27,8 @@ if (Base::getInstance()->isSessionActive())
 		$results = $connection->commit($query);
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$port = $line['port'];
+
+		Util::getInstance()->saveActionWithLocalTime("Clicked Etherpad Button", 0, $base, $localTime, $localDate, $localTimestamp);
 
 
 
