@@ -373,24 +373,7 @@ var coagmentoToolbar =
 
 function editor()
 {
-
-  var currentTime = new Date();
-  var month = currentTime.getMonth() + 1;
-  var day = currentTime.getDate();
-  var year = currentTime.getFullYear();
-  var localDate = year + "%2F" + month + "%2F" + day;
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
-  var seconds = currentTime.getSeconds();
-  var localTime = hours + "%3A" + minutes + "%3A" + seconds;
-  var localTimestamp = currentTime.getTime();
-
-
-  var url = globalUrl+"services/getTextEditor.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
-  //1/12/14 edit: open in new tab
-  // win = window.open(url);
-  // win.focus();
-
+  var url = globalUrl+"services/getTextEditor.php";
   gBrowser.selectedTab = gBrowser.addTab(url);
   // loadURL(url);
   var actionReq = new XMLHttpRequest();
@@ -399,37 +382,17 @@ function editor()
 }
 
 function activetask(){
-	//loadURL(globalUrl+"services/viewMyStuff.php?=true");
-    var currentTime = new Date();
-    var month = currentTime.getMonth() + 1;
-    var day = currentTime.getDate();
-    var year = currentTime.getFullYear();
-    var localDate = year + "%2F" + month + "%2F" + day;
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var localTime = hours + "%3A" + minutes + "%3A" + seconds;
-    var localTimestamp = currentTime.getTime();
-
-
-	window.open(globalUrl+"services/viewMyStuff.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate,'Active Task View','directories=no, personalbar=no, resizable=yes, toolbar=no, location=no, status=no, menubar=no, scrollbars=yes,width=550,height=400,left=600'); //resizable=no,
-	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes');
-	//window.open(globalUrl+"services/viewMyStuff.php?=true",'My Stuff View');
-
+	window.open(globalUrl+"services/viewMyStuff.php?=true",'Active Task View','directories=no, personalbar=no, resizable=yes, toolbar=no, location=no, status=no, menubar=no, scrollbars=yes,width=550,height=400,left=600');
+  var actionReq = new XMLHttpRequest();
+  actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickActiveTask&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
+  actionReq.send();
 }
 
 function openContactWindow(){
-    var currentTime = new Date();
-    var month = currentTime.getMonth() + 1;
-    var day = currentTime.getDate();
-    var year = currentTime.getFullYear();
-    var localDate = year + "%2F" + month + "%2F" + day;
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var localTime = hours + "%3A" + minutes + "%3A" + seconds;
-    var localTimestamp = currentTime.getTime();
-    window.open(globalUrl + "services/contactUs.php?=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate,"Contact Us",'directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');
+    window.open(globalUrl + "services/contactUs.php?=true","Contact Us",'directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');
+    var actionReq = new XMLHttpRequest();
+    actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickContact&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
+    actionReq.send();
 }
 
 //Save pages
@@ -723,18 +686,7 @@ function bookmark()
 
 
 function instructions(){
-  var currentTime = new Date();
-  var month = currentTime.getMonth() + 1;
-  var day = currentTime.getDate();
-  var year = currentTime.getFullYear();
-  var localDate = year + "%2F" + month + "%2F" + day;
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
-  var seconds = currentTime.getSeconds();
-  var localTime = hours + "%3A" + minutes + "%3A" + seconds;
-  var localTimestamp = currentTime.getTime();
-
-    var url = globalUrl+"services/getInstructions.php?fromtoolbar=true" + '&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
+    var url = globalUrl+"services/getInstructions.php?fromtoolbar=true";
     loadURL(url);
     var actionReq = new XMLHttpRequest();
     actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickHelp&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
