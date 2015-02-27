@@ -1,13 +1,13 @@
 <?php
 require_once("../contributions.php");
 function gen_url($param){
-  global $PAGE, $sorting, $sorting_order, $current_tag;
+  global $PAGE, $sorting, $sorting_order, $current_tag, $only_mine;
   $defaults = array(
   "page" => $PAGE,
   "bookmark_tag_filter" => $current_tag,
   "sorting" => $sorting,
   "sorting_order" => $sorting_order,
-  "only_mine" => false
+  "only_mine" => $only_mine
   );
   $param = array_merge($defaults, $param);
   return "?" . http_build_query($param);
@@ -232,7 +232,7 @@ function gen_url($param){
     <script>
     (function(){
       <?php
-      printf("CSPACE.init('%s',%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID);
+      printf("CSPACE.init('%s',%s,%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID, $only_mine?"true":"false");
       ?>
 
       $(".tag-input").select2({

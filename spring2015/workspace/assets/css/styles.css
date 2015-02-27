@@ -292,3 +292,7 @@ table.contributions tr td:nth-child(odd){
   color: #555;
   font-size: 12px;
 }
+.only_mine_container{
+  margin-top: 10px;
+  font-size: 14px;
+}

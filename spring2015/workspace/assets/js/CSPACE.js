@@ -2,8 +2,9 @@ var CSPACE = (function(){
   var that = {};
   var all_tags = [];
   var lunr_index;
+  var only_mine;
   var userID;
-  that.init = function(PAGE,feed_data, at, uid){
+  that.init = function(PAGE,feed_data, at, uid, om){
     lunr_index = lunr(function () {
       this.field('title', {boost: 10})
       this.field('body', {boost: 5})
@@ -11,6 +12,7 @@ var CSPACE = (function(){
       this.ref('id')
     });
     userID = uid;
+    only_mine = om;
     window.lunr_index = lunr_index;
     for(var i = 0; i < at.length; i++){
       all_tags.push(at[i].name);
@@ -30,6 +32,9 @@ var CSPACE = (function(){
     for(var i = 0; i < feed_data.length; i++){
       var t = feed_data[i]["type"];
       var d = feed_data[i]["data"];
+      if(d.hasOwnProperty("userID") && d["userID"] != userID && only_mine){
+        continue;
+      }
       lunr_id++;
       switch(t){
         case "bookmark":
@@ -136,6 +141,10 @@ var CSPACE = (function(){
   }
 
   function initEventListeners(){
+    $("#only_mine").on("change", function(e){
+      var url = $(this).attr("data-to");
+      window.location = url;
+    })
     $("#tag_filter").on("change", function(e){
       var url = $(this).val();
       window.location = url;

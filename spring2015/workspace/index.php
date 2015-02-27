@@ -40,6 +40,11 @@ $projectID = $base->getProjectID();
 $sorting = isset($_GET["sorting"]) ? $_GET["sorting"] : "timestamp";
 $sorting_order = isset($_GET["sorting_order"]) ? $_GET["sorting_order"] : "DESC";
 $sorting_query = $sorting . " " . $sorting_order;
+$only_mine = isset($_GET["only_mine"]) ? $_GET["only_mine"] : false;
+
+if($only_mine){
+  $only_mine=$username;
+}
 
 switch($PAGE){
   case "ALL":
