@@ -537,8 +537,15 @@ appName=="Netscape") {
 function showTime(ID,parentID,itemID) {
     var currentY = cY;
 // var sText = "<center><table style=\"text-align: center; color: blue; font-weight: bold\" width: 100%;\" border=\"0\" cellpadding=\"0\" cellspacing=\"10\"><tr><td>";
-var sText = "<p>Time: "+document.getElementById("time"+itemID).value+"</p>";
+var t = document.getElementById("time"+itemID).value;
+var parts = t.split(":");
+var hours = parseInt(parts[0]);
+var ampm = hours >= 12 ? "pm" : "am";
+hours = (hours > 12) ? hours - 12 : hours;
+hours = (hours == 0) ? 12 : hours;
+parts[0] = hours;
 
+var sText = "<p>Time: " + parts.join(":") + ampm + "</p>";
 if (document.layers) {
    var oLayer;
    if(parentID){

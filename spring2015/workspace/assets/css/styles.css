@@ -84,6 +84,7 @@ ul{
   border-radius: 5px;
   font-size: 10px;
   margin-right: 10px;
+  font-family: "Arial";
 }
 .label{
   /* removing color on labels for now */

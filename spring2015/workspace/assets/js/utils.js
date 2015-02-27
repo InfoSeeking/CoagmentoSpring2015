@@ -12,7 +12,9 @@ function realDate(dateStr){
     m = "0" + m;
   }
   var h = date.getHours();
-  return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + (h % 12) + ":" + m + (h >= 12 ? "pm" : "am");
+  var h12 = h > 12 ? h - 12 : h;
+  h12 = h12 == 0 ? 12 : h12;
+  return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + h12 + ":" + m + (h >= 12 ? "pm" : "am");
 }
 function prettyDate(dateStr){
   function pluralize(time, type){
