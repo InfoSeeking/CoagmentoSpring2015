@@ -19,6 +19,26 @@ var globalUrl = "http://coagmento.org/spring2015/";
 //var globalUrl = "http://coagmento.rutgers.edu/spring2013/pilot1/";
 
 
+function localTime(){
+  var currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  return hours + "%3A" + minutes + "%3A" + seconds;
+}
+
+function localTimestamp(){
+  var currentTime = new Date();
+  return currentTime.getTime();
+}
+
+function localDate(){
+  var currentTime = new Date();
+  var month = currentTime.getMonth() + 1;
+  var day = currentTime.getDate();
+  var year = currentTime.getFullYear();
+  return year + "%2F" + month + "%2F" + day;
+}
 //Function to load a URL
 function loadURL(url) {
     // Set the browser window's location to the incoming URL
@@ -32,6 +52,7 @@ var lastCopyURL = "";
 var lastTitle = "";
 var lastSnippet = "";
 var copied = false;
+var first = true;
 
 var googleURL = "	";
 
@@ -147,22 +168,6 @@ function checkStageBrowsability()
 	}
 }
 
-/*function validSearchEngine()
-{
-    if (sessionNumber==2)
-	{
-		if (loggedIn)
-		{
-			flagSearchEngine = true;
-			var url = new String(window.content.document.location);
-
-			if ((url.indexOf("www.google.com",0) != -1)&&(url.indexOf("complete=0",0) == -1))
-			{
-				search();
-			}
-		}
-	}
-}*/
 
 function onPageLoad()
 {
@@ -375,6 +380,9 @@ function editor()
 
   gBrowser.selectedTab = gBrowser.addTab(url);
   // loadURL(url);
+  var actionReq = new XMLHttpRequest();
+  actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickEditor&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
+  actionReq.send();
 }
 
 function activetask(){
@@ -677,10 +685,16 @@ function bookmark()
 function instructions(){
     var url = globalUrl+"services/getInstructions.php";
     loadURL(url);
+    var actionReq = new XMLHttpRequest();
+    actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickHelp&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
+    actionReq.send();
 }
 function workspace(){
   var url = globalUrl+"workspace";
   gBrowser.selectedTab = gBrowser.addTab(url);
+  var actionReq = new XMLHttpRequest();
+  actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickWorkspace&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
+  actionReq.send();
 }
 
 function cleanAlert()
@@ -805,11 +819,15 @@ function hideButtons(value)
 
 
 
-
 function initializeToolbarSession()
 {
 	if (loggedIn)
 	{
+
+        if(first && top.document.getElementById('viewSidebar').getAttribute('checked')){
+            first = false;
+            gBrowser.selectedTab = gBrowser.addTab(globalUrl+"workspace/");
+        }
 		if (sessionNumber==1)
 		{
 //            alert('initialize to true 1');
@@ -825,6 +843,7 @@ function initializeToolbarSession()
 	}
 	else
 	{
+        first = true;
 //        alert('NOT LOGGED IN!  HIDE!');
         hideButtons(true);
 
