@@ -52,13 +52,14 @@ a{
   display: inline-block;
   padding: 1px 10px;
   text-decoration: none;
-  color: #000;
+  color: #FFF;
+  background: #4798F5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .page_header nav li a:hover, .page_header nav li a.current{
   background: #1B77E0;
   color: #FFF;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 ul{
   list-style-type: none;
@@ -250,7 +251,7 @@ table.contributions th{
 }
 table.contributions td{
   background: #FFF;
-  padding: 1px 2px;
+  padding: 1px 3px;
   font-size: 11px;
   font-family: "Arial";
   text-align: center;
@@ -286,4 +287,8 @@ table.contributions tr td:nth-child(odd){
 }
 .pg_All .welcome{
   margin-bottom: 20px;
+}
+.real_date{
+  color: #555;
+  font-size: 12px;
 }

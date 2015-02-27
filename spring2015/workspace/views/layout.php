@@ -111,6 +111,7 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+          <span class="real_date">(<%= real_date %>)</span>
 
           <a href="#" class="bookmark-related">See related snippets</a>
 
@@ -156,6 +157,7 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+          <span class="real_date">(<%= real_date %>)</span>
           <div class="sub-right">
             <% if(editable){ %>
             <a class="delete" href="#" data-id="<%= pageID %>">Delete</a>
@@ -174,6 +176,7 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+          <span class="real_date">(<%= real_date %>)</span>
           <div class="sub-right">
             <% if(editable){ %>
             <a class="delete" href="#" data-id="<%= snippetID %>">Delete</a>
@@ -191,6 +194,7 @@ function gen_url($param){
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
           <span class="date"><%= pretty_date %></span>
+          <span class="real_date">(<%= real_date %>)</span>
           <div class="sub-right">
             <% if(editable){ %>
             <a class="delete" href="#" data-id="<%= queryID %>">Delete</a>

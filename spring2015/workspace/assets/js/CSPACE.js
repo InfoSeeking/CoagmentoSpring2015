@@ -37,6 +37,7 @@ var CSPACE = (function(){
           var url = ed["url"];
           ed["pretty_url"] = url.length > 150 ? url.substring(0,150) + "..." : url;
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+          ed["real_date"] = realDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["label"] = "Bookmark";
           ed["tags"] = ed["tagList"] ? ed["tagList"].split(",") : [];
           ed["all_tags"] = all_tags;
@@ -63,6 +64,7 @@ var CSPACE = (function(){
           var url = ed["url"];
           ed["pretty_url"] = url.length > 150 ? url.substring(0,150) + "..." : url;
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+          ed["real_date"] = realDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["label"] = "Page";
           ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;
@@ -76,6 +78,7 @@ var CSPACE = (function(){
         case "snippet":
           var ed = $.extend({}, d); //extended data
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+          ed["real_date"] = realDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["shortened_snippet"] = ed["snippet"].length > 50 ? ed["snippet"].substring(0,50) + "..." : ed["snippet"];
           ed["label"] = "Snippet";
           ed["editable"] = ed["userID"] == userID;
@@ -95,6 +98,7 @@ var CSPACE = (function(){
           prev_search = d;
           var ed = $.extend({}, d); //extended data
           ed["pretty_date"] = prettyDate(ed["localDate"] + "T" + ed["localTime"]);
+          ed["real_date"] = realDate(ed["localDate"] + "T" + ed["localTime"]);
           ed["label"] = "Search";
           ed["editable"] = ed["userID"] == userID;
           ed["lunr_id"] = lunr_id;

@@ -80,11 +80,19 @@ elseif($PAGE == "SNIPPETS"):
   $params["sorting_order"] = "ASC";
   printf("<option value='%s' %s>Time saved [Oldest first]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
 
+  $params["sorting"] = "title";
+  $params["sorting_order"] = "ASC";
+  printf("<option value='%s' %s>Title text [A to Z]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  $params["sorting_order"] = "DESC";
+  printf("<option value='%s' %s>Title text [Z to A]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+  
   $params["sorting"] = "snippet";
   $params["sorting_order"] = "ASC";
   printf("<option value='%s' %s>Snippet text [A to Z]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
   $params["sorting_order"] = "DESC";
   printf("<option value='%s' %s>Snippet text [Z to A]</option>", gen_url($params), $params["sorting"] == $sorting && $params["sorting_order"] == $sorting_order ? "selected" : "");
+
+
   ?>
 </select>
 

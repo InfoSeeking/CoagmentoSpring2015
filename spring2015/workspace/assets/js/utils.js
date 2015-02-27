@@ -4,6 +4,16 @@ Date.prototype.stdTimezoneOffset = function() {
   var jul = new Date(this.getFullYear(), 6, 1);
   return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
 }
+
+function realDate(dateStr){
+  var date = new Date(dateStr);
+  var m = date.getMinutes();
+  if(m < 10){
+    m = "0" + m;
+  }
+  var h = date.getHours();
+  return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + (h % 12) + ":" + m + (h >= 12 ? "pm" : "am");
+}
 function prettyDate(dateStr){
   function pluralize(time, type){
     if(time != 1){
