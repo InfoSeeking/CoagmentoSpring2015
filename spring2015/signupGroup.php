@@ -102,7 +102,7 @@
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
 
-                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, coursename, researchtopic, sessionday,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '', '', '','0','$next_userID','$instructorID')";
+                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$instructorID')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
