@@ -242,7 +242,7 @@ var CSPACE = (function(){
   }
 
   function initDeleteListeners(){
-    $(".item-bookmark > .sub-right .delete").on("click", function(e){
+    $(".item-bookmark .sub > .sub-right .delete").on("click", function(e){
       e.preventDefault();
       var id = $(this).attr("data-id");
       var item = $(this).parents(".item-bookmark");

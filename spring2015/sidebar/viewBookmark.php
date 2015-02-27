@@ -21,8 +21,8 @@ $bookmarkID = $_GET['value'];
 $updated = false;
 
 if (isset($_POST["action"]) && $_POST["action"] == "update"){
-		$notes = $_POST["notes"];
-		$tags = $_POST["tags"];
+		$notes = isset($_POST["notes"]) ? $_POST["notes"] : "";
+		$tags = isset($_POST["tags"]) ? $_POST["tags"] : array();
 		Bookmark::update($bookmarkID, $notes, $tags);
 		$updated = true;
 }

@@ -67,7 +67,11 @@
     $bookmarkID = $connection->getLastID();
 		Util::getInstance()->saveActionWithLocalTime("Save Bookmark - Rating: $rating",$bookmarkID,$base,$localTime,$localDate,$localTimestamp);
     $tags = new Tags();
-    $tags->assignTagsToBookmark($bookmarkID, $_POST["tags"]);
+		$tag_input = array();
+		if(isset($_POST["tags"])){
+			$tag_input = $_POST["tags"];
+		}
+    $tags->assignTagsToBookmark($bookmarkID, $tag_input);
 
 
 		$query = "SELECT userID as userID from users WHERE projectID='$projectID'";

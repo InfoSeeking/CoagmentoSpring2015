@@ -15,7 +15,7 @@
 	$url = $originalURL;
 	$host = "";
 	$p = parse_url($url);
-	if ($p){
+	if ($p && isset($p['host'])){
 		$host = $p['host'];
 	}
 	// Get the date, time, and timestamp
@@ -23,9 +23,9 @@
     $timestamp = $base->getTimestamp();
     $date = $base->getDate();
     $time = $base->getTime();
-    $localDate = $_GET['localDate'];
-	$localTime = $_GET['localTime'];
-	$localTimestamp = $_GET['localTimestamp'];
+    $localDate = isset($_GET['localDate']) ? $_GET['localDate'] : "";
+		$localTime = isset($_GET['localTime']) ? $_GET['localTime'] : "";
+		$localTimestamp = isset($_GET['localTimestamp']) ? $_GET['localTimestamp'] : "";
 
 	Util::getInstance()->saveActionWithLocalTime("Create Bookmark ",0,$base,$localTime,$localDate,$localTimestamp);
 
