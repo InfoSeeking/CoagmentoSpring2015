@@ -686,7 +686,8 @@ function bookmark()
 
 
 function instructions(){
-    var url = globalUrl+"services/getInstructions.php?fromtoolbar=true";
+    var url = globalUrl+"services/getInstructions.php";
+    // var url = globalUrl+"services/getInstructions.php?fromtoolbar=true";
     loadURL(url);
     var actionReq = new XMLHttpRequest();
     actionReq.open('GET', globalUrl + "services/insertAction.php?action=ToolbarClickHelp&value=true&localTime=" + localTime() + "&localDate=" + localDate() + "&localTimestamp=" + localTimestamp());
