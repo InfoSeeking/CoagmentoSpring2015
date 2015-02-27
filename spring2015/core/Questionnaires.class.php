@@ -206,7 +206,7 @@ class Questionnaires
 				$keystr .= ")";
 				$valstr .= ")";
 				$query .= "$keystr VALUES $valstr";
-				echo "$query";
+				// echo "$query";
 				$cxn = Connection::getInstance();
 				return $cxn->commit($query);
 			}else{
