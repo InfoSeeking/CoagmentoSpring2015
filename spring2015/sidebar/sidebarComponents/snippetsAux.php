@@ -100,8 +100,8 @@
                   // else
                   //   $snippet_truncated = $title;
 
-                if (strlen($snippet_truncated)>50) {
-                    $snippet_truncated = substr($snippet_truncated, 0, 50);
+                if (strlen($snippet_truncated)>40) {
+                    $snippet_truncated = substr($snippet_truncated, 0, 40);
                     $snippet_truncated = $snippet_truncated . '..';
                 }
 
