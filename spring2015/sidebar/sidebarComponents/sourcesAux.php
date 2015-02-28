@@ -89,7 +89,7 @@
             echo "<td><span style=\"font-size:10px\">";
             if (1){
                 $viewSearchOnWindow = "window.open('viewSource.php?value=$sourceID','Source View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-                echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showQuery('floatSourceLayer',null,'$sourceID','text')\" onmouseout=\"javascript:hideLayer('floatSourceLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$sourceShown</a></span></td>\n";
+                echo "<a alt=\"View\" class=\"cursorType\" onmouseover=\"javascript:showSource('floatSourceLayer',null,'$sourceID','text')\" onmouseout=\"javascript:hideLayer('floatSourceLayer')\" onclick=\"javascript:$viewSearchOnWindow\" style=\"font-size:10px; color:blue\">$sourceShown</a></span></td>\n";
 //                echo "<font color=blue><a onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=sidebar-query&value='+$sourceID,null)\" href=\"$url\" class=\"tt\" target=\"_new\" style=\"font-size:10px\">$sourceAux</a></span></td>\n";
 //				echo "<font color=blue><a onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=sidebar-query&value='+$sourceID,null)\" href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\">$sourceAux</a></span></td>\n";
 			}else{
