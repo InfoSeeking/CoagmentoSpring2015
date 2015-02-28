@@ -982,9 +982,24 @@ function refreshSources(){
 	console.log("Refreshing sources");
 	reload('sidebarComponents/sources.php','sourcesBox');
 }
-function updateOnlyMine(val, callback){
+function updateOnlyMine(val, table, callback){
 	jQuery.ajax({
 		url : "sidebarComponents/updateOnlyMine.php",
+		data : {
+			"only_mine" : val,
+			"table" : table
+		},
+		success: function(){
+			if(callback){
+				callback.call();
+			}
+		}
+	});
+}
+
+function filterBy(val, callback){
+	jQuery.ajax({
+		url : "sidebarComponents/filterBy.php",
 		data : {
 			"only_mine" : val
 		},

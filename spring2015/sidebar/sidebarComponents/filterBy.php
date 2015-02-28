@@ -5,23 +5,16 @@
   $base = Base::getInstance();
 
   if ((isset($_SESSION['CSpace_userID']))) {
-    $only_mine = $_GET['only_mine'] == 'true' ? true : false;
-    $webPage = isset($_GET['webPage']) ? $_GET['webPage'] : false;
-    $_SESSION['only_mine'] = $only_mine;
-    echo $_GET['only_mine'];
-    $table  = $_GET['table'];
+    $tag = isset($_GET['val'])? $_GET['val'] : '';
     $userID = $base->getUserID();
     $projectID = $_SESSION['CSpace_projectID'];
     $timestamp = $base->getTimestamp();
     $date = $base->getDate();
     $time = $base->getTime();
     $ip=$_SERVER['REMOTE_ADDR'];
-    $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'updateOnlyMine_$table', '$only_mine','$ip')";
+    $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'filterBy_bookmark', '$tag','$ip')";
 
     $connection = Connection::getInstance();
     $result = $connection->commit($aquery);
-    if ($webPage){
-      require_once($webPage);
-    }
   }
 ?>

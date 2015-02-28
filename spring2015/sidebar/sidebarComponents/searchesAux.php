@@ -53,7 +53,7 @@
 
         $userMap = User::getIDMap($projectID);
 
-        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshSearches)'>";
+        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick=\"updateOnlyMine(" . ($only_mine ? "false" : "true")  . ",'queries', refreshSearches)\">";
         echo ($only_mine ? "Show everyone's data" : "Show only my data");
         echo "</a>";
 

@@ -57,12 +57,12 @@
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
 
-    echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshBookmarks)'>";
+    echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick=\"updateOnlyMine(" . ($only_mine ? "false" : "true")  . ",'bookmarks', refreshBookmarks)\">";
     echo ($only_mine ? "Show everyone's data" : "Show only my data");
     echo "</a>";
 
     echo "<p>Filter by tag: ";
-    echo "<select id='tagfilter' onchange='refreshBookmarks()' class='tags'><option value='-1'>Show all</option>";
+    echo "<select id='tagfilter' onchange='filterBy(this.value,refreshBookmarks)' class='tags'><option value='-1'>Show all</option>";
     foreach($tags as $t){
       $extra = $t["tagID"] == $filter ? "selected" : "";
       printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);
