@@ -96,5 +96,8 @@ code {font-family:"Courier New",Courier}
 #nested h3 {width:411px; border:1px solid #9ac1c9; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer;}
 #nested .acc-section {overflow:hidden; background:#fff}
 #nested .acc-content {width:393px; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
--->
+#only_mine_select{
+	display: block;
+	padding-bottom: 4px;
+}
 </style>

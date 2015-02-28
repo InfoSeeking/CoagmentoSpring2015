@@ -498,6 +498,41 @@ function showQuery(ID,parentID,queryID,type) {
 }
 
 
+function showSource(ID,parentID,queryID,type) {
+    // var sText = "<center><table style=\"text-align: center; color: blue; font-weight: bold\" width: 100%;\" border=\"0\" cellpadding=\"0\" cellspacing=\"10\"><tr><td>";
+    var sText = "";
+    sText = sText + "<p>Source: "+document.getElementById("querysource"+queryID).value.substr(0,200)+"...</p>";
+		// sText = sText + "<hr>";
+		// sText = sText + "<p>URL: "+document.getElementById("queryurl"+queryID).value.substr(0,20)+"...</p><hr>";
+    // if (type == "text")
+    //     sText = sText + "<p>Query: "+document.getElementById("queryValue"+queryID).value.substr(0,250)+"...</p>";
+    //sText = "</td></tr></table>";
+    if (document.layers) {
+        var oLayer;
+        if(parentID){
+            oLayer = eval('document.' + parentID + '.document.' + ID + '.document');
+        }else{
+            oLayer = document.layers[ID].document;
+        }
+
+        oLayer.open();
+        oLayer.write(sText);
+        oLayer.close();
+    }
+    else if (parseInt(navigator.appVersion)>=5&&navigator.
+             appName=="Netscape") {
+        document.getElementById(ID).innerHTML = sText;
+    }
+    else if (document.all) document.all[ID].innerHTML = sText
+
+        //Save action
+        //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
+        var dd = document.getElementById(ID);
+    AssignPosition(dd);
+    document.getElementById(ID).style.display="block";
+}
+
+
 
 
 function showPage(ID,parentID,pageID) {
@@ -982,9 +1017,24 @@ function refreshSources(){
 	console.log("Refreshing sources");
 	reload('sidebarComponents/sources.php','sourcesBox');
 }
-function updateOnlyMine(val, callback){
+function updateOnlyMine(val, table, callback){
 	jQuery.ajax({
 		url : "sidebarComponents/updateOnlyMine.php",
+		data : {
+			"only_mine" : val,
+			"table" : table
+		},
+		success: function(){
+			if(callback){
+				callback.call();
+			}
+		}
+	});
+}
+
+function filterBy(val, callback){
+	jQuery.ajax({
+		url : "sidebarComponents/filterBy.php",
 		data : {
 			"only_mine" : val
 		},

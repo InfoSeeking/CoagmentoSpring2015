@@ -50,7 +50,7 @@
         $query = "SELECT * FROM (SELECT * FROM snippets WHERE projectID='$projectID' AND questionID='$questionID' AND status=1) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
         $results = $connection->commit($query);
         $bgColor = '#E8E8E8';
-        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick='updateOnlyMine(" . ($only_mine ? "false" : "true")  . ", refreshSnippets)'>";
+        echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick=\"updateOnlyMine(" . ($only_mine ? "false" : "true")  . ",'snippets', refreshSnippets)\">";
         echo ($only_mine ? "Show everyone's data" : "Show only my data");
         echo "</a>";
         $numRows = mysql_num_rows($results);
@@ -100,7 +100,7 @@
                   // else
                   //   $snippet_truncated = $title;
 
-                if (strlen($snippet_truncated)>42) {
+                if (strlen($snippet_truncated)>40) {
                     $snippet_truncated = substr($snippet_truncated, 0, 40);
                     $snippet_truncated = $snippet_truncated . '..';
                 }

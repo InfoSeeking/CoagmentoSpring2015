@@ -19,30 +19,33 @@
 			<link rel="stylesheet" href="css/styles.css" type="text/css" />
 			<style type="text/css">
 				#container{
-					text-align: center;
+					width: 300px;
+					margin: 0px auto;
 				}
 			</style>
 			</head>
 			<body>
-        <form action="loginOnSideBarAux.php" method=post>
-		<table>
-			<tr><td align=center colspan=2 <span style="font-weight:bold;">Login to your Account</span></td></tr>
-			<tr><td colspan=2><br/></td></tr>
-			<tr><td> Username </td><td> <input name="userName" type="text" size=20 /></td></tr>
-			<tr><td> Password </td><td> <input name="password" type="password" size=20 /></td></tr>
-			<tr><td colspan=2 align="center"><input type="submit" value="Login"/></td></tr>
-			<tr><td colspan=2><br/></td></tr>
-		</table></form>
-		<table>
-			<tr><td>Forget your password? <a style="color:blue;text-decoration:underline;cursor:pointer;font-size:12px;" onclick="javascript:window.open('http://coagmento.org/spring2015/services/generatePassword.php','Forgot Password','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');return false;">Click here</a> to generate a new one.</td></tr>
-			<tr><td colspan=2><br/></td></tr>
-			<tr><td>
-                            </td>
-                            <td>
+    <div id="container">
+    	    <form action="loginOnSideBarAux.php" method=post>
+    			<table>
+    				<tr><td align=center colspan=2 <span style="font-weight:bold;">Login to your Account</span></td></tr>
+    				<tr><td colspan=2><br/></td></tr>
+    				<tr><td> Username </td><td> <input name="userName" type="text" size=20 /></td></tr>
+    				<tr><td> Password </td><td> <input name="password" type="password" size=20 /></td></tr>
+    				<tr><td colspan=2 align="center"><input type="submit" value="Login"/></td></tr>
+    				<tr><td colspan=2><br/></td></tr>
+    			</table></form>
+    			<table>
+    				<tr><td>Forget your password? <a style="color:blue;text-decoration:underline;cursor:pointer;font-size:12px;" onclick="javascript:window.open('http://coagmento.org/spring2015/services/generatePassword.php','Forgot Password','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=520,height=300,left=400');return false;">Click here</a> to generate a new one.</td></tr>
+    				<tr><td colspan=2><br/></td></tr>
+    				<tr><td>
+    	                    </td>
+    	                    <td>
 
-                            </td>
-                        </tr>
-		</table>
+    	                    </td>
+    	                </tr>
+    			</table>
+    </div>
                          </body>
                         </html>
 <?php

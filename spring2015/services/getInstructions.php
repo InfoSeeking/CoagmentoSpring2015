@@ -333,10 +333,11 @@ while you research. -->
 <ul>
 <li>Work together with your group to search for information on your topic, evaluate its quality, and synthesize what you've all learned into your written report.</li>
 <li>Focus your time on finding and selecting quality information and building a consensus with your group about which information is best for your topic.</li>
-<li>Use the star ratings in the History/Bookmarks section of the Sidebar to rate the best sources.</li>
+<li>While searching, open new tabs in Firefox. Do not open new browser windows.</li>
 <li>Remember to use the Chat window to explain to your group what you're doing, and explain your reasoning.</li>
 <li>Use the text editor to save notes, work on your outline, and organize your report.</li>
-<li><strong>While searching, open new tabs in Firefox.  Do not open new browser windows.</strong></li>
+<li>Export or copy and paste your text into a word processer when you are ready to format it.</li>
+<li><strong>Be sure to LOGOUT of Coagmento when you are done working.</strong> Your activity will not be recorded after you log out.</li>
 </ul>
 <?php
     }
