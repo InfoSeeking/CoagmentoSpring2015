@@ -16,7 +16,95 @@ $userID = $base->getUserID();
 $projectID = $base->getProjectID();
 
 
-if (!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first') && !isset($_POST['questionnaire_first'])){
+$cxn = Connection::getInstance();
+$r = $cxn->commit("SELECT I.questionnaire1start as questionnaire1start,I.questionnaire1end as questionnaire1end FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID");
+$line = mysql_fetch_array($r,MYSQL_ASSOC);
+if($questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first')){
+  ?>
+  <html>
+	<head>
+	  <link rel="stylesheet" href="../study_styles/custom/text.css">
+		<title>
+	    	Collaborative Search Study: First Questionnaire
+	    </title>
+	    <link rel="stylesheet" type="text/css" href="../styles.css" />
+	<style type="text/css">
+			.cursorType{
+			cursor:pointer;
+			cursor:hand;
+			}
+	</style>
+	</head>
+	<body class="style1">
+		<center>
+		Thank you for completing this questionnaire!  You may now close this window.
+		</center>
+	</body>
+	</html>
+  <?php
+}else if(strtotime($line['questionnaire1start']) - time() >=0){
+?>
+  <html>
+  <head>
+    <link rel="stylesheet" href="../study_styles/custom/text.css">
+  	<title>
+      	Collaborative Search Study: Questionnaire #1
+      </title>
+      <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+      <style>
+      select {
+        font-size:13px;
+      }
+      </style>
+  <style type="text/css">
+  		.cursorType{
+  		cursor:pointer;
+  		cursor:hand;
+  		}
+  </style>
+  </head>
+  <body>
+  <p>You are not able to complete this questionnaire yet.  The start date for this questionnaire is <?php echo $line['questionnaire1start'];?>.</p>
+  <p>To go back to your workspace, please click <a href="../workspace/index.php">here</a>.</p>
+  </body>
+  </html>
+  <?php
+  exit();
+}else if(time() - strtotime($line['questionnaire1end']) >= 0){
+  ?>
+  <html>
+  <head>
+    <link rel="stylesheet" href="../study_styles/custom/text.css">
+  	<title>
+      	Collaborative Search Study: Questionnaire #1
+      </title>
+      <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+      <style>
+      select {
+        font-size:13px;
+      }
+      </style>
+  <style type="text/css">
+  		.cursorType{
+  		cursor:pointer;
+  		cursor:hand;
+  		}
+  </style>
+  </head>
+  <body>
+    <p>We apologize but the time limit to complete this questionnaire has passed.</p>
+    <p>To go back to your workspace, please click <a href="../workspace/index.php">here</a>.</p>
+  </body>
+  </html>
+  <?php
+  exit();
+}
+
+
+
+if (!isset($_POST['questionnaire_first'])){
 	// Not complete, no results submitted
 	// print questionnaire
 	$questionnaire->clearCache();
@@ -97,32 +185,4 @@ if (!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$
 	$questionnaire->commitAnswersToDatabase(array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first');
 	$questionnaire->clearCache();
 	header("Location: questionnaire_first.php");
-}else{
-	// Print that questionnaire is complete
-
-	?>
-
-	<html>
-	<head>
-	  <link rel="stylesheet" href="../study_styles/custom/text.css">
-		<title>
-	    	Collaborative Search Study: First Questionnaire
-	    </title>
-	    <link rel="stylesheet" type="text/css" href="../styles.css" />
-	<style type="text/css">
-			.cursorType{
-			cursor:pointer;
-			cursor:hand;
-			}
-	</style>
-	</head>
-	<body class="style1">
-		<center>
-		Thank you for completing this questionnaire!  You may now close this window.
-		</center>
-	</body>
-	</html>
-
-
-	<?php
 }
