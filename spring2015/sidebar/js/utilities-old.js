@@ -421,8 +421,8 @@ appName=="Netscape") {
 //Save action
   //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
   var dd = document.getElementById(ID);
-  AssignPosition(dd);
   document.getElementById(ID).style.display="block";
+	AssignPositionAbove(dd);
 }
 
 function showBookmark(ID,parentID,bookmarkID,type) {
@@ -458,8 +458,9 @@ function showBookmark(ID,parentID,bookmarkID,type) {
         //Save action
         //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
         var dd = document.getElementById(ID);
-    AssignPosition(dd);
+
     document.getElementById(ID).style.display="block";
+		AssignPositionAbove(dd);
 }
 
 
@@ -493,8 +494,9 @@ function showQuery(ID,parentID,queryID,type) {
         //Save action
         //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
         var dd = document.getElementById(ID);
-    AssignPosition(dd);
+
     document.getElementById(ID).style.display="block";
+		AssignPositionAbove(dd);
 }
 
 
@@ -528,8 +530,8 @@ function showSource(ID,parentID,queryID,type) {
         //Save action
         //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
         var dd = document.getElementById(ID);
-    AssignPosition(dd);
     document.getElementById(ID).style.display="block";
+		AssignPositionAbove(dd);
 }
 
 
@@ -962,7 +964,26 @@ function AssignPosition(d) {
     d.style.left = (cX+10) + "px";
     d.style.top = (cY+10) + "px";
 }
-
+function AssignPositionAbove(d){
+	if(self.pageYOffset) {
+					rX = self.pageXOffset;
+					rY = self.pageYOffset;
+					}
+	else if(document.documentElement && document.documentElement.scrollTop) {
+					rX = document.documentElement.scrollLeft;
+					rY = document.documentElement.scrollTop;
+					}
+	else if(document.body) {
+					rX = document.body.scrollLeft;
+					rY = document.body.scrollTop;
+					}
+	if(document.all) {
+					cX += rX;
+					cY += rY;
+					}
+	d.style.left = (cX+10) + "px";
+	d.style.top = (cY-d.clientHeight) + "px";
+}
 function AssignPositionFixedOnClick(d,axyX, axyY) {
     d.style.left = (axyX) + "px";
     d.style.top = (axyY-15) + "px";

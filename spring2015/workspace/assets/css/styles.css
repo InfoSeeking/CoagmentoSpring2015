@@ -244,7 +244,7 @@ table.contributions{
 table.contributions th{
   text-align: left;
   padding: 1px 4px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: "Arial";
   background: #EEE;
   border-right: 1px black solid;
@@ -253,7 +253,7 @@ table.contributions th{
 table.contributions td{
   background: #FFF;
   padding: 1px 3px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: "Arial";
   text-align: center;
 }
