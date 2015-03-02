@@ -105,6 +105,8 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 		}else if($username=='ninwac'){
 			$instructorName = "Dr. Nina Wacholder";
 			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
+		}else if($username=='study220'){
+			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
 		}
 
 		$query = "SELECT * FROM instructors WHERE username='$username' AND password='$password'";
@@ -119,7 +121,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 
 
-		if (mysql_num_rows($results) > 0) //insert session one end stage if necessary
+		if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'study220' && $_POST['password']=='BJ3&9X')) //insert session one end stage if necessary
 		{
 
 						echo "<center><table class=\"pure-table pure-table-striped\"><thead>";
@@ -127,12 +129,23 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
             $line = mysql_fetch_array($results,MYSQL_ASSOC);
             $instructorID = $line['instructorID'];
             $port = $line['etherpadPort'];
+            $query = '';
 
-            $query = "SELECT projectID FROM recruits R WHERE R.instructorID='$instructorID' GROUP BY R.projectID";
+            if($_POST['username'] != 'study220'){
+              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID='$instructorID' GROUP BY R.projectID";
+            }else{
+              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID IN (1,2) GROUP BY R.projectID";
+            }
             $results = $connection->commit($query);
 
 						echo "<tbody>";
             while($line = mysql_fetch_array($results,MYSQL_ASSOC)){
+
+                if($_POST['username'] == 'study220' && $line['instructorID']==1){
+                  $port = 9000;
+                }else if($_POST['username'] == 'study220' && $line['instructorID']==2){
+                  $port = 9005;
+                }
 
 
                 $projectID=$line['projectID'];
@@ -164,7 +177,8 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
                   $group[$row['firstName']." ".$row['lastName']] = array(
                     "bookmarks" => 0,
                     "snippets" => 0,
-                    "searches" => 0
+                    "searches" => 0,
+                    "lastlogin" => "Never logged in."
                   );
                 }
 
@@ -180,10 +194,17 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
                   while($row = mysql_fetch_assoc($bss_results)){
                     $group[$row['firstName']." ".$row['lastName']]["$name"] = $row["count"];
                   }
+
+                  $q =  "select u.firstName,u.lastName, b.userID, count(b.userID) as count,max(b.`timestamp`) as lastlogin from actions b, recruits u where b.projectID=$projectID AND b.userID = u.userID AND b.action='login' group by userID";
+                  $bss_results = $cxn->commit($q);
+                  while($row = mysql_fetch_assoc($bss_results)){
+                    $d = date('m/d/Y h:i:s', $row['lastlogin']);
+                    $group[$row['firstName']." ".$row['lastName']]["lastlogin"] = $d;
+                  }
                 }
 
                 echo "<table>";
-                echo "<tr><th>Name</th><th>Bookmarks</th><th>Snippets</th><th>Searches</th></tr>";
+                echo "<tr><th>Name</th><th>Bookmarks</th><th>Snippets</th><th>Searches</th><th>Last Login</th></tr>";
                 foreach($group as $name=>$data){
                   $nbookmarks = $data["bookmarks"];
                   $nsnippets = $data["snippets"];
@@ -193,6 +214,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
                   echo "<td>$nbookmarks</td>";
                   echo "<td>$nsnippets</td>";
                   echo "<td>$nsearches</td>";
+                  echo "<td>".$data['lastlogin']."</td>";
                   echo "</tr>";
                 }
                 echo "</table>";
@@ -217,10 +239,10 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 								echo "<td>";
 								if(!$exists || !$available){
-
 									$data=file_get_contents($url);
 									$data_str = $data;
 									$data=json_decode($data);
+                  // print_r($data);
 									$valid = ($data->{'code'} == 0);
 
 

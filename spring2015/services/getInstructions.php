@@ -269,12 +269,18 @@ while you research. -->
 </div> -->
 
 
-<ul>
+<ul style="list-style-type: none;">
 	<li>Coagmento is a collaborative search system that helps you to share bookmarks,
 	text snippets, and sources, <br>as well as write and chat with members of your group.
 	It makes collaborative research easy and accessible<br> right in your browser.
-</li>
+	</li>
+	<li>
+		To watch the tutorial video gain, click <a href="https://www.youtube.com/watch?v=YRDrMfROxf4" target="_new">here</a>.
+	</li>
 </ul>
+
+
+
 <div id="Toolbar_div" style="display:block;">
 <span id="Toolbar">
 	<!-- <center> -->
@@ -332,10 +338,10 @@ while you research. -->
 			<h3>Workspace</h3>
 			</strong>
 			<!-- </center> -->
-			<ul>
+			<ul style="list-style-type: none;">
 				<li>
 					All of your group's activity can be viewed in the Workspace. Stats show everyone's contributions.
-					
+
 					Explore by searching, filtering, or sorting.
 				</li>
 			</ul>
