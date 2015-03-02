@@ -42,6 +42,7 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$us
 	</body>
 	</html>
   <?php
+  exit();
 }else if(strtotime($line['questionnaire1start']) - time() >=0){
 ?>
   <html>
