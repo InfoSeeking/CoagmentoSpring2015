@@ -169,8 +169,8 @@
 
 
 	var pubnub_checkStageSidebar = PUBNUB.init({
-													publish_key:'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa',
-													subscribe_key:'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'
+													publish_key:'pub-c-0ee3d3d2-e144-4fab-bb9c-82d9be5c13f1',
+													subscribe_key:'sub-c-ac9b4e84-b567-11e4-bdc7-02ee2ddab7fe'
 													});
 
 	var res_checkStageSidebar = pubnub_checkStageSidebar.subscribe({
@@ -230,8 +230,8 @@
 
 
 	var pubnub = PUBNUB.init({
-													publish_key:'pub-c-c65f91dd-c2b5-42c5-be54-2107495df5fa',
-													subscribe_key:'sub-c-36a53ccc-5ae9-11e4-92e9-02ee2ddab7fe'
+													publish_key:'pub-c-0ee3d3d2-e144-4fab-bb9c-82d9be5c13f1',
+													subscribe_key:'sub-c-ac9b4e84-b567-11e4-bdc7-02ee2ddab7fe'
 													});
 
 	var res = pubnub.subscribe({

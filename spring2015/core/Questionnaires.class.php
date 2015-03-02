@@ -201,6 +201,18 @@ class Questionnaires
 					$valstr .= "'$v',";
 				}
 
+				$base = Base::getInstance();
+				$time = $base->getTime();
+				$date = $base->getDate();
+				$timestamp = $base->getTimestamp();
+
+				$keystr .= "`time`,";
+				$valstr .= "'$time',";
+				$keystr .= "`date`,";
+				$valstr .= "'$date',";
+				$keystr .= "`timestamp`,";
+				$valstr .= "'$timestamp',";
+
 				$keystr = rtrim($keystr,",");
 				$valstr = rtrim($valstr,",");
 				$keystr .= ")";
@@ -228,6 +240,20 @@ class Questionnaires
 
 					$keystr .= "$anskey,";
 					$valstr .= "'$ansval',";
+
+
+					$base = Base::getInstance();
+					$time = $base->getTime();
+					$date = $base->getDate();
+					$timestamp = $base->getTimestamp();
+
+					$keystr .= "`time`,";
+					$valstr .= "'$time',";
+					$keystr .= "`date`,";
+					$valstr .= "'$date',";
+					$keystr .= "`timestamp`,";
+					$valstr .= "'$timestamp',";
+
 
 					$keystr = rtrim($keystr,",");
 					$valstr = rtrim($valstr,",");

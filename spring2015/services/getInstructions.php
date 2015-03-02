@@ -269,6 +269,12 @@ while you research. -->
 </div> -->
 
 
+<ul>
+	<li>Coagmento is a collaborative search system that helps you to share bookmarks,
+	text snippets, and sources, <br>as well as write and chat with members of your group.
+	It makes collaborative research easy and accessible<br> right in your browser.
+</li>
+</ul>
 <div id="Toolbar_div" style="display:block;">
 <span id="Toolbar">
 	<!-- <center> -->
@@ -301,6 +307,40 @@ while you research. -->
 			<!-- </center> -->
 			</span>
 			<center><img src="images/sidebar_demo.png" width="80%" height="auto"/></center>
+<!-- The Sidebar consists of:<br/> -->
+<!-- <ol> -->
+<?php
+    if($num_users > 1){
+        // echo "";
+        // echo "<li><span id=\"Chat\"><strong>Chat</strong></span> - Contains a chat program for interacting and coordinating with your partner.";
+        // echo "</li>";
+    }
+    ?>
+
+<!-- <li><span id="History"><strong>History</strong></span> - Contains your bookmarks, snippets, and saved searches. Click on the links to open the original web page or re-run the search.You can also revise the notes and tags for a saved web page. Change the ratings by clicking on the stars. -->
+<!-- </li> -->
+<!-- <br/> -->
+<!-- </li> -->
+<!-- </ol> -->
+
+</div>
+
+<span id="Workspace">
+	<!-- <center> -->
+	<hr>
+		<strong>
+			<h3>Workspace</h3>
+			</strong>
+			<!-- </center> -->
+			<ul>
+				<li>
+					All of your group's activity can be viewed in the Workspace. Stats show everyone's contributions.
+					
+					Explore by searching, filtering, or sorting.
+				</li>
+			</ul>
+			</span>
+			<center><img src="images/workspace_demo.png" width="80%" height="auto"/></center>
 <!-- The Sidebar consists of:<br/> -->
 <!-- <ol> -->
 <?php

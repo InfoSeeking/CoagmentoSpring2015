@@ -24,7 +24,7 @@ $projectID = $base->getProjectID();
 $cxn = Connection::getInstance();
 $r = $cxn->commit("SELECT I.questionnaire3start as questionnaire3start,I.questionnaire3end as questionnaire3end FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID");
 $line = mysql_fetch_array($r,MYSQL_ASSOC);
-if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third') && !isset($_POST['questionnaire_third'])){
+if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third') && $questionnaire->isQuestionnaireComplete('spring2015-midtask-third-parttwo',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third_parttwo') && !isset($_POST['questionnaire_third']) && !isset($_POST['questionnaire_third_parttwo']) ){
   ?>
 
   <html>
@@ -47,9 +47,8 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
 		</center>
 	</body>
 	</html>
-
-
   <?php
+  exit();
 }else if(strtotime($line['questionnaire3start']) - time() >=0){
 ?>
   <html>
@@ -148,10 +147,11 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
   </head>
   <body>
     <p>To complete this questionnaire, you must complete the <?php echo $notcompletestr; ?> questionnaire.</p>
-    <p><?php $notcompleteurls ?>.</p>
+    <p><?php echo $notcompleteurls; ?>.</p>
   </body>
   </html>
   <?php
+  exit();
 }
 
 
