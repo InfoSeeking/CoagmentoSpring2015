@@ -12,8 +12,8 @@
 	$page = "";
 
 	$base->checkTimeout();
-	if(!$base->isSessionActive() || !$base->getAllowCommunication()){
-			header("Location: loginOnSideBar.php");
+	if(!$base->isSessionActive()){// || !$base->getAllowCommunication()
+			header("Location: ../login.php?redirect=sidebar/sidebar.php");//header("Location: loginOnSideBar.php");
 			exit("NO");
 	}
 	//echo "Allow Comm: ".$stage->getAllowCommunication();

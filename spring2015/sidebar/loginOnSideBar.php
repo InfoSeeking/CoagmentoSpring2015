@@ -1,12 +1,15 @@
 <?php
+header("Location: ../login.php?redirect=sidebar/sidebar.php");
+exit(1);
 //	session_name('XULSession'); // Set session name
 	session_start();
 	require_once('../core/Base.class.php');
 	require_once('../core/Util.class.php');
 	$base = Base::getInstance();
-        if (isset($_SESSION['CSpace_userID'])){
+        if ($base->isSessionActive()){
 					Util::getInstance()->saveAction('Migrating from loginOnSideBar',0,$base);
-            header("Location: sidebar.php");
+					//echo "Redirecting to sidebar.php";
+          header("Location: sidebar.php");
         }else {
 
 ?>

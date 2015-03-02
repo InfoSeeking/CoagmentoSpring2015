@@ -7,6 +7,9 @@ Date.prototype.stdTimezoneOffset = function() {
 
 function realDate(dateStr){
   var date = new Date(dateStr);
+  if(isNaN(date.getTime())){
+    return "?";
+  }
   var m = date.getMinutes();
   if(m < 10){
     m = "0" + m;
@@ -27,6 +30,9 @@ function prettyDate(dateStr){
   }
   var pretty = "just now";
   var date = new Date(dateStr);
+  if(isNaN(date.getTime())){
+    return "at an unknown time";
+  }
   var now = new Date();
   var hourOff = now.stdTimezoneOffset()/60;
   //hourOff is positive if the UTC offset is negative...ok...
