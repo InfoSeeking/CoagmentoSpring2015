@@ -15,6 +15,145 @@ if(!$base->isUserActive()){
 $userID = $base->getUserID();
 $projectID = $base->getProjectID();
 
+// 1.  Did date pass?
+// 2.  Was first questionnaire complete?
+// $second_session_start = strtotime("1 Nov 2014 00:00");
+// $second_session_end = strtotime("1 Dec 2014 23:59");
+
+
+$cxn = Connection::getInstance();
+$r = $cxn->commit("SELECT I.questionnaire3start as questionnaire3start,I.questionnaire3end as questionnaire3end FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID");
+$line = mysql_fetch_array($r,MYSQL_ASSOC);
+if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third') && !isset($_POST['questionnaire_third'])){
+  ?>
+
+  <html>
+	<head>
+	  <link rel="stylesheet" href="../study_styles/custom/text.css">
+		<title>
+	    	Collaborative Search Study: Third Questionnaire
+	    </title>
+	    <link rel="stylesheet" type="text/css" href="../styles.css" />
+	<style type="text/css">
+			.cursorType{
+			cursor:pointer;
+			cursor:hand;
+			}
+	</style>
+	</head>
+	<body class="style1">
+		<center>
+		Thank you for completing this questionnaire!  You may now close this window.
+		</center>
+	</body>
+	</html>
+
+
+  <?php
+}else if(strtotime($line['questionnaire3start']) - time() >=0){
+?>
+  <html>
+  <head>
+    <link rel="stylesheet" href="../study_styles/custom/text.css">
+  	<title>
+      	Collaborative Search Study: Questionnaire #3
+      </title>
+      <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+      <style>
+      select {
+        font-size:13px;
+      }
+      </style>
+  <style type="text/css">
+  		.cursorType{
+  		cursor:pointer;
+  		cursor:hand;
+  		}
+  </style>
+  </head>
+  <body>
+  <p>You are not able to complete this questionnaire yet.  The start data for this questionnaire is <?php echo $line['questionnaire3start'];?>.</p>
+  <p>To go back to your workspace, please click <a href="../workspace/index.php">here</a>.</p>
+  </body>
+  </html>
+  <?php
+  exit();
+}else if(time() - strtotime($line['questionnaire3end']) >= 0){
+  ?>
+  <html>
+  <head>
+    <link rel="stylesheet" href="../study_styles/custom/text.css">
+  	<title>
+      	Collaborative Search Study: Questionnaire #2
+      </title>
+      <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+      <style>
+      select {
+        font-size:13px;
+      }
+      </style>
+  <style type="text/css">
+  		.cursorType{
+  		cursor:pointer;
+  		cursor:hand;
+  		}
+  </style>
+  </head>
+  <body>
+    <p>We apologize but the time limit to complete this questionnaire has passed.</p>
+    <p>To go back to your workspace, please click <a href="../workspace/index.php">here</a>.</p>
+  </body>
+  </html>
+  <?php
+  exit();
+}else if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first')
+|| !$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_second')){
+
+  $notcompletestr = "";
+  $notcompleteurls = "Click ";
+  if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first')){
+    $notcompletestr = "first";
+    $notcompleteurls .="<a href=\"../instruments/questionnaire_first.php\">here</a> to complete the first questionnaire";
+  }
+  if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_second')){
+    if($notcompletestr!=""){
+      $notcompletestr.=" and";
+      $notcompleteurls.=" and";
+    }
+    $notcompletestr.=" second";
+    $notcompleteurls .="<a href=\"../instruments/questionnaire_second.php\">here</a> to complete the second questionnaire";
+  }
+  ?>
+  <html>
+  <head>
+    <link rel="stylesheet" href="../study_styles/custom/text.css">
+  	<title>
+      	Collaborative Search Study: Questionnaire #2
+      </title>
+      <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+      <style>
+      select {
+        font-size:13px;
+      }
+      </style>
+  <style type="text/css">
+  		.cursorType{
+  		cursor:pointer;
+  		cursor:hand;
+  		}
+  </style>
+  </head>
+  <body>
+    <p>To complete this questionnaire, you must complete the <?php echo $notcompletestr; ?> questionnaire.</p>
+    <p><?php $notcompleteurls ?>.</p>
+  </body>
+  </html>
+  <?php
+}
+
 
 
 if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third') && !isset($_POST['questionnaire_third'])){
@@ -103,7 +242,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
 	header("Location: questionnaire_third.php");
 
 }else if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third-parttwo',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_third_parttwo') && !isset($_POST['questionnaire_third_parttwo'])){
-  // Second questionnaire
+  // Part two questionnaire
 
   $questionnaire->clearCache();
 	$questionnaire->populateQuestionsFromDatabase("spring2015-midtask-third-parttwo","questionID ASC");
@@ -222,32 +361,4 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
 	$questionnaire->clearCache();
 	header("Location: questionnaire_third.php");
 
-}else{
-  // Questionnaires are complete
-  ?>
-
-	<html>
-	<head>
-	  <link rel="stylesheet" href="../study_styles/custom/text.css">
-		<title>
-	    	Collaborative Search Study: Third Questionnaire
-	    </title>
-	    <link rel="stylesheet" type="text/css" href="../styles.css" />
-	<style type="text/css">
-			.cursorType{
-			cursor:pointer;
-			cursor:hand;
-			}
-	</style>
-	</head>
-	<body class="style1">
-		<center>
-		Thank you for completing this questionnaire!  You may now close this window.
-		</center>
-	</body>
-	</html>
-
-
-	<?php
 }
-?>
