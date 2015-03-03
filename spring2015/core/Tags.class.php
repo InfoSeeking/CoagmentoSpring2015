@@ -10,7 +10,10 @@ class Tags extends Base{
 
   public function retrieveFromProject($projectID){
     $cxn = Connection::getInstance();
-    $q = sprintf("select distinct tags.tagID as tagID, tags.name as name FROM tags INNER JOIN tag_assignments ON tags.tagID = tag_assignments.tagID WHERE tags.projectID=%d ORDER BY tags.name", $projectID);
+    // $q = sprintf("select distinct tags.tagID as tagID, tags.name as name FROM tags INNER JOIN tag_assignments ON tags.tagID = tag_assignments.tagID WHERE tags.projectID=%d ORDER BY tags.name", $projectID);
+    $q = "select distinct tags.tagID as tagID, tags.name as name FROM tags INNER JOIN (SELECT tagID,taID FROM tag_assignments INNER JOIN bookmarks on tag_assignments.bookmarkID=bookmarks.bookmarkID AND bookmarks.url NOT LIKE '%coagmento.org/spring2015%' AND bookmarks.url NOT LIKE '%about:blank%' AND bookmarks.url NOT LIKE '%about:home%' AND bookmarks.url NOT LIKE '%about:newtab%' AND bookmarks.url NOT LIKE '%about:addons%') a ON tags.tagID = a.tagID WHERE tags.projectID='$projectID' ORDER BY tags.name";
+
+
     $arr_results = array();
     $results = $cxn->commit($q);
     while($row = mysql_fetch_assoc($results)){

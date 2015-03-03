@@ -275,7 +275,7 @@ while you research. -->
 	It makes collaborative research easy and accessible<br> right in your browser.
 	</li>
 	<li>
-		To watch the tutorial video gain, click <a href="https://www.youtube.com/watch?v=YRDrMfROxf4" target="_new">here</a>.
+		To watch the tutorial video again, click <a href="https://www.youtube.com/watch?v=YRDrMfROxf4" target="_new">here</a>.
 	</li>
 </ul>
 
