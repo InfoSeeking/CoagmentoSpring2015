@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/pfcglobalconfig.class.php';
-
+// require_once(dirname(__FILE__).'/../../js/utilities-old.js');
 /**
  * Rewritten by Nathan Codding - Feb 6, 2001.
  * - Goes through the given string, and replaces xxxx://yyyy with an HTML <a> tag linking
@@ -20,11 +20,18 @@ function pfc_make_hyperlink($text)
   $c =& pfcGlobalConfig::Instance();
   $openlinknewwindow = $c->openlinknewwindow;
 
+  // if ($openlinknewwindow)
+  //   $target = " onclick=\"window.open(this.href,\\'_blank\\');return false;\"";
+  // else
+  //   $target = "";
+
+
+  // echo "TEXT:$text\n\n";
   if ($openlinknewwindow)
-    $target = " onclick=\"window.open(this.href,\\'_blank\\');return false;\"";
+    $target = " onclick=\"content.location = this.href;return false;\"";
   else
     $target = "";
-  
+
   $text = preg_replace('#(script|about|applet|activex|chrome):#is', "\\1:", $text);
 
   // pad it with a space so we can match things at the start of the 1st line.
@@ -34,14 +41,14 @@ function pfc_make_hyperlink($text)
   // xxxx can only be alpha characters.
   // yyyy is anything up to the first space, newline, comma, double quote or <
   //$ret = preg_replace("#(^|[\n ])([\w]+?://[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href=\"\\2\" target=\"_blank\">\\2</a>", $ret);
-  $ret = preg_replace("#(^|[\n \]])([\w]+?://[\w\#$%\(\)&~/!.\-;:=,?@+]*)#ise", "'\\1<a href=\"\\2\"" . $target . ">' . pfc_shorten_url('\\2') . '</a>'", $ret);
+  $ret = preg_replace("#(^|[\n \]])([\w]+?://[\w\#$%\(\)&~/!.\-;:=,?@+]*)#ise", "'\\1<a href=\"./phpFreeChatRedirect.php?url=\\2\"" . $target . ">' . pfc_shorten_url('\\2') . '</a>'", $ret);
 
   // matches a "www|ftp.xxxx.yyyy[/zzzz]" kinda lazy URL thing
   // Must contain at least 2 dots. xxxx contains either alphanum, or "-"
-  // zzzz is optional.. will contain everything up to the first space, newline, 
+  // zzzz is optional.. will contain everything up to the first space, newline,
   // comma, double quote or <.
   //$ret = preg_replace("#(^|[\n ])((www|ftp)\.[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret);
-  $ret = preg_replace("#(^|[\n \]])((www|ftp)\.[\w\#$%&~/.\-;:=,?@+]*)#ise", "'\\1<a href=\"http://\\2\"" . $target . ">' . pfc_shorten_url('\\2') . '</a>'", $ret);
+  $ret = preg_replace("#(^|[\n \]])((www|ftp)\.[\w\#$%&~/.\-;:=,?@+]*)#ise", "'\\1<a href=\"./phpFreeChatRedirect.php?url=http://\\2\"" . $target . ">' . pfc_shorten_url('\\2') . '</a>'", $ret);
 
   // matches an email@domain type address at the start of a line, or after a space.
   // Note: Only the followed chars are valid; alphanums, "-", "_" and or ".".
@@ -83,12 +90,12 @@ function pfc_shorten_url($url)
   if ($shurl_end_w < 3) $shurl_end_w = 3;
   $shurl_begin_w = $shurl_w - $shurl_end_w - 3;
   if ($shurl_begin_w < 3) $shurl_begin_w = 3;
-  
+
   $decodedurl = html_entity_decode($url, ENT_QUOTES);
-  
+
   $len = strlen($decodedurl);
   $short_url = ($len > $shurl_w) ? substr($decodedurl, 0, $shurl_begin_w) . "..." . substr($decodedurl, -$shurl_end_w) : $decodedurl;
-  
+
   return htmlentities($short_url, ENT_QUOTES);
 }
 
