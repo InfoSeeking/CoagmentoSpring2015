@@ -57,6 +57,14 @@ foreach($a as $v){
 
 }
 
+$firstLogin = false;
+$r = $cxn->commit("SELECT * FROM actions WHERE action='login' AND userID='$userID'");
+if(mysql_num_rows($r)<=1){
+  $firstLogin = true;
+}
+
+
+
 
 
 $username = $base->getUserName();

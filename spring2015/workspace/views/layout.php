@@ -103,7 +103,18 @@ function gen_url($param){
         ?>
       <div class="welcome">
         <p>Welcome, <?php echo $firstName ?>!</p>
+        <?php
+        if(!$firstLogin){
+        ?>
         <p>Your group has done <b><?php echo $sum["searches"]; ?></b> searches, saved <b><?php echo $sum["bookmarks"]; ?></b> bookmarks, and saved <b><?php echo $sum["snippets"]; ?></b> snippets.</p>
+        <?php
+      }else{
+        ?>
+        <p>Please begin by watching this video.  When you log back in, you can click the Help button to review it.</p>
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/YRDrMfROxf4?rel=0" frameborder="0" allowfullscreen></iframe>
+        <?php
+        }
+        ?>
       </div>
         <?php
         endif;
