@@ -35,8 +35,9 @@
 
             $webPage = $_GET['webPage'];
             $ip=$_SERVER['REMOTE_ADDR'];
-            $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'delete_$type', '$itemID','$ip')";
-            $results = $connection->commit($aquery);
+						Util::getInstance()->saveAction("delete_$type", "$itemID",$base);
+            // $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'delete_$type', '$itemID','$ip')";
+            // $results = $connection->commit($aquery);
             if ($webPage!="")
                 require_once($webPage);
         }

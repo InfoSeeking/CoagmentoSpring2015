@@ -43,7 +43,9 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
 	</head>
 	<body class="style1">
 		<center>
-		Thank you for completing this questionnaire!  You may now close this window.
+		<p>Thank you for completing this questionnaire!</p>
+    <p>To remove Coagmento from the Firefox browser, click on Tools and Select Add-ons from the menu. Next to "Coagmento Spring 2015" click Remove.</p>
+    <p>You may now close this window.</p>
 		</center>
 	</body>
 	</html>

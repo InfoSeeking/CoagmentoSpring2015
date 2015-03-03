@@ -1095,7 +1095,7 @@ function filterBy(val, callback){
 	jQuery.ajax({
 		url : "sidebarComponents/filterBy.php",
 		data : {
-			"only_mine" : val
+			"val" : val
 		},
 		success: function(){
 			if(callback){

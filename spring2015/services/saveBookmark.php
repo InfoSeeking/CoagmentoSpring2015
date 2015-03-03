@@ -33,7 +33,7 @@
 		$localTime = isset($_GET['localTime']) ? $_GET['localTime'] : "";
 		$localTimestamp = isset($_GET['localTimestamp']) ? $_GET['localTimestamp'] : "";
 
-	Util::getInstance()->saveActionWithLocalTime("Create Bookmark ",0,$base,$localTime,$localDate,$localTimestamp);
+		Util::getInstance()->saveActionWithLocalTime("Create Bookmark View",0,$base,$localTime,$localDate,$localTimestamp);
 
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 	require_once('../../core/Connection.class.php');
 	require_once('../../core/Base.class.php');
+	require_once('../../core/Util.class.php');
 	session_start();
 	$base = Base::getInstance();
 
@@ -15,10 +16,12 @@
 	$date = $base->getDate();
 	$time = $base->getTime();
   $ip=$_SERVER['REMOTE_ADDR'];
-	$aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'updateOrder_$table', '$orderBy','$ip')";
+	Util::getInstance()->saveAction("updateOrder_$table","$orderBy",$base);
 
-	$connection = Connection::getInstance();
-	$result = $connection->commit($aquery);
+	// $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'updateOrder_$table', '$orderBy','$ip')";
+
+	// $connection = Connection::getInstance();
+	// $result = $connection->commit($aquery);
 	if ($webPage!=""){
 		require_once($webPage);
 	}
