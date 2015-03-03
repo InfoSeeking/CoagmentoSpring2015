@@ -28,45 +28,13 @@ function gen_url($param){
         <hgroup class='left-side'>
           <img src="assets/img/clogo.png" alt="Coagmento Logo" />
         </hgroup>
-        <div class='left-side'>
-          <table class='questionnaires'>
-            <th>Questionnaires</th><th>Start Date</th><th>End Date</th>
-            <?php
-            foreach($questionnaires as $k=>$v){
-
-              $pref = "";
-              $suff="";
-              $fontcolor = "";
-              $bordercolor = "";
-              $word = $v[3];
-              // echo "V:".;
-              if($v[0] == "complete"|| $v[0] ==  "early"|| $v[0] == "late"){
-                $fontcolor = "#D2D2D2";
-                $bordercolor = $fontcolor;
-                $pref = "<tr><td><font color=\"$fontcolor\">";
-                $suff = "</font></span></td>";
-              }else if($v[0] == "warning"){
-                $fontcolor = "#FF0000";
-                $bordercolor = "border-color: $fontcolor";
-                $pref = "<tr style=\"outline:1px solid red\"><td style=\"border-left: 1px; border-color: $bordercolor;\"><a href='../instruments/questionnaire_".$word.".php'>";
-                $suff = "</a></td>";
-              }else if($v[0] == "okay"){
-                $fontcolor = "#000000";
-                $pref = "<tr><td><a href='../instruments/questionnaire_".$word.".php'>";
-                $suff = "</a></td>";
-              }
-
-              echo $pref."Questionnaire $k".$suff;
-              echo "<td><font color=\"$fontcolor\">".$v[1]."</font></td>";
-              echo "<td><font color=\"$fontcolor\">".$v[2]."</font></td>";
-              echo "</tr>";
-
-            }
-            ?>
-          </table>
-        </div>
         <div class='right-side'>
           <?php printContributionTable(); ?>
+        </div>
+        <div class='right-side'>
+            <?php
+              require_once("views/questionnaires.php");
+            ?>
         </div>
         <nav class='clear'>
           <ul>

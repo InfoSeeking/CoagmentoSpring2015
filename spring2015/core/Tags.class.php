@@ -68,7 +68,7 @@ class Tags extends Base{
     $q = "INSERT INTO tag_assignments (`userID`, `bookmarkID`, `tagID`) VALUES ";
     $arr = array();
     foreach($tags as $name){
-      $ins = sprintf("(%d, %d, (SELECT tagID FROM tags WHERE projectID=%d AND name='%s'))", $this->projectID, $bookmarkID, $this->projectID, $cxn->esc($name));
+      $ins = sprintf("(%d, %d, (SELECT tagID FROM tags WHERE projectID=%d AND name='%s'))", $this->userID, $bookmarkID, $this->projectID, $cxn->esc($name));
       array_push($arr, $ins);
     }
     $q .= implode(",", $arr);

@@ -45,6 +45,9 @@ a{
   width: 800px;
   margin: 10px auto;
 }
+.page_header nav{
+  padding-top: 10px;
+}
 .page_header nav li{
   display: inline-block;
 }
@@ -267,22 +270,21 @@ table.contributions tr td:nth-child(odd){
 
 
 table.questionnaires{
-  width: 100%;
   cellspacing: 0;
   cellpadding: 0;
   border-collapse :collapse;
-  /*border: 1px black solid;*/
-  border: 1px gray solid;
+  border: 1px black solid;
   border-radius: 5px;
   margin-top: 5px;
+  margin-right: 20px;
 }
 table.questionnaires th{
   text-align: left;
-  padding: 1px 4px;
+  padding: 2px 4px;
   font-size: 12px;
-  font-family: "Lucida Grande";
+  font-family: "Arial";
   background: #EEE;
-  border: 1px gray solid;
+  border: 1px black solid;
   text-align: right;
 
 }
@@ -291,8 +293,8 @@ table.questionnaires td{
   padding: 1px 3px;
   font-size: 12px;
   border-top: 1px gray solid;
-  border-bottom: 1px gray solid;
-  font-family: "Lucida Grande";
+  border-bottom: 1px black solid;
+  font-family: "Arial";
   text-align: center;
 }
 table.questionnaires tr:first-child td{
@@ -301,8 +303,22 @@ table.questionnaires tr:first-child td{
 table.questionnaires tr td:nth-child(odd){
   background: #FFF;
 }
-
-
+table.questionnaires .early td, table.questionnaires .complete td, table.questionnaires .late td{
+  color: #D2D2D2;
+}
+table.questionnaires .warning, table.questionnaires .warning a{
+  color: #F00;
+}
+table.questionnaires .warning{
+  border-left: 1px red solid;
+  border-right: 1px red solid;
+}
+table.questionnaires .warning td{
+  border-bottom: 1px red solid;
+}
+table.questionnaires a:hover{
+  text-decoration: underline;
+}
 #searchbar_input{
   font-size: 16px;
   padding: 2px 5px;
