@@ -52,7 +52,7 @@ function gen_url($param){
                 $suff = "</a></td>";
               }else if($v[0] == "okay"){
                 $fontcolor = "#000000";
-                $pref = "<tr><td><a href='../../isntruments/questionnaire_".$word.".php'>";
+                $pref = "<tr><td><a href='../instruments/questionnaire_".$word.".php'>";
                 $suff = "</a></td>";
               }
 
