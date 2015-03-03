@@ -4,11 +4,17 @@
     require_once('../core/Base.class.php');
 		require_once('../core/Tags.class.php');
 		require_once('../core/Util.class.php');
+		require_once('../core/Connection.class.php');
 
     $base = Base::getInstance();
 		$base->registerActivity();
     $userID = $base->getUserID();
     $projectID = $base->getProjectID();
+		$query = "SELECT instructorID from recruits WHERE userID='$userID'";
+		$cxn = Connection::getInstance();
+		$r = $cxn->commit($query);
+		$l = mysql_fetch_array($r,MYSQL_ASSOC);
+		$instructorID = $l['instructorID'];
 
 	$title = $_GET['title'];
 	$originalURL = $_GET['page'];

@@ -67,9 +67,9 @@ class Bookmark extends Base {
   }
 
 
-  public static function update($bookmarkID, $notes="", $tags=array()){
+  public static function update($bookmarkID, $notes="", $tags=array(), $useful_info = "", $author_qualifications = ""){
     $cxn = Connection::getInstance();
-    $query = sprintf("UPDATE bookmarks SET note='%s' WHERE bookmarkID=%d", $cxn->esc($notes), $bookmarkID);
+    $query = sprintf("UPDATE bookmarks SET note='%s', useful_info='%s', author_qualifications='%s' WHERE bookmarkID=%d", $cxn->esc($notes), $cxn->esc($useful_info), $cxn->esc($author_qualifications), $bookmarkID);
     // echo $query;
     $cxn->commit($query);
     $t = new Tags();

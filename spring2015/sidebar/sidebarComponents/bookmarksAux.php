@@ -36,6 +36,14 @@
     $userID = $base->getUserID();
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
+
+    $query = "SELECT instructorID from recruits WHERE userID='$userID'";
+		$cxn = Connection::getInstance();
+		$r = $cxn->commit($query);
+		$l = mysql_fetch_array($r,MYSQL_ASSOC);
+		$instructorID = $l['instructorID'];
+
+
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
     $only_mine = isset($_SESSION['only_mine']) ? $_SESSION['only_mine'] : false;
     $table = "bookmarks";
@@ -83,7 +91,8 @@
         }
 
         $note = $line['note'];
-
+        $author_qualifications = $line['author_qualifications'];
+        $useful_info = $line['useful_info'];
         $url = $line['url'];
         $title = stripslashes($line['title']);
         $type = 'text';
@@ -116,7 +125,11 @@
         echo "<td><span style=\"font-size:10px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        if($instructorID==1){
+          echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        }else{
+          echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark2('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        }
         //                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         //			if ($url)
         //				echo "<font color=blue><a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px\">$title</a></span></td>\n";
@@ -126,7 +139,10 @@
         //$fullSnippet = "[Source: " . $url . "] || ".$snippet;
 
         echo "<input type=\"hidden\" id=\"bookmarkValue$bookmarkID\" value=\"$bookmarkID\">";
+        echo "<input type=\"hidden\" id=\"useful_info$bookmarkID\" value=\"$useful_info\">";
         echo "<input type=\"hidden\" id=\"note$bookmarkID\" value=\"$note\">";
+        echo "<input type=\"hidden\" id=\"author_qualifications$bookmarkID\" value=\"$author_qualifications\">";
+
         echo "<input type=\"hidden\" id=\"source$bookmarkID\" value=\"$title\">";
         echo "<input type=\"hidden\" id=\"url$bookmarkID\" value=\"$url\">";
         echo "<input type=\"hidden\" id=\"time$bookmarkID\" value=\"$time\">";

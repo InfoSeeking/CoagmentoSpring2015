@@ -463,6 +463,44 @@ function showBookmark(ID,parentID,bookmarkID,type) {
 		AssignPositionAbove(dd);
 }
 
+function showBookmark2(ID,parentID,bookmarkID,type) {
+    // var sText = "<center><table style=\"text-align: center; color: blue; font-weight: bold\" width: 100%;\" border=\"0\" cellpadding=\"0\" cellspacing=\"10\"><tr><td>";
+    var sText = "";
+    // sText = sText + "<p>Notes: "+document.getElementById("note"+snippetID).value.substr(0,200)+"...</p><hr>";
+    sText = sText + "<p>Source: "+document.getElementById("source"+bookmarkID).value.substr(0,200)+"...</p><hr>";
+    sText = sText + "<p>URL: "+document.getElementById("url"+bookmarkID).value.substr(0,20)+"...</p><hr>";
+    sText = sText + "<p>Note: "+document.getElementById("useful_info"+bookmarkID).value.substr(0,20)+"...</p><hr>";
+		sText = sText + "<p>On Author: "+document.getElementById("author_qualifications"+bookmarkID).value.substr(0,20)+"...</p>";
+//    if (type == "text")
+//        sText = sText + "<p>Bookmark: "+document.getElementById("bookmarkValue"+bookmarkID).value.substr(0,250)+"...</p>";
+//    else
+//        sText = sText + "<img src=\""+document.getElementById(bookmarkID).value+"\" style=\"width:330px; height:400px;\">";
+    //sText = "</td></tr></table>";
+    if (document.layers) {
+        var oLayer;
+        if(parentID){
+            oLayer = eval('document.' + parentID + '.document.' + ID + '.document');
+        }else{
+            oLayer = document.layers[ID].document;
+        }
+
+        oLayer.open();
+        oLayer.write(sText);
+        oLayer.close();
+    }
+    else if (parseInt(navigator.appVersion)>=5&&navigator.
+             appName=="Netscape") {
+        document.getElementById(ID).innerHTML = sText;
+    }
+    else if (document.all) document.all[ID].innerHTML = sText
+
+        //Save action
+        //ajaxpage('sidebarComponents/insertAction.php?action=preview_snippet&value='+snippetID,null);
+        var dd = document.getElementById(ID);
+
+    document.getElementById(ID).style.display="block";
+		AssignPositionAbove(dd);
+}
 
 
 function showQuery(ID,parentID,queryID,type) {

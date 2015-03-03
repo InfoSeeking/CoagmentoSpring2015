@@ -13,6 +13,10 @@
     if (Base::getInstance()->isSessionActive())
     {
 
+
+
+
+
 			$pubnub = new Pubnub(array('publish_key'=>'pub-c-0ee3d3d2-e144-4fab-bb9c-82d9be5c13f1','subscribe_key'=>'sub-c-ac9b4e84-b567-11e4-bdc7-02ee2ddab7fe'));
     $ip=$_SERVER['REMOTE_ADDR'];
     $connection = Connection::getInstance();
@@ -24,6 +28,13 @@
     $localDate = $_POST['localDate'];
     $localTime = $_POST['localTime'];
     $localTimestamp = $_POST['localTimestamp'];
+
+
+		$query = "SELECT instructorID from recruits WHERE userID='$userID'";
+		$cxn = Connection::getInstance();
+		$r = $cxn->commit($query);
+		$l = mysql_fetch_array($r,MYSQL_ASSOC);
+		$instructorID = $l['instructorID'];
 
 
     $title = addslashes($_POST['title']);
@@ -48,6 +59,16 @@
         $note = addslashes($_POST['annotation']);
     }
 
+		$useful_info = "NULL";
+		if(isset($_POST['useful_info'])){
+        $useful_info = addslashes($_POST['useful_info']);
+    }
+
+		$author_qualifications="NULL";
+		if(isset($_POST['author_qualifications'])){
+        $author_qualifications = addslashes($_POST['author_qualifications']);
+    }
+
 
 
 
@@ -59,9 +80,13 @@
 
 
 
-    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
-    $results = $connection->commit($query);
-
+		if($instructorID==1){
+	    $query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,note,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$note','$rating','1')";
+	    $results = $connection->commit($query);
+		}else{
+			$query = "INSERT INTO bookmarks (userID,projectID,stageID,questionID,url,title,source,host,query,timestamp,date,time,`localDate`,`localTime`,`localTimestamp`,useful_info,author_qualifications,rating,status) VALUES('$userID','$projectID','$stageID','$questionID','$originalURL','$title','$site','$host','$queryString','$timestamp','$date','$time','$localDate','$localTime','$localTimestamp','$useful_info','$author_qualifications','$rating','1')";
+	    $results = $connection->commit($query);
+		}
 
 
     $bookmarkID = $connection->getLastID();

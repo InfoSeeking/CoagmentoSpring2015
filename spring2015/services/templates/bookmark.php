@@ -16,16 +16,59 @@
     <form name="f" action="saveBookmarkAux.php" method=POST>
       <table class="body" width=90%>
         <tr><th>Bookmark the following page: <a href="<?php echo $originalURL ?>"><?php echo $title ?></a><br/><br/></th></tr>
-        <tr><td align=center><em>What is useful about this source? How would you use it in writing your paper?</em><br/><textarea cols=35 rows=6 name="annotation"></textarea><input type="hidden" name="originalURL" value="<?php echo $originalURL ?>"/>
+        <?php
+
+        if($instructorID==1){
+          ?>
+          <tr>
+            <td align=center><em>What is useful about this source? How would you use it in writing your paper?</em>
+            <br/>
+            <textarea cols=35 rows=6 name="annotation"></textarea>
+            </td>
+            </tr>
+
+          <?php
+        }else{
+          ?>
+          <tr>
+            <td align=center><em>What specific information from this source will you use in your report?</em>
+            <br/>
+            <textarea cols=35 rows=6 name="useful_info"></textarea>
+            </td>
+            </tr>
+
+            <tr>
+              <td align=center><em>What qualifications does the author have as evidence of expertise or trustworthiness?</em>
+              <br/>
+              <textarea cols=35 rows=6 name="author_qualifications"></textarea>
+              </td>
+              </tr>
+              <?php
+        }
+
+
+          ?>
+
+          <input type="hidden" name="originalURL" value="<?php echo $originalURL ?>"/>
           <input type="hidden" name="source" value="<?php echo $url; ?>"/>
           <input type="hidden" name="host" value="<?php echo $host; ?>"/>
           <input type="hidden" name="title" value="<?php echo $title; ?>"/>
           <input type="hidden" name="site" value="<?php echo $site; ?>"/>
-          <input type="hidden" name="queryString" value="<?php echo $queryString; ?>"/>'</td></tr>
+          <input type="hidden" name="queryString" value="<?php echo $queryString; ?>"/>
         <input type="hidden" name="localDate" value="<?php echo $localDate; ?>"/>
         <input type="hidden" name="localTime" value="<?php echo $localTime; ?>"/>
         <input type="hidden" name="localTimestamp" value="<?php echo $localTimestamp; ?>"/>
-        <tr><td align=center><br>How good is this page? Rate it:</td></tr></table>
+        <tr><td align=center><br>
+
+          <?php
+          if($instructorID==1){
+            echo "How good is this page? Rate it:";
+          }else{
+            echo "How useful is this source? Rate it:";
+          }
+
+          ?>
+          </td></tr></table>
           <table><tr><td><input type="radio" name="rating" value="1"></td>
             <td><input type="radio" name="rating" value="2"></td>
             <td><input type="radio" name="rating" value="3"></td>

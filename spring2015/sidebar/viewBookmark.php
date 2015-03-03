@@ -22,16 +22,27 @@ $updated = false;
 
 if (isset($_POST["action"]) && $_POST["action"] == "update"){
 		$notes = isset($_POST["notes"]) ? $_POST["notes"] : "";
+		$author_qualifications = isset($_POST["author_qualifications"]) ? $_POST["author_qualifications"] : "";
+		$useful_info = isset($_POST["useful_info"]) ? $_POST["useful_info"] : "";
 		$tags = isset($_POST["tags"]) ? $_POST["tags"] : array();
-		Bookmark::update($bookmarkID, $notes, $tags);
+		Bookmark::update($bookmarkID, $notes, $tags, $useful_info, $author_qualifications);
 		$updated = true;
 }
+
+$userID = $base->getUserID();
+
+$query = "SELECT instructorID from recruits WHERE userID='$userID'";
+$cxn = Connection::getInstance();
+$r = $cxn->commit($query);
+$l = mysql_fetch_array($r,MYSQL_ASSOC);
+$instructorID = $l['instructorID'];
+
 
 
 Util::getInstance()->saveAction("View Bookmark",$bookmarkID, $base);
 
 
-$query = "SELECT bookmarkID, userID, (SELECT username from users b where a.userID = b.userID) username, url, title, time, rating, note
+$query = "SELECT bookmarkID, userID, (SELECT username from users b where a.userID = b.userID) username, url, title, time, rating, note, useful_info, author_qualifications
 FROM bookmarks a
 WHERE bookmarkID = $bookmarkID";
 
@@ -55,6 +66,8 @@ $time = $line['time'];
 $userID = $line['userID'];
 $rating = $line['rating'];
 $note = $line['note'];
+$author_qualifications = $line['author_qualifications'];
+$useful_info = $line['useful_info'];
 
 $editable = true;
 $user = "";
@@ -111,10 +124,29 @@ else {
 					<h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3>
 					<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></strong></h4>
 
+					<?php
+					if($instructorID==1){
+					?>
 					<div class="row">
 						<label>Notes</label><br/>
 						<textarea name="notes" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
 					</div>
+					<?php
+					}else{
+
+
+					?>
+					<div class="row">
+						<label>Information For Report</label><br/>
+						<textarea name="useful_info" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($useful_info) && $useful_info != "") echo $useful_info; ?></textarea>
+					</div>
+					<div class="row">
+						<label>Author's Qualifications</label><br/>
+						<textarea name="author_qualifications" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($author_qualifications) && $author_qualifications != "") echo $author_qualifications; ?></textarea>
+					</div>
+					<?php
+					}
+					?>
 					<div class="row">
 						<label>Tags (press <u>enter</u> after every tag)</label><br/>
 						<select name="tags[]" id="tag-input" multiple="multiple" <?php if(!$editable) echo "disabled"; ?>>
