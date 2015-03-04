@@ -2,6 +2,7 @@
 require_once('Connection.class.php');
 require_once('Base.class.php');
 require_once('Action.class.php');
+require_once('Util.class.php');
 
 class Tags extends Base{
   public function __construct(){
@@ -49,6 +50,7 @@ class Tags extends Base{
    */
   public function assignTagsToBookmark($bookmarkID, $tags){
     if(count($tags) == 0){
+      Util::getInstance()->saveAction("ALL TAGS DELETED",$bookmarkID,Base::getInstance());
       return;
     }
     /* By using IGNORE if user is assigning a previously created tag,
@@ -67,12 +69,25 @@ class Tags extends Base{
     //now insert into tag_assignments
     $q = "INSERT INTO tag_assignments (`userID`, `bookmarkID`, `tagID`) VALUES ";
     $arr = array();
+
+    $tags_str = array();
+    $tag_assignments_str = array();
+
     foreach($tags as $name){
       $ins = sprintf("(%d, %d, (SELECT tagID FROM tags WHERE projectID=%d AND name='%s'))", $this->userID, $bookmarkID, $this->projectID, $cxn->esc($name));
       array_push($arr, $ins);
+      array_push($tags_str,$name);
+      $r = $cxn->commit("SELECT tagID FROM tags WHERE projectID='".$this->projectID."' AND name='".$cxn->esc($name)."'");
+      $line = mysql_fetch_array($r,MYSQL_ASSOC);
+      array_push($tag_assignments_str,$line['tagID']);
     }
     $q .= implode(",", $arr);
     $cxn->commit($q);
+
+
+
+    Util::getInstance()->saveAction("Assining tags TAGS: ".addslashes(implode(",",$tags_str))." TAG_ASSIGNMENTS: ".addslashes(implode(",",$tag_assignments_str))."",$bookmarkID,Base::getInstance());
+
   }
 
   public function deleteForBookmark($bookmarkID){

@@ -25,6 +25,21 @@ if (isset($_POST["action"]) && $_POST["action"] == "update"){
 		$author_qualifications = isset($_POST["author_qualifications"]) ? $_POST["author_qualifications"] : "";
 		$useful_info = isset($_POST["useful_info"]) ? $_POST["useful_info"] : "";
 		$tags = isset($_POST["tags"]) ? $_POST["tags"] : array();
+
+		$updatestr = "";
+		if(isset($_POST["notes"])){
+			$updatestr .= addslashes(" NOTES: ".$_POST["notes"]);
+		}
+
+		if(isset($_POST["author_qualifications"])){
+			$updatestr .= addslashes(" AUTHOR QUALIFICATIONS: ".$_POST["author_qualifications"]);
+		}
+
+		if(isset($_POST["useful_info"])){
+			$updatestr .= addslashes(" USEFUL INFO: ".$_POST["useful_info"]);
+		}
+
+		Util::getInstance()->saveAction("Updating Bookmark - $updatestr",$bookmarkID,$base);
 		Bookmark::update($bookmarkID, $notes, $tags, $useful_info, $author_qualifications);
 		$updated = true;
 }
