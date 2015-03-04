@@ -124,7 +124,7 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
       $notcompleteurls.=" and";
     }
     $notcompletestr.=" second";
-    $notcompleteurls .="<a href=\"../instruments/questionnaire_second.php\">here</a> to complete the second questionnaire";
+    $notcompleteurls .=" <a href=\"../instruments/questionnaire_second.php\">here</a> to complete the second questionnaire";
   }
   ?>
   <html>

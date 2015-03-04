@@ -33,15 +33,16 @@ foreach($a as $v){
 }
 
 foreach($questionnaires as $k=>$v){
-  $status = "late";//$v[0];
+  $status = $v[0];
   $start = $v[1];
   $end = $v[2];
   $url = "../instruments/questionnaire_" . $v[3] . ".php";
   $text = sprintf("Questionnaire %s", $k);
   if($status == "warning" || $status == "okay"){
     //show link
-    $text = sprintf("<a href='%s'>%s</a>", $url, $text);
+    $text = sprintf("<a href='%s' style=\"color:blue;\">%s</a>", $url, $text);
   }
+
   printf("<tr class='%s'><td>%s</td><td>%s</td><td>%s</td></tr>", $status, $text, $start, $end);
 }
 ?>
