@@ -92,7 +92,7 @@ function gen_url($param){
       <br class="clear" />
     </div>
     <script type="text/html" id="bookmark_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-bookmarkID="<%= bookmarkID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <div>
             <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
@@ -220,7 +220,7 @@ function gen_url($param){
       <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <span> <%= source %></span>
+          <span class="source_name"> <%= source %></span>
         </div>
         <div class="sub">
           <a href="#" class="related">See related bookmarks and snippets</a>
@@ -238,14 +238,14 @@ function gen_url($param){
     <script src="assets/js/jquery-2.1.3.min.js"></script>
     <script src="assets/js/simple_template.js"></script>
     <script src="assets/js/utils.js"></script>
-    <script src="assets/js/CSPACE.js"></script>
+    <script src="assets/js/WORKSPACE.js"></script>
     <script src="assets/js/lunr.js"></script>
     <script type="text/javascript" src="../lib/select2/select2.full.min.js"></script>
 
     <script>
     (function(){
       <?php
-      printf("CSPACE.init('%s',%s,%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID, $only_mine?"true":"false");
+      printf("WORKSPACE.init('%s',%s,%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID, $only_mine?"true":"false");
       ?>
 
       $(".tag-input").select2({

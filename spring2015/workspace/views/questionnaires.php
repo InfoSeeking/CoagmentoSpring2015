@@ -33,7 +33,7 @@ foreach($a as $v){
 }
 
 foreach($questionnaires as $k=>$v){
-  $status = "late";//$v[0];
+  $status = $v[0];
   $start = $v[1];
   $end = $v[2];
   $url = "../instruments/questionnaire_" . $v[3] . ".php";

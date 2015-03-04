@@ -21,9 +21,14 @@ $valid_pages = array("ALL", "BOOKMARKS", "SNIPPETS", "SEARCHES", "ANNOTATIONS", 
 if(isset($_GET["page"])){
   $PAGE = $_GET["page"];
 }
+
 if(!in_array($PAGE, $valid_pages)){
   exit("Invalid page " . $PAGE);
 }
+
+$username = $base->getUserName();
+$userID = $base->getUserID();
+$cxn = Connection::getInstance();
 
 $firstLogin = false;
 $r = $cxn->commit("SELECT * FROM actions WHERE action='login' AND userID='$userID'");
@@ -31,9 +36,6 @@ if(mysql_num_rows($r)<=1){
   $firstLogin = true;
 }
 
-$username = $base->getUserName();
-$userID = $base->getUserID();
-$cxn = Connection::getInstance();
 $res = $cxn->commit("SELECT * FROM recruits WHERE userID='$userID'");
 $firstName = '';
 while($line=mysql_fetch_array($res,MYSQL_ASSOC)){
