@@ -293,7 +293,18 @@ var WORKSPACE = (function(){
       $(this).attr("data-state", state);
       e.preventDefault();
     });
-    
+    $("#feed li.item-bookmark > .top .bookmark_link").on("click", function(e){
+      var bookmarkID = $(this).parents("li").attr("data-bookmarkID");
+      recordAction("bookmark link click", bookmarkID);
+    });
+    $("#feed li.item-snippet > .top .snippet_link").on("click", function(e){
+      var snippetID = $(this).parents("li").attr("data-snippetID");
+      recordAction("snippet link click", snippetID);
+    });
+    $("#feed li.item-search > .top .query_link").on("click", function(e){
+      var queryID = $(this).parents("li").attr("data-queryID");
+      recordAction("query link click", queryID);
+    });
     $("#feed li.item-bookmark .bookmark-related").on("click", function(e){
       var more = $(this).parents("li").find(".bookmark-related-section");
       var state = $(this).attr("data-state");

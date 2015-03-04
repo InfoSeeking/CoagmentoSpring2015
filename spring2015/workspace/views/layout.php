@@ -96,7 +96,7 @@ function gen_url($param){
         <div class="top">
           <div>
             <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-            <span><a href="<%= url %>"><%= title %></a></span>
+            <span><a class="bookmark_link" target="_blank" href="<%= url %>"><%= title %></a></span>
             <% if(tags.length > 0){ %>
               <div class="tagList">
               <b>Tags:</b>
@@ -180,10 +180,10 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="snippet_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-snippetID="<%= snippetID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <a href="<%= url %>"><%= title %></a>
+          <a target="_blank" class="snippet_link" href="<%= url %>"><%= title %></a>
           <p class="preview"><%= snippet %></p>
         </div>
         <div class="sub">
@@ -199,10 +199,10 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="query_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-queryID="<%= queryID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <a href="<%= url %>"><%= query %> (<%= source %>)</a>
+          <a class="query_link" target="_blank" href="<%= url %>"><%= query %> (<%= source %>)</a>
         </div>
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
