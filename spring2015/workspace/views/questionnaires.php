@@ -40,8 +40,9 @@ foreach($questionnaires as $k=>$v){
   $text = sprintf("Questionnaire %s", $k);
   if($status == "warning" || $status == "okay"){
     //show link
-    $text = sprintf("<a href='%s'>%s</a>", $url, $text);
+    $text = sprintf("<a href='%s' style=\"color:blue;\">%s</a>", $url, $text);
   }
+
   printf("<tr class='%s'><td>%s</td><td>%s</td><td>%s</td></tr>", $status, $text, $start, $end);
 }
 ?>
