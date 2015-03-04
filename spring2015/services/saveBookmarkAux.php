@@ -88,9 +88,23 @@
 	    $results = $connection->commit($query);
 		}
 
+		$updatestr = "";
+		if(isset($_POST['annotation'])){
+			$updatestr .= addslashes(" NOTES: ".$_POST['annotation']);
+		}
+
+		if(isset($_POST['author_qualifications'])){
+			$updatestr .= addslashes(" AUTHOR QUALIFICATIONS: ".$_POST['author_qualifications']);
+		}
+
+		if(isset($_POST['useful_info'])){
+			$updatestr .= addslashes(" USEFUL INFO: ".$_POST['useful_info']);
+		}
+
+
 
     $bookmarkID = $connection->getLastID();
-		Util::getInstance()->saveActionWithLocalTime("Save Bookmark - Rating: $rating",$bookmarkID,$base,$localTime,$localDate,$localTimestamp);
+		Util::getInstance()->saveActionWithLocalTime("Save Bookmark - Rating: $rating $updatestr",$bookmarkID,$base,$localTime,$localDate,$localTimestamp);
     $tags = new Tags();
 		$tag_input = array();
 		if(isset($_POST["tags"])){

@@ -89,8 +89,8 @@
                     $next_userID = $line['max']+1;
                     $password = $_POST["pwd_$x"];
                     $password_sha1 = sha1($password);
-                    $firstName= stripslashes($_POST["firstName_$x"]);
-                    $lastName = stripslashes($_POST["lastName_$x"]);
+                    $firstName= addslashes($_POST["firstName_$x"]);
+                    $lastName = addslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
                     $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
@@ -102,7 +102,7 @@
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
 
-                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$instructorID')";
+                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$instructorID')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 

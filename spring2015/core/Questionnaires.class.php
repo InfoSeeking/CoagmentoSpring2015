@@ -138,6 +138,7 @@ class Questionnaires
 		}
 
 		public function addAnswer($key,$answer){
+			$answer = addslashes($answer);
 			foreach($this->questions as $v){
 				if($v['key']==$key){
 					$this->answers["$key"] = $answer;
@@ -180,6 +181,8 @@ class Questionnaires
 
 		public function commitAnswersToDatabase($extravals,$extrakeys=array('userID','projectID'),$answers_database=''){
 
+			// echo "ANSWERS:";print_r($this->answers);
+			// echo "Questions:";print_r($this->questions);
 			if($answers_database != ''){
 				// echo "FIRST!";
 				// If optional database given, commit: columns by key, respective column values, to given database
@@ -494,7 +497,8 @@ class Questionnaires
 			  $description = $q;
 			  echo "<div class=\"pure-control-group\" style=\"background-color:#F2F2F2\">\n";
 			  echo "<label for=\"".$pref."$suffix\">$description</label>\n";
-			  echo "<input id=\"".$pref."$suffix\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51) || (event.charCode >= 97 && event.charCode <= 99)' name=\"".$pref."$suffix\" type=\"text\">\n";
+				// || (event.charCode >= 97 && event.charCode <= 99) //Append to end of onkeypress if necessary.
+			  echo "<input id=\"".$pref."$suffix\" size=1 maxlength=\"1\" onkeypress='return (event.charCode < 47) || (event.charCode >= 49 && event.charCode <= 51)' name=\"".$pref."$suffix\" type=\"text\">\n";
 			  echo "</div>\n";
 			}
 			echo "</fieldset>\n";

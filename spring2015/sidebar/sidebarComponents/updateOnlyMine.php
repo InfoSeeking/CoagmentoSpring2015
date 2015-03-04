@@ -22,8 +22,8 @@
 
     // $aquery = "INSERT INTO actions (userID, projectID, timestamp, date, time, action, value, ip) VALUES ('$userID', '$projectID', '$timestamp', '$date', '$time', 'updateOnlyMine_$table', '$only_mine','$ip')";
 
-    $connection = Connection::getInstance();
-    $result = $connection->commit($aquery);
+    // $connection = Connection::getInstance();
+    // $result = $connection->commit($aquery);
     if ($webPage){
       require_once($webPage);
     }
