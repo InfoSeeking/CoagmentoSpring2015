@@ -66,13 +66,11 @@
 				{
 
           $query = "SELECT *,(SELECT username from users b where bookmarks.userID = b.userID) as username from bookmarks WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
-
-
             $connection = Connection::getInstance();
      			  $results = $connection->commit($query);
      			  $numRows = mysql_num_rows($results);
-             echo "<h3>Bookmarks</h3>";
             if($numRows>0){
+							echo "<h3>Bookmarks</h3>";
               $count = 1;
               while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
                 echo "<div class=\"grayrect\"><h4>Bookmark $count</h4>";
@@ -106,16 +104,17 @@
                 $count += 1;
                 echo "</p></div><br>";
               }
+							echo "<hr>";
             }
-            echo "<hr>";
+
 
             $query = "SELECT *,(SELECT username from users b where snippets.userID = b.userID) as username from snippets WHERE projectID='$projectID' AND status=1 AND host='$sourceName'";
 
               $connection = Connection::getInstance();
        			  $results = $connection->commit($query);
        			  $numRows = mysql_num_rows($results);
-               echo "<h3>Snippets</h3>";
                if($numRows>0){
+								echo "<h3>Snippets</h3>";
                  $count = 1;
                  while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
                    echo "<div class=\"grayrect\"><h4>Snippet $count</h4>";
@@ -139,33 +138,12 @@
 
                      echo "</div><br>";
                  }
+									echo "<hr />";
                }
-			?>
 
-
-			<!-- <h3><a href="<?php /*echo $url;*/ ?>" target="_new"><?php /*echo $title;*/ ?></a></h3> -->
-			 		<!-- from this <strong><a onclick="javascript:addAction('Revisit Page From Snippet','<?php /*echo $snippetID;*/ ?>')" href="<?php /*echo $url;*/ ?>" target="_new">link</a></strong></div> -->
-			<?php
-    }else{
-      echo "HELLO!";
     }
-			?>
-			<!-- <h4>Saved by <strong> -->
-      <?php
-      // echo $user;
-      ?>
-      <!-- </strong> at <strong> -->
-      <?php
-      // echo $time;
-      ?>
-      <!-- </strong></h4> -->
-			</div>
-			<hr />
-			<!-- <div><p><strong>Snippet:</strong>  -->
-      <?php
-      // echo $snippet;
-      ?>
-      <!-- </p></div> -->
+		?>
+	</div>
 </body>
 </html>
 

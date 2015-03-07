@@ -38,6 +38,7 @@ Maybe we can use this as a replacement for the sidebar login as well.
     $base->setStageID(-1);
     $base->setStudyID($studyID);
 		$base->setAllowCommunication(1);
+		$base->setAllowBrowsing(1);
     Util::getInstance()->saveAction('login',0,$base);
     pubnubPublishToUser("1");
     if(isset($_GET['redirect'])){

@@ -92,11 +92,11 @@ function gen_url($param){
       <br class="clear" />
     </div>
     <script type="text/html" id="bookmark_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-bookmarkID="<%= bookmarkID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <div>
             <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-            <span><a href="<%= url %>"><%= title %></a></span>
+            <span><a class="bookmark_link" target="_blank" href="<%= url %>"><%= title %></a></span>
             <% if(tags.length > 0){ %>
               <div class="tagList">
               <b>Tags:</b>
@@ -180,10 +180,10 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="snippet_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-snippetID="<%= snippetID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <a href="<%= url %>"><%= title %></a>
+          <a target="_blank" class="snippet_link" href="<%= url %>"><%= title %></a>
           <p class="preview"><%= snippet %></p>
         </div>
         <div class="sub">
@@ -199,10 +199,10 @@ function gen_url($param){
       </li>
     </script>
     <script type="text/html" id="query_template">
-      <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
+      <li data-queryID="<%= queryID %>" data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <a href="<%= url %>"><%= query %> (<%= source %>)</a>
+          <a class="query_link" target="_blank" href="<%= url %>"><%= query %> (<%= source %>)</a>
         </div>
         <div class="sub">
           <span class="added_by">Added by <b><%= username %></b></span>
@@ -220,7 +220,7 @@ function gen_url($param){
       <li data-lunr="<%= lunr_id %>" class="item-<%= label.toLowerCase() %>">
         <div class="top">
           <span class="label <%= label.toLowerCase() %>"> <%= label %> </span>
-          <span> <%= source %></span>
+          <span class="source_name"> <%= source %></span>
         </div>
         <div class="sub">
           <a href="#" class="related">See related bookmarks and snippets</a>
@@ -238,14 +238,14 @@ function gen_url($param){
     <script src="assets/js/jquery-2.1.3.min.js"></script>
     <script src="assets/js/simple_template.js"></script>
     <script src="assets/js/utils.js"></script>
-    <script src="assets/js/CSPACE.js"></script>
+    <script src="assets/js/WORKSPACE.js"></script>
     <script src="assets/js/lunr.js"></script>
     <script type="text/javascript" src="../lib/select2/select2.full.min.js"></script>
 
     <script>
     (function(){
       <?php
-      printf("CSPACE.init('%s',%s,%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID, $only_mine?"true":"false");
+      printf("WORKSPACE.init('%s',%s,%s,%s,%s);", $PAGE,json_encode($feed_data),json_encode($tag_data), $userID, $only_mine?"true":"false");
       ?>
 
       $(".tag-input").select2({

@@ -18,7 +18,7 @@
 //					 FROM snippets a
 //			 		 WHERE status=1
 //			  		 AND snippetID = $snippetID";
-            $query = "SELECT snippetID, userID, (SELECT username from users b where a.userID = b.userID) username, url, snippet,title, time
+            $query = "SELECT snippetID, userID, (SELECT username from users b where a.userID = b.userID) username, url, snippet,title, time, timestamp
             FROM snippets a
             WHERE status=1
             AND snippetID = $snippetID";
@@ -36,6 +36,7 @@
 				$username = $line['username'];
 				$time = $line['time'];
 				$userID = $line['userID'];
+				$pretty_time = strftime("%l:%M%P on %b %e, %Y", $timestamp);
 
 				$user = "";
 				if ($base->getUserID()==$userID)
