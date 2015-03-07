@@ -1,0 +1,12 @@
+[08-Dec-2011 14:55:02] PHP Catchable fatal error:  Object of class DOMDocument could not be converted to string in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 46
+[08-Dec-2011 14:55:03] PHP Catchable fatal error:  Object of class DOMDocument could not be converted to string in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 46
+[08-Dec-2011 15:01:01] PHP Catchable fatal error:  Object of class DOMNodeList could not be converted to string in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 43
+[08-Dec-2011 15:01:02] PHP Catchable fatal error:  Object of class DOMNodeList could not be converted to string in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 43
+[08-Dec-2011 15:14:50] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 22
+[08-Dec-2011 15:15:29] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 22
+[08-Dec-2011 15:15:59] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 22
+[08-Dec-2011 15:16:45] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 24
+[08-Dec-2011 15:23:33] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 79
+[08-Dec-2011 15:23:36] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 79
+[08-Dec-2011 15:24:36] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 79
+[08-Dec-2011 19:57:39] PHP Fatal error:  Call to undefined function  add_shortcode() in /home1/shahonli/public_html/coagmento.org/CSpace/fetch/index.php on line 79

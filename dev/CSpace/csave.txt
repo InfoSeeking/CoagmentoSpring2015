@@ -1,0 +1,4 @@
+testing
+SELECT * FROM pages WHERE projectID='9' AND url='http://www.toonopedia.com/bugs.htm'
+INSERT INTO pages VALUES('','3','9','http://www.toonopedia.com/bugs.htm','Don Markstein\'s Toonopedia: Bugs Bunny','toonopedia','','1241457397','2009-05-04','13:16:37','1')
+INSERT INTO pages VALUES('','3','9','http://www.toonopedia.com/bugs.htm','Don Markstein\'s Toonopedia: Bugs Bunny','toonopedia','','1241457397','2009-05-04','13:16:37','1')

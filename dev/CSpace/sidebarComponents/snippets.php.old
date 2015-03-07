@@ -1,0 +1,88 @@
+<?php
+session_start();  
+if ((isset($_SESSION['userID']))) {
+?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html>
+    <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <title>Snippets</title>
+	<style type="text/css">
+
+		.cursorType{
+		cursor:pointer;
+		cursor:hand;
+		}
+	</style>
+    </head>
+    <body>
+<div id="snippetsBox" style="height:420px;overflow:auto;">
+<?php
+		require_once("../functions.php");
+		require_once("../connect.php");
+		$userID = $_SESSION['userID'];
+		if (isset($_SESSION['teamID']))
+			$teamID = $_SESSION['teamID'];
+		$orderBy = $_SESSION['orderBy'];
+		echo "<div id=\"floatSnippetLayer\" style=\"position:absolute;  width:340px;height:450px;left:10px;top:300px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";  
+		echo "<table width=100% cellspacing=0>\n";
+		echo "<tr>";
+		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('author','asc')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('author','desc')\"></td>";
+		echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('title','asc')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('title','desc')\"></td>";
+		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('rating','asc')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('rating','desc')\"></td>";
+		echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('time, date','asc')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('time, date','desc')\"></td>";
+		echo "<td></td>"; 
+		echo "</tr>";
+		$query = "SELECT *, (SELECT userName FROM `shahonli_f2010`.`users` where `shahonli_f2010`.`users`.userID = `shahonli_f2010`.`snippets`.userID) AS userName, (SELECT sum(value) from rating where active = 1 and teamID='$teamID' and idResource = snippetID and type = 'snippets' group by idResource) as totalRate, (SELECT count(*) from rating where active = 1 and teamID='$teamID' and idResource = snippetID and type = 'snippets' group by idResource) as numberOfJudgments FROM `shahonli_f2010`.`snippets` WHERE teamID='$teamID' AND status=1 order by $orderBy";
+		$results = mysql_query($query) or die(" ". mysql_error());
+		$bgColor = '#E8E8E8';
+		while ($line = mysql_fetch_array($results, MYSQL_ASSOC)) {
+			$snippetID = $line['snippetID'];
+			$userName = $line['userName'];
+			$totalRate = $line['totalRate'];
+			$numberJudgments = $line['numberOfJudgments'];
+			$note = $line['note'];
+			$snippet = stripslashes($line['snippet']);
+
+			$url = $line['url'];
+			$title = stripslashes($line['title']);
+			$type = $line['type'];
+			$time = $line['time'];
+			if (!$title)
+				$title = $url;
+			if (strlen($title)>25) {
+				$title = substr($title, 0, 25);
+				$title = $title . '..';
+			}
+				
+			echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span> </td><td><span style=\"font-size:10px\">";
+			if ($url)
+				echo "<font color=blue><a href=\"$url\" class=\"tt\" target=_content style=\"font-size:10px\">$title</a></span></td>\n";
+			else
+				echo "$snippet</span></td>\n";
+
+			echo "<input type=\"hidden\" id=\"snippetValue$snippetID\" value=\"$snippet\">";
+			echo "<input type=\"hidden\" id=\"note$snippetID\" value=\"$note\">";
+			$ratingRepresentation = getRatingRepresentation($totalRate,$numberJudgments,$snippetID,'snippets','floatSnippetLayer');
+			echo "<td align=\"center\">$ratingRepresentation</td>";
+			echo "<td align=\"right\"><span style=\"font-size:10px\">$time</span></td>";
+			echo "<td align=\"right\"><img src=\"images/view.gif\" height=\"18\" width=\"18\" alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\">";
+			echo "<span style=\"font-size:10px; color:$bgColor\">-</span><img src=\"images/copy.gif\" height=\"18\" width=\"18\" alt=\"Copy\" class=\"cursorType\" onclick=\"javascript:copyToClipboard('snippetValue$snippetID')\"></td>"; 
+
+			echo "</tr>";
+
+			if ($bgColor == '#E8E8E8')
+				$bgColor = '#FFFFFF';
+			else
+				$bgColor = '#E8E8E8';
+		}
+		echo "</table>\n";
+		mysql_close($dbh);
+		echo "</div></body></html>";
+		}
+	else {
+		echo "Your session has expired. Please <a href=\"http://www.coagmento.org/labstudy_fall2010/\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
+	}
+?>
+

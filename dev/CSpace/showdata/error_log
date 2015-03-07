@@ -1,0 +1,8 @@
+[07-Dec-2011 22:55:21] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/index.php on line 62
+[07-Dec-2011 22:55:25] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/index.php on line 62
+[07-Dec-2011 22:55:28] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/index.php on line 62
+[07-Dec-2011 22:55:29] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/index.php on line 62
+[08-Dec-2011 13:42:12] PHP Parse error:  syntax error, unexpected $end in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/oneweekago.php on line 349
+[08-Dec-2011 13:42:17] PHP Parse error:  syntax error, unexpected $end in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/oneweekago.php on line 349
+[08-Dec-2011 22:42:58] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/1.php:8) in /home1/shahonli/public_html/coagmento.org/CSpace/zoomtesting/1.php on line 85
+[02-Jan-2012 09:12:58] PHP Parse error:  syntax error, unexpected '?' in /home1/shahonli/public_html/coagmento.org/CSpace/showdata/test.php on line 3

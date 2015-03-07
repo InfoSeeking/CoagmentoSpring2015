@@ -1,0 +1,100 @@
+<?php
+	session_start();
+	require_once("connect.php");
+	$pageName = "CSpace/saveSnippet.php";
+	require_once("../counter.php");
+?>
+<html>
+<head>
+	<title>Snippet</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<?php	
+	if (isset($_SESSION['CSpace_userID'])) {
+		$userID = $_SESSION['CSpace_userID'];
+		if (isset($_SESSION['CSpace_projectID']))
+			$projectID = $_SESSION['CSpace_projectID'];
+		else {
+			require_once("connect.php");
+			$query = "SELECT projects.projectID FROM projects,memberships WHERE memberships.userID='$userID' AND (projects.description LIKE '%Untitled project%' OR projects.description LIKE '%Default project%') AND projects.projectID=memberships.projectID";
+			$results = mysql_query($query) or die(" ". mysql_error());
+			$line = mysql_fetch_array($results, MYSQL_ASSOC);
+			$projectID = $line['projectID'];
+		}
+
+		$title = $_GET['title'];
+		$title = str_replace(" - Mozilla Firefox","",$title);
+		$url = $_GET['URL'];
+		$type = $_GET['type'];
+		if (!$type)
+			$type = "text";
+		$snippet = addslashes($_GET['snippet']);
+		
+		if (isset($_GET['annotation'])) {
+			// Get the date, time, and timestamp
+			$timestamp = time();
+			$datetime = getdate();
+		    $date = date('Y-m-d', $datetime[0]);
+			$time = date('H:i:s', $datetime[0]);
+			$annotation = addslashes($_GET['annotation']);
+					
+			$snippet = stripslashes($snippet);
+	//		echo "$snippet<br/>\n";
+		//	$fout = fopen("snip.tmp", 'w');
+			$title = addslashes($title);
+			$query = "INSERT INTO snippets VALUES('','$url','$title','$userID','$projectID','$timestamp','$date','$time','$snippet','$annotation','$type','1')";
+	//		echo "$query\n";
+		//	fwrite($fout, "$query\n");
+		//	fclose($fout);
+			echo "<body class=\"body\" onload=\"window.close();\">\n";
+			echo "<center>\n";
+			echo "<table class=\"style3\" width=90%>";
+			$results = mysql_query($query) or die(" ". mysql_error());		
+			$aQuery = "SELECT max(snippetID) as num FROM snippets";
+			$aResults = mysql_query($aQuery) or die(" ". mysql_error());
+			$aLine = mysql_fetch_array($aResults, MYSQL_ASSOC);
+			$snippetID = $aLine['num'];
+			$ip=$_SERVER['REMOTE_ADDR'];
+			$aQuery = "INSERT INTO actions VALUES('','$userID','$projectID','$timestamp','$date','$time','save-snippet','$snippetID','$ip')";
+			$aResults = mysql_query($aQuery) or die(" ". mysql_error());
+			
+			$pQuery = "SELECT points FROM users WHERE userID='$userID'";
+			$pResults = mysql_query($pQuery) or die(" ". mysql_error());
+			$pLine = mysql_fetch_array($pResults, MYSQL_ASSOC);
+			$totalPoints = $pLine['points'];
+			$newPoints = $totalPoints+10;
+			$pQuery = "UPDATE users SET points=$newPoints WHERE userID='$userID'";
+			$pResults = mysql_query($pQuery) or die(" ". mysql_error());
+						
+			echo "<tr><td>The snippet was saved. You can close this window now.</td></tr>";
+		} // if (isset($_GET['annotation']))
+		else {
+			echo "<body class=\"body\" onload=\"document.f.annotation.focus();\">\n";
+			echo "<br/><center>\n";
+			echo "<table class=\"style3\" width=90%>";
+			echo "<tr><th>Collecting a snippet/object from page: <a href=\"$url\">$title</a><br/><br/></th></tr>\n";
+			echo "<form name=\"f\" action=\"saveSnippet.php\" method=GET>\n";
+			$snippet = stripslashes($snippet);
+			$snippet = stripslashes($snippet);
+	//		$snippetValue = str_replace("'","\'",$snippet);
+			if (isset($_GET['type']))
+				$type = $_GET['type'];
+			if ($type=='text' || !$type)
+				echo "<tr><td><textarea cols=70 rows=12 name=\"snippet\">$snippet</textarea></td></tr>\n";
+			else
+				echo "<tr><td><img src=\"$snippet\" /><input type=\"hidden\" name=\"snippet\" value=\"$snippet\" /></td></tr>\n";
+			echo "<tr><td><em>Add notes to this snippet/object (optional)</em><br/><textarea cols=70 rows=6 name=\"annotation\"></textarea><input type=\"hidden\" name=\"userID\" value=\"$userID\"/><input type=\"hidden\" name=\"projectID\" value=\"$projectID\"/><input type=\"hidden\" name=\"URL\" value=\"$url\"/><input type=\"hidden\" name=\"title\" value=\"$title\"/><input type=\"hidden\" name=\"type\" value=\"$type\"/></td></tr>\n";
+			echo "<tr><td align=center><input type=\"submit\" value=\"Save\" /> <input type=\"button\" value=\"Cancel\" onclick=\"window.close();\" /></td></tr>\n";
+			echo "</form>\n";
+		} // else with if (isset($_GET['annotation']))
+	} // if (isset($_SESSION['CSpace_userID']))
+	else {
+		echo "<body class=\"body\">\n";
+		echo "<br/><center>\n";
+		echo "<table class=\"style3\" width=90%>";
+		echo "<tr><td>Your session is expired. Please login again.</td></tr>\n";
+	} // else with if (isset($_SESSION['CSpace_userID']))
+?>
+</table>
+</body>
+</html>

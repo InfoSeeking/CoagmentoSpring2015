@@ -1,0 +1,106 @@
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="../img/alert.jpg" width=26 style="vertical-align:middle;border:0" />
+
+		<?php
+			require_once("connect.php");
+//			$query = "SELECT mem2.* FROM memberships as mem1,memberships as mem2 WHERE mem1.userID!=mem2.userID AND mem1.projectID=mem2.projectID AND mem1.userID='$userID' GROUP BY mem2.userID";
+			$query = "SELECT * FROM memberships WHERE userID='$userID'";
+			$results = mysql_query($query) or die(" ". mysql_error());
+			while($line = mysql_fetch_array($results, MYSQL_ASSOC)) {
+				$cProjectID = $line['projectID'];					
+				$query2 = "SELECT * FROM memberships WHERE userID!='$userID' AND projectID='$cProjectID'";
+				$results2 = mysql_query($query2) or die(" ". mysql_error());
+				while ($line2 = mysql_fetch_array($results2, MYSQL_ASSOC)) {
+					$cUserID = $line2['userID'];
+					$query4 = "SELECT * FROM users WHERE userID='$cUserID'";
+					$results4 = mysql_query($query4) or die(" ". mysql_error());
+					$line4 = mysql_fetch_array($results4, MYSQL_ASSOC);
+					$userName = $line4['firstName'] . " " . $line4['lastName'];
+					$avatar = $line4['avatar'];
+					echo "&nbsp;&nbsp;&nbsp;&nbsp;<img src=\"../img/$avatar\" width=20 height=20 /> <span style=\"color:blue;text-decoration:underline;cursor:pointer;\" onClick=\"ajaxpage('showCollaborator.php?userID=$cUserID','content');\">$userName</span> <font color=\"gray\">for projects</font>: ";
+					$query3 = "SELECT title FROM projects WHERE projectID='$cProjectID'";
+					$results3 = mysql_query($query3) or die(" ". mysql_error());
+					$line3 = mysql_fetch_array($results3, MYSQL_ASSOC);
+					echo $line3['title'] . ", ";
+					
+					echo "<br/>";
+				}					
+			}
+		?>
+
+		function refresh1() {
+			var txtNode = document.createTextNode('this is a test<br/>');
+			var chatList = document.getElementById('chatMessages');
+			chatList.appendChild(txtNode);
+			chatList.scrollTop = chatList.scrollHeight;
+		}
+		function refresh2() {
+			var maxChatID = document.getElementById('maxChatID');
+			var maxChatValue = maxChatID.value;
+			var url = "http://localhost/coagmento.com/CSpace/chatNew.php";
+			req = new phpRequest(url);
+			var response = req.execute();	
+			if (response!=maxChatValue) {
+				maxChatID.value = response;
+				ajaxpage('sidebarChat.php','chat');
+				var chatMessages = document.getElementById('chatMessages');
+				chatMessages.scrollTop = chatMessages.scrollHeight;
+			}
+		} 
+		function refresh3() {
+			req = new phpRequest("http://www.coagmento.org/CSpace/checkStatus.php");
+			req.add('version','201');
+			var response = req.execute(); 
+			var res = response.split(":");
+			if (res[0]>0) {
+				var projectID = res[1];
+				req = new phpRequest("http://www.coagmento.org/CSpace/requestStatus.php");
+				req.add('version','201');
+				var response = req.execute(); 
+				var pastProjectID = res[1];
+				alert(projectID+' '+pastProjectID);
+				if (projectID!=pastProjectID) {
+					alert('different');
+					location.reload(true);
+				}
+			}
+		}	
+		
+		
+<tr><td><span style="font-weight:bold">Updates</span>
+		<ul>
+			<li>Drag and drop now captures the source information (title and URL). (11/21/2009)</li>
+			<li>Hovering over a snippet/object link in the sidebar shows the actual snippet/object as a tooltip. (11/20/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('settings.php', 'content');">Setting</span> for choosing your default project added. (11/19/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('workspace.php', 'content');">Worksapce</span> implemented, which now allows you to print reports. (11/05/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('terms.php', 'content');">Terms & Conditions</span> added. (11/04/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('interProject.php', 'content');">Inter-project analysis</span> added. (11/04/2009)</li>
+			<li>Now you can remove a collaborator from a project. (11/04/2009)</li>
+			<li>A bug in paging when displaying everyone's data removed. (10/27/2009)</li>
+			<li>A bug that displayed a wrong list of collaborators removed. (10/27/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('recommendCoagmento.php', 'content');">New account creation by invitation</span> is working. (10/20/2009)</li>
+			<li>'Untitled' project is now called 'Default' project. (10/19/2009)</li>
+			<li><span style="color:blue;text-decoration:underline;cursor:pointer;" onClick="ajaxpage('points.php', 'content');">Points system</span> implementation is underway. (10/17/2009)</li>
+			<li>Updating profile picture is working. (10/17/2009)</li>
+			<li>Filtering by project-name in the data view is working. (10/15/2009)</li>
+			<li>A bug in filtering data removed. (10/15/2009)</li>
+			<li>Reset filters option added next to the 'Filter' button. (10/15/2009)</li>
+			<li>Deleting items from the data is working. (10/15/2009)</li>
+			<li>A bug that would show 'Loading...' message for a long time removed. (10/15/2009)</li>
+		</ul>
+	</td></tr>
+	
+		<tr><td colspan=2><span style="font-weight:bold">Known issues</span></td></tr>
+	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>
+	<ul>
+		<li>Toolbar does not update the information immediately. The update happens once the page is reloaded, or a new tab or window is selected.</li>
+		<li>There is an issue with changing the projects. When you choose a different project as your active project, you should see the 'Current project' name changed above. If it doesn't, reload the page.</li>
+		<li><span style="text-decoration:line-through;">Deletion and</span> moving of data items not working.</li>
+		<li><span style="text-decoration:line-through;">CSpace doesn't automatically detect session timeout. It will still show the pages, but without proper information.</span></li>
+		<li><span style="text-decoration:line-through;">Data filtering doesn't always work well. There's some bug there.</span></li>
+		<li><span style="text-decoration:line-through;">Sometimes clicking on a link shows 'Loading..' picture and doesn't load the actual page. If you see this for more than a few seconds, click on that link again.</span></li>
+		<li><span style="text-decoration:line-through;">Updating profile picture is not functional.</span></li>
+		<li><span style="text-decoration:line-through;">When collecting objects other than text snippets, source information (e.g., URL) not captured.</span></li>
+		<li><span style="text-decoration:line-through;">List of collaborators may show incorrect collaborators.</span></li>
+	</ul>
+	</td></tr>
