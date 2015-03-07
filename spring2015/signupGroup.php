@@ -200,7 +200,7 @@
                     $lastName = $_POST["lastName_$x"];
                     $message = $firstName." ".$lastName.",<br/><br/>".$message;
                     $message .= "\r\n";
-                    // mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
+                    mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
                 }
 
 
