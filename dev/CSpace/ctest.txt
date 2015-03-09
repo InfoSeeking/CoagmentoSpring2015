@@ -1,2 +1,0 @@
-3	96	http://channelrewardcentral.com/?sov=146639&id=20-aDS-cALL-gfinance%20&%20insurance-dU2FsdGVkX19hZGw3N0lhax4qszrzYjS1tmmrNbGMsSh07dvV6t-l4w
-INSERT INTO pages VALUES('','3','96','http://channelrewardcentral.com/?sov=146639&id=20-aDS-cALL-gfinance%20&%20insurance-dU2FsdGVkX19hZGw3N0lhax4qszrzYjS1tmmrNbGMsSh07dvV6t-l4w','Survey 2012','channelrewardcentral','','1331309872','2012-03-09','11:17:52','0','1',NULL)
