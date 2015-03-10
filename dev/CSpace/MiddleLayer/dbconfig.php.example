@@ -1,8 +1,0 @@
-<?php
-$dbhost = "";
-$user = "";
-$pass = "";
-$db = ""
-
-$cxn = mysqli_connect($host, $user, $pass, $db) or die(err("Could not connect to database"));
-
