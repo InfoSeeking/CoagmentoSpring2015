@@ -1,2 +1,0 @@
-[08-Dec-2011 08:27:15] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: Access denied for user 'shahonli'@'localhost' (using password: NO) in /home1/shahonli/public_html/coagmento.org/CSpace/WebsiteScrolling/index.php on line 60
-[08-Dec-2011 08:27:15] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: A link to the server could not be established in /home1/shahonli/public_html/coagmento.org/CSpace/WebsiteScrolling/index.php on line 60

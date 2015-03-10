@@ -1,1 +1,0 @@
-SELECT * FROM users WHERE userName='bugs' AND password='e3e7202d03a5737f8a587923ff5764b982b935cc'
