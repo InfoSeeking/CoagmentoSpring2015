@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<title>View Course Writeups</title>
+<title>Coagmento Study Group Activity</title>
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/tables.css">
@@ -41,7 +41,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 <div class="pagecontainer">
 	<center>
 <table class="body" width="90%">
-<tr><td><center><h2>View Student Writeups</h2></center></td></tr>
+<tr><td><center><h2>Coagmento Study Group Activity</h2></center></td></tr>
 </table>
 <form class="pure-form" id="login_form" action="#" method="post">
 <fieldset>
@@ -107,7 +107,13 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
 		}else if($username=='study220'){
 			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-		}
+		}else if($username=='eun.baik'){
+      $instructorName = "Dr. Nicholas Belkin";
+      $apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
+    }else if($username=='s.bar'){
+      $instructorName = "Dr. Nina Wacholder";
+      $apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
+    }
 
 		$query = "SELECT * FROM instructors WHERE username='$username' AND password='$password'";
 
@@ -121,20 +127,31 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 
 
-		if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'study220' && $_POST['password']=='BJ3&9X')) //insert session one end stage if necessary
+		if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'study220' && $_POST['password']=='BJ3&9X')
+    || ($_POST['username'] == 'eun.baik' && $_POST['password']=='?UvL6#')
+    || ($_POST['username'] == 's.bar' && $_POST['password']=='S&xmb!')) //insert session one end stage if necessary
 		{
 
-						echo "<center><table class=\"pure-table pure-table-striped\"><thead>";
-						echo "<th>Group</th><th>Link</th></thead>";
-            $line = mysql_fetch_array($results,MYSQL_ASSOC);
-            $instructorID = $line['instructorID'];
-            $port = $line['etherpadPort'];
+            echo "<center><h4>Study Group Activity For: $instructorName</h4><thead>";
+						echo "<center><table class=\"pure-table pure-table-striped\">";
+						echo "<thead><th style=\"width:700px;\">Group</th><th style=\"width:190px;\">Link</th></thead>";
+            $instructorID=0;$port=0;
+            if(mysql_num_rows($results) > 0){
+              $line = mysql_fetch_array($results,MYSQL_ASSOC);
+              $instructorID = $line['instructorID'];
+              $port = $line['etherpadPort'];
+            }
             $query = '';
+            if($_POST['username'] == 'eun.baik'){
+              $instructorID=1;
+            }else if($_POST['username'] == 's.bar'){
+              $instructorID=2;
+            }
 
             if($_POST['username'] != 'study220'){
-              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID='$instructorID' GROUP BY R.projectID";
+              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID='$instructorID' AND R.userID < 1000 GROUP BY R.projectID";
             }else{
-              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID IN (1,2) GROUP BY R.projectID";
+              $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID IN (1,2) AND R.userID < 1000 GROUP BY R.projectID";
             }
             $results = $connection->commit($query);
 
@@ -144,6 +161,10 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
                 if($_POST['username'] == 'study220' && $line['instructorID']==1){
                   $port = 9000;
                 }else if($_POST['username'] == 'study220' && $line['instructorID']==2){
+                  $port = 9005;
+                }else if($_POST['username'] == 'eun.baik'){
+                  $port = 9000;
+                }else if($_POST['username'] == 's.bar'){
                   $port = 9005;
                 }
 
@@ -203,7 +224,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
                   }
                 }
 
-                echo "<table>";
+                echo "<table style=\"width:100%\">";
                 echo "<tr><th>Name</th><th>Bookmarks</th><th>Snippets</th><th>Searches</th><th>Last Login</th></tr>";
                 foreach($group as $name=>$data){
                   $nbookmarks = $data["bookmarks"];
@@ -251,7 +272,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 											$url = "http://coagmentopad.rutgers.edu:".$port."/p/".$readOnlyID;
 											echo "<center><button class=\"pure-button pure-button-primary\" onclick=\"javascript:window.open('$url','_blank')\">Get Pad</button></center>";
 									}else{
-											echo "(No pad text available.)";
+											echo "(No Etherpad available.)";
 									}
 
 
