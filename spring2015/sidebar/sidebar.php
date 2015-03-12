@@ -109,7 +109,7 @@
 				// $params["openlinkneww"]= TRUE;  Default true.  Must be true; otherwise opens in sidebar.
 
 				//To refresh cache, set this flag to true, then in chat box type /rehash
-        $params["isadmin"] = TRUE;
+        // $params["isadmin"] = TRUE;
         $chat = new phpFreeChat($params);
 	}
 
