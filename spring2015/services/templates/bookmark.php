@@ -31,16 +31,16 @@
         }else{
           ?>
           <tr>
-            <td align=center><em>What specific information from this source will you use in your report?</em>
+            <td align=center><span style="font-size:10pt"><em>What specific information from this source will you use in your report?</em></span>
             <br/>
-            <textarea cols=35 rows=6 name="useful_info"></textarea>
+            <textarea cols=35 rows=3 name="useful_info"></textarea>
             </td>
             </tr>
 
             <tr>
-              <td align=center><em>What qualifications does the author have as evidence of expertise or trustworthiness?</em>
+              <td align=center><span style="font-size:10pt"><em>What qualifications does the author have as evidence of expertise or trustworthiness?</em></span>
               <br/>
-              <textarea cols=35 rows=6 name="author_qualifications"></textarea>
+              <textarea cols=35 rows=3 name="author_qualifications"></textarea>
               </td>
               </tr>
               <?php
@@ -58,7 +58,7 @@
         <input type="hidden" name="localDate" value="<?php echo $localDate; ?>"/>
         <input type="hidden" name="localTime" value="<?php echo $localTime; ?>"/>
         <input type="hidden" name="localTimestamp" value="<?php echo $localTimestamp; ?>"/>
-        <tr><td align=center><br>
+        <tr><td align=center><span style="font-size:10pt">
 
           <?php
           if($instructorID==1){
@@ -68,16 +68,21 @@
           }
 
           ?>
+        </span>
           </td></tr></table>
           <table><tr><td><input type="radio" name="rating" value="1"></td>
             <td><input type="radio" name="rating" value="2"></td>
             <td><input type="radio" name="rating" value="3"></td>
             <td><input type="radio" name="rating" value="4"></td>
             <td><input type="radio" name="rating" value="5"></td></tr>
-            <tr align=center><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+            <tr align=center><td><span style="font-size:10pt">1</span></td>
+              <td><span style="font-size:10pt">2</span></td>
+                <td><span style="font-size:10pt">3</span></td>
+                  <td><span style="font-size:10pt">4</span></td>
+                    <td><span style="font-size:10pt">5</span></td></tr>
           </table>
 
-          <label>Add tags (press <u>enter</u> after every tag)</label>
+          <label><span style="font-size:10pt">Add tags (press <u>enter</u> after every tag)</span></label>
           <select name="tags[]" id="tag-input" multiple="multiple">
             <?php
             //show all user tags
