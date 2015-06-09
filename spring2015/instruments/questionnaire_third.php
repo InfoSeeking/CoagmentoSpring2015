@@ -20,6 +20,11 @@ $projectID = $base->getProjectID();
 // $second_session_start = strtotime("1 Nov 2014 00:00");
 // $second_session_end = strtotime("1 Dec 2014 23:59");
 
+$override = 0;
+if($userID >= 3000 && $userID <=3010){
+  $override = 1;
+}
+
 
 $cxn = Connection::getInstance();
 $r = $cxn->commit("SELECT I.questionnaire3start as questionnaire3start,I.questionnaire3end as questionnaire3end FROM recruits R,instructors I WHERE R.userID='$userID' AND R.instructorID=I.instructorID");
@@ -51,7 +56,7 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
 	</html>
   <?php
   exit();
-}else if(strtotime($line['questionnaire3start']) - time() >=0){
+}else if(!$override && strtotime($line['questionnaire3start']) - time() >=0){
 ?>
   <html>
   <head>
@@ -80,7 +85,7 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
   </html>
   <?php
   exit();
-}else if(time() - strtotime($line['questionnaire3end']) >= 0){
+}else if(!$override && time() - strtotime($line['questionnaire3end']) >= 0){
   ?>
   <html>
   <head>
@@ -109,8 +114,8 @@ if($questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$us
   </html>
   <?php
   exit();
-}else if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first')
-|| !$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_second')){
+}else if(!$override && (!$questionnaire->isQuestionnaireComplete('spring2015-midtask-first',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_first')
+|| !$questionnaire->isQuestionnaireComplete('spring2015-midtask-second',array("$userID","$projectID"),array('userID','projectID'),'questionnaire_midtask_second'))){
 
   $notcompletestr = "";
   $notcompleteurls = "Click ";
@@ -289,7 +294,7 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
     <?php
 
     echo "<div class=\"pure-form-stacked\">";
-    echo "<span>At the beginning of this study, you answered the same question. Here are your initial responses:</span>";
+    echo "<span>At the beginning of this study, you answered the same questions. Here are your initial responses and the responses you just entered:</span>";
     echo "<table border=1><center>";
 
     $cxn = Connection::getInstance();
@@ -319,14 +324,18 @@ if(!$questionnaire->isQuestionnaireComplete('spring2015-midtask-third',array("$u
     }
 
 
-    echo "<tr><td style=\"background-color:#F2F2F2\">Question</td><td>Before Study</td><td style=\"background-color:#F2F2F2\">Now</td></tr>";
+    echo "<tr><td style=\"width:450px\"><strong>Question</strong></td><td style=\"background-color:#F2F2F2;width:180px\"><strong>Before Study</strong></td><td style=\"width:180px\"><strong>Now</strong></td></tr>";
     foreach($descriptions as $val){
       $key = $val[0];
       $question = $val[1];
       $bef = $beforeanswers[$key];
       $aft = $afteranswers[$key];
+      $styletext = "";
+      if(strcmp($bef,$aft)!==0){
+        $styletext = "style=\"background-color:#FFF000\"";
+      }
 
-      echo "<tr><td style=\"background-color:#F2F2F2\">$question</td><td>$bef</td><td style=\"background-color:#F2F2F2\">$aft</td></tr>";
+      echo "<tr><td style=\"width:450px\">$question</td><td style=\"background-color:#F2F2F2;width:180px\">$bef</td><td style=\"width:180px\"><span $styletext>$aft</span></td></tr>";
     }
     echo "</center></table>";
     echo "<hr>";
