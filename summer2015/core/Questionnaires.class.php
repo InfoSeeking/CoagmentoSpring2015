@@ -42,6 +42,8 @@ class Questionnaires
 		$this->answers = array();
 	}
 
+
+
 	public static function getInstance()
     {
         if (!isset(self::$instance)) {
@@ -51,9 +53,13 @@ class Questionnaires
         return self::$instance;
     }
 
+
+
 		public function getQuestions(){
 			return $this->questions;
 		}
+
+
 		public function setBaseDirectory($dir){
 			$this->basedirectory = $dir;
 		}
@@ -307,12 +313,12 @@ class Questionnaires
 
 		public function printPreamble(){
 			//Prints <link rel= ...>
-			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/buttons.css\">";
-			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/forms.css\">";
-		  echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/grids-min.css\">";
-			echo "<script src=\"".$this->basedirectory."lib/jquery-2.1.3.min.js\"></script>";
-			echo "<script src=\"".$this->basedirectory."lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>";
-			echo "<script src=\"".$this->basedirectory."lib/validation/validation.js\"></script>";
+			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/buttons.css\">\n";
+			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/forms.css\">\n";
+		  echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/grids-min.css\">\n";
+			echo "<script src=\"".$this->basedirectory."lib/jquery-2.1.3.min.js\"></script>\n";
+			echo "<script src=\"".$this->basedirectory."lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>\n";
+			echo "<script src=\"".$this->basedirectory."lib/validation/validation.js\"></script>\n";
 		}
 
 		public function printPostamble(){
@@ -330,7 +336,7 @@ class Questionnaires
 					echo "ignore:\"\",\n";
 					// Rules
 					echo "rules: {";
-					
+
 					for($i = 0; $i <=count($this->questions)-1; $i++){
 						$q = $this->questions[$i];
 						$type = $q['question_type'];
@@ -519,7 +525,7 @@ class Questionnaires
 			$suffix = $this->suffix;
 			$pref = $key;
 			echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
-			echo "<label \">$question</label>\n";
+			echo "<label>$question</label>\n";
 			echo "<div id=\"".$pref."_div$suffix\" class=\"container\">\n";
 			echo "<div class=\"pure-g\">\n";
 			$count = 1;
