@@ -23,9 +23,8 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 <html>
 <head>
   <link rel="stylesheet" href="study_styles/custom/text.css">
-  <!-- <link rel="stylesheet" href="study_styles/pure-release-0.5.0/pure-min.css"> -->
 	<title>
-    	Collaborative Search Study: Registration for Participation
+			Online Collaborative Research Study Registration
     </title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
@@ -35,20 +34,26 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
     }
     </style>
     <?php echo $questionnaire->printPreamble();?>
+
+
+		<script type="text/javascript">
+		$().ready(function(){
+			$.validator.addMethod("notEqualTo", function (value, element, param)
+			{
+			    var target = $(param);
+			    if (value) return value != target.val();
+			    else return this.optional(element);
+			}, "Does not match");
+		});
+		</script>
     <script>
     <?php
 
     $rules = "firstName_1: \"required\",
         lastName_1: \"required\",
-        username_1: {
-					required: true
-				},
-        pwd_1: {
+				age_1: {
 					required: true,
-				},
-        repwd_1: {
-					required: true,
-					equalTo: \"#pwd_1\"
+					number: true
 				},
         email1_1: {
 					required: true,
@@ -59,22 +64,21 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 					email: true,
           equalTo: \"#email1_1\"
 				},
-        instructor_1: {
-					required: true
+				date_firstchoice_1: {
+
+					notEqualTo: \"#date_secondchoice_1\"
+				},
+				date_secondchoice_1: {
+
+					notEqualTo: \"#date_firstchoice_1\"
 				},";
 
         $messages = "firstName_1: {required:\"<span style='color:red'>Please enter your first name.</span>\"},
             lastName_1: {required:\"<span style='color:red'>Please enter your last name.</span>\"},
-            username_1: {
-    					required: \"<span style='color:red'>Please enter a username.</span>\"
-    				},
-            pwd_1: {
-    					required: \"<span style='color:red'>Please enter a password.</span>\",
-    				},
-            repwd_1: {
-    					required: \"<span style='color:red'>Please enter a password.</span>\",
-    					equalTo: \"<span style='color:red'>Please enter the same password again.</span>\"
-    				},
+						age_1: {
+							required:\"<span style='color:red'>Please enter your age.</span>\",
+							number:\"<span style='color:red'>Please enter a number.</span>\"
+						},
             email1_1: {
     					required: \"<span style='color:red'>Please enter your e-mail address.</span>\",
     					email: \"<span style='color:red'>Please enter a valid e-mail address.</span>\"
@@ -84,8 +88,13 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
     					email: \"<span style='color:red'>Please enter a valid e-mail address.</span>\",
               equalTo: \"<span style='color:red'>Please enter the same e-mail address again.</span>\",
     				},
-            instructor_1: {
-    					required: \"<span style='color:red'>Please enter your instructor.</span>\",
+						date_firstchoice_1: {
+    					required: \"<span style='color:red'>Please enter a date.</span>\",
+							notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
+    				},
+						date_secondchoice_1: {
+							required: \"<span style='color:red'>Please enter a date.</span>\",
+							notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
     				},";
     echo $questionnaire->printValidation("spr2015_regform",$rules,$messages);
     ?>
@@ -100,6 +109,10 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 		else
 			document.getElementById("singleStudyDetails").style.display = "none";
 	}
+
+
+
+
 </script>
 <style type="text/css">
 		.cursorType{
@@ -111,14 +124,15 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 <body class="style1">
 <br/>
 <div id="signupForm" align="center">
-	<h3>Collaborative Search Study: Registration for Participation</h3>
+	<h3>Online Collaborative Research Study Registration</h3>
 		<table class="style1" width=90%>
 			<tr>
 			  <td colspan=2>
 				<ul>
-				<li>Use this form to register for the paid research study in ITI 220. <strong>All the fields are required</strong>.</li>
-				<li>Please fill in your participant details, then answer the questionnaire below and click Submit.</li>
-				<li>You will receive a confirmation email.</li>
+				<li>Use this form to register for the paid research study on collaborative research.</li>
+				<li>Please fill out the information below then click Submit.</li>
+				<li>You will receive a confirmation email with details about time, date, and location of your session.</li>
+				<li>NOTE: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
 				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>
 				</td>
@@ -183,6 +197,11 @@ for($x=1;$x<=$NUM_USERS;$x++){
   echo "<input id=\"lastName_$x\" name=\"lastName_$x\" type=\"text\" placeholder=\"Last Name\" required>";
   echo "</div>";
 
+	echo "<div class=\"pure-control-group\">";
+  echo "<label for=\"age_$x\">Age</label>";
+  echo "<input id=\"age_$x\" name=\"age_$x\" type=\"text\" placeholder=\"Age\" required>";
+  echo "</div>";
+
   echo "<div class=\"pure-control-group\">";
   echo "<label for=\"email1_$x\">Primary Email</label>";
   echo "<input id=\"email1_$x\" name=\"email1_$x\" type=\"text\" placeholder=\"Primary Email\" required>";
@@ -193,25 +212,7 @@ for($x=1;$x<=$NUM_USERS;$x++){
   echo "<input id=\"reEmail_$x\" name=\"reEmail_$x\" type=\"text\" placeholder=\"Confirm Email\" required>";
   echo "</div>";
 
-  echo "<div class=\"pure-control-group\">";
-  echo "<label for=\"username_$x\">Username</label>";
-  echo "<input id=\"username_$x\" size=25 name=\"username_$x\" type=\"text\" placeholder=\"Username\" required>";
-  echo "</div>";
 
-  echo "<div class=\"pure-control-group\">";
-  echo "<label for=\"pwd_$x\">Password</label>";
-  echo "<input id=\"pwd_$x\" size=25 name=\"pwd_$x\" type=\"password\" placeholder=\"Password\" required>";
-  echo "</div>";
-
-  echo "<div class=\"pure-control-group\">";
-  echo "<label for=\"repwd_$x\">Confirm Pasword</label>";
-  echo "<input id=\"repwd_$x\" size=25 name=\"repwd_$x\" type=\"password\" placeholder=\"Confirm Pasword\" required>";
-  echo "</div>";
-
-  echo "<div class=\"pure-control-group\">";
-  echo "<label name=\"instructor_$x\">Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class</label>";
-  echo "<select name=\"instructor_$x\" id=\"instructor_$x\" required><option disabled selected>--Select one--</option><option>Dr. Nina Wacholder</option><option>Dr. Nick Belkin</option></select>";
-  echo "</div>";
 
   echo "</fieldset>";
   echo "</div>";
@@ -222,35 +223,35 @@ for($x=1;$x<=$NUM_USERS;$x++){
 
 //Demographic Survey
 
+echo "<hr>";
+echo "<label ><h4>Please indicate your first and second choice for times and dates of the study sessions:</h4></label>";
+
+echo "<div class=\"pure-form-stacked\">";
+
+echo "<fieldset>";
+
+// Likert
+$questionnaire->printQuestions(23,24);
+
+echo "</fieldset>";
+echo "</div>";
+
+
 echo "<div class=\"pure-form-stacked\">";
 echo "<fieldset>";
 
 echo "<hr>";
 
 
-$questionnaire->printQuestions(0,8);
+$questionnaire->printQuestions(0,1);
 
 
+$questionnaire->printQuestions(3,5);
+$questionnaire->printQuestions(7,7);
 echo "</fieldset>";
-echo "<hr>";
 echo "</div>";
 
-$questionnaire->printQuestions(9,9);
 
-echo "<hr>";
-$questionnaire->printQuestions(10,10);
-
-echo "<hr>";
-
-echo "<label ><h4>Please indicate how much you agree or disagree with the following statements:</h4></label>";
-echo "<div class=\"pure-control-group\">";
-echo "<div style=\"max-width:600\">";
-
-// Likert
-$questionnaire->printQuestions(11);
-
-echo "</div>";
-echo "</div>";
 
 echo "</fieldset>";
 echo "</div>";

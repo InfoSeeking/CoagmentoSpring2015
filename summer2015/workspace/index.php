@@ -10,9 +10,10 @@ require_once("assets/php/util.php");
 require_once("../core/Connection.class.php");
 require_once("../core/Questionnaires.class.php");
 
-$base = new Base();
+$base = Base::getInstance();
 if(!$base->isUserActive()){
   header("Location: ../login.php?redirect=workspace/index.php");
+  exit;
 }
 
 //simple routing

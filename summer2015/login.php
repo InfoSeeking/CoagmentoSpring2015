@@ -4,6 +4,7 @@ Simpler login page for workspace. Allows redirect.
 Maybe we can use this as a replacement for the sidebar login as well.
 */
 	session_start();
+
   require_once('core/Connection.class.php');
 	require_once("core/Base.class.php");
 	require_once("core/Util.class.php");
@@ -31,6 +32,9 @@ Maybe we can use this as a replacement for the sidebar login as well.
       $feedback = "You have not yet been assigned to a group in our system.  Please wait until you have been assigned to log in";
       return;
     }
+
+
+
     $base = Base::getInstance();
     $base->setUserName($username);
     $base->setUserID($userID);
@@ -39,16 +43,31 @@ Maybe we can use this as a replacement for the sidebar login as well.
     $base->setStudyID($studyID);
 		$base->setAllowCommunication(1);
 		$base->setAllowBrowsing(1);
-    Util::getInstance()->saveAction('login',0,$base);
-    pubnubPublishToUser("1");
+
+
+
+    // Util::getInstance()->saveAction('login',0,$base);
+    // pubnubPublishToUser("1");
+
+
     if(isset($_GET['redirect'])){
-      header("Location: ".  $_GET['redirect']);
+			$_SESSION['CSpace_userID'] = $userID;
+			setcookie("CSpace_userID", $userID);
+      header("Location: workspace/index.php");
+			exit;
     }
   }
 
+
+
+	// echo phpinfo();
   if(isset($_POST['action']) && $_POST['action'] == 'login'){
     onLogin();
   }
+
+
+
+
 ?>
 <html>
   <head>

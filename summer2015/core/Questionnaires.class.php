@@ -330,7 +330,7 @@ class Questionnaires
 					echo "ignore:\"\",\n";
 					// Rules
 					echo "rules: {";
-					echo $rules;
+					
 					for($i = 0; $i <=count($this->questions)-1; $i++){
 						$q = $this->questions[$i];
 						$type = $q['question_type'];
@@ -368,11 +368,14 @@ class Questionnaires
 						}
 
 					}
+					if($rules != ""){
+						echo ",";
+						echo $rules;
+					}
 					echo "},";
 					// Messages
 
 					echo "messages: {";
-					echo $messages;
 					for($i = 0; $i <=count($this->questions)-1; $i++){
 						$q = $this->questions[$i];
 						$type = $q['question_type'];
@@ -402,6 +405,11 @@ class Questionnaires
 							}
 							echo "\n";
 						}
+					}
+
+					if($messages != ""){
+						echo ",";
+						echo $messages;
 					}
 					echo "},";
 					// Extra

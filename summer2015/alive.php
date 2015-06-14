@@ -8,4 +8,6 @@ This is being checked from Kevin's digital ocean server, which emails
 infoseeking.forwarder@gmail.com which forwards to study220@rutgers.edu
 */
 echo "alive";
+
+// Hello
 ?>

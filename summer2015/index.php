@@ -13,6 +13,7 @@
 
 	if (isset($_POST['userName'])&&(!Base::getInstance()->isSessionActive()))
 	{
+
 		$userName = $_POST['userName'];
 		$password = sha1($_POST['password']);
 

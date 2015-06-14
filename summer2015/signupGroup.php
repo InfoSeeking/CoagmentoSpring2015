@@ -40,6 +40,16 @@
 
         return $randomString;
     }
+
+		function username_generator($id) {
+
+				$name = 'sum15user'.strval($id);
+
+        return $name;
+    }
+
+
+
     if(0){
         echo "<p style='background-color:red;'>We apologize, but the day that you've chosen is already taken.</p>";
         echo "<p>The following are the remaining days with available openings:</p>";
@@ -54,11 +64,9 @@
 	   (isset($_POST['firstName_1'])) &&
 	   (isset($_POST['lastName_1'])) &&
 	   (isset($_POST['email1_1'])) &&
-	   (isset($_POST['username_1'])) &&
-   	   (isset($_POST['pwd_1'])) &&
-	   (isset($_POST['repwd_1'])) &&
-        (isset($_POST['instructor_1']))
-	   )
+		(isset($_POST['reEmail_1'])) &&
+		(isset($_POST['age_1']))
+		)
 		{
 			$connection = Connection::getInstance();
 			$base = new Base();
@@ -74,47 +82,48 @@
                 $line = mysql_fetch_array($results, MYSQL_ASSOC);
 
                 $projectID = $line['max']+1;
-                // $sessionday = $_POST['sessionday'];
 
+
+								$user_assoc = array();
                 for($x=1; $x<=$NUM_USERS; $x++){
-                    //ADDING PARTICIPANT REGISTRATION DETAILS
-                    $instructorName = $_POST["instructor_$x"];
-                    $query = "SELECT instructorID from instructors WHERE instructorName='$instructorName'";
-                    $results = $connection->commit($query);
-                    $line = mysql_fetch_array($results, MYSQL_ASSOC);
-                    $instructorID = $line['instructorID'];
+
                     $query = "SELECT MAX(userID) as max FROM recruits WHERE userID <1000";
                     $results = $connection->commit($query);
                     $line = mysql_fetch_array($results,MYSQL_ASSOC);
                     $next_userID = $line['max']+1;
-                    $password = $_POST["pwd_$x"];
+                    $password = random_password_generator();
+										$username = username_generator($next_userID);
                     $password_sha1 = sha1($password);
                     $firstName= addslashes($_POST["firstName_$x"]);
                     $lastName = addslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
                     $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
-                    // $coursename = addslashes($_POST["coursename_$x"]);
-                    // $researchtopic = $_POST["researchtopic_$x"];
-                    $username =$_POST["username_$x"];
+
                     $time = $base->getTime();
                     $date = $base->getDate();
                     $timestamp = $base->getTimestamp();
                     $user_ip = $base->getIP();
+										$age = $_POST["age_$x"];
+										$firstpreference = $_POST["date_firstchoice_$x"];
+										$secondpreference = $_POST["date_secondchoice_$x"];
+										$user_assoc["un_$x"]=$username;
+										$user_assoc["pwd_$x"]=$password;
 
-                    $query = "INSERT INTO recruits (firstName, lastName, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,instructorID) VALUES('$firstName','$lastName','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$instructorID')";
+
+                    $results = $connection->commit($query);
+
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$firstpreference','$secondpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','0','$username','$password_sha1','1','1','0','$NUM_USERS','$instructorID')";
+                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID) VALUES ('$next_userID','$next_userID','$username','$password_sha1','1','1','0','$NUM_USERS','1')";
                     $results = $connection->commit($query);
 										$userID = $next_userID;
 
 										foreach($_POST as $k=>$v){
-											// echo "KEY: $k, VALUE: $v";
 											if(strpos($k,"_$x")==strlen($k)-strlen("_$x")){
 												$keytoadd = substr($k,0,-strlen("_$x"));
-												// echo "ADDING ANSWER:".(string)$keytoadd;
 												$questionnaire->addAnswer($keytoadd,$v);
 											}
 										}
@@ -145,23 +154,17 @@
                     $message .= $firstName." ".$lastName."<br/>";
                     $message .= "\r\n";
                 }
-								$instructorName = $_POST["instructor_1"];
-								$studyDates = "";
-								if(strpos($instructorName,"Belkin") !== false){
-									$instructorName = "Professor Belkin";
-									$studyDates = "March 6 through May 3";
-								}else if(strpos($instructorName,"Wacholder") !== false){
-									$instructorName = "Professor Wacholder";
-									$studyDates = "March 23 through May 4";
-								}
 
 
-								$username = $_POST["username_1"];
-								$password = $_POST["pwd_1"];
+
+
+								$username = $user_assoc["un_1"];
+								$password = $user_assoc["pwd_1"];
+
 								$message .= "<strong>Username:</strong> $username<br/>\r\n";
 								$message .= "<strong>Password:</strong> $password<br/>\r\n";
 
-                $message .= "<strong>Your ITI 220 instructor:</strong><br/>$instructorName<br/><br/>";
+
                 $message .= "\r\n";
 
 
@@ -174,8 +177,8 @@
 
 
 
-                $message .= "The study will run $studyDates.<br/><br/>";
-                $message .= "\r\n";
+
+
                 $message .= "You will use the Coagmento collaborative search system while you work on your on IT Market Sector Analysis report.<br/><br/>";
                 $message .= "\r\n";
 								$message .= "You will receive <strong>$40 cash</strong> for your participation in this study.<br/><br/>";
@@ -214,18 +217,11 @@
                     $email1 = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
-                    $username =$_POST["username_$x"];
-                    $password = $_POST["pwd_$x"];
-                    $instructorName = $_POST["instructor_$x"];
+                    $username =$user_assoc["un_$x"];
+                    $password = $user_assoc["pwd_$x"];
 
-										$studyDates = "";
-										if(strpos($instructorName,"Belkin") !== false){
-											$instructorName = "Professor Belkin";
-											$studyDates = "March 6 - May 3";
-										}else if(strpos($instructorName,"Wacholder") !== false){
-											$instructorName = "Professor Wacholder";
-											$studyDates = "March 23 - May 4";
-										}
+
+
 
                     if($NUM_USERS>=2){
                         echo "<tr><td><br><br></td></tr>";
@@ -236,24 +232,16 @@
                     echo "<tr><td>Email: $email1</td></tr>\n";
                     echo "<tr><td>Username: $username</td></tr>\n";
                     echo "<tr><td>Password: $password</td></tr>\n";
-                    echo "<tr><td>Instructor of your 04:547:220 Retrieving and Evaluating Electronic Information class: $instructorName</td></tr>\n";
+
                 }
 
                 if($NUM_USERS>=2){
                     echo "<tr><td><br><br></td></tr>";
                 }
 
-								$instructorName = $_POST["instructor_1"];
-								$studyDates = "";
-								if(strpos($instructorName,"Belkin") !== false){
-									$instructorName = "Professor Belkin";
-									$studyDates = "March 6 - May 3";
-								}else if(strpos($instructorName,"Wacholder") !== false){
-									$instructorName = "Professor Wacholder";
-									$studyDates = "March 23 - May 4";
-								}
 
-                echo "<tr><td><strong>Study dates: $studyDates</strong></td></tr>\n";
+
+
 								echo "<br><br>";
                 echo "<tr><td><hr/>You can close this window now or navigate away. We will contact you soon via email.</td></tr>\n";
                 echo "</table>\n";
