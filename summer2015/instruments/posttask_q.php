@@ -8,33 +8,60 @@ require_once('../core/Connection.class.php');
 require_once('../core/Questionnaires.class.php');
 
 
+function printLikertTwo($question,$key,$data){
+	$suffix = "";
+	$pref = $key;
+	echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
+	echo "<label>$question</label>\n";
+	echo "<div id=\"".$pref."_div$suffix\" class=\"container\">\n";
+	echo "<div class=\"pure-g\">\n";
+	$count = 1;
+	foreach($data as $k=>$v){
+		$style = "";
+		if(($count)%2){
+			$style = "style=\"background-color:#F2F2F2\"";
+		}
+		$countstr = "_$count";
+		echo "<div $style class=\"pure-u-1-5\">";
+		echo "<label for=\"".$pref."$suffix$countstr\" class=\"pure-radio\">";
+		echo "<input id=\"".$pref."$suffix$countstr\" type=\"radio\" name=\"".$pref."$suffix\" value=\"$v\">$k";
+		echo "</label>";
+		echo "</div>\n";
+		$count += 1;
+	}
+	echo "</div>\n";
+	echo "</div>\n";
+	echo "</div>\n\n";
+}
+
+
 Util::getInstance()->checkSession();
 
 if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 {
 	$collaborativeStudy = Base::getInstance()->getStudyID();
 
-	if (isset($_POST['posttask_q'])) 
+
+	if (isset($_POST['posttask_q']))
 	{
 		$base = new Base();
 		$stageID = $base->getStageID();
 
 		$userID=$base->getUserID();
+		$projectID=$base->getProjectID();
+		$connection = Connection::getInstance();
 
 
-		/*
+		$time = $base->getTime();
+		$date = $base->getDate();
+		$timestamp = $base->getTimestamp();
 
-		SUBMIT ANSWER!
+		$q_familiar = $_POST['q_familiar'];
+		$q_keywords = $_POST['q_keywords'];
+		$q_lookup = $_POST['q_lookup'];
+		$q_nextsteps = $_POST['q_nextsteps'];
 
-
-		*/
-
-		foreach($_POST as $k=>$v){
-			if ($k != "posttask_q"){
-				$questionnaire->addAnswer($keytoadd,$v);
-			}
-		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated');
+		$connection->commit("INSERT INTO questionnaire_repeated_final (userID,projectID,stageID,`date`,`time`,`timestamp`,q_familiar,q_keywords,q_lookup,q_nextsteps) VALUES ('$userID','$projectID','$stageID','$date','$time','$timestamp','$q_familiar','$q_keywords','$q_lookup','$q_nextsteps')");
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -50,6 +77,29 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$questionnaire->clearCache();
 		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
+
+
+		$oldanswers = array();
+		$connection = Connection::getInstance();
+		$res = $connection->commit("SELECT `group` FROM users WHERE userID='$userID'");
+		$line = mysql_fetch_array($res,MYSQL_ASSOC);
+		$group = $line['group'];
+		$stageID="";
+
+		if($group=='treatment'){
+			$stageID="40";
+		}else if($group=='control'){
+			$stageID="30";
+		}else{
+			echo "ERROR!";
+		}
+
+		$res = $connection->commit("SELECT * FROM questionnaire_repeated WHERE userID='$userID' AND stageID='$stageID'");
+		$line = mysql_fetch_array($res,MYSQL_ASSOC);
+
+		$oldanswers['q_familiar'] = $line['q_familiar'];
+		$oldanswers['q_lookup'] = $line['q_lookup'];
+		$oldanswers['q_keywords'] = $line['q_keywords'];
 
 ?>
 
@@ -89,7 +139,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <br/>
 <div>
 	<center><h3>Online Collaborative Research Study Registration</h3></center>
-	<p>Please review the task description and answer the following questions:</p>
+	<p>Now that you have searched for sources on this topic, please review the task description and your previous answers
+		below.</p>
 
 	<div class="grayrect">
 		<span>
@@ -126,10 +177,54 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <form id="sum2015_qform" class="pure-form" method="post" action="posttask_q.php">
 	<div class="pure-form-stacked">
 		<fieldset>
+
+
 <?php
-// Likert
-$questionnaire->printQuestions();
+
+	$familiar = $oldanswers['q_familiar'];
+	$question = "How familiar are you with the topic of this task? <span style=\"background-color:#F2F2F2\">$familiar</span>
+	How familiar are you now? Scale of 1 to 5";
+	printLikertTwo($question,"q_familiar",array(
+    "1" => "1",
+    "2" => "2",
+		"3" => "3",
+		"4" => "4",
+		"5" => "5",
+	));
 ?>
+
+
+
+<div class="pure-control-group">
+<div id="q_lookup_div">
+<label name="q_lookup">How would you look for information for this task? Where or how would you look up this information? <span style="background-color:#F2F2F2">Previous answer: <?php echo $oldanswers['q_lookup'];?></span>
+Did this approach work? Did you do anything differently? Why?
+</label>
+<textarea name="q_lookup" id="q_lookup" rows="3" cols="40" required></textarea>
+<br>
+</div>
+</div>
+
+
+<div class="pure-control-group">
+<div id="q_keywords_div">
+<label name="q_keywords">What keywords or terms would you search? Please list 3-4 keywords/terms? <span style="background-color:#F2F2F2">Previous answer: <?php echo $oldanswers['q_keywords'];?></span>
+Did these keywords work? Did you use any different ones? Why?
+</label>
+<textarea name="q_keywords" id="q_keywords" rows="3" cols="40" required></textarea>
+<br>
+</div>
+</div>
+
+<div class="pure-control-group">
+<div id="q_nextsteps_div">
+<label name="q_nextsteps">If you had to continue working on this group project, what steps would you take next?
+</label>
+<textarea name="q_nextsteps" id="q_nextsteps" rows="3" cols="40" required></textarea>
+<br>
+</div>
+</div>
+
 </fieldset>
 </div>
 

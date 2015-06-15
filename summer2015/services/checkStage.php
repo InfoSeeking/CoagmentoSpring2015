@@ -19,5 +19,5 @@
         echo "1";
 	}
 	else
-		echo "1"; //3/2/2015, changed because it's not necessary
+		echo "0";
 ?>

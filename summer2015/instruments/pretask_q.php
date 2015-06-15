@@ -13,8 +13,8 @@ Util::getInstance()->checkSession();
 if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 {
 	$collaborativeStudy = Base::getInstance()->getStudyID();
-
-	if (isset($_POST['pretask_q'])) 
+ 
+	if (isset($_POST['pretask_q']))
 	{
 		$base = new Base();
 		$stageID = $base->getStageID();
@@ -29,9 +29,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		*/
 
+		$questionnaire = Questionnaires::getInstance();
 		foreach($_POST as $k=>$v){
 			if ($k != "pretask_q"){
-				$questionnaire->addAnswer($keytoadd,$v);
+				$questionnaire->addAnswer($k,$v);
 			}
 		}
 		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated');

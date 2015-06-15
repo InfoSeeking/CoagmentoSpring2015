@@ -229,6 +229,7 @@ class Questionnaires
 				$query .= "$keystr VALUES $valstr";
 				// echo "$query";
 				$cxn = Connection::getInstance();
+				echo $query;
 				return $cxn->commit($query);
 			}else{
 				// echo "SECOND!";
