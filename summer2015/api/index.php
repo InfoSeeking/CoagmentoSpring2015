@@ -47,7 +47,6 @@ $class_found = false;
 $method_found = false;
 
 foreach($API_CLASSES as $class){
-  echo $class;
   if(strtolower($class) == strtolower($entity)){
     $class_found = $class;
     break;
@@ -56,7 +55,7 @@ foreach($API_CLASSES as $class){
 
 if($class_found){
   $class_name = "Api_" . $class_found;
-  foreach($class_name::$METHODS as $method){
+  foreach(get_class_methods($class_name) as $method){
     if(strtolower($method) == strtolower($function)){
       $method_found = $method;
       break;

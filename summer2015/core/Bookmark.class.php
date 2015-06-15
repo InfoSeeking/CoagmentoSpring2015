@@ -76,5 +76,12 @@ class Bookmark extends Base {
     $t->deleteForBookmark($bookmarkID);
     $t->assignTagsToBookmark($bookmarkID, $tags);
   }
+
+  public static function create($url, $title){
+    $b = Base::getInstance();
+    $cxn = Connection::getInstance();
+    $query = sprintf("INSERT INTO bookmarks (`url`, `title`, `userID`, `timestamp`) VALUES('%s', '%s', %d, NOW())", $url, $title, $b->getUserID());
+    $cxn->commit($query);
+  }
 }
 ?>
