@@ -170,7 +170,7 @@ function checkStageBrowsability()
 function onPageLoad()
 {
 	//validSearchEngine();
-	//checkStageBrowsability();
+	checkStageBrowsability();
 	cleanAlert();
 	savePQ();
 }
@@ -642,21 +642,8 @@ function bookmark()
         var localTime = hours + "%3A" + minutes + "%3A" + seconds;
         var localTimestamp = currentTime.getTime();
 
-        /*
-        Matt,
-        This is where I left off with saving bookmark. For some reason the toolbar stopped showing up,
-        maybe because I wasn't in the right stage. Regardless, I didn't have enough time to finish.
-        I think this should work, it just needs to show "bookmark saved" text
-        - Kevin
-        */
-        var req = new XMLHttpRequest();
-        req.open('GET', globalUrl + "api/index.php?entity=bookmark&function=create&url="+url+"&title="+title);
-        req.send();
-
-
-        //var targetURL = globalUrl+'services/saveBookmark.php?'+'page='+url+'&title='+title+'&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
-       
-       // var w = window.open(targetURL,'Bookmark','resizable=yes,scrollbars=yes,width=640,height=480,left=600');
+        var targetURL = globalUrl+'services/saveBookmark.php?'+'page='+url+'&title='+title+'&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate;
+        var w = window.open(targetURL,'Bookmark','resizable=yes,scrollbars=yes,width=640,height=480,left=600');
 
         //Saving page
 //        xmlHttpConnectionSaveSnippet.open('GET', globalUrl+'services/saveBookmark.php?'+'URL='+url+'&title='+title+'&localTimestamp='+localTimestamp+'&localTime='+localTime+'&localDate='+localDate, true);
@@ -812,7 +799,9 @@ function initializeToolbarSession()
 
         if(first){
             first = false;
-            gBrowser.selectedTab = gBrowser.addTab(globalUrl+"workspace/");
+            loadURL(globalUrl);
+//            gBrowser.selectedTab = gBrowser.addTab(globalUrl);
+//            gBrowser.selectedTab = gBrowser.addTab(globalUrl+"workspace/");
         }
 		if (sessionNumber==1)
 		{
