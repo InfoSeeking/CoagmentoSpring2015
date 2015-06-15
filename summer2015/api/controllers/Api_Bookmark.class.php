@@ -14,4 +14,12 @@ class Api_Bookmark{
     Bookmark::update($id, $notes, $tags);
     finish("success");
   }
+
+  public static function create(){
+    $b = Base::getInstance();
+    $url = req("url");
+    $title = req("title");
+    Bookmark::create($url, $title, $userID);
+    finish("succcess");
+  }
 }
