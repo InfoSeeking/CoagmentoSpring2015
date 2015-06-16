@@ -21,7 +21,7 @@ function printLikertTwo($question,$key,$data){
 			$style = "style=\"background-color:#F2F2F2\"";
 		}
 		$countstr = "_$count";
-		echo "<div $style class=\"pure-u-1-5\">";
+		echo "<div $style class=\"pure-u-1-8\">";
 		echo "<label for=\"".$pref."$countstr\" class=\"pure-radio\">";
 		echo "<input id=\"".$pref."$countstr\" type=\"radio\" name=\"".$pref."\" value=\"$v\">$k";
 		echo "</label>";
@@ -103,9 +103,14 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <html>
 <head>
+	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
+	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
+	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/grids-min.css">
 <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type='text/javascript' src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../study_styles/custom/text.css">
+<link rel="stylesheet" href="../study_styles/custom/background.css">
 <script>
 // When the document is ready
 $(document).ready(function () {
@@ -113,8 +118,7 @@ $(document).ready(function () {
 
 
 
-$('#next1').hide();
-$('#prev1').hide();
+
 $('#next2').show();
 $('#prev2').show();
 $('#begin_header').show();
@@ -125,75 +129,11 @@ $('#preview_header').hide();
 $('#submitButton').hide();
 
 
-
-$('#next1').click(function(event) {
-    $('.current').removeClass('current').hide()
-        .next().show().addClass('current');
-
-    $('#next1').show();
-    $('#prev1').show();
-    $('#instructions_panel').hide();
-
-
-    if ($('.current').hasClass('last')) {
-        $('#next1').attr('disabled', true);
-        $('#next2').attr('disabled', true);
-        window.scrollTo(0,$('#prev1').offset().top);
-        $('#submitButton').show();
-        $('#end-alert').show();
-    }else{
-        window.scrollTo(0,$('#prev1').offset().top);
-        $('#submitButton').hide();
-        $('#end-alert').hide();
-    }
-    $('#prev1').attr('disabled', null);
-    $('#prev2').attr('disabled', null);
-
-
-
-    event.preventDefault();
-    event.stopPropagation();
-});
-
-$('#prev1').click(function(event) {
-    $('.current').removeClass('current').hide()
-        .prev().show().addClass('current');
-
-        $('#next1').show();
-        $('#prev1').show();
-        $('#instructions_panel').hide();
-
-    if ($('.current').hasClass('first')) {
-    $('#instructions_panel').show();
-    $('#next1').hide();
-    $('#prev1').hide();
-        $('#prev1').attr('disabled', true);
-        $('#prev2').attr('disabled', true);
-        window.scrollTo(0,$('#begin_header').offset().top);
-        $('#submitButton').hide();
-        $('#end-alert').hide();
-    }else{
-        window.scrollTo(0,$('#prev1').offset().top);
-        $('#submitButton').hide();
-        $('#end-alert').hide();
-    }
-    $('#next1').attr('disabled', null);
-    $('#next2').attr('disabled', null);
-
-
-
-
-    event.preventDefault();
-    event.stopPropagation();
-});
-
-
 $('#next2').click(function(event) {
     $('.current').removeClass('current').hide()
         .next().show().addClass('current');
 
-    $('#next1').show();
-    $('#prev1').show();
+
     $('#instructions_panel').hide();
 
 
@@ -201,17 +141,17 @@ $('#next2').click(function(event) {
 
 
 
-        $('#next1').attr('disabled', true);
+
         $('#next2').attr('disabled', true);
-        window.scrollTo(0,$('#prev1').offset().top);
+
         $('#submitButton').show();
         $('#end-alert').show();
     }else{
-        window.scrollTo(0,$('#prev1').offset().top);
+
         $('#submitButton').hide();
         $('#end-alert').hide();
     }
-    $('#prev1').attr('disabled', null);
+
     $('#prev2').attr('disabled', null);
 
 
@@ -224,26 +164,24 @@ $('#next2').click(function(event) {
 $('#prev2').click(function(event) {
     $('.current').removeClass('current').hide()
         .prev().show().addClass('current');
-        $('#next1').show();
-        $('#prev1').show();
+
         $('#instructions_panel').hide();
 
 
     if ($('.current').hasClass('first')) {
     $('#instructions_panel').show();
-    $('#next1').hide();
-    $('#prev1').hide();
-        $('#prev1').attr('disabled', true);
+
+
         $('#prev2').attr('disabled', true);
         window.scrollTo(0,$('#begin_header').offset().top);
         $('#submitButton').hide();
         $('#end-alert').hide();
     }else{
-        window.scrollTo(0,$('#prev1').offset().top);
+
         $('#submitButton').hide();
         $('#end-alert').hide();
     }
-    $('#next1').attr('disabled', null);
+
     $('#next2').attr('disabled', null);
 
 
@@ -323,7 +261,8 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 
 </head>
 <body>
-
+	<div style="width:90%; margin: 0 auto">
+		<center><h2>Collaborative Research Study Source Evaluation</h2></center>
 <p>
 	<strong>Questionnaire:</strong> Below are some online information sources that members of your group have already bookmarked for your project.
 	Click on the title of the source (in blue) to see it online.
@@ -334,8 +273,6 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 </p>
 <div id="badinputhead" class="alert alert-danger" style="display:none" role="alert">Some of your inputs are blank or incorrect.  Please check your input and submit again.</div>
 <form id="sum2015_qform" class="pure-form" method="post" action="evalsources.php">
-<button id="prev1" disabled="disabled" class="btn btn-default" style="display:none"><< Prev</button>
-<button id="next1" class="btn btn-default" style="display:none">Next >></button>
 <div id="main">
 <div id="div0" class="first current">
 <h2 id="begin_header" style="display:none">Click 'Next' to begin the task.  Submit it after you've completed all inputs.</h2></div>
@@ -374,17 +311,19 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 
 
 	// Source/bookmark
-	echo "<a href=\"$url\">$title</a>";
+	echo "<a href=\"$url\" target=\"_blank\">$title</a>";
 
 
 
 
 	// Question 1
 
+	echo "<div class=\"pure-form-stacked\">";
+	echo "<fieldset>";
 	echo "<div class=\"pure-control-group\">\n";
 	echo "<div id=\"use_information_$x"."_div\">";
 	echo "<label name=\"use_information_$x\">What specific information from this source would you use in your report?</label>\n";
-	echo "<textarea name=\"use_information_$x\" id=\"use_information_$x\" rows=\"3\" cols=\"40\" required></textarea>\n";
+	echo "<textarea name=\"use_information_$x\" id=\"use_information_$x\" rows=\"5\" cols=\"80\" required></textarea>\n";
 	echo "<br>\n";
 	echo "</div>\n";
 	echo "</div>\n\n";
@@ -392,7 +331,7 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 	echo "<div class=\"pure-control-group\">\n";
 	echo "<div id=\"author_qualifications_$x"."_div\">";
 	echo "<label name=\"author_qualifications_$x\">What qualifications does the author of this article/website have as evidence of expertise or trustworthiness?</label>\n";
-	echo "<textarea name=\"author_qualifications_$x\" id=\"author_qualifications_$x\" rows=\"3\" cols=\"40\" required></textarea>\n";
+	echo "<textarea name=\"author_qualifications_$x\" id=\"author_qualifications_$x\" rows=\"5\" cols=\"80\" required></textarea>\n";
 	echo "<br>\n";
 	echo "</div>\n";
 	echo "</div>\n\n";
@@ -406,6 +345,8 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 		"4" => "4",
 		"5" => "5",
 	));
+	echo "</fieldset>";
+	echo "</div>";
 
 	echo "</div>";
 
@@ -420,9 +361,11 @@ for($x=1;$x<=$N_BOOKMARKS;$x++){
 <div id="badinputfoot" style="display:none" class="alert alert-danger" role="alert">Some of your inputs are blank or incorrect.  Please check your input and submit again.</div>
 <style type="text/css">fieldset { padding: 10px; background:#fbfbfb; border-radius:5px; margin-bottom:5px; }
 </style>
+<br/><br/>
 <input type="hidden" name="evalsources" value="true"/>
-  <button id="submitButton" class="pure-button pure-button-primary" type="submit">Submit</button>
+  <button id="submitButton" class="pure-button pure-button-primary" type="submit">Finish</button>
 </form>
+</div>
 </body>
 </html>
 
