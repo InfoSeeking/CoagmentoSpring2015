@@ -45,7 +45,9 @@ function validate(form)
 
 
 </script>
-<body class="body">
+<body class="body" >
+	<div style="width:90%; margin: 0 auto">
+	<center><h2>Collaborative Research Study</h2></center>
 <form action="intro.php" method="post" onsubmit="return validate(this)">
 
 
@@ -101,6 +103,7 @@ function validate(form)
 </table>
 </center>
 </form>
+</div>
 </body>
 </html>
 <?php

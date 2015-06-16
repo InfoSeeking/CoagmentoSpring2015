@@ -148,19 +148,25 @@ Registration
 	 					<table class="style1" width="100%">
 							<tr>
 								<td>
-				<ul>
-				<li>By participating in this study you will perform online research using an experimental browser plug-in, answer some questionnaires, and be interviewed briefly.</li>
-				<li>You will use the Coagmento collaborative search system while you work on your group project on IT Market Sector Analysis report.</li>
-				<li>You will receive <strong>$40 cash</strong> for participating in the study.</li>
-                <li>Your group is also eligible for an additional <strong>$20 cash</strong> prize per person for best performers, measured by amount of activity using the Coagmento tool.</li>
-				<li>Note that you will be eligible for compensation only if you complete the study and follow all guidelines.</li>
-        <li><strong>You must currently be enrolled in 04:547:220 Retrieving and Evaluating Electronic Information.</strong></li>
-				<li>You must be at least 18 years old to participate.</li>
-				<li>Proficiency in English is required.</li>
-				<li>Intermediate typing and online search skills are required.</li>
-                <li>No identifying information about you will be shared.</li>
-        </ul>
-									<br />
+
+
+									<p>Welcome! This is the sign-up form to register for the paid research study.</p>
+									<p>During this study you will perform online research using an experimental browser plug-in and answer questionnaires.</p>
+									<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building.</p>
+									<p>You will receive <strong>$20 cash</strong> for participating in the study.</p>
+					        <p>You are also eligible for an additional <strong>$20 cash prize</strong> for best performance, measured by amount of activity using the Coagmento tool.</p>
+
+					        <p>Requirements:
+					          <ul>
+					            <li>You must be at least 18 years old to participate.</li>
+					            <li>Proficiency in English is required.</li>
+					            <li>Intermediate typing and online search skills are required.</li>
+					            <li>Note: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
+					          </ul>
+					        </p>
+
+
+
 									<p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers. You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary. This study has been approved by the Rutgers Institutional Review Board (IRB Study #E13-046), and will be supervised by Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
 								</td>
 							</tr>
@@ -203,7 +209,7 @@ for($x=1;$x<=$NUM_USERS;$x++){
   echo "</div>";
 
   echo "<div class=\"pure-control-group\">";
-  echo "<label for=\"email1_$x\">Primary Email</label>";
+  echo "<label for=\"email1_$x\">Rutgers Email</label>";
   echo "<input id=\"email1_$x\" name=\"email1_$x\" type=\"text\" placeholder=\"Primary Email\" required>";
   echo "</div>";
 

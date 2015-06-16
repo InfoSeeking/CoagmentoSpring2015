@@ -218,20 +218,18 @@
     <p>You must correct the error(s) before logging into our system.  Please refer to the registration e-mail you received for instructions.</p>
     </div>
     <div id="login_div" style="display:block;">
+
 	<table class="body" width="90%">
-<tr><th><h2>Library Research Study: Log In</h2></th></tr>
-		<!--<tr><th><span style="font-weight:bold; font-size:20px">Exploratory Search User Study: Log In</span><br/><br/></th></tr>-->
+<tr><th><h2>Collaborative Research Study: Log In</h2></th></tr>
 		<tr><td><hr/></td></tr>
 		<tr>
 			<td>
 				<p>
 					Thank you for your participation in this study!
 				</p>
-				<ul>
-
-				<li> If you do not see the <strong>Side bar</strong> to the right, please enable it by pressing <strong>Ctrl+Shift+S (Windows) or &#8984;+Shift+S (Mac)</strong>.</li>	</br>
-				<li> Please <strong>log in</strong> to the system using the username and password you were given.	</li>
-				</ul>
+				<p>
+					Please <strong>log in</strong> to the system using the username and password you were given.
+				</p>
 			</td>
 		</tr>
 		<tr><td><hr/></td></tr>

@@ -229,7 +229,7 @@ class Questionnaires
 				$query .= "$keystr VALUES $valstr";
 				// echo "$query";
 				$cxn = Connection::getInstance();
-				echo $query;
+
 				return $cxn->commit($query);
 			}else{
 				// echo "SECOND!";
@@ -536,7 +536,7 @@ class Questionnaires
 					$style = "style=\"background-color:#F2F2F2\"";
 				}
 				$countstr = "_$count";
-				echo "<div $style class=\"pure-u-1-5\">";
+				echo "<div $style class=\"pure-u-1-8\">";
 				echo "<label for=\"".$pref."$suffix$countstr\" class=\"pure-radio\">";
 				echo "<input id=\"".$pref."$suffix$countstr\" type=\"radio\" name=\"".$pref."$suffix\" value=\"$v\">$k";
 				echo "</label>";
@@ -553,7 +553,7 @@ class Questionnaires
 			echo "<div class=\"pure-control-group\">\n";
 			echo "<div id=\"$key"."$suffix"."_div\">";
 			echo "<label name=\"$key"."$suffix\">$question</label>\n";
-			echo "<textarea name=\"$key"."$suffix\" id=\"$key"."$suffix\" rows=\"3\" cols=\"40\" required></textarea>\n";
+			echo "<textarea name=\"$key"."$suffix\" id=\"$key"."$suffix\" rows=\"5\" cols=\"80\" required></textarea>\n";
 			echo "<br>\n";
 			echo "</div>\n";
 			echo "</div>\n\n";

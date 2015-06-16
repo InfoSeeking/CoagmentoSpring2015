@@ -58,28 +58,39 @@ function isRadioSelected(radioButtons, obj)
 <body class="style1">
 <br/>
 <div id="signupIntro" align="center">
-	<h3>Online Collaborative Research Study Registration</h3>
+	<h3>Research Study Registration</h3>
 	<form method="post" onsubmit="return validateForm(this)">
 		<table class="style1" width=90%>
 			<tr>
 			  <td colspan=2>
-				<ul>
-				<li>Welcome! This is a sign-up form for participating in a research study. By filling in this form, you are submitting a request to participate.</li>
-				<li>By participating in this study you will perform online research using an experimental browser plug-in, answer three questionnaires, and may be interviewed briefly.</li>
-				<li>You will use the Coagmento collaborative search system while you work on your IT Market Sector Analysis group project.</li>
-				<li>You will receive <strong>$40 cash</strong> for participating in the study.</li>
-                <li>Your group is also eligible for an additional <strong>$20 cash prize per person</strong> for best performance, measured by amount of activity using the Coagmento tool.</li>
-				<li>Note that you will be eligible for compensation only if you complete the study and answer all three questionnaires.</li>
-                <li><strong>You must currently be enrolled in 04:547:220 Retrieving and Evaluating Electronic Information.</strong></li>
-                <!--<li>Please note that you cannot participate in this study if you already participated in the Coagmento Lab Search Study in <a href="http://coagmento.rutgers.edu/summer2012/studyInfo.php">2012</a>, <a href="http://coagmento.rutgers.edu/studyRecruitment/signup.php">2013</a>, or <a href="http://userstudy2014.coagmento.rutgers.edu/userstudy2014/signup_intro.php">Summer 2014</a>.</li>
-				<li>You <strong>must be an undergraduate student</strong> to be eligible to participate in this study.</li>-->
-				<li>You must be at least 18 years old to participate.</li>
-				<li>Proficiency in English is required.</li>
-				<li>Intermediate typing and online search skills are required.</li>
-                <li>No identifying information about you will be shared.</li>
 
-				</ul>
-<p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers. You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary. This study has been approved by the Rutgers Institutional Review Board (IRB Study #E13-046), and will be supervised by Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
+				<p>Welcome! This is the sign-up form to register for the paid research study.</p>
+				<p>During this study you will perform online research using an experimental browser plug-in and answer questionnaires.</p>
+				<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building.</p>
+				<p>You will receive <strong>$20 cash</strong> for participating in the study.</p>
+        <p>You are also eligible for an additional <strong>$20 cash prize</strong> for best performance, measured by amount of activity using the Coagmento tool.</p>
+
+        <p>Requirements:
+          <ul>
+            <li>You must be at least 18 years old to participate.</li>
+            <li>Proficiency in English is required.</li>
+            <li>Intermediate typing and online search skills are required.</li>
+            <li>Note: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
+          </ul>
+        </p>
+
+
+
+
+				
+<p>Choosing or declining to participate in this study will not affect your class
+  standing or grades at Rutgers. You will not be offered or receive any special
+  consideration if you take part in this research; it is purely voluntary. This
+  study has been approved by the Rutgers Institutional Review Board (IRB Study
+  #E13-046), and will be supervised by
+  Dr. Chirag Shah (chirags@rutgers.edu)
+  at the School of Communication and Information.</p>
+  <p>To continue with the participation registration, please click on the continue button.</p>
 				</td>
 			</tr>
 <!--

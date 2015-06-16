@@ -13,7 +13,7 @@ Util::getInstance()->checkSession();
 if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 {
 	$collaborativeStudy = Base::getInstance()->getStudyID();
- 
+
 	if (isset($_POST['pretask_q']))
 	{
 		$base = new Base();
@@ -91,8 +91,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 </head>
 <body class="style1">
 <br/>
-<div>
-	<center><h3>Online Collaborative Research Study Registration</h3></center>
+<div style="width:90%; margin: 0 auto">
+	<center><h2>Collaborative Research Study Questionnaire</h2></center>
 	<p>Please review the task description and answer the following questions:</p>
 
 	<div class="grayrect">

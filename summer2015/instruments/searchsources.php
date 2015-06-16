@@ -46,6 +46,8 @@ function validate(form)
 
 </script>
 <body class="body">
+	<div style="width:90%; margin: 0 auto">
+		<center><h2>Collaborative Research Study Search Task</h2></center>
 <form action="searchsources.php" method="post" onsubmit="return validate(this)">
 
 
@@ -89,8 +91,13 @@ Try to find sources and snippets that are good quality for use in the group repo
 		</span>
 	</div>
 
+
+	<p>
+		You have approximately 30 minutes to search for sources.
+	</p>
+
 <p>
-	Click 'Finish' <strong>only when you have completed your search<strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.
+	Click 'Finish' <strong>only when instructed<strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.
 </p>
 
 
@@ -101,10 +108,11 @@ Try to find sources and snippets that are good quality for use in the group repo
 <input type="hidden" name="localTime" value=""/>
 <input type="hidden" name="localDate" value=""/>
 <input type="hidden" name="localTimestamp" value=""/>
-<button type="submit" id="continue_button" class="pure-button pure-button-primary">Finish</button></td></tr>
+<button type="submit" id="continue_button" class="pure-button pure-button-primary" style="background: rgb(202, 60, 60);">Finish</button></td></tr>
 </table>
 </center>
 </form>
+</div>
 </body>
 </html>
 <?php

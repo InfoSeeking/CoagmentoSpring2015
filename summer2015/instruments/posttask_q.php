@@ -22,7 +22,7 @@ function printLikertTwo($question,$key,$data){
 			$style = "style=\"background-color:#F2F2F2\"";
 		}
 		$countstr = "_$count";
-		echo "<div $style class=\"pure-u-1-5\">";
+		echo "<div $style class=\"pure-u-1-8\">";
 		echo "<label for=\"".$pref."$suffix$countstr\" class=\"pure-radio\">";
 		echo "<input id=\"".$pref."$suffix$countstr\" type=\"radio\" name=\"".$pref."$suffix\" value=\"$v\">$k";
 		echo "</label>";
@@ -137,8 +137,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 </head>
 <body class="style1">
 <br/>
-<div>
-	<center><h3>Online Collaborative Research Study Registration</h3></center>
+<div style="width:90%; margin: 0 auto">
+	<center><h2>Collaborative Research Study Questionnaire</h2></center>
 	<p>Now that you have searched for sources on this topic, please review the task description and your previous answers
 		below.</p>
 

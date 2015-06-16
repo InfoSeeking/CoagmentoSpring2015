@@ -85,8 +85,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 </head>
 <body class="style1">
 <br/>
-<div>
-	<center><h3>Online Collaborative Research Study Registration</h3></center>
+<div style="width:90%; margin: 0 auto">
+	<center><h2>Collaborative Research Study Task Questionnaire</h3></center>
 	<p>Please answer the following questions regarding the task:</p>
 
 <br/>

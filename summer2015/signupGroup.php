@@ -113,11 +113,11 @@
 
                     $results = $connection->commit($query);
 
-                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,projectID,userID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','0','$next_userID','$firstpreference','$secondpreference')";
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','$next_userID','$next_userID','$firstpreference','$secondpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password_sha1,status,study,optout,numUsers,topicAreaID,group) VALUES ('$next_userID','$next_userID','$username','$password_sha1','1','1','0','$NUM_USERS','1','treatment')";
+                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,`status`,study,optout,numUsers,topicAreaID,`group`) VALUES ('$next_userID','$next_userID','$username','$password','$password_sha1','1','1','0','$NUM_USERS','1','treatment')";
                     $results = $connection->commit($query);
 										$userID = $next_userID;
 
@@ -194,23 +194,23 @@
                 $message .= "</body></html>";
 
 
-                mail ('cal293@scarletmail.rutgers.edu ', $subject, $message, $headers); //Copy to researchers conducting the study
+                mail ('cal293@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
 								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
+								// mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];
                     $lastName = $_POST["lastName_$x"];
                     $message = $firstName." ".$lastName.",<br/><br/>".$message;
                     $message .= "\r\n";
-                    mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
+                    // mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
                 }
 
 
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. <br/><br/>You will receive a confirmation email with the time, date, and location of your study session. If you have questions, feel free to <br/><a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
 
                 for($x=1;$x<=$NUM_USERS;$x++){
@@ -230,8 +230,6 @@
                     echo "<tr><td>First name: $firstName</td></tr>\n";
                     echo "<tr><td>Last name: $lastName</td></tr>\n";
                     echo "<tr><td>Email: $email1</td></tr>\n";
-                    echo "<tr><td>Username: $username</td></tr>\n";
-                    echo "<tr><td>Password: $password</td></tr>\n";
 
                 }
 
@@ -243,7 +241,7 @@
 
 
 								echo "<br><br>";
-                echo "<tr><td><hr/>You can close this window now or navigate away. We will contact you soon via email.</td></tr>\n";
+                echo "<tr><td><hr/>You can close this window now or navigate away.</td></tr>\n";
                 echo "</table>\n";
             }else if($closed){
                 echo "<p style='background-color:red;'>Sorry! The user study registration is currently closed.</p>\n";
