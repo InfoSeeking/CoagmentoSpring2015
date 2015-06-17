@@ -7,7 +7,7 @@ require_once('../core/Util.class.php');
 require_once('../core/Connection.class.php');
 require_once('../core/Questionnaires.class.php');
 
-
+ 
 function printLikertTwo($question,$key,$data){
 	$pref = $key;
 	echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
@@ -61,10 +61,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
 
-
-
-
-
 		$questionnaire = Questionnaires::getInstance();
 
 		$ks = array("$userID","$projectID");
@@ -73,36 +69,18 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$date = $base->getDate();
 		$timestamp = $base->getTimestamp();
 
-		for($x=1;$x<=1;$x+=1){
+		print_r($_POST);
+		for($x=1;$x<=$N_BOOKMARKS;$x+=1){
 			$use_information = $_POST["use_information_$x"];
 			$author_qualifications = $_POST["author_qualifications_$x"];
 			$rating = $_POST["rating_$x"];
-			$bookmarkID = $_POST["bookmarkID_$x"];
 
-			$connection->commit("INSERT INTO questionnaire_sourceratings (userID,projectID,bookmarkID,`date`,`time`,`timestamp`,use_information,author_qualifications,rating) VALUES ('$userID','$projectID','$bookmarkID','$date','$time','$timestamp','$use_information','$author_qualifications','$rating')");
+			$connection->commit("INSERT INTO questionnaire_sourceratings (userID,projectID,`date`,`time`,`timestamp`,use_information,author_qualifications,rating) VALUES ('$userID','$projectID','$date','$time','$timestamp','$use_information','$author_qualifications','$rating')");
 		}
 
-		$connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
 
-
-		$next_bookmarkID = 0;
-		$query = "SELECT COUNT(bookmarkID) as ct FROM questionnaire_sourceratings WHERE userID='$userID'";
-		$results = $connection->commit($query);
-		$line = mysql_fetch_array($results,MYSQL_ASSOC);
-		$bookmark_count = $line['ct'];
-
-		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group6 WHERE projectID='6'";
-		$results = $connection->commit($query);
-		$line = mysql_fetch_array($results,MYSQL_ASSOC);
-		$max_count = $line['ct'];
-
-		if($bookmark_count >= $max_count){
-			Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
-			Util::getInstance()->moveToNextStage();
-		}else{
-			header('Location: ../index.php');
-		}
-
+		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
+		Util::getInstance()->moveToNextStage();
 	}
 	else
 	{
@@ -118,39 +96,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$connection = Connection::getInstance();
 		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
-
-		$next_bookmarkID = 0;
-		$query = "SELECT COUNT(bookmarkID) as ct FROM questionnaire_sourceratings WHERE userID='$userID'";
-		$results = $connection->commit($query);
-		$line = mysql_fetch_array($results,MYSQL_ASSOC);
-		$bookmark_count = $line['ct'];
-
-		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group6 WHERE projectID='6'";
-		$results = $connection->commit($query);
-		$line = mysql_fetch_array($results,MYSQL_ASSOC);
-		$max_count = $line['ct'];
-
-
-
-
-
-		if($bookmark_count >= $max_count){
-			if($bookmark_count == $max_count && ($base->getUserName() == 'test_1' || $base->getUserName() == 'test_t' || $base->getUserName() == 'test_c')){
-				$connection->commit("DELETE FROM questionnaire_sourceratings WHERE userID='$userID'");
-			}else{
-				Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
-				Util::getInstance()->moveToNextStage();
-			}
-		}
-
-		$bookmark_count += 1;
-		$r = $connection->commit("SELECT MAX(bookmarkID) AS max FROM (SELECT bookmarkID FROM bookmarks_group6 WHERE projectID='6' ORDER BY bookmarkID LIMIT $bookmark_count) a");
-
-
-
-		$line = mysql_fetch_array($r,MYSQL_ASSOC);
-
-		$bookmarkID = $line['max'];
 
 
 
@@ -169,6 +114,81 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <script>
 // When the document is ready
 $(document).ready(function () {
+
+
+
+
+
+$('#next2').show();
+$('#prev2').show();
+$('#begin_header').show();
+$('#preview_header').hide();
+
+
+
+$('#submitButton').hide();
+
+
+$('#next2').click(function(event) {
+    $('.current').removeClass('current').hide()
+        .next().show().addClass('current');
+
+
+    $('#instructions_panel').hide();
+
+
+    if ($('.current').hasClass('last')) {
+
+
+
+
+        $('#next2').attr('disabled', true);
+
+        $('#submitButton').show();
+        $('#end-alert').show();
+    }else{
+
+        $('#submitButton').hide();
+        $('#end-alert').hide();
+    }
+
+    $('#prev2').attr('disabled', null);
+
+
+
+
+    event.preventDefault();
+    event.stopPropagation();
+});
+
+$('#prev2').click(function(event) {
+    $('.current').removeClass('current').hide()
+        .prev().show().addClass('current');
+
+        $('#instructions_panel').hide();
+
+
+    if ($('.current').hasClass('first')) {
+    $('#instructions_panel').show();
+
+
+        $('#prev2').attr('disabled', true);
+        window.scrollTo(0,$('#begin_header').offset().top);
+        $('#submitButton').hide();
+        $('#end-alert').hide();
+    }else{
+
+        $('#submitButton').hide();
+        $('#end-alert').hide();
+    }
+
+    $('#next2').attr('disabled', null);
+
+
+
+    event.preventDefault();
+    event.stopPropagation();
+});
 
 
 $.validator.setDefaults({
@@ -205,11 +225,15 @@ $("#sum2015_qform").validate({
 
 <?php
 
+for($x=1;$x<=$N_BOOKMARKS;$x++){
 
-
-	echo "\"use_information_1\":{required: true},\n";
-	echo "\"author_qualifications_1\":{required: true},\n";
-	echo "\"rating_1\":{required: true}\n";
+	echo "\"use_information_$x\":{required: true},\n";
+	echo "\"author_qualifications_$x\":{required: true},\n";
+	echo "\"rating_$x\":{required: true}\n";
+	if($x < $N_BOOKMARKS){
+		echo ",";
+	}
+}
 
 ?>
 
@@ -218,11 +242,15 @@ $("#sum2015_qform").validate({
     messages: {
 
 <?php
+for($x=1;$x<=$N_BOOKMARKS;$x++){
 
-	echo "\"use_information_1\":{required: \"<span style='color:red'>Please enter your response.</span>\"},\n";
-	echo "\"author_qualifications_1\":{required: \"<span style='color:red'>Please enter your response.</span> \"},\n";
-	echo "\"rating_1\":{required: \"<span style='color:red'>Please enter your response.</span>\"}\n";
-
+	echo "\"use_information_$x\":{required: \"<span style='color:red'>Please enter your response.</span>\"},\n";
+	echo "\"author_qualifications_$x\":{required: \"<span style='color:red'>Please enter your response.</span> \"},\n";
+	echo "\"rating_$x\":{required: \"<span style='color:red'>Please enter your response.</span>\"}\n";
+	if($x < $N_BOOKMARKS){
+		echo ",\n";
+	}
+}
 ?>
 }
 
@@ -247,43 +275,44 @@ $("#sum2015_qform").validate({
 <div id="badinputhead" class="alert alert-danger" style="display:none" role="alert">Some of your inputs are blank or incorrect.  Please check your input and submit again.</div>
 <form id="sum2015_qform" class="pure-form" method="post" action="evalsources.php">
 <div id="main">
-
+<div id="div0" class="first current">
+<h2 id="begin_header" style="display:none">Click 'Next' to begin the task.  Submit it after you've completed all inputs.</h2></div>
 
 
 
 
 <?php
 
+
+
+
 // Print task
 //
 
 
-$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 WHERE bookmarkID='$bookmarkID'");
-
-
-for($x=1;$x<=1;$x++){
+for($x=1;$x<=$N_BOOKMARKS;$x++){
 	$line = mysql_fetch_array($bookmarks_res,MYSQL_ASSOC);
 	$bookmarkID = $line['bookmarkID'];
 	$url = $line['url'];
 	$title = $line['title'];
 
 	if($x == $N_BOOKMARKS){
-		echo "<div id=\"div$x\" class=\"last\" style=\"display:block\">";
+		echo "<div id=\"div$x\" class=\"last\" style=\"display:none\">";
 	}else{
-		echo "<div id=\"div$x\" style=\"display:block\">";
+		echo "<div id=\"div$x\" style=\"display:none\">";
 	}
 
 
 
-	// if ($x == $N_BOOKMARKS){
-	// 	echo "<div id=\"end-alert\" style=\"display:block\" class=\"alert alert-info\" role=\"alert\">When finished, submit your results below.</div>";
-	// }
+	if ($x == $N_BOOKMARKS){
+		echo "<div id=\"end-alert\" style=\"display:none\" class=\"alert alert-info\" role=\"alert\">When finished, submit your results below.</div>";
+	}
 
 	echo "<input type=\"hidden\" name=\"bookmarkID_$x\" value=\"$bookmarkID\"/>";
 
 
 	// Source/bookmark
-	echo "<div class=\"grayrect\" style=\"font-size: 20\"><span><strong>($bookmark_count/$N_BOOKMARKS) Click on this link to view the source:</strong> <a href=\"$url\" target=\"_blank\">$title</a></span></div>";
+	echo "<div class=\"grayrect\" style=\"font-size: 20\"><span><strong>($x/$N_BOOKMARKS) Click on this link to view the source:</strong> <a href=\"$url\" target=\"_blank\">$title</a></span></div>";
 	echo "<h2 id=\"header_$x\">Answer the questions below</h2>";
 
 
@@ -329,6 +358,8 @@ for($x=1;$x<=1;$x++){
 </div>
 
 <hr />
+<button id="prev2" disabled="disabled" class="btn btn-default" style="display:none"><< Prev</button>
+<button id="next2" class="btn btn-default" style="display:none">Next >></button>
 <div id="badinputfoot" style="display:none" class="alert alert-danger" role="alert">Some of your inputs are blank or incorrect.  Please check your input and submit again.</div>
 <style type="text/css">fieldset { padding: 10px; background:#fbfbfb; border-radius:5px; margin-bottom:5px; }
 </style>

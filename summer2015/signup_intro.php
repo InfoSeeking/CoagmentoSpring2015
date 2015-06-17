@@ -16,7 +16,7 @@ if($num_recruits<=$recruit_limit && !$closed)
 <html>
 <head>
 	<title>
-    Online Collaborative Research Study Registration: Introduction
+    Research Study Registration: Introduction
     </title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript">
@@ -66,9 +66,9 @@ function isRadioSelected(radioButtons, obj)
 
 				<p>Welcome! This is the sign-up form to register for the paid research study.</p>
 				<p>During this study you will perform online research using an experimental browser plug-in and answer questionnaires.</p>
-				<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building.</p>
+				<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building in Room 222.</p>
 				<p>You will receive <strong>$20 cash</strong> for participating in the study.</p>
-        <p>You are also eligible for an additional <strong>$20 cash prize</strong> for best performance, measured by amount of activity using the Coagmento tool.</p>
+        <p>You are also eligible for additional <strong>$50, $30, and $20 cash prizes</strong> for best performance.</p>
 
         <p>Requirements:
           <ul>
@@ -82,7 +82,7 @@ function isRadioSelected(radioButtons, obj)
 
 
 
-				
+
 <p>Choosing or declining to participate in this study will not affect your class
   standing or grades at Rutgers. You will not be offered or receive any special
   consideration if you take part in this research; it is purely voluntary. This

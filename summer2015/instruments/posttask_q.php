@@ -182,7 +182,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <?php
 
 	$familiar = $oldanswers['q_familiar'];
-	$question = "How familiar are you with the topic of this task? <span style=\"background-color:#F2F2F2\">$familiar</span>
+	$question = "How familiar are you with the topic of this task? <br/><span style=\"background-color:#F2F2F2\"><strong>Previous: $familiar</strong></span><br/>
 	How familiar are you now? Scale of 1 to 5";
 	printLikertTwo($question,"q_familiar",array(
     "1" => "1",
@@ -197,7 +197,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <div class="pure-control-group">
 <div id="q_lookup_div">
-<label name="q_lookup">How would you look for information for this task? Where or how would you look up this information? <span style="background-color:#F2F2F2">Previous answer: <?php echo $oldanswers['q_lookup'];?></span>
+<label name="q_lookup">How would you look for information for this task? Where or how would you look up this information? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_lookup'];?></strong></span><br/>
 Did this approach work? Did you do anything differently? Why?
 </label>
 <textarea name="q_lookup" id="q_lookup" rows="3" cols="40" required></textarea>
@@ -208,7 +208,7 @@ Did this approach work? Did you do anything differently? Why?
 
 <div class="pure-control-group">
 <div id="q_keywords_div">
-<label name="q_keywords">What keywords or terms would you search? Please list 3-4 keywords/terms? <span style="background-color:#F2F2F2">Previous answer: <?php echo $oldanswers['q_keywords'];?></span>
+<label name="q_keywords">What keywords or terms would you search? Please list 3-4 keywords/terms? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_keywords'];?></strong></span><br/>
 Did these keywords work? Did you use any different ones? Why?
 </label>
 <textarea name="q_keywords" id="q_keywords" rows="3" cols="40" required></textarea>

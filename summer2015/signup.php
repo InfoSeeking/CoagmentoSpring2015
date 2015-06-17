@@ -24,7 +24,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 <head>
   <link rel="stylesheet" href="study_styles/custom/text.css">
 	<title>
-			Online Collaborative Research Study Registration
+			Research Study Registration
     </title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
@@ -124,7 +124,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 <body class="style1">
 <br/>
 <div id="signupForm" align="center">
-	<h3>Online Collaborative Research Study Registration</h3>
+	<h3>Research Study Registration</h3>
 		<table class="style1" width=90%>
 			<tr>
 			  <td colspan=2>
