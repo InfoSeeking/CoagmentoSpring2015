@@ -131,7 +131,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 				<ul>
 				<li>Use this form to register for the paid research study on collaborative research.</li>
 				<li>Please fill out the information below then click Submit.</li>
-				<li>You will receive a confirmation email with details about time, date, and location of your session.</li>
+				<li>You will receive a confirmation email within 24-48 hours with details about time, date, and location of your session.</li>
 				<li>NOTE: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
 				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>

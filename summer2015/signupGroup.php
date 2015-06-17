@@ -113,7 +113,7 @@
 
                     $results = $connection->commit($query);
 
-                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '', '','$next_userID','$next_userID','$firstpreference','$secondpreference')";
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year', '','$next_userID','$next_userID','$firstpreference','$secondpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
@@ -179,13 +179,12 @@
 
 
 
-                $message .= "You will use the Coagmento collaborative search system while you work on your on IT Market Sector Analysis report.<br/><br/>";
+                $message .= "During this study you will perform online research using an experimental browser plug-in and answer questionnaires.<br/><br/>";
                 $message .= "\r\n";
-								$message .= "You will receive <strong>$40 cash</strong> for your participation in this study.<br/><br/>";
+								$message .= "You will receive <strong>$20 cash</strong> for participating in the study.<br/><br/>";
 								$message .= "\r\n";
-								$message .= "Your group is also eligible for <strong>an additional $20 cash prize</strong> per person for best performers, measured by amount of activity using the Coagmento tool.<br/><br/>";
+								$message .= "You are also eligible for additional <strong>$50, $30, and $20 cash prizes</strong> for best performance.<br/><br/>";
 								$message .= "\r\n";
-								$message .= "Note: To receive payment you must complete the study and answer the three online questionnaires.<br/><br/>";
 
 
                 $message .= "\r\n";
@@ -196,7 +195,7 @@
 
                 mail ('cal293@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
 								mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-								// mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
+								mail ('kevin.eric.albertson@gmail.com', $subject, $message, $headers); //Copy to researchers conducting the study
                 for($x=1;$x<=$NUM_USERS;$x++){
                     $email = $_POST["email1_$x"];
                     $firstName = $_POST["firstName_$x"];

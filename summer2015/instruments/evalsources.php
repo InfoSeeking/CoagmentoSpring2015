@@ -74,8 +74,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$timestamp = $base->getTimestamp();
 
 		for($x=1;$x<=1;$x+=1){
-			$use_information = $_POST["use_information_$x"];
-			$author_qualifications = $_POST["author_qualifications_$x"];
+			$use_information = addslashes($_POST["use_information_$x"]);
+			$author_qualifications = addslashes($_POST["author_qualifications_$x"]);
 			$rating = $_POST["rating_$x"];
 			$bookmarkID = $_POST["bookmarkID_$x"];
 
@@ -158,6 +158,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <html>
 <head>
+	<title>
+		Research Study
+	</title>
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/grids-min.css">
@@ -334,7 +337,7 @@ for($x=1;$x<=1;$x++){
 </style>
 <br/><br/>
 <input type="hidden" name="evalsources" value="true"/>
-  <button id="submitButton" class="pure-button pure-button-primary" type="submit">Finish</button>
+  <button id="submitButton" class="pure-button pure-button-primary" type="submit">Next</button>
 </form>
 </div>
 </body>

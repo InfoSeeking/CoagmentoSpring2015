@@ -110,7 +110,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
 	<link rel="stylesheet" href="../study_styles/custom/background.css">
 	<title>
-			Questionnaire #1
+		Research Study
     </title>
 
 
@@ -185,8 +185,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			<?php
 
 				$familiar = $oldanswers['q_familiar'];
-				$question = "How familiar are you with the topic of this task? <br/><span style=\"background-color:#F2F2F2\"><strong>Previous: $familiar</strong></span><br/>
-				How familiar are you now? Scale of 1 to 5";
+				$question = "How familiar are you withs the topic of this task? <br/><span style=\"background-color:#F2F2F2\"><strong>Previous answer: $familiar</strong></span><br/>
+				How familiar are you now? (1=Not Familiar At All, 5=Very Familiar)";
 				printLikertTwo($question,"q_familiar",array(
 			    "1" => "1",
 			    "2" => "2",
@@ -197,12 +197,14 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			?>
 
 
+			<br/>
 			<div class="pure-control-group">
 			<div id="q_lookup_div">
 			<label name="q_lookup">How would you look for information for this task? Where or how would you look up this information? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_lookup'];?></strong></span><br/>
-			Did this approach work? Did you do anything differently? Why?
+				Make any changes:
+
 			</label>
-			<textarea name="q_lookup" id="q_lookup" rows="3" cols="40" required></textarea>
+			<textarea name="q_lookup" id="q_lookup" rows="5" cols="80" required></textarea>
 			<br>
 			</div>
 			</div>
@@ -211,9 +213,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			<div class="pure-control-group">
 			<div id="q_keywords_div">
 			<label name="q_keywords">What keywords or terms would you search? Please list 3-4 keywords/terms? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_keywords'];?></strong></span><br/>
-			Did these keywords work? Did you use any different ones? Why?
+				Make any changes:
 			</label>
-			<textarea name="q_keywords" id="q_keywords" rows="3" cols="40" required></textarea>
+			<textarea name="q_keywords" id="q_keywords" rows="5" cols="80" required></textarea>
 			<br>
 			</div>
 			</div>

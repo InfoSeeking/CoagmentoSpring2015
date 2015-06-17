@@ -132,9 +132,9 @@
         //etherpad
 				$message .= "</body></html>";
 
-				mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-				mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
-				mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
+				// mail ('chris.leeder@rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+				// mail ('mmitsui@scarletmail.rutgers.edu', $subject, $message, $headers); //Copy to researchers conducting the study
+				// mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
 
         $base = new Base();
         Util::getInstance()->saveAction('logout',0,$base);
@@ -150,7 +150,7 @@
 		?>
 		<html>
 		<head>
-		<title>Completed Study
+		<title>Research Study
 		</title>
 		</head>
 		<body class="body">

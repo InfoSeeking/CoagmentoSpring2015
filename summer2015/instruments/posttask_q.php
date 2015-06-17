@@ -108,7 +108,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
 	<link rel="stylesheet" href="../study_styles/custom/background.css">
 	<title>
-			Questionnaire #1
+		Research Study
     </title>
 
 
@@ -139,37 +139,38 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <br/>
 <div style="width:90%; margin: 0 auto">
 	<center><h2>Collaborative Research Study Questionnaire</h2></center>
+	<p>Last question!</p>
 	<p>Now that you have searched for sources on this topic, please review the task description and your previous answers
 		below.</p>
 
-	<div class="grayrect">
-		<span>
+	<!-- <div class="grayrect">
+		<span> -->
 			<?php
 
-			$base = Base::getInstance();
-			$userID = $base->getUserID();
-			$connection = Connection::getInstance();
-			$query = "SELECT userID, topicAreaID
-						FROM users
-						WHERE userID='$userID'";
-			$results = $connection->commit($query);
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$topicAreaID = $line['topicAreaID'];
+			// $base = Base::getInstance();
+			// $userID = $base->getUserID();
+			// $connection = Connection::getInstance();
+			// $query = "SELECT userID, topicAreaID
+			// 			FROM users
+			// 			WHERE userID='$userID'";
+			// $results = $connection->commit($query);
+			// $line = mysql_fetch_array($results,MYSQL_ASSOC);
+			// $topicAreaID = $line['topicAreaID'];
 
 
-			$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
-			$results = $connection->commit($query);
-			$question1 = '';
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$question1 = $line['question'];
-
-
-			echo $question1;
+			// $query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
+			// $results = $connection->commit($query);
+			// $question1 = '';
+			// $line = mysql_fetch_array($results,MYSQL_ASSOC);
+			// $question1 = $line['question'];
+			//
+			//
+			// echo $question1;
 
 
 			?>
-		</span>
-	</div>
+		<!-- </span>
+	</div> -->
 
 
 <br/>
@@ -183,7 +184,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 	$familiar = $oldanswers['q_familiar'];
 	$question = "How familiar are you with the topic of this task? <br/><span style=\"background-color:#F2F2F2\"><strong>Previous: $familiar</strong></span><br/>
-	How familiar are you now? Scale of 1 to 5";
+	How familiar are you now? (1=Not Familiar At All, 5=Very Familiar)";
 	printLikertTwo($question,"q_familiar",array(
     "1" => "1",
     "2" => "2",
@@ -194,13 +195,13 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 ?>
 
 
-
+<br/>
 <div class="pure-control-group">
 <div id="q_lookup_div">
 <label name="q_lookup">How would you look for information for this task? Where or how would you look up this information? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_lookup'];?></strong></span><br/>
 Did this approach work? Did you do anything differently? Why?
 </label>
-<textarea name="q_lookup" id="q_lookup" rows="3" cols="40" required></textarea>
+<textarea name="q_lookup" id="q_lookup" rows="5" cols="80" required></textarea>
 <br>
 </div>
 </div>
@@ -211,7 +212,7 @@ Did this approach work? Did you do anything differently? Why?
 <label name="q_keywords">What keywords or terms would you search? Please list 3-4 keywords/terms? <br/><span style="background-color:#F2F2F2"><strong>Previous answer: <?php echo $oldanswers['q_keywords'];?></strong></span><br/>
 Did these keywords work? Did you use any different ones? Why?
 </label>
-<textarea name="q_keywords" id="q_keywords" rows="3" cols="40" required></textarea>
+<textarea name="q_keywords" id="q_keywords" rows="5" cols="80" required></textarea>
 <br>
 </div>
 </div>
@@ -220,7 +221,7 @@ Did these keywords work? Did you use any different ones? Why?
 <div id="q_nextsteps_div">
 <label name="q_nextsteps">If you had to continue working on this group project, what steps would you take next?
 </label>
-<textarea name="q_nextsteps" id="q_nextsteps" rows="3" cols="40" required></textarea>
+<textarea name="q_nextsteps" id="q_nextsteps" rows="5" cols="80" required></textarea>
 <br>
 </div>
 </div>

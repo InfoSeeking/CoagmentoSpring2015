@@ -62,7 +62,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
 	<link rel="stylesheet" href="../study_styles/custom/background.css">
 	<title>
-			Questionnaire #1
+		Research Study
     </title>
 
 

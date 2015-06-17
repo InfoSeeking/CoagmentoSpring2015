@@ -26,7 +26,7 @@
             ?>
 <html>
 <head>
-<title>Introduction</title>
+<title>Research Study</title>
 
 </head>
 

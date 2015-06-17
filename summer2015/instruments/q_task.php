@@ -29,7 +29,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID"),array('userID','projectID'),'questionnaire_tlx');
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID"),array('userID','projectID'),'questionnaire_tlx_short');
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -43,7 +43,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
-		$questionnaire->populateQuestionsFromDatabase("sensorspring2015-cog","questionID ASC");
+		$questionnaire->populateQuestionsFromDatabase("summer2015-cog","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
 
@@ -56,7 +56,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
 	<link rel="stylesheet" href="../study_styles/custom/background.css">
 	<title>
-			Questionnaire #1
+			Research Study
     </title>
 
 
