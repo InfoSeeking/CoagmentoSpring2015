@@ -92,37 +92,51 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Collaborative Research Study Questionnaire</h2></center>
+	<center><h2>Study Introduction</h2></center>
+
+	<p>You have been an assigned to a group project in an undergraduate course on
+		Information Technology (IT).
+		The description of the assignment you receive from the instructor is shown below:</p>
+
+
+
+		<div class="grayrect">
+			<span>
+				<?php
+
+				$base = Base::getInstance();
+				$userID = $base->getUserID();
+				$connection = Connection::getInstance();
+				$query = "SELECT userID, topicAreaID
+							FROM users
+							WHERE userID='$userID'";
+				$results = $connection->commit($query);
+				$line = mysql_fetch_array($results,MYSQL_ASSOC);
+				$topicAreaID = $line['topicAreaID'];
+
+
+				$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
+				$results = $connection->commit($query);
+				$question1 = '';
+				$line = mysql_fetch_array($results,MYSQL_ASSOC);
+				$question1 = $line['question'];
+
+
+				echo $question1;
+
+
+				?>
+			</span>
+		</div>
+
+	<p>
+		Your group must search online for information sources to use in writing this report.
+		Some of the members of your group have already started searching and found some sources.
+	</p>
+
 	<p>Please review the task description and answer the following questions:</p>
 
-	<div class="grayrect">
-		<span>
-			<?php
 
-			$base = Base::getInstance();
-			$userID = $base->getUserID();
-			$connection = Connection::getInstance();
-			$query = "SELECT userID, topicAreaID
-						FROM users
-						WHERE userID='$userID'";
-			$results = $connection->commit($query);
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$topicAreaID = $line['topicAreaID'];
-
-
-			$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
-			$results = $connection->commit($query);
-			$question1 = '';
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$question1 = $line['question'];
-
-
-			echo $question1;
-
-
-			?>
-		</span>
-	</div>
 
 
 <br/>

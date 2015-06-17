@@ -237,7 +237,7 @@ $("#sum2015_qform").validate({
 </head>
 <body>
 	<div style="width:90%; margin: 0 auto">
-		<center><h2>Collaborative Research Study Source Evaluation</h2></center>
+		<center><h2>Evaluate Sources</h2></center>
 <p>
 	<strong>Questionnaire:</strong> Below are some online information sources that members of your group have already bookmarked for your project.
 	Click on the title of the source (in blue) to see it online.

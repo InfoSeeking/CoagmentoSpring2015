@@ -140,7 +140,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Collaborative Research Study Questionnaire</h3></center>
+	<center><h2>Review</h2></center>
 	<p>Now that you have seen the sources that your group members have already bookmarked,
 		would you change any of your answers to the first questions?</p>
 

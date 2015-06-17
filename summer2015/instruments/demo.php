@@ -47,7 +47,7 @@ function validate(form)
 </script>
 <body class="body">
 	<div style="width:90%; margin: 0 auto">
-		<center><h2>Collaborative Research Study Demo</h2></center>
+		<center><h2>Toolbar Demo</h2></center>
 <form action="demo.php" method="post" onsubmit="return validate(this)">
 
 
