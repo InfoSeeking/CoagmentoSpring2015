@@ -84,7 +84,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <?php
 
 // Print task
-$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 WHERE projectID='2'");
+$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 WHERE projectID='2' ORDER BY RAND()");
 
 
 while($line = mysql_fetch_array($bookmarks_res,MYSQL_ASSOC)){
