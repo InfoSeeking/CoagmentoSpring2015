@@ -55,7 +55,7 @@ function validate(form)
 Also collect relevant snippets from those sources that help you address what is needed for this task.
 Try to find sources and snippets that are good quality for use in the group report.</p>
 
-<p>Below is the task description once more.  While searching, you can also review the assignment description by clicking the Assignment button.</p>
+<p>Below is the task description once more.  You can also review the assignment description by clicking the Assignment button.</p>
 
 <p>Open new tabs for searching. Do not open a new window.</p>
 

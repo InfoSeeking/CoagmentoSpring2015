@@ -56,12 +56,13 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$date = $base->getDate();
 		$timestamp = $base->getTimestamp();
 
-		$q_familiar = $_POST['q_familiar'];
-		$q_keywords = $_POST['q_keywords'];
-		$q_lookup = $_POST['q_lookup'];
-		$q_nextsteps = $_POST['q_nextsteps'];
+		$q_familiar = addslashes($_POST['q_familiar']);
+		$q_keywords = addslashes($_POST['q_keywords']);
+		$q_lookup = addslashes($_POST['q_lookup']);
+		$q_nextsteps = addslashes($_POST['q_nextsteps']);
+		$q_valuable = addslashes($_POST['q_valuable']);
 
-		$connection->commit("INSERT INTO questionnaire_repeated_final (userID,projectID,stageID,`date`,`time`,`timestamp`,q_familiar,q_keywords,q_lookup,q_nextsteps) VALUES ('$userID','$projectID','$stageID','$date','$time','$timestamp','$q_familiar','$q_keywords','$q_lookup','$q_nextsteps')");
+		$connection->commit("INSERT INTO questionnaire_repeated_final (userID,projectID,stageID,`date`,`time`,`timestamp`,q_familiar,q_keywords,q_lookup,q_nextsteps,q_valuable) VALUES ('$userID','$projectID','$stageID','$date','$time','$timestamp','$q_familiar','$q_keywords','$q_lookup','$q_nextsteps','$q_valuable')");
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -75,7 +76,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
-		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
+		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated-final","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
 
@@ -89,12 +90,12 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		if($group=='treatment'){
 			$stageID="40";
 		}else if($group=='control'){
-			$stageID="30";
+			$stageID="40";
 		}else{
 			echo "ERROR!";
 		}
 
-		$res = $connection->commit("SELECT * FROM questionnaire_repeated WHERE userID='$userID' AND stageID='$stageID'");
+		$res = $connection->commit("SELECT * FROM questionnaire_repeated_mid WHERE userID='$userID' AND stageID='$stageID'");
 		$line = mysql_fetch_array($res,MYSQL_ASSOC);
 
 		$oldanswers['q_familiar'] = $line['q_familiar'];
@@ -138,8 +139,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Questionnaire 2 of 2</h2></center>
-	<p>Last question!</p>
+	<center><h2>Questionnaire 1 of 2</h2></center>
 	<p>Now that you have searched for sources on this topic, please review the task description and your previous answers
 		below.</p>
 
@@ -225,6 +225,35 @@ Did these keywords work? Did you use any different ones? Why?
 <br>
 </div>
 </div>
+
+
+
+
+<div class="pure-control-group">
+<div id="q_valuable_div">
+<?php
+
+$userID = $base->getUserID();
+$connection = Connection::getInstance();
+$res = $connection->commit("SELECT `group` FROM users WHERE userID='$userID'");
+$line = mysql_fetch_array($res,MYSQL_ASSOC);
+$group = $line['group'];
+
+if($group == 'control'){
+	echo "<label name=\"q_valuable\">How valuable was it to review the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search and collect task?</label>";
+}else if ($group =='treatment'){
+	echo "<label name=\"q_valuable\">How valuable was it to review and evaluate the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search and collect task?</label>";
+}
+
+?>
+
+<textarea name="q_valuable" id="q_valuable" rows="5" cols="80" required></textarea>
+<br>
+</div>
+</div>
+
+
+
 
 </fieldset>
 </div>

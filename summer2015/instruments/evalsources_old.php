@@ -7,7 +7,7 @@ require_once('../core/Util.class.php');
 require_once('../core/Connection.class.php');
 require_once('../core/Questionnaires.class.php');
 
- 
+
 function printLikertTwo($question,$key,$data){
 	$pref = $key;
 	echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
@@ -58,7 +58,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$userID=$base->getUserID();
 		$projectID=$base->getProjectID();
 		$connection = Connection::getInstance();
-		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
+		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
 
 		$questionnaire = Questionnaires::getInstance();
@@ -94,7 +94,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 		$connection = Connection::getInstance();
-		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
+		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
 
 

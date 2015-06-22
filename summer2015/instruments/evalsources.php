@@ -58,7 +58,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$userID=$base->getUserID();
 		$projectID=$base->getProjectID();
 		$connection = Connection::getInstance();
-		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
+		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
 
 
@@ -82,7 +82,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			$connection->commit("INSERT INTO questionnaire_sourceratings (userID,projectID,bookmarkID,`date`,`time`,`timestamp`,use_information,author_qualifications,rating) VALUES ('$userID','$projectID','$bookmarkID','$date','$time','$timestamp','$use_information','$author_qualifications','$rating')");
 		}
 
-		$connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
+		$connection->commit("SELECT * FROM bookmarks_group2 ORDER BY bookmarkID");
 
 
 		$next_bookmarkID = 0;
@@ -91,7 +91,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$bookmark_count = $line['ct'];
 
-		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group6 WHERE projectID='6'";
+		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group2 WHERE projectID='2'";
 		$results = $connection->commit($query);
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$max_count = $line['ct'];
@@ -116,7 +116,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 		$connection = Connection::getInstance();
-		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 ORDER BY bookmarkID");
+		$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 ORDER BY bookmarkID");
 		$N_BOOKMARKS = mysql_num_rows($bookmarks_res);
 
 		$next_bookmarkID = 0;
@@ -125,7 +125,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$bookmark_count = $line['ct'];
 
-		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group6 WHERE projectID='6'";
+		$query = "SELECT COUNT(bookmarkID) as ct FROM bookmarks_group2 WHERE projectID='2'";
 		$results = $connection->commit($query);
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);
 		$max_count = $line['ct'];
@@ -137,6 +137,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		if($bookmark_count >= $max_count){
 			if($bookmark_count == $max_count && ($base->getUserName() == 'test_1' || $base->getUserName() == 'test_t' || $base->getUserName() == 'test_c')){
 				$connection->commit("DELETE FROM questionnaire_sourceratings WHERE userID='$userID'");
+				$query = "SELECT COUNT(bookmarkID) as ct FROM questionnaire_sourceratings WHERE userID='$userID'";
+				$results = $connection->commit($query);
+				$line = mysql_fetch_array($results,MYSQL_ASSOC);
+				$bookmark_count = $line['ct'];
 			}else{
 				Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 				Util::getInstance()->moveToNextStage();
@@ -144,7 +148,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		}
 
 		$bookmark_count += 1;
-		$r = $connection->commit("SELECT MAX(bookmarkID) AS max FROM (SELECT bookmarkID FROM bookmarks_group6 WHERE projectID='6' ORDER BY bookmarkID LIMIT $bookmark_count) a");
+		$r = $connection->commit("SELECT MAX(bookmarkID) AS max FROM (SELECT bookmarkID FROM bookmarks_group2 WHERE projectID='2' ORDER BY bookmarkID LIMIT $bookmark_count) a");
 
 
 
@@ -239,12 +243,15 @@ $("#sum2015_qform").validate({
 	<div style="width:90%; margin: 0 auto">
 		<center><h2>Evaluate Sources</h2></center>
 <p>
-	<strong>Questionnaire:</strong> Below are some online information sources that members of your group have already bookmarked for your project.
-	Click on the title of the source (in blue) to see it online.
-	It will open in a new tab.
-</p>
-<p>
-	After you review each source, please answer the questions shown below.
+	<strong>Questionnaire:</strong> Below are some online information sources that
+	members of your group have already bookmarked
+	for your IT Market Sector Analysis Project on Gaming.
+	Before you could do more work on this project,
+	you need to go through all of these sources and evaluate them.
+	<strong>You have up to 30 minutes to do so.</strong>
+	</p>
+	<p>
+	Click on the title of the source (in blue) to see it online.  It will open in a new tab. After you review each source, please answer the questions shown below each source.
 </p>
 <hr>
 <div id="badinputhead" class="alert alert-danger" style="display:none" role="alert">Some of your inputs are blank or incorrect.  Please check your input and submit again.</div>
@@ -261,7 +268,7 @@ $("#sum2015_qform").validate({
 //
 
 
-$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group6 WHERE bookmarkID='$bookmarkID'");
+$bookmarks_res = $connection->commit("SELECT * FROM bookmarks_group2 WHERE bookmarkID='$bookmarkID'");
 
 
 for($x=1;$x<=1;$x++){
@@ -314,7 +321,7 @@ for($x=1;$x<=1;$x++){
 
 	// Question 3 - Likert
 
-	printLikertTwo("How useful is this source? Rate it:","rating_$x",array(
+	printLikertTwo("How useful is this source? Rate it (1-5 stars):","rating_$x",array(
     "1" => "1",
     "2" => "2",
 		"3" => "3",
@@ -337,7 +344,47 @@ for($x=1;$x<=1;$x++){
 </style>
 <br/><br/>
 <input type="hidden" name="evalsources" value="true"/>
-  <button id="submitButton" class="pure-button pure-button-primary" type="submit">Next</button>
+<div>
+    <style scoped>
+
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }
+
+    </style>
+
+<?php
+if($bookmark_count==$N_BOOKMARKS){
+?>
+  <button id="submitButton" class="button-success pure-button" type="submit">Finish</button>
+	<?php
+}else{
+	?>
+	<button id="submitButton" class="pure-button pure-button-primary" type="submit">Next</button>
+	<?php
+}
+	?>
 </form>
 </div>
 </body>

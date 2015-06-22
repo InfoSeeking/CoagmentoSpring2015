@@ -20,6 +20,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$stageID = $base->getStageID();
 
 		$userID=$base->getUserID();
+		$projectID=$base->getProjectID();
 
 
 		/*

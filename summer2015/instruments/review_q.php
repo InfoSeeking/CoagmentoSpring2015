@@ -44,16 +44,13 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-	$userID = $base->getUserID();
-	$connection = Connection::getInstance();
-	$res = $connection->commit("SELECT `group` FROM users WHERE userID='$userID'");
-	$line = mysql_fetch_array($res,MYSQL_ASSOC);
-	$group = $line['group'];
+	// $userID = $base->getUserID();
+	// $connection = Connection::getInstance();
+	// $res = $connection->commit("SELECT `group` FROM users WHERE userID='$userID'");
+	// $line = mysql_fetch_array($res,MYSQL_ASSOC);
+	// $group = $line['group'];
 
-	if($group=='control'){
-		Util::getInstance()->moveToNextStage();
-	}
-	else if (isset($_POST['review_q']))
+	if (isset($_POST['review_q']))
 	{
 		$base = new Base();
 		$stageID = $base->getStageID();
@@ -68,7 +65,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated');
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated_mid');
 
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
@@ -93,7 +90,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$res = $connection->commit("SELECT `group` FROM users WHERE userID='$userID'");
 		$line = mysql_fetch_array($res,MYSQL_ASSOC);
 		$group = $line['group'];
-		$stageID="30";
+		$stageID="1";
 
 		$res = $connection->commit("SELECT * FROM questionnaire_repeated WHERE userID='$userID' AND stageID='$stageID'");
 		$line = mysql_fetch_array($res,MYSQL_ASSOC);
@@ -101,7 +98,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$oldanswers['q_familiar'] = $line['q_familiar'];
 		$oldanswers['q_lookup'] = $line['q_lookup'];
 		$oldanswers['q_keywords'] = $line['q_keywords'];
-
 
 ?>
 
@@ -140,11 +136,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Review</h2></center>
+	<center><h2>Review Questionnaire (1 of 2)</h2></center>
 	<p>Now that you have seen the sources that your group members have already bookmarked,
-		would you change any of your answers to the first questions?</p>
+		you may like to change your responses to the work strategy questions that you answered before.</p>
 
-		<p>The task description - along with your original answers - are shown below.</p>
+		<p>The task description - along with your original answers - are shown below.  Feel free to edit them as you like.</p>
 
 	<div class="grayrect">
 		<span>

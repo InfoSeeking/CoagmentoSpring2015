@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <style type="text/css">
 		.cursorType{
-		cursor:pointer;
+		cursor:pointer; 
 		cursor:hand;
 		}
 </style>
