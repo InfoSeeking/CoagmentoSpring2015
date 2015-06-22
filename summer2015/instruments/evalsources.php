@@ -148,13 +148,14 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		}
 
 		$bookmark_count += 1;
-		$r = $connection->commit("SELECT MAX(bookmarkID) AS max FROM (SELECT bookmarkID FROM bookmarks_group2 WHERE projectID='2' ORDER BY bookmarkID LIMIT $bookmark_count) a");
+		$userID = $base->getUserID();
+		$r = $connection->commit("SELECT bookmarkID AS `next` FROM bookmarks_group2 WHERE projectID='2' AND bookmarkID NOT IN (SELECT bookmarkID FROM questionnaire_sourceratings WHERE userID='$userID' GROUP BY bookmarkID) ORDER BY RAND() LIMIT 1");
 
 
 
 		$line = mysql_fetch_array($r,MYSQL_ASSOC);
 
-		$bookmarkID = $line['max'];
+		$bookmarkID = $line['next'];
 
 
 
