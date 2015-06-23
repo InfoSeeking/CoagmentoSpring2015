@@ -240,9 +240,9 @@ $line = mysql_fetch_array($res,MYSQL_ASSOC);
 $group = $line['group'];
 
 if($group == 'control'){
-	echo "<label name=\"q_valuable\">How valuable was it to review the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search and collect task?</label>";
+	echo "<label name=\"q_valuable\">How valuable was it to review the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search task?</label>";
 }else if ($group =='treatment'){
-	echo "<label name=\"q_valuable\">How valuable was it to review and evaluate the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search and collect task?</label>";
+	echo "<label name=\"q_valuable\">How valuable was it to review and evaluate the work done by other team members before you proceeded with your own searching?<br/>How did it affect your search task?</label>";
 }
 
 ?>

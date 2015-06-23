@@ -93,11 +93,11 @@ Try to find sources and snippets that are good quality for use in the group repo
 
 
 	<p>
-		You have approximately 30 minutes to search for sources.
+		You have approximately 20 minutes to search for sources.
 	</p>
 
 <p>
-	Click 'Finish' <strong>only when instructed<strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.
+	 <strong>DO NOT CLICK 'FINISH' UNTIL INSTRUCTED</strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.
 </p>
 
 
