@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>
+	 Exploratory Search Study: Firefox Plugin
+</title>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<style type="text/css">
+		.cursorType{
+		cursor:pointer;
+		cursor:hand;
+		}
+</style>
+</head>
+
+<script type="application/x-javascript"> 
+
+function install (aEvent) 
+{ 
+var params = { 
+"Bar": { URL: aEvent.target.href, 
+IconURL: '', 
+toString: function () { return this.URL; } 
+} 
+}; 
+InstallTrigger.install(params); 
+return false; 
+} 
+
+</script> 
+
+<body class="style1">
+
+<table class="body" width="90%">
+		<tr><th><span style="font-weight:bold; font-size:20px">Exploratory Search User Study 2014: Firefox Plug in</span><br/><br/></th></tr>
+		<tr><td><hr/></td></tr>
+		<tr>
+		<td>Once you install the latest firefox browser, please install the following plugin (XPI).</td>
+		</tr>
+		<!--<embed type="application/Coagmento_plugin2014" width=600 height=40 hidden = "true" 
+> </embed> -->
+		<tr>
+		<td><a href="http://userstudy2014.coagmento.rutgers.edu/userstudy2014/toolbar/2014UserStudyToolBar.xpi" onClick="return install(event)"> Click here to install the plugin</a>.</td>		
+		</tr>
+		<tr>
+		<td>When Firefox prompts whether to allow for installation, click "Allow". </td>
+		</tr>
+		<tr>
+		<td>Then when it prompts you to install the plugin, click "Install Now".</td>
+		</tr>
+		</tr>
+		<tr>
+		<td>Once installed and when prompted to restart, click "Restart Now".</td>
+		</tr>
+		<tr>
+		<td>Press 'CTRL+Shift+S'(for Windows users) or 'CMD+Shift+S'(for Mac users) in the browser to enable the side bar now.</td>
+		</tr>
+</table> 
+
+</body>
+</html>

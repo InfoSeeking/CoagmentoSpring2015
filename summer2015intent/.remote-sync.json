@@ -1,0 +1,12 @@
+{
+	"transport":"scp",
+	"hostname": "chirags.scilsnet.rutgers.edu",
+	"port":"22",
+	"username":"ka324",
+	"password":"kevinAlbs123",
+	"target":"/www/coagmento.org/htdocs/summer2015intent",
+	"ignore": [
+	".git/**"
+	],
+	"uploadOnSave":true
+}

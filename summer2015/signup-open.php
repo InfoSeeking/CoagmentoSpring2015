@@ -3,10 +3,10 @@ session_start();
 require_once('core/Connection.class.php');
 require_once('core/Questionnaires.class.php');
 
-$num_recruits = 0; 
+$num_recruits = 0;
 $recruit_limit =100; // Current Recruitment Limit as of 07/15/2014
 $section_closed = false;
-$closed=true;
+$closed=true; 
 $closed = false;
 
 if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
@@ -63,15 +63,15 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 					required: true,
 					email: true,
           equalTo: \"#email1_1\"
-				},
-				date_firstchoice_1: {
-
-					notEqualTo: \"#date_secondchoice_1\"
-				},
-				date_secondchoice_1: {
-
-					notEqualTo: \"#date_firstchoice_1\"
 				},";
+				// date_firstchoice_1: {
+        //
+				// 	notEqualTo: \"#date_secondchoice_1\"
+				// },
+				// date_secondchoice_1: {
+        //
+				// 	notEqualTo: \"#date_firstchoice_1\"
+				// },
 
         $messages = "firstName_1: {required:\"<span style='color:red'>Please enter your first name.</span>\"},
             lastName_1: {required:\"<span style='color:red'>Please enter your last name.</span>\"},
@@ -87,15 +87,15 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
     					required: \"<span style='color:red'>Please enter your e-mail address.</span>\",
     					email: \"<span style='color:red'>Please enter a valid e-mail address.</span>\",
               equalTo: \"<span style='color:red'>Please enter the same e-mail address again.</span>\",
-    				},
-						date_firstchoice_1: {
-    					required: \"<span style='color:red'>Please enter a date.</span>\",
-							notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
-    				},
-						date_secondchoice_1: {
-							required: \"<span style='color:red'>Please enter a date.</span>\",
-							notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
     				},";
+						// date_firstchoice_1: {
+    				// 	required: \"<span style='color:red'>Please enter a date.</span>\",
+						// 	notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
+    				// },
+						// date_secondchoice_1: {
+						// 	required: \"<span style='color:red'>Please enter a date.</span>\",
+						// 	notEqualTo: \"<span style='color:red'>Please enter two different dates.</span>\"
+    				// },
     echo $questionnaire->printValidation("spr2015_regform",$rules,$messages);
     ?>
 
@@ -129,7 +129,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 			<tr>
 			  <td colspan=2>
 				<ul>
-				<li>Use this form to register for the paid research study on collaborative research.</li>
+				<li>Use this form to register for the paid research study on collaborative research <strong>for Friday, June 26 (time TBD).</strong></li>
 				<li>Please fill out the information below then click Submit.</li>
 				<li>You will receive a confirmation email within 24-48 hours with details about time, date, and location of your session.</li>
 				<li>NOTE: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
@@ -229,18 +229,18 @@ for($x=1;$x<=$NUM_USERS;$x++){
 
 //Demographic Survey
 
-echo "<hr>";
-echo "<label ><h4>Please indicate your first and second choice for times and dates of the study sessions:</h4></label>";
-
-echo "<div class=\"pure-form-stacked\">";
-
-echo "<fieldset>";
-
-// Likert
-$questionnaire->printQuestions(23,24);
-
-echo "</fieldset>";
-echo "</div>";
+// echo "<hr>";
+// echo "<label ><h4></h4></label>";
+//
+// echo "<div class=\"pure-form-stacked\">";
+//
+// echo "<fieldset>";
+//
+// // Likert
+// $questionnaire->printQuestions(23,24);
+//
+// echo "</fieldset>";
+// echo "</div>";
 
 
 echo "<div class=\"pure-form-stacked\">";

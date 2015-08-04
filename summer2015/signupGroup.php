@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
 <link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
 <link rel="stylesheet" href="study_styles/custom/text.css">
-
+  
 
 </head>
 <body class="style1">
