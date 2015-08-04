@@ -4,11 +4,11 @@ require_once('core/Connection.class.php');
 
 $num_recruits = 0;
     $recruit_limit =100; // Current Recruitment Limit as of 10/6/2014
-
+ 
 $closed=true;
 
     $closed = false;
- 
+
 if($num_recruits<=$recruit_limit && !$closed)
 {
 
