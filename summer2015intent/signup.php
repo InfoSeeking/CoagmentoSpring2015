@@ -8,7 +8,7 @@ $recruit_limit =100; // Current Recruitment Limit as of 07/15/2014
 $section_closed = false;
 $closed=true;
 $closed = false;
- 
+
 if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 {
 	if(1)
@@ -16,7 +16,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
         $NUM_USERS = 1;
         $questionnaire = Questionnaires::getInstance();
 				$questionnaire->clearCache();
-        $questionnaire->populateQuestionsFromDatabase("spring2015","questionID ASC");
+        $questionnaire->populateQuestionsFromDatabase("fall2015intent","questionID ASC");
 
 
 	?>
@@ -132,7 +132,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 				<li>Use this form to register for the paid research study on collaborative research <strong>for Friday, June 26 (time TBD).</strong></li>
 				<li>Please fill out the information below then click Submit.</li>
 				<li>You will receive a confirmation email within 24-48 hours with details about time, date, and location of your session.</li>
-				<li>NOTE: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
+
 				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>
 				</td>
@@ -151,23 +151,28 @@ Registration
 
 
 									<p>Welcome! This is the sign-up form to register for the paid research study.</p>
-									<p>During this study you will perform online research using an experimental browser plug-in and answer questionnaires.</p>
-									<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building.</p>
-									<p>You will receive <strong>$20 cash</strong> for participating in the study.</p>
-					        <p>You are also eligible for an additional <strong>$20 cash prize</strong> for best performance, measured by amount of activity using the Coagmento tool.</p>
+									<p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
+									<p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
+									<p>You will receive <strong>$40 cash</strong> for participating in the study.</p>
+
 
 					        <p>Requirements:
 					          <ul>
 					            <li>You must be at least 18 years old to participate.</li>
 					            <li>Proficiency in English is required.</li>
 					            <li>Intermediate typing and online search skills are required.</li>
-					            <li>Note: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
+                      <li>Normal to corrected vision is required.</li>
+
 					          </ul>
 					        </p>
 
 
 
-									<p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers. You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary. This study has been approved by the Rutgers Institutional Review Board (IRB Study #E13-046), and will be supervised by Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
+									<p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers.
+                    You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary.
+                    This study has been approved by the Rutgers Institutional Review Board (IRB Study #E14-136),
+                    and will be supervised by Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu)
+                    at the School of Communication and Information.</p>
 								</td>
 							</tr>
 	  					</table>
@@ -248,12 +253,12 @@ echo "<fieldset>";
 
 echo "<hr>";
 
-
-$questionnaire->printQuestions(0,1);
-
-
-$questionnaire->printQuestions(3,5);
-$questionnaire->printQuestions(7,7);
+$questionnaire->printQuestions();
+// $questionnaire->printQuestions(0,1);
+//
+//
+// $questionnaire->printQuestions(3,5);
+// $questionnaire->printQuestions(7,7);
 echo "</fieldset>";
 echo "</div>";
 
@@ -284,7 +289,7 @@ echo "</div>";
 	<h3>Interactive Search Study: Complete Previous Page!!!!</h3>
 	<hr>
 	<p>You have to first submit the number of registrants for participating in the study.</p>
-	<p>Please visit the <a href="http://coagmento.org/spring2015/signup_intro.php">signup introduction</a> first.</p>
+	<p>Please visit the <a href="http://coagmento.org/summer2015intent/signup_intro.php">signup introduction</a> first.</p>
 	</body>
 	</html>
 <?php

@@ -4,7 +4,7 @@ require_once('core/Connection.class.php');
 
 $num_recruits = 0;
     $recruit_limit =100; // Current Recruitment Limit as of 10/6/2014
- 
+
 $closed=true;
 
     $closed = false;
@@ -65,17 +65,18 @@ function isRadioSelected(radioButtons, obj)
 			  <td colspan=2>
 
 				<p>Welcome! This is the sign-up form to register for the paid research study.</p>
-				<p>During this study you will perform online research using an experimental browser plug-in and answer questionnaires.</p>
-				<p>The study will last approximately 50-70 minutes and take place in the School of Communication and Information building in Room 222.</p>
-				<p>You will receive <strong>$20 cash</strong> for participating in the study.</p>
-        <p>You are also eligible for additional <strong>$50, $30, and $20 cash prizes</strong> for best performance.</p>
+				<p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
+				<p>The study will last approximately 150 minutes and take place in the School of Communication and Information building in Room 222.</p>
+				<p>You will receive <strong>$40 cash</strong> for participating in the study.</p>
+
 
         <p>Requirements:
           <ul>
             <li>You must be at least 18 years old to participate.</li>
             <li>Proficiency in English is required.</li>
             <li>Intermediate typing and online search skills are required.</li>
-            <li>Note: You <strong>cannot</strong> participate in this study if you participated in the Spring 2015 Coagmento study in ITI 220.</li>
+            <li>Normal to corrected vision is required.</li>
+
           </ul>
         </p>
 
@@ -87,8 +88,8 @@ function isRadioSelected(radioButtons, obj)
   standing or grades at Rutgers. You will not be offered or receive any special
   consideration if you take part in this research; it is purely voluntary. This
   study has been approved by the Rutgers Institutional Review Board (IRB Study
-  #E13-046), and will be supervised by
-  Dr. Chirag Shah (chirags@rutgers.edu)
+  #E14-136), and will be supervised by
+  Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu)
   at the School of Communication and Information.</p>
   <p>To continue with the participation registration, please click on the continue button.</p>
 				</td>

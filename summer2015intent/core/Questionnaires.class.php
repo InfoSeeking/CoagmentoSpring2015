@@ -69,7 +69,7 @@ class Questionnaires
 			$db_selected = $this->db_selected;
 
 			$query = "SELECT * from $db_selected WHERE question_cat='$questionnaire_name'";
-			if($questionnaire_name == 'spring2015'){
+			if($questionnaire_name == 'fall2015intent'){
 				$this->suffix="_1";
 			}
 			if($orderBy != NULL){

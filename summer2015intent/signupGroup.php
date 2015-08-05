@@ -117,7 +117,7 @@
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,`status`,study,optout,numUsers,topicAreaID,`group`) VALUES ('$next_userID','$next_userID','$username','$password','$password_sha1','1','1','0','$NUM_USERS','1','treatment')";
+                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,`status`,study,optout,numUsers,topicAreaID,`group`) VALUES ('$next_userID','$next_userID','$username','$password','$password_sha1','1','1','0','$NUM_USERS','1','control')";
                     $results = $connection->commit($query);
 										$userID = $next_userID;
 
@@ -179,11 +179,9 @@
 
 
 
-                $message .= "During this study you will perform online research using an experimental browser plug-in and answer questionnaires.<br/><br/>";
+                $message .= "During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.<br/><br/>";
                 $message .= "\r\n";
-								$message .= "You will receive <strong>$20 cash</strong> for participating in the study.<br/><br/>";
-								$message .= "\r\n";
-								$message .= "You are also eligible for additional <strong>$50, $30, and $20 cash prizes</strong> for best performance.<br/><br/>";
+								$message .= "You will receive <strong>$40 cash</strong> for participating in the study.<br/><br/>";
 								$message .= "\r\n";
 
 
