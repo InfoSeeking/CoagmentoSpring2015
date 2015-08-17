@@ -36,7 +36,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated');
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_demographic');
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -50,7 +50,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
-		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
+		$questionnaire->populateQuestionsFromDatabase("fall2015intent-demog","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
 

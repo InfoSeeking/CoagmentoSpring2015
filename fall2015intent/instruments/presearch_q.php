@@ -32,11 +32,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		foreach($_POST as $k=>$v){
-			if ($k != "presearch_q"){
+			if ($k != "pretask_q"){
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_repeated');
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_pretask');
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -50,7 +50,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
-		$questionnaire->populateQuestionsFromDatabase("summer2015-repeated","questionID ASC");
+		$questionnaire->populateQuestionsFromDatabase("fall2015intent-pretask","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
 
@@ -93,7 +93,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Pre-Task Questionnaire</h2></center>
+	<center><h2>Questionnaire</h2></center>
 
 	<p>Complete the survey!</p>
 
@@ -127,7 +127,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				?>
 			<!-- </span>
 		</div> -->
-
 
 <br/>
 

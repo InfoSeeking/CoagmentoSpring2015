@@ -46,18 +46,18 @@ if (isset($_POST["action"]) && $_POST["action"] == "update"){
 
 $userID = $base->getUserID();
 
-$query = "SELECT instructorID from recruits WHERE userID='$userID'";
-$cxn = Connection::getInstance();
-$r = $cxn->commit($query);
-$l = mysql_fetch_array($r,MYSQL_ASSOC);
-$instructorID = $l['instructorID'];
+// $query = "SELECT instructorID from recruits WHERE userID='$userID'";
+// $cxn = Connection::getInstance();
+// $r = $cxn->commit($query);
+// $l = mysql_fetch_array($r,MYSQL_ASSOC);
+// $instructorID = $l['instructorID'];
 
 
 
 Util::getInstance()->saveAction("View Bookmark",$bookmarkID, $base);
 
 
-$query = "SELECT bookmarkID, userID, (SELECT username from users b where a.userID = b.userID) username, url, title, time, rating, note, useful_info, author_qualifications
+$query = "SELECT bookmarkID, userID, (SELECT username from users b where a.userID = b.userID) username, url, title, time, rating
 FROM bookmarks a
 WHERE bookmarkID = $bookmarkID";
 
@@ -80,9 +80,9 @@ $username = $line['username'];
 $time = $line['time'];
 $userID = $line['userID'];
 $rating = $line['rating'];
-$note = $line['note'];
-$author_qualifications = $line['author_qualifications'];
-$useful_info = $line['useful_info'];
+// $note = $line['note'];
+// $author_qualifications = $line['author_qualifications'];
+// $useful_info = $line['useful_info'];
 
 $editable = true;
 $user = "";
@@ -139,29 +139,7 @@ else {
 					<h3><a href="<?php echo $url; ?>" target="_new"><?php echo $title; ?></a></h3>
 					<h4>Saved by <strong><?php echo $user;?></strong> at <strong><?php echo $time;?></strong></h4>
 
-					<?php
-					if($instructorID==1){
-					?>
-					<div class="row">
-						<label>Notes</label><br/>
-						<textarea name="notes" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($note) && $note != "") echo $note; ?></textarea>
-					</div>
-					<?php
-					}else{
 
-
-					?>
-					<div class="row">
-						<label>Information For Report</label><br/>
-						<textarea name="useful_info" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($useful_info) && $useful_info != "") echo $useful_info; ?></textarea>
-					</div>
-					<div class="row">
-						<label>Author's Qualifications</label><br/>
-						<textarea name="author_qualifications" <?php if(!$editable) echo "disabled"; ?>><?php if(!is_null($author_qualifications) && $author_qualifications != "") echo $author_qualifications; ?></textarea>
-					</div>
-					<?php
-					}
-					?>
 					<div class="row">
 						<label>Tags (press <u>enter</u> after every tag)</label><br/>
 						<select name="tags[]" id="tag-input" multiple="multiple" <?php if(!$editable) echo "disabled"; ?>>
@@ -188,23 +166,6 @@ else {
 			<?php
 
 			$projectID = $base->getProjectID();
-			$query = "SELECT * FROM (SELECT url,userID,projectID FROM bookmarks WHERE bookmarkID = $bookmarkID) a INNER JOIN (SELECT * FROM snippets WHERE projectID='$projectID') b on a.userID=b.userID AND a.url=b.url";
-
-			$connection = Connection::getInstance();
-			$results = $connection->commit($query);
-
-			$count = 1;
-			while ($line = mysql_fetch_array($results, MYSQL_ASSOC)){
-				echo "<p><strong>Snippet $count:</strong> ";
-				$snippet =$line['snippet'];
-				if (trim($snippet)!=""){
-					echo $snippet;
-				}else{
-					echo "(no text)";
-				}
-				echo "</p>";
-				$count += 1;
-			}
 
 			?>
 	<script>

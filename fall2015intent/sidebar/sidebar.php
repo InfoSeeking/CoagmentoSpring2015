@@ -506,11 +506,11 @@ cursor:hand;
 
 <li><a href="sidebarComponents/bookmarks.php?clicktab=true"  rel="tabscontainer" class="selected">Bookmarks</a></li>
 
-<li><a href="sidebarComponents/snippets.php?clicktab=true" rel="tabscontainer">Snippets</a></li>
+<!-- <li><a href="sidebarComponents/snippets.php?clicktab=true" rel="tabscontainer">Snippets</a></li>
 
 <li><a href="sidebarComponents/searches.php?clicktab=true" rel="tabsycontainer">Searches</a></li>
 
-<li><a href="sidebarComponents/sources.php?clicktab=true" rel="tabsycontainer">Sources</a></li>
+<li><a href="sidebarComponents/sources.php?clicktab=true" rel="tabsycontainer">Sources</a></li> -->
 
 </ul>
 

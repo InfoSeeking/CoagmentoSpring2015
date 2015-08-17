@@ -43,7 +43,7 @@
 
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-				$headers .= 'From: Chris Leeder <cal293@scarletmail.rutgers.edu>' . "\r\n";
+				$headers .= 'From: Matthew Mitsui <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
 
 				$subject = "Interactive search study completion";
 
@@ -55,7 +55,7 @@
 				$message .= "\r\n";
 				$message .= "We have attached to this e-mail the snippets, bookmarks, and Task Pad you've created for your own personal use.<br/><br/>";
 				$message .= "\r\n";
-				$message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
+				$message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Matthew Mitsui<br/>PhD Student<br/>Rutgers University School of Communication and Information<br/>mmitsui@scarletmail.rutgers.edu<br/>";
 				$message .= "\r\n";
 
         //snippets

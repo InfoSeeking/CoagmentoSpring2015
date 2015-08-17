@@ -13,7 +13,7 @@
     echo "<tr>";
     echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName desc','bookmarksBox','bookmarks.php')\"></td>";
     echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title desc','bookmarksBox','bookmarks.php')\"></td>";
-    echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating desc','bookmarksBox','bookmarks.php')\"></td>";//echo "<td></td>";
+    // echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating desc','bookmarksBox','bookmarks.php')\"></td>";//echo "<td></td>";
     //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating desc','bookmarksBox','bookmarks.php')\"></td>";
      echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID desc','bookmarksBox','bookmarks.php')\"></td>";
      echo "<td></td>";
@@ -22,7 +22,7 @@
 <tr>
   <th>User</th>
   <th>Bookmark title</th>
-  <th>Rating</th>
+  <!-- <th>Rating</th> -->
   <th>Date</th>
 </tr>
 <?php
@@ -37,11 +37,11 @@
     $connection = Connection::getInstance();
     $questionID = $base->getQuestionID();
 
-    $query = "SELECT instructorID from recruits WHERE userID='$userID'";
-		$cxn = Connection::getInstance();
-		$r = $cxn->commit($query);
-		$l = mysql_fetch_array($r,MYSQL_ASSOC);
-		$instructorID = $l['instructorID'];
+    // $query = "SELECT instructorID from recruits WHERE userID='$userID'";
+		// $cxn = Connection::getInstance();
+		// $r = $cxn->commit($query);
+		// $l = mysql_fetch_array($r,MYSQL_ASSOC);
+		// $instructorID = $l['instructorID'];
 
 
     $filter = isset($_GET['filter']) ? intval($_GET['filter']) : -1; //tag id
@@ -125,11 +125,12 @@
         echo "<td><span style=\"font-size:10px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-        if($instructorID==1){
-          echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
-        }else{
-          echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark2('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
-        }
+        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        // if($instructorID==1){
+        //   echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        // }else{
+        //   echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark2('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        // }
         //                echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewSnipetOnWindow\" onmouseover=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" onmouseout=\"javascript:hideLayer('floatSnippetLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         //			if ($url)
         //				echo "<font color=blue><a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px\">$title</a></span></td>\n";
@@ -146,8 +147,8 @@
         echo "<input type=\"hidden\" id=\"source$bookmarkID\" value=\"$title\">";
         echo "<input type=\"hidden\" id=\"url$bookmarkID\" value=\"$url\">";
         echo "<input type=\"hidden\" id=\"time$bookmarkID\" value=\"$time\">";
-        $ratingRepresentation = getBookmarkRatingRepresentation($rating, $bookmarkID,'Bookmarks','floatBookmarkLayer','bookmarksBox','bookmarks.php');
-        echo "<td align=\"center\">$ratingRepresentation</td>";
+        // $ratingRepresentation = getBookmarkRatingRepresentation($rating, $bookmarkID,'Bookmarks','floatBookmarkLayer','bookmarksBox','bookmarks.php');
+        // echo "<td align=\"center\">$ratingRepresentation</td>";
         echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$display_date</span></td>";
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt

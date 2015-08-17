@@ -144,7 +144,13 @@ class Questionnaires
 		}
 
 		public function addAnswer($key,$answer){
-			$answer = addslashes($answer);
+			print "ADD:$key $answer";
+
+			if(!is_array($answer)){
+					$answer = addslashes($answer);
+			}
+
+
 			foreach($this->questions as $v){
 				if($v['key']==$key){
 					$this->answers["$key"] = $answer;
@@ -163,7 +169,18 @@ class Questionnaires
 						}
 					}
 
+				}else if($v['question_type']=="checkbox"){
+					foreach($v['question_data']->{'options'} as $text=>$rokey){
+						// echo "ROKEY: $rokey";
+						if($rokey == $key){
+							$this->answers["$key"] = $answer;
+							// echo "ANSWER ADDED!";
+							return;
+						}
+					}
+
 				}
+
 			}
 		}
 
@@ -204,10 +221,23 @@ class Questionnaires
 				}
 
 				foreach($this->answers as $anskey=>$ansval){
-					$k = $anskey;
-					$v = $ansval;
-					$keystr .= "$k,";
-					$valstr .= "'$v',";
+
+					if(!is_array($ansval)){
+						$k = $anskey;
+						$v = $ansval;
+						$keystr .= "$k,";
+						$valstr .= "'$v',";
+					}else{
+
+						print_r($ansval);
+						foreach($ansval as $ansindex=>$ansk){
+							$k = $ansk;
+							$v = "1";
+							$keystr .= "$k,";
+							$valstr .= "'$v',";
+						}
+					}
+
 				}
 
 				$base = Base::getInstance();
@@ -227,7 +257,7 @@ class Questionnaires
 				$keystr .= ")";
 				$valstr .= ")";
 				$query .= "$keystr VALUES $valstr";
-				// echo "$query";
+
 				$cxn = Connection::getInstance();
 
 				return $cxn->commit($query);
@@ -270,7 +300,6 @@ class Questionnaires
 					$keystr .= ")";
 					$valstr .= ")";
 					$query .= "$keystr VALUES $valstr";
-					// echo "$query";
 					$cxn = Connection::getInstance();
 					return $cxn->commit($query);
 
@@ -304,7 +333,10 @@ class Questionnaires
 					$this->printLikert($q['question'],$q['key'],$q['question_data']);
 				}else if($q['question_type']=='text'){
 					$this->printText($q['question'],$q['key'],$q['question_data']);
+				}else if($q['question_type']=='checkbox'){
+					$this->printCheckbox($q['question'],$q['key'],$q['question_data']);
 				}
+
 				if($q['question_type']!='select'){
 					echo "<br>";
 				}
@@ -372,6 +404,12 @@ class Questionnaires
 								echo ",";
 							}
 							echo "\n";
+						}else if($type == 'checkbox'){
+							echo "'$key"."$suffix".'[]'."' :{required: true}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
 						}
 
 					}
@@ -407,6 +445,12 @@ class Questionnaires
 							echo "\n";
 						}else if($type == 'text'){
 							echo "$key"."$suffix :{required: \"<span style='color:red'>Please enter your response.</span>\"}";
+							if($i != count($this->questions)-1){
+								echo ",";
+							}
+							echo "\n";
+						}else if($type == 'checkbox'){
+							echo "'$key"."$suffix".'[]'."' :{required: \"<span style='color:red'>Please select an option.</span>\"}";
 							if($i != count($this->questions)-1){
 								echo ",";
 							}
@@ -539,6 +583,33 @@ class Questionnaires
 				echo "<div $style class=\"pure-u-1-8\">";
 				echo "<label for=\"".$pref."$suffix$countstr\" class=\"pure-radio\">";
 				echo "<input id=\"".$pref."$suffix$countstr\" type=\"radio\" name=\"".$pref."$suffix\" value=\"$v\">$k";
+				echo "</label>";
+				echo "</div>\n";
+				$count += 1;
+			}
+			echo "</div>\n";
+			echo "</div>\n";
+			echo "</div>\n\n";
+		}
+
+		public function printCheckbox($question,$key,$data){
+			$suffix = $this->suffix;
+			$pref = $key;
+			echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
+			echo "<label>$question</label>\n";
+			echo "<div id=\"".$pref."_div$suffix\" class=\"container\">\n";
+			echo "<div class=\"pure-g\">\n";
+			$count = 1;
+			foreach($data->{'options'} as $k=>$v){
+				$style = "";
+				if(($count)%2){
+					$style = "style=\"background-color:#F2F2F2\"";
+				}
+				$countstr = "_$count";
+				$keystr = "_$k";
+				echo "<div $style class=\"pure-u-1-8\">";
+				echo "<label for=\"".$pref."$suffix$keystr\" class=\"pure-checkbox\">";
+				echo "<input id=\"".$pref."$suffix$keystr\" type=\"checkbox\" name=\"".$pref."$suffix".'[]'."\" value=\"$v\">$k";
 				echo "</label>";
 				echo "</div>\n";
 				$count += 1;

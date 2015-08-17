@@ -231,6 +231,16 @@ class Base {
 		return $this->stageID;
 	}
 
+  public function getTaskNum()
+	{
+    if($this->stageID < 40){
+      return 1;
+    }else{
+      return 2;
+    }
+
+	}
+
 	public function getPage()
 	{
 		return $this->page;
