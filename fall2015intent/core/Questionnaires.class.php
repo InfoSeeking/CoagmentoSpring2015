@@ -349,9 +349,9 @@ class Questionnaires
 			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/buttons.css\">\n";
 			echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/forms.css\">\n";
 		  echo "<link rel=\"stylesheet\" href=\"".$this->basedirectory."study_styles/pure-release-0.5.0/grids-min.css\">\n";
-			echo "<script src=\"".$this->basedirectory."lib/jquery-2.1.3.min.js\"></script>\n";
-			echo "<script src=\"".$this->basedirectory."lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>\n";
-			echo "<script src=\"".$this->basedirectory."lib/validation/validation.js\"></script>\n";
+			echo "<script type=\"text/javascript\" src=\"".$this->basedirectory."lib/jquery-2.1.3.min.js\"></script>\n";
+			echo "<script type=\"text/javascript\" src=\"".$this->basedirectory."lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js\"></script>\n";
+			echo "<script type=\"text/javascript\" src=\"".$this->basedirectory."lib/validation/validation.js\"></script>\n";
 		}
 
 		public function printPostamble(){
@@ -514,11 +514,17 @@ class Questionnaires
 			$suffix = $this->suffix;
 
 			echo "<div class=\"pure-control-group\">";
-			echo "<label name=\"$key\">$question</label>";
+			echo "<label name=\"".$key."_radio\">$question</label>";
 			echo "<div id=\"$key"."_div$suffix\" class=\"container\">";
 			echo "<label for=\"$key"."$suffix\" class=\"pure-radio\">";
+			$ct = 0;
+			$t = "";
 			foreach($data->{'options'} as $optionkey=>$optionvalue){
-				echo "<input id=\"$key"."$suffix-$optionvalue\" type=\"radio\" name=\"$key"."$suffix\" value=\"$optionvalue\"> $optionkey ";
+				if($ct == 0)
+					$t = "required";
+				$ct += 1;
+				echo "<input id=\"$key"."$suffix-$optionvalue\" type=\"radio\" name=\"$key"."$suffix\" value=\"$optionvalue\" $t> $optionkey ";
+				$t = "";
 			}
 			echo "</label>";
 			echo "</div>";
@@ -569,7 +575,8 @@ class Questionnaires
 		public function printLikert($question,$key,$data){
 			$suffix = $this->suffix;
 			$pref = $key;
-			echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
+			echo "<div >\n";
+			// echo "<div style=\"border:1px solid gray; border-right-width:0px;border-left-width:0px\">\n";
 			echo "<label>$question</label>\n";
 			echo "<div id=\"".$pref."_div$suffix\" class=\"container\">\n";
 			echo "<div class=\"pure-g\">\n";

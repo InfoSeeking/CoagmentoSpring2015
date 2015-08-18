@@ -67,7 +67,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
     </title>
 
 
-    <style>
+    <style  type="text/css">
     select {
       font-size:13px;
     }
@@ -141,7 +141,7 @@ $questionnaire->printQuestions();
 </fieldset>
 </div>
 
-<hr>
+<hr/>
 
 <input type="hidden" name="pretask_q" value="true"/>
   <button class="pure-button pure-button-primary" type="submit">Submit</button>
