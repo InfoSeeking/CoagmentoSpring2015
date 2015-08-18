@@ -15,12 +15,7 @@
 		$localTimestamp = $_GET['localTimestamp'];
 
     $connection = Connection::getInstance();
-		$query = "SELECT userID, topicAreaID
-					FROM users
-					WHERE userID='$userID'";
-		$results = $connection->commit($query);
-		$line = mysql_fetch_array($results,MYSQL_ASSOC);
-		$topicAreaID = $line['topicAreaID'];
+		$topicAreaID = $base->getTopicAreaID();
 
 
 		$query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";

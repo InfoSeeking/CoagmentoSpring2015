@@ -93,9 +93,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Questionnaire</h2></center>
+	<center><h2>Search Questionnaire</h2></center>
 
-	<p>Complete the survey!</p>
+	<p>Below are some questions regarding how you typically conduct searching on the internet.  Please complete them to the best of your ability.</p>
+	<hr/>
 
 
 

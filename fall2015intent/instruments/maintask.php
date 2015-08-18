@@ -23,6 +23,16 @@
 		}
 		else
 		{
+
+			$base = new Base();
+			$userID = $base->getUserID();
+			$stageID = $base->getStageID();
+			$projectID = $base->getProjectID();
+
+			$part_text = "";
+			if($stageID > 35){
+				$part_text = "Part 2 - ";
+			}
             ?>
 <html>
 <head>
@@ -47,13 +57,13 @@ function validate(form)
 </script>
 <body class="body">
 	<div style="width:90%; margin: 0 auto">
-		<center><h2>Search Task</h2></center>
+		<center><h2><?php echo $part_text;?>Search Task</h2></center>
 <form action="maintask.php" method="post" onsubmit="return validate(this)">
 
 
-<p>Here's the task description!</p>
+<p>Below is the same task that you were shown before.  If you have not done so, please read it carefully.  You can also review this by clicking the "Assignment" button in your toolbar.</p>
 
-<p>Open new tabs for searching. Do not open a new window.</p>
+<strong><p>You have approximately 20 minutes to search.  You may open new tabs when searching, but please do not open new browser windows.</p></strong>
 
 
 
@@ -65,12 +75,8 @@ function validate(form)
 			$base = Base::getInstance();
 			$userID = $base->getUserID();
 			$connection = Connection::getInstance();
-			$query = "SELECT userID, topicAreaID
-						FROM users
-						WHERE userID='$userID'";
-			$results = $connection->commit($query);
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$topicAreaID = $line['topicAreaID'];
+
+			$topicAreaID = $base->getTopicAreaID();
 
 
 			$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
@@ -87,10 +93,6 @@ function validate(form)
 		</span>
 	</div>
 
-
-	<p>
-		You have approximately 40 minutes to search.
-	</p>
 
 <p>
 	 <strong>DO NOT CLICK 'FINISH' UNTIL INSTRUCTED</strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.

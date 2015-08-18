@@ -50,6 +50,7 @@ class Base {
     //TEMP (Matt).  For Simon's task
     const TASK_CIS = 1;
     const TASK_MDP = 2;
+    const PART_ONE_LAST_STAGE = 35;
 
 
 	public function __construct() {
@@ -709,7 +710,15 @@ class Base {
     //TEMP (Matt)
     public function getTopicAreaID(){
         if(!isset($this->topicAreaID)){
-            $query = "SELECT * FROM users WHERE userID='".$this->userID."' ORDER BY topicAreaID DESC";
+
+    				$taID_str = "topicAreaID1";
+    				if($this->getStageID()>Base::PART_ONE_LAST_STAGE){
+    					$taID_str = "topicAreaID2";
+    				}
+
+            $query = "SELECT userID, ".$taID_str." as topicAreaID
+    							FROM users
+    							WHERE userID='".$this->userID."'";
             $connection = Connection::getInstance();
             $results = $connection->commit($query);
             $line = mysql_fetch_array($results, MYSQL_ASSOC);

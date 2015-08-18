@@ -319,14 +319,13 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1" onload="init();">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Pre-Task Questionnaire</h2></center>
+	<center><h2>Intent Annotation</h2></center>
 
-	<p>The following is a video.  We have marked some of the below as query segments.</p>
-
-	<p>Annotate the segments with intents!</p>
-	<video id="session_video" width="100%">
+	<p>Below is a video of the search you previously conducted.  We have broken your session down into several segments.</p>
+	<p>For each segment, you are asked to indicate your underlying intentions behind the actions you conducted. For what reasons did you conduct the search and view the pages?  Please check all of the annotations that apply.</p>
+	<center><video id="session_video" width="80%">
 		<source id="mp4source" type="video/mp4" src="../data/videos/mp4/<?php echo $filename;?>" >
-	</video>
+	</video></center>
 
 <hr>
 <br>

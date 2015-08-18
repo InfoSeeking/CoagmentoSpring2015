@@ -53,6 +53,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$questionnaire->populateQuestionsFromDatabase("fall2015intent-cog","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
+		$part_text = "";
+		if($stageID > 35){
+			$part_text = "Part 2 - ";
+		}
 
 
 
@@ -93,9 +97,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Pre-Task Questionnaire</h2></center>
+	<center><h2><?php echo $part_text;?>Post-Search Questionnaire</h2></center>
 
-	<p>Complete the survey!</p>
+	<p>Below is a questionnaire regarding the task you just completed.  Please fill out the requested information to the best of your ability.</p>
 
 
 

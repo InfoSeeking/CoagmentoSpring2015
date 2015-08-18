@@ -79,7 +79,7 @@
 	<br/>
 	<form class="pure-form" action="welcome.php" method="post" onsubmit="return validate(this)">
 		<table class="body" width="90%">
-		<tr><th><h2>Library Research Study: Overview</h2></th></tr>
+		<tr><th><h2>Research Study: Overview</h2></th></tr>
 		<tr><td><hr/></td></tr>
 		<tr>
 			<td>

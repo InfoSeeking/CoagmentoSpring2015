@@ -10,20 +10,20 @@
     echo "<div id=\"floatBookmarkLayer\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<div id=\"floatBookmarkLayerDelete\" style=\"position:absolute;  width:150px;  padding:16px;background:#FFFFFF;  border:2px solid #2266AA;  z-index:100; display:none \"></div>";
     echo "<table width=100% cellspacing=0>\n";
-    echo "<tr>";
-    echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName desc','bookmarksBox','bookmarks.php')\"></td>";
-    echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title desc','bookmarksBox','bookmarks.php')\"></td>";
-    // echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating desc','bookmarksBox','bookmarks.php')\"></td>";//echo "<td></td>";
-    //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating desc','bookmarksBox','bookmarks.php')\"></td>";
-     echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID desc','bookmarksBox','bookmarks.php')\"></td>";
-     echo "<td></td>";
-    echo "</tr>";
+    // echo "<tr>";
+    // echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','userName desc','bookmarksBox','bookmarks.php')\"></td>";
+    // echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','title desc','bookmarksBox','bookmarks.php')\"></td>";
+    // // echo "<td align=\"left\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','rating desc','bookmarksBox','bookmarks.php')\"></td>";//echo "<td></td>";
+    // //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('Bookmarks','finalRating desc','bookmarksBox','bookmarks.php')\"></td>";
+    //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID desc','bookmarksBox','bookmarks.php')\"></td>";
+    //  echo "<td></td>";
+    // echo "</tr>";
 ?>
 <tr>
-  <th>User</th>
+  <!-- <th>User</th> -->
   <th>Bookmark title</th>
   <!-- <th>Rating</th> -->
-  <th>Date</th>
+  <!-- <th>Date</th> -->
 </tr>
 <?php
     //    TODO: May not have been part of this code.  Delete?
@@ -65,17 +65,17 @@
     $bgColor = '#E8E8E8';
     $numRows = mysql_num_rows($results);
 
-    echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick=\"updateOnlyMine(" . ($only_mine ? "false" : "true")  . ",'bookmarks', refreshBookmarks)\">";
-    echo ($only_mine ? "Show everyone's data" : "Show only my data");
-    echo "</a>";
+    // echo "<a id='only_mine_select' style='cursor:pointer;text-decoration:underline' onclick=\"updateOnlyMine(" . ($only_mine ? "false" : "true")  . ",'bookmarks', refreshBookmarks)\">";
+    // echo ($only_mine ? "Show everyone's data" : "Show only my data");
+    // echo "</a>";
 
-    echo "<p>Filter by tag: ";
-    echo "<select id='tagfilter' onchange='filterBy(this.value,refreshBookmarks)' class='tags'><option value='-1'>Show all</option>";
-    foreach($tags as $t){
-      $extra = $t["tagID"] == $filter ? "selected" : "";
-      printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);
-    }
-    echo "</select></p><br/>";
+    // echo "<p>Filter by tag: ";
+    // echo "<select id='tagfilter' onchange='filterBy(this.value,refreshBookmarks)' class='tags'><option value='-1'>Show all</option>";
+    // foreach($tags as $t){
+    //   $extra = $t["tagID"] == $filter ? "selected" : "";
+    //   printf("<option %s value='%d'>%s</option>",$extra,$t["tagID"],$t["name"]);
+    // }
+    // echo "</select></p><br/>";
 
     if($numRows == 0){
       echo "No bookmarks saved";
@@ -121,7 +121,8 @@
 //        }
 
 
-        echo "<tr style=\"background:$bgColor;\"><td><span style=\"font-size:10px\">$userName</span>&nbsp;</td>";
+        echo "<tr style=\"background:$bgColor;\">";
+        // echo "<td><span style=\"font-size:10px\">$userName</span>&nbsp;</td>";
         echo "<td><span style=\"font-size:10px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
@@ -149,7 +150,8 @@
         echo "<input type=\"hidden\" id=\"time$bookmarkID\" value=\"$time\">";
         // $ratingRepresentation = getBookmarkRatingRepresentation($rating, $bookmarkID,'Bookmarks','floatBookmarkLayer','bookmarksBox','bookmarks.php');
         // echo "<td align=\"center\">$ratingRepresentation</td>";
-        echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$display_date</span></td>";
+
+        // echo "<td align=\"right\" onmouseover=\"javascript:showTime('floatBookmarkLayer',null,'$bookmarkID')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\"><span style=\"font-size:10px\">$display_date</span></td>";
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
 

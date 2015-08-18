@@ -48,6 +48,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$stageID = $base->getStageID();
 		$projectID = $base->getProjectID();
 
+		$part_text = "";
+		if($stageID > 35){
+			$part_text = "Part 2 - ";
+		}
+
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
 		$questionnaire->populateQuestionsFromDatabase("fall2015intent-pretask","questionID ASC");
@@ -77,6 +82,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
     <script type="text/javascript">
     <?php
     echo $questionnaire->printValidation("sum2015_qform");
+
+
     ?>
 
 
@@ -93,40 +100,36 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Questionnaire</h2></center>
+	<center><h2><?php echo $part_text;?>Topic Questionnaire</h2></center>
 
-	<p>Complete the survey!</p>
+	<p>You will be asked to conduct searching around the following topic.  Please read the topic description and answer the questions below.</p>
 
 
 
-		<!-- <div class="grayrect">
-			<span> -->
+		 <div class="grayrect">
+			<span>
 				<?php
 
-				// $base = Base::getInstance();
-				// $userID = $base->getUserID();
-				// $connection = Connection::getInstance();
-				// $query = "SELECT userID, topicAreaID
-				// 			FROM users
-				// 			WHERE userID='$userID'";
-				// $results = $connection->commit($query);
-				// $line = mysql_fetch_array($results,MYSQL_ASSOC);
-				// $topicAreaID = $line['topicAreaID'];
-				//
-				//
-				// $query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
-				// $results = $connection->commit($query);
-				// $question1 = '';
-				// $line = mysql_fetch_array($results,MYSQL_ASSOC);
-				// $question1 = $line['question'];
-				//
-				//
-				// echo $question1;
+				$base = Base::getInstance();
+				$userID = $base->getUserID();
+				$connection = Connection::getInstance();
+
+				$topicAreaID = $base->getTopicAreaID();
+
+
+				$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
+				$results = $connection->commit($query);
+				$question1 = '';
+				$line = mysql_fetch_array($results,MYSQL_ASSOC);
+				$question1 = $line['question'];
+
+
+				echo $question1;
 
 
 				?>
-			<!-- </span>
-		</div> -->
+			 </span>
+		</div>
 
 <br/>
 
