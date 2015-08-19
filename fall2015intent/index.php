@@ -30,6 +30,7 @@
 
                     $i = $l['userID'];
                     $q = "DELETE FROM session_progress WHERE userID='$i'";
+										$q = "DELETE FROM questions_progress WHERE userID='$i'";
                     $c = Connection::getInstance();
                     $r = $c->commit($q);
 

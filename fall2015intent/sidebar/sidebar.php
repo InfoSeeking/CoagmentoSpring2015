@@ -139,6 +139,7 @@
 <link rel="stylesheet" type="text/css" href="ajaxtabs/ajaxtabs.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/tabview/assets/skins/sam/tabview.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
 #pfc_cmd_container{
 	display: none;
@@ -164,6 +165,51 @@
 
 
 
+/***************************************************************************************************************************************/
+/***************************************************************************************************************************************/
+/**************************************************** TIMER ****************************************************************************/
+/***************************************************************************************************************************************/
+/***************************************************************************************************************************************/
+
+	$page = $base->getPage();
+//	$qProgressID = $_SESSION['qProgressID'];
+
+	/* ---COMMENTED OUT ON 05/23/2014-----
+	if ($base->getStageID()==170)
+	{
+		$page = "question3.php";
+	}
+	----------------------------------*/
+
+
+	//echo "Page ".$page;
+	/*
+	if ($base->getStageID()==100)
+		$page = "task.php";
+	else
+		if ($base->getStageID()==80)
+			$page = "stimuli.php";
+		else
+			if ($base->getStageID()==78)
+				$page = "pretask.php";
+			else
+				if ($base->getStageID()==91)
+					$page = "posttask.php";
+				else
+					if ($base->getStageID()==43)
+						$page = "practice.php";		*/
+
+
+?>
+
+
+<?php
+	$base = Base::getInstance();
+	// Temporary fix for disabling toolbar buttons when clicked Finish
+	if(isset($_GET['disallowbrowsing'])){
+		$base->setAllowBrowsing(0);
+	}
+?>
 
 /***********************************************
  * Ajax Tabs Content script v2.2- � Dynamic Drive DHTML code library (www.dynamicdrive.com)
@@ -415,10 +461,73 @@ cursor:hand;
 
 	if ($base->isSessionActive())
 	{
-        echo "<body>";
-		//first region
-		if ($base->getAllowCommunication()==1)
-		{
+	// if (isset($_GET['show'])) //&&(!(isset($_GET['answer']))))
+	// {
+		// echo "<body onload=\"startTimeTask()\">";
+//        echo "<body>";
+
+
+		echo "<body>";
+
+	//first region
+	//if (($base->getStageID()==80)||($base->getStageID()==100))
+	if ($base->getAllowCommunication()==1)
+	{
+		//Show question and timer
+		//Retrieve question
+		$qQuery = "SELECT question
+							 FROM questions_study
+						WHERE questionID = '".$base->getQuestionID()."'";
+
+		$connection = Connection::getInstance();
+		$results = $connection->commit($qQuery);
+		$line = mysql_fetch_array($results, MYSQL_ASSOC);
+		$question = $line['question'];
+
+		$extra = 0; //Adding extra seconds to compensate questionnaires, reading question, and syncrhonization
+		$taskRemainingTime = $base->getTaskRemainingTime()+$extra;
+
+		//Find question min time and max time
+
+		$minTimeQuery = "SELECT minTimeQuestion, maxTime
+								FROM session_stages
+							WHERE stageID = '".$base->getStageID()."'";
+
+		$minTimeconnection = Connection::getInstance();
+		$minTimeresults = $minTimeconnection->commit($minTimeQuery);
+		$minTimeline = mysql_fetch_array($minTimeresults, MYSQL_ASSOC);
+		$minTime = $minTimeline['minTimeQuestion'];
+		$maxTime = $minTimeline['maxTime'];
+
+
+		/*
+		* Fix for showing timer at start of task display; hiding snippets and finish button until search is enabled.
+		*/
+		$questionID = $base->getQuestionID();
+//			$queryQuest = "SELECT distinct(1) res
+//							 	   FROM questionnaire_pretask
+//								   WHERE stageID = '".$base->getStageID()."' and userID = '".$base->getUserID()."' and projectID = '".$base->getProjectID()."' and questionID = '$questionID'";
+//
+//			$connection = Connection::getInstance();
+//			$queryQuestresults = $connection->commit($queryQuest);
+//			$numRows = mysql_num_rows($queryQuestresults);
+//			$isPretaskQuestionnaireComplete = false;
+//
+//			if ($numRows>0)
+//			{
+//					$isPretaskQuestionnaireComplete = true;
+//			}
+
+		// Blinker threshold for practice and real tasks
+		$blinkThreshold = 300; //real task
+
+//			if($base->getStageID()==50) //practice task
+//			{
+//				$blinkThreshold = 30;
+//
+//			}
+
+
 
 ?>
 
@@ -428,6 +537,16 @@ cursor:hand;
 
 
 <script type="text/javascript">
+var currentTimeTask = <?php echo $taskRemainingTime;?>;
+var overallTimeTask = currentTimeTask;
+var minTime = <?php echo $minTime;?>;
+var maxTime = <?php echo $maxTime;?>;
+var blinkThreshold=<?php echo $blinkThreshold;?>;
+
+
+
+
+
 
 
 <?php
@@ -438,6 +557,8 @@ cursor:hand;
      }
     ?>
 </script>
+
+
 
 
 

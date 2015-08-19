@@ -39,7 +39,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$res = $cxn->commit("SELECT * FROM video_segments WHERE userID='$userID' and projectid='$projectID' and questionID='$questionID'");
 		$N_RESULTS = mysql_num_rows($res);
-		print_r($_POST);
 
 
 		for($x=1; $x <= $N_RESULTS; $x += 1){
@@ -202,6 +201,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <html>
 <head>
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="../study_styles/custom/background.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
@@ -214,10 +214,65 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
     </title>
 
 
+
+
     <style>
     select {
       font-size:13px;
     }
+
+		.left {
+		  position:fixed; // keep fixed to window
+		  padding: 10px;
+			margin-left: 70%;
+
+		  top: 0; left: 0; bottom: 0; // position to top left of window
+			position: fixed;
+
+    	overflow-y: scroll;
+
+
+		  height:100%; //set dimensions
+		  transition: width ease .5s; // fluid transition when resizing
+
+		  /* Sass/Scss only:
+		    Using a selector (.open-nav) with an "&" afterward is actually selecting
+		  any parent selector. For instance, this outputs "body.open-nav .left { ... }"
+		  More info: http://thesassway.com/intermediate/referencing-parent-selectors-using-ampersand
+		  */
+		  body.open-nav & {
+		    width:250px;
+		  }
+
+		  ul {
+		    list-style:none;
+		    margin:0; padding:0;
+
+		    li {
+		      margin-bottom:25px;
+		    }
+		  }
+
+		  a {
+		    color:shade(darkslategray, 50%);
+		    text-decoration:none;
+		    border-bottom:1px solid transparent;
+		    transition:
+		      color ease .35s,
+		      border-bottom-color ease .35s;
+
+		    &:hover {
+		       color:white;
+		       border-bottom-color:white;
+		    }
+
+		    &.open {
+		      font-size:1.75rem;
+		      font-weight:700;
+		      border:0;
+		    }
+		  }
+		}
     </style>
 
     <script type="text/javascript">
@@ -315,58 +370,25 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		cursor:hand;
 		}
 </style>
+
 </head>
 <body class="style1" onload="init();">
 <br/>
 <div style="width:90%; margin: 0 auto">
+	<div style="margin-right:30%">
 	<center><h2>Intent Annotation</h2></center>
 
 	<p>Below is a video of the search you previously conducted.  We have broken your session down into several segments.</p>
 	<p>For each segment, you are asked to indicate your underlying intentions behind the actions you conducted. For what reasons did you conduct the search and view the pages?  Please check all of the annotations that apply.</p>
-	<center><video id="session_video" width="80%">
+	<center><video id="session_video" width="100%">
 		<source id="mp4source" type="video/mp4" src="../data/videos/mp4/<?php echo $filename;?>" >
 	</video></center>
+</div>
 
 <hr>
 <br>
 
-<p><h4><u>Time slice</u></h4></p>
 
-	<select id="timeslice" onchange="shownext();">
-<?php
-	$res = $cxn->commit("SELECT time_startstring,time_stopstring FROM video_segments WHERE userID='$userID' and projectid='$projectID' and questionID='$questionID' ORDER BY segmentID ASC");
-
-	$x = 0;
-	while($line = mysql_fetch_array($res,MYSQL_ASSOC)){
-		$x += 1;
-		$start_time = preg_replace('/[[:^print:]]/', '', $line['time_startstring']);
-
-		if(substr_count($start_time,":")<2){
-			while(substr_count($start_time,":") != 2){
-				$start_time = "00:". $start_time;
-			}
-		}
-
-
-		$stop_time = preg_replace('/[[:^print:]]/', '', $line['time_stopstring']);
-		if(substr_count($stop_time,":")<2){
-			while(substr_count($stop_time,":") != 2){
-				$stop_time = "00:". $stop_time;
-			}
-		}
-		$start_time = substr($start_time,0,-2);
-		$stop_time = substr($stop_time,0,-2);
-
-		$start_time_string = $start_time;
-		$stop_time_string = $stop_time;
-
-		$start_time = strtotime($start_time) - strtotime('TODAY');
-		$stop_time = strtotime($stop_time) - strtotime('TODAY');
-		echo "<option id='time_$x' value='$x' starttime='$start_time' stoptime='$stop_time'>".$start_time_string."-".$stop_time_string."</option>";
-	}
-
- ?>
-	</select>
 
 
 
@@ -377,14 +399,56 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <?php
 
+	echo "<div class='grayrect left'>";
+	?>
+
+	<p><h4><u>Time slice</u></h4></p>
+
+		<select id="timeslice" onchange="shownext();">
+	<?php
+		$res = $cxn->commit("SELECT time_startstring,time_stopstring FROM video_segments WHERE userID='$userID' and projectid='$projectID' and questionID='$questionID' ORDER BY segmentID ASC");
+
+		$x = 0;
+		while($line = mysql_fetch_array($res,MYSQL_ASSOC)){
+			$x += 1;
+			$start_time = preg_replace('/[[:^print:]]/', '', $line['time_startstring']);
+
+			if(substr_count($start_time,":")<2){
+				while(substr_count($start_time,":") != 2){
+					$start_time = "00:". $start_time;
+				}
+			}
+
+
+			$stop_time = preg_replace('/[[:^print:]]/', '', $line['time_stopstring']);
+			if(substr_count($stop_time,":")<2){
+				while(substr_count($stop_time,":") != 2){
+					$stop_time = "00:". $stop_time;
+				}
+			}
+			$start_time = substr($start_time,0,-2);
+			$stop_time = substr($stop_time,0,-2);
+
+			$start_time_string = $start_time;
+			$stop_time_string = $stop_time;
+
+			$start_time = strtotime($start_time) - strtotime('TODAY');
+			$stop_time = strtotime($stop_time) - strtotime('TODAY');
+			echo "<option id='time_$x' value='$x' starttime='$start_time' stoptime='$stop_time'>".$start_time_string."-".$stop_time_string."</option>";
+		}
+
+	 ?>
+		</select>
+
+		<?php
 	for($x=1;$x<=$N_RESULTS;$x+=1)
 	{
 
-
+		// TEMP: navbar navbar-fixed-right navbar-absolute
 		if($x==1){
-				echo "<div id='checkboxset$x' class='grayrect' style='display:block'>";
+				echo "<div id='checkboxset$x' style='display:block'>";
 		}else{
-				echo "<div id='checkboxset$x' class='grayrect' style='display:none'>";
+				echo "<div id='checkboxset$x' style='display:none'>";
 		}
 
 		echo "<div id='error_text_$x' style='display:none'>
@@ -394,7 +458,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		echo "<button  style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo($x);return false;'>Replay Video</button>
 		<fieldset>
 			<div class='pure-g'>
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Identify search information</u></h4></label>
 
 			<label for='id_start_$x' class='pure-checkbox'>
@@ -408,7 +472,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Learning</u></h4></label>
 
 			<label for='learn_feature_$x' class='pure-checkbox'>
@@ -434,7 +498,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 	<div class='pure-g'>
 
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Finding</u></h4></label>
 
 			<label for='find_known_$x' class='pure-checkbox'>
@@ -456,7 +520,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Locate: Find out where a specific item is placed</u></h4></label>
 
 			<label for='locate_specific_$x' class='pure-checkbox'>
@@ -476,7 +540,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 	<div class='pure-g'>
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Keep record</u></h4></label>
 
 			<label for='keep_bibliographical_$x' class='pure-checkbox'>
@@ -495,7 +559,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Access an item based on its location</u></h4></label>
 
 			<label for='access_item_$x' class='pure-checkbox'>
@@ -515,7 +579,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 	<div class='pure-g'>
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Evaluate</u></h4></label>
 
 			<label for='evaluate_correctness_$x' class='pure-checkbox'>
@@ -540,7 +604,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		</div>
 
 
-		<div class='pure-u-1-2'>
+		<div class='pure-u-1-1'>
 			<label><h4><u>Obtain</u></h4></label>
 
 			<label for='obtain_specific_$x' class='pure-checkbox'>
@@ -565,6 +629,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 	</div>";
 }
+echo "</div>";
 
 ?>
 

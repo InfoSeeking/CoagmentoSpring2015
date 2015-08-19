@@ -24,6 +24,7 @@
 		else
 		{
 
+			$_SESSION['refreshQuestionSidebar'] = 1;
 			$base = new Base();
 			$userID = $base->getUserID();
 			$stageID = $base->getStageID();

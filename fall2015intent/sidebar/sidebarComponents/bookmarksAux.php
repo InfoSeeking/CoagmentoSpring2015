@@ -18,14 +18,7 @@
     //  echo "<td align=\"center\"><img src=\"images/asc.gif\" height=\"10\" width=\"10\" alt=\"Asc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID asc','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:#FFFFFF\">-</span><img src=\"images/desc.gif\" height=\"10\" width=\"10\" alt=\"Desc\" class=\"cursorType\" onclick=\"javascript:changeOrder('bookmarks','bookmarkID desc','bookmarksBox','bookmarks.php')\"></td>";
     //  echo "<td></td>";
     // echo "</tr>";
-?>
-<tr>
-  <!-- <th>User</th> -->
-  <th>Bookmark title</th>
-  <!-- <th>Rating</th> -->
-  <!-- <th>Date</th> -->
-</tr>
-<?php
+
     //    TODO: May not have been part of this code.  Delete?
     //    echo "Your session has expired. Please <a href=\"http://www.coagmento.org/loginOnSideBar.php\" target=_content><span style=\"color:blue;text-decoration:underline;cursor:pointer;\">login</span> again.\n";
 
@@ -57,7 +50,7 @@
     }
     $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1 AND url NOT LIKE '%coagmento.org/fall2015intent%' AND url NOT LIKE '%about:blank%' AND url NOT LIKE '%about:home%' AND url NOT LIKE '%about:newtab%' AND url NOT LIKE '%about:addons%') a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
     if($filter != -1){
-      $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,B.note,B.useful_info,B.author_qualifications
+      $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,
          FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ". $only_mine_clause . " ORDER BY ".$orderBy, $filter);
     }
 
@@ -79,7 +72,19 @@
 
     if($numRows == 0){
       echo "No bookmarks saved";
+      exit();
     }
+
+
+  ?>
+    <tr>
+      <!-- <th>User</th> -->
+      <th>Bookmark title</th>
+      <!-- <th>Rating</th> -->
+      <!-- <th>Date</th> -->
+    </tr>
+
+    <?php
     while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
         $bookmarkID = $line['bookmarkID'];
         //$userName = TODO : use a username.  Make map from userID to username, for each user in the project.
@@ -90,9 +95,9 @@
           $rating = $line['rating'];
         }
 
-        $note = $line['note'];
-        $author_qualifications = $line['author_qualifications'];
-        $useful_info = $line['useful_info'];
+        // $note = $line['note'];
+        // $author_qualifications = $line['author_qualifications'];
+        // $useful_info = $line['useful_info'];
         $url = $line['url'];
         $title = stripslashes($line['title']);
         $type = 'text';
@@ -105,7 +110,7 @@
         if($date_info["year"] == $today_info["year"] && $date_info["yday"] == $today_info["yday"]){
           $display_date = strftime("%l:%M%p", $date);
         }
-        $noteAux = substr($note, 0, 20);
+        // $noteAux = substr($note, 0, 20);
 
 //        if ($noteAux!="")
 //            $title = $noteAux . '..';
@@ -126,7 +131,7 @@
         echo "<td><span style=\"font-size:10px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=bookmark-view&value='+$bookmarkID,null)\" href=\"$url\" target=_content onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         // if($instructorID==1){
         //   echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         // }else{
@@ -141,9 +146,9 @@
         //$fullSnippet = "[Source: " . $url . "] || ".$snippet;
 
         echo "<input type=\"hidden\" id=\"bookmarkValue$bookmarkID\" value=\"$bookmarkID\">";
-        echo "<input type=\"hidden\" id=\"useful_info$bookmarkID\" value=\"$useful_info\">";
-        echo "<input type=\"hidden\" id=\"note$bookmarkID\" value=\"$note\">";
-        echo "<input type=\"hidden\" id=\"author_qualifications$bookmarkID\" value=\"$author_qualifications\">";
+        // echo "<input type=\"hidden\" id=\"useful_info$bookmarkID\" value=\"$useful_info\">";
+        // echo "<input type=\"hidden\" id=\"note$bookmarkID\" value=\"$note\">";
+        // echo "<input type=\"hidden\" id=\"author_qualifications$bookmarkID\" value=\"$author_qualifications\">";
 
         echo "<input type=\"hidden\" id=\"source$bookmarkID\" value=\"$title\">";
         echo "<input type=\"hidden\" id=\"url$bookmarkID\" value=\"$url\">";
@@ -155,10 +160,12 @@
 
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
 
-        if ($userID==$userIDItem)
-            echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
-        else
+        if ($userID==$userIDItem){
+          echo "<td align=\"right\"  ><button class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"> <i class=\"fa fa-trash\"></i> DELETE</button></td>";
+            // echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
+        }else{
             echo "<td></td>";
+        }
 
         /*echo "<td align=\"right\">";
          if ($url)
