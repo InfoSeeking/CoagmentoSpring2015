@@ -87,13 +87,15 @@
 				if(Base::getInstance()->getStageID()<120)
 				{
 				?>
+				Thank you for signing up for this study. We appreciate your participation!
 				<ul>
-				<li>Thank you for signing up for this study. We appreciate your participation!</li>
-				<li>We will first ask you to fill out a background questionnaire.</li>
-				<li>Then, you will be asked to complete a 20-minute search task that we give you.</li>
-				<li>You will fill out some follow-up questionnaires for the task.</li>
+				<li>You will fill out a background questionnaire.</li>
+				<li>Then, you will be asked to complete a search task that we give you.  You will receive instructions for this.</li>
+				<li>Before each task, you will be asked to indicate your knowledge of the task topics.</li>
+				<li>You have 20 minutes to complete the task.</li>
+				<li>As part of the search task, you will be asked to rate the usefulness of the web pages you found and to indicate why they were useful.  Your evaluation will be recorded for later analysis.</li>
 				<li>You will then observe recorded video of your previous session, labeling your intentions at each point of your search.</li>
-				<li>You are asked to do this for 2 tasks total.</li>
+				<li>You will do all of this for a total of 2 tasks.</li>
 				<li>Do your best!  Compensation is $30.  We are also giving an additional $10 compensation to the best performers!</li>
 				</ul>
 				<?php
