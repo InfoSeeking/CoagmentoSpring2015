@@ -36,7 +36,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_cognitive');
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_postsearch');
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -50,7 +50,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
-		$questionnaire->populateQuestionsFromDatabase("fall2015intent-cog","questionID ASC");
+		$questionnaire->populateQuestionsFromDatabase("fall2015intent-search","questionID ASC");
 		$questionnaire->setBaseDirectory("../");
 
 		$part_text = "";
@@ -80,7 +80,38 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
     <script type="text/javascript">
     <?php
-    echo $questionnaire->printValidation("sum2015_qform");
+
+		$rules = "
+				age: {
+					required: true,
+					number: true
+				},
+				search_years: {
+					required: true,
+					number: true
+				},
+				";
+				// date_firstchoice_1: {
+				//
+				// 	notEqualTo: \"#date_secondchoice_1\"
+				// },
+				// date_secondchoice_1: {
+				//
+				// 	notEqualTo: \"#date_firstchoice_1\"
+				// },
+
+				$messages = "
+						age: {
+							required:\"<span style='color:red'>Please enter your age.</span>\",
+							number:\"<span style='color:red'>Please enter a number.</span>\"
+						},
+						search_years: {
+							required:\"<span style='color:red'>Please enter the years.</span>\",
+							number:\"<span style='color:red'>Please enter a number.</span>\"
+						},
+						";
+
+    echo $questionnaire->printValidation("sum2015_qform",$rules,$messages);
     ?>
 
 

@@ -36,7 +36,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				$questionnaire->addAnswer($k,$v);
 			}
 		}
-		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID"),array('userID','projectID','stageID'),'questionnaire_demographic');
+		$age = $_POST['age'];
+		$search_years = $_POST['search_years'];
+		$questionnaire->commitAnswersToDatabase(array("$userID","$projectID","$stageID","$age","$search_years"),array('userID','projectID','stageID',"age","search_years"),'questionnaire_demographic');
 
 		Util::getInstance()->saveAction(basename( __FILE__ ),$stageID,$base);
 		Util::getInstance()->moveToNextStage();
@@ -47,6 +49,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$userID = $base->getUserID();
 		$stageID = $base->getStageID();
 		$projectID = $base->getProjectID();
+
+
 
 		$questionnaire = Questionnaires::getInstance();
 		$questionnaire->clearCache();
@@ -76,7 +80,38 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
     <script type="text/javascript">
     <?php
-    echo $questionnaire->printValidation("sum2015_qform");
+
+		$rules = "
+				age: {
+					required: true,
+					number: true
+				},
+				search_years: {
+					required: true,
+					number: true
+				},
+				";
+				// date_firstchoice_1: {
+				//
+				// 	notEqualTo: \"#date_secondchoice_1\"
+				// },
+				// date_secondchoice_1: {
+				//
+				// 	notEqualTo: \"#date_firstchoice_1\"
+				// },
+
+				$messages = "
+						age: {
+							required:\"<span style='color:red'>Please enter your age.</span>\",
+							number:\"<span style='color:red'>Please enter a number.</span>\"
+						},
+						search_years: {
+							required:\"<span style='color:red'>Please enter the years.</span>\",
+							number:\"<span style='color:red'>Please enter a number.</span>\"
+						},
+						";
+
+    echo $questionnaire->printValidation("sum2015_qform",$rules,$messages);
     ?>
 
 
@@ -93,41 +128,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <body class="style1">
 <br/>
 <div style="width:90%; margin: 0 auto">
-	<center><h2>Search Questionnaire</h2></center>
+	<center><h2>Background Questionnaire</h2></center>
 
 	<p>Below are some questions regarding how you typically conduct searching on the internet.  Please complete them to the best of your ability.</p>
 	<hr/>
-
-
-
-		<!-- <div class="grayrect">
-			<span> -->
-				<?php
-
-				// $base = Base::getInstance();
-				// $userID = $base->getUserID();
-				// $connection = Connection::getInstance();
-				// $query = "SELECT userID, topicAreaID
-				// 			FROM users
-				// 			WHERE userID='$userID'";
-				// $results = $connection->commit($query);
-				// $line = mysql_fetch_array($results,MYSQL_ASSOC);
-				// $topicAreaID = $line['topicAreaID'];
-				//
-				//
-				// $query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
-				// $results = $connection->commit($query);
-				// $question1 = '';
-				// $line = mysql_fetch_array($results,MYSQL_ASSOC);
-				// $question1 = $line['question'];
-				//
-				//
-				// echo $question1;
-
-
-				?>
-			<!-- </span>
-		</div> -->
 
 <br/>
 
@@ -135,8 +139,26 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<div class="pure-form-stacked">
 		<fieldset>
 <?php
-// Likert
-$questionnaire->printQuestions();
+
+
+
+
+$questionnaire->printQuestions(0,0);
+
+
+echo "<div class=\"pure-control-group\">";
+echo "<label for=\"age\">Age (Years)</label>";
+echo "<input id=\"age\" name=\"age\" type=\"text\" placeholder=\"Age\" required>";
+echo "</div><br/>";
+
+
+echo "<div class=\"pure-control-group\">";
+echo "<label for=\"search_years\">How many years have you been doing online searching?</label>";
+echo "<input id=\"search_years\" name=\"search_years\" type=\"text\" placeholder=\"Years\" required>";
+echo "</div><br/>";
+
+$questionnaire->printQuestions(1);
+
 ?>
 </fieldset>
 </div>

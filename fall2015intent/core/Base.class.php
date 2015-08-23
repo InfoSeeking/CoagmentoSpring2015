@@ -234,10 +234,10 @@ class Base {
 
   public function getTaskNum()
 	{
-    if($this->stageID < 40){
-      return 1;
-    }else{
+    if($this->stageID > Base::PART_ONE_LAST_STAGE){
       return 2;
+    }else{
+      return 1;
     }
 
 	}

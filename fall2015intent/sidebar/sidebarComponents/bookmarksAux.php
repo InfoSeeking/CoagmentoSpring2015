@@ -77,12 +77,12 @@
 
 
   ?>
-    <tr>
+    <!-- <tr> -->
       <!-- <th>User</th> -->
-      <th>Bookmark title</th>
+      <!-- <th>Bookmark title</th> -->
       <!-- <th>Rating</th> -->
       <!-- <th>Date</th> -->
-    </tr>
+    <!-- </tr> -->
 
     <?php
     while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
@@ -119,8 +119,8 @@
             if (!$title)
                 $title = $url;
 
-            if (strlen($title)>28) {
-                $title = substr($title, 0, 25);
+            if (strlen($title)>38) {
+                $title = substr($title, 0, 35);
                 $title = $title . '..';
             }
 //        }
@@ -128,10 +128,10 @@
 
         echo "<tr style=\"background:$bgColor;\">";
         // echo "<td><span style=\"font-size:10px\">$userName</span>&nbsp;</td>";
-        echo "<td><span style=\"font-size:10px\">";
+        echo "<td><span style=\"font-size:12px\">";
         //echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:showSnippet('floatSnippetLayer',null,'$snippetID','$type')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         $viewBookmarkOnWindow = "window.open('viewBookmark.php?value=$bookmarkID','Bookmark View','directories=no, toolbar=no, location=no, status=no, menubar=no, resizable=no,scrollbars=yes,width=400,height=400,left=600')";
-        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=bookmark-view&value='+$bookmarkID,null)\" href=\"$url\" target=_content onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
+        echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:ajaxpage('sidebarComponents/insertAction.php?action=bookmark-view&value='+$bookmarkID,null)\" href=\"$url\" target=_content onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:13px; color:blue\">$title</a></span></td>\n";
         // if($instructorID==1){
         //   echo "<a alt=\"View\" class=\"cursorType\" onclick=\"javascript:$viewBookmarkOnWindow\" onmouseover=\"javascript:showBookmark('floatBookmarkLayer',null,'$bookmarkID','$type')\" onmouseout=\"javascript:hideLayer('floatBookmarkLayer')\" style=\"font-size:10px; color:blue\">$title</a></span></td>\n";
         // }else{
@@ -161,7 +161,7 @@
         //TEMP: REMOVED THIS FOR EDUSEARCH -> Matt
 
         if ($userID==$userIDItem){
-          echo "<td align=\"right\"  ><button class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"> <i class=\"fa fa-trash\"></i> DELETE</button></td>";
+          echo "<td align=\"right\"  ><button class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"> <i class=\"fa fa-trash\"></i> UNSAVE</button></td>";
             // echo "<td align=\"right\" class=\"cursorType\" onclick=\"javascript:deleteItem('floatBookmarkLayerDelete',null,'$bookmarkID','bookmarks','bookmarksBox','bookmarks.php')\"><span style=\"font-size:10px; color:red; font-weight: bold \"> <a style=\"font-size:10px; color:$bgColor\"> - </a>X</span></td>";
         }else{
             echo "<td></td>";

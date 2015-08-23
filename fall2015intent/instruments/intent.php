@@ -12,6 +12,11 @@ Util::getInstance()->checkSession();
 
 if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 {
+
+
+
+
+
 	$collaborativeStudy = Base::getInstance()->getStudyID();
 
 	if (isset($_POST['intent']))
@@ -195,6 +200,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 		$filename = "user$userID"."task$taskNum".".mp4";
+		$filedir = "/mnt/space/www/coagmento.org/htdocs/fall2015intent/data/videos/mp4/";
 
 ?>
 
@@ -372,6 +378,27 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 </style>
 
 </head>
+
+
+
+<?php
+
+if(!file_exists($filedir.$filename)){
+	?>
+
+<body class="style1">
+	<div style="width:90%; margin: 0 auto">
+
+		<center><h2>Intent Annotation</h2></center>
+
+		<p>Your lab proctor has not yet uploaded the necessary files to continue with the study.  Please wait momentarily to refresh this page.  We apologize for the inconvenience.</p>
+	</div>
+</body>
+</html>
+	<?php
+		exit();
+	}else{
+ ?>
 <body class="style1" onload="init();">
 <br/>
 <div style="width:90%; margin: 0 auto">
@@ -379,7 +406,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<center><h2>Intent Annotation</h2></center>
 
 	<p>Below is a video of the search you previously conducted.  We have broken your session down into several segments.</p>
-	<p>For each segment, you are asked to indicate your underlying intentions behind the actions you conducted. For what reasons did you conduct the search and view the pages?  Please check all of the annotations that apply.</p>
+	<p>For each segment, please answer the following prompt:</p>
+	<p><strong>What were you trying to accomplish (what was your intention) during this part of the search?
+		Please choose one or more of the "search intentions" on the right; if none fits your goal at this point in the search, please
+	choose "Other", and give a brief exlplanation.</strong></p>
 	<center><video id="session_video" width="100%">
 		<source id="mp4source" type="video/mp4" src="../data/videos/mp4/<?php echo $filename;?>" >
 	</video></center>
@@ -402,13 +432,15 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	echo "<div class='grayrect left'>";
 	?>
 
-	<p><h4><u>Time slice</u></h4></p>
+
 
 		<select id="timeslice" onchange="shownext();">
 	<?php
 		$res = $cxn->commit("SELECT time_startstring,time_stopstring FROM video_segments WHERE userID='$userID' and projectid='$projectID' and questionID='$questionID' ORDER BY segmentID ASC");
 
 		$x = 0;
+
+		$time_range = array();
 		while($line = mysql_fetch_array($res,MYSQL_ASSOC)){
 			$x += 1;
 			$start_time = preg_replace('/[[:^print:]]/', '', $line['time_startstring']);
@@ -435,6 +467,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			$start_time = strtotime($start_time) - strtotime('TODAY');
 			$stop_time = strtotime($stop_time) - strtotime('TODAY');
 			echo "<option id='time_$x' value='$x' starttime='$start_time' stoptime='$stop_time'>".$start_time_string."-".$stop_time_string."</option>";
+
+			$time_range[$x] = $start_time_string."-".$stop_time_string;
 		}
 
 	 ?>
@@ -451,6 +485,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				echo "<div id='checkboxset$x' style='display:none'>";
 		}
 
+		echo "<p><h4><u>Query segment $x/$N_RESULTS (".$time_range[$x].")</u></h4></p>";
 		echo "<div id='error_text_$x' style='display:none'>
 	 	 <p style='color:red'>Please mark the checkboxes below to the best of your ability.</p>
 	  </div>";
@@ -651,6 +686,7 @@ echo "</div>";
 
 
 <?php
+		}
 	}
 }
 else {

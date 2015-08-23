@@ -89,12 +89,12 @@
 				?>
 				<ul>
 				<li>Thank you for signing up for this study. We appreciate your participation!</li>
-				<li>First, questionnaire.</li>
-				<li>Second, another questionnaire</li>
-				<li>Then you will have <strong>X minutes</strong> to SEARCH (DESCRIBE TASK MORE HERE).</li>
-				<li>Questionnaire</li>
-				<li>Annotation.</li>
-				<li>Do your best!  Compensation is $40.</li>
+				<li>We will first ask you to fill out a background questionnaire.</li>
+				<li>Then, you will be asked to complete a 20-minute search task that we give you.</li>
+				<li>You will fill out some follow-up questionnaires for the task.</li>
+				<li>You will then observe recorded video of your previous session, labeling your intentions at each point of your search.</li>
+				<li>You are asked to do this for 2 tasks total.</li>
+				<li>Do your best!  Compensation is $30.  We are also giving an additional $10 compensation to the best performers!</li>
 				</ul>
 				<?php
 				}
