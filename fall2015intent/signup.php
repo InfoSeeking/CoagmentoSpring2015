@@ -129,7 +129,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 			<tr>
 			  <td colspan=2>
 				<ul>
-				<li>Use this form to register for the paid research study on collaborative research <strong>for Friday, June 26 (time TBD).</strong></li>
+				<li>Use this form to register for the paid research study on <em>Information Seeking Intentions</em>.</li>
 				<li>Please fill out the information below then click Submit.</li>
 				<li>You will receive a confirmation email within 24-48 hours with details about time, date, and location of your session.</li>
 
@@ -151,12 +151,13 @@ Registration
 
 
 									<p>Welcome! This is the sign-up form to register for the paid research study.</p>
-									<p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
-									<p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
-									<p>You will receive <strong>$40 cash</strong> for participating in the study.</p>
+									<p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of information seeking.  Participants will conduct searches in an experimental setting for information relating to several different kinds of search tasks related to journalism tasks.
+									Each experimental session will last <strong>about two and a half hours</strong>, and will be held in the Communication and Interaction Laboratory in the SCI building.  Participants will be asked to complete the background questionnaire about their expectations for each task and then conduct a search.
+									After the search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.  Various aspects of their searching behaviros will be recorded for subsequent analysis.</p>
 
+									<p>All volunteers for this study will receive a <strong>$30 Amazon gift card</strong> for their participation, and those judged to have performed the best searches will receive <strong>an additional $10</strong>. Taking part in this study will help to advance the understanding of the search process and contribute towards development of search systems taht can automatically adapt to a user's specific search goals.</p>
 
-					        <p>Requirements:
+									<p>Requirements:
 					          <ul>
 					            <li>You must be at least 18 years old to participate.</li>
 					            <li>Proficiency in English is required.</li>
@@ -165,6 +166,21 @@ Registration
 
 					          </ul>
 					        </p>
+
+									<!-- <p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
+									<p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
+									<p>You will receive <strong>$40 cash</strong> for participating in the study.</p> -->
+
+
+					        <!-- <p>Requirements:
+					          <ul>
+					            <li>You must be at least 18 years old to participate.</li>
+					            <li>Proficiency in English is required.</li>
+					            <li>Intermediate typing and online search skills are required.</li>
+                      <li>Normal to corrected vision is required.</li>
+
+					          </ul>
+					        </p> -->
 
 
 
