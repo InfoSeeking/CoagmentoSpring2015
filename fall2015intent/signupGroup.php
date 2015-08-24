@@ -7,7 +7,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="study_styles/custom/text.css">
-<title>Interactive Search Study: Sign Up</title>
+<title>Information Seeking Intentions Study: Sign Up</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <style type="text/css">
 		.cursorType{
@@ -138,11 +138,11 @@
 
 
 
-                $subject = "Interactive search study participation confirmation";
+                $subject = "Information seeking intentions study participation confirmation";
 
                 $message = "<html xmlns='http://www.w3.org/1999/xhtml'><head><meta http-equiv='Content-Type content='text/html; charset=utf-8' />";
                 $message .= "\r\n";
-                $message .= "<title>Interactive study participation confirmation email</title></head>\n<body>\n";
+                $message .= "<title>Information seeking intentions study participation confirmation email</title></head>\n<body>\n";
                 $message .= "\r\n";
                 $message .= "Thank you for your interest in taking part in our study. The details are shown below.<br/>";
                 $message .= "\r\n";
@@ -179,9 +179,9 @@
 
 
 
-                $message .= "During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.<br/><br/>";
+                $message .= "During this study you will conduct task-based searched and will be asked explain your search intentions at various points of your search.<br/><br/>";
                 $message .= "\r\n";
-								$message .= "You will receive <strong>$40 cash</strong> for participating in the study.<br/><br/>";
+								$message .= "You will receive <strong>$30 cash</strong> for participating in the study.<br/><br/>";
 								$message .= "\r\n";
 
 

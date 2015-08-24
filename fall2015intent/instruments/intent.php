@@ -212,6 +212,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/grids-min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="../lib/jquery-2.1.3.min.js"></script>
 	<script src="../lib/validation/jquery-validation-1.13.1/dist/jquery.validate.js"></script>
 	<script src="../lib/validation/validation.js"></script>
@@ -283,7 +284,44 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
     <script type="text/javascript">
 
+		var curr = 1;
 		var N_RESULTS = <?php echo $N_RESULTS;?>;
+
+
+
+
+		function iter_next(){
+			curr += 1;
+			if(curr > N_RESULTS){
+				curr = N_RESULTS;
+			}
+			iter_render();
+			shownext_helper(curr);
+			scanToStart(parseInt($("#time_"+curr).attr("starttime")));
+		}
+
+		function iter_prev(){
+			curr -= 1;
+			if (curr < 1){
+				curr = 1;
+			}
+			iter_render();
+			shownext_helper(curr);
+			scanToStart(parseInt($("#time_"+curr).attr("starttime")));
+		}
+
+		function iter_render(){
+			if(curr == 1){
+				$("#prevbutton").prop('disabled',true);
+				$("#nextbutton").prop('disabled',false);
+			}else if(curr == N_RESULTS){
+				$("#prevbutton").prop('disabled',false);
+				$("#nextbutton").prop('disabled',true);
+			}else{
+				$("#prevbutton").prop('disabled',false);
+				$("#nextbutton").prop('disabled',false);
+			}
+		}
 		function validate(){
 			var retval = true;
 			for (x=1; x<=N_RESULTS;x+=1){
@@ -329,7 +367,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			VIDEO = document.getElementById("session_video");
 			pausing_function = function(){
  		    if(this.currentTime >= STOP_TIME) {
+
  		        this.pause();
+						// $("#playpauseicon").removeClass("fa-pause");
+						// $("#playpauseicon").addClass("fa-play");
  		    }
  			};
 			VIDEO.addEventListener("timeupdate", pausing_function);
@@ -340,7 +381,12 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-
+		function scanToStart(start){
+			document.getElementById("session_video").currentTime = start;
+			document.getElementById("session_video").pause();
+			// $("#playpauseicon").removeClass("fa-pause");
+			// $("#playpauseicon").addClass("fa-play");
+		}
 		function playvideo(i){
 				playVideoHelper(parseInt($("#time_"+i).attr("starttime")),parseInt($("#time_"+i).attr("stoptime")));
 		}
@@ -353,6 +399,8 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 			START_TIME = start;
 			$("#mp4source").attr("src","../data/videos/mp4/<?php echo $filename;?>#t="+start+","+stop);
 			document.getElementById("session_video").play();
+			// $("#playpauseicon").removeClass("fa-play");
+			// $("#playpauseicon").addClass("fa-pause");
 		}
 
 		function shownext_helper(i){
@@ -434,7 +482,8 @@ if(!file_exists($filedir.$filename)){
 
 
 
-		<select id="timeslice" onchange="shownext();">
+		<div style="display:none">
+			<select id="timeslice" onchange="shownext();">
 	<?php
 		$res = $cxn->commit("SELECT time_startstring,time_stopstring FROM video_segments WHERE userID='$userID' and projectid='$projectID' and questionID='$questionID' ORDER BY segmentID ASC");
 
@@ -473,10 +522,18 @@ if(!file_exists($filedir.$filename)){
 
 	 ?>
 		</select>
+	</div>
 
 		<?php
+
+		echo "<button  id='prevbutton' class='pure-button' onclick='iter_prev();return false;' disabled><i class=\"fa fa-arrow-left\"></i> Prev</button>";
+		echo "&nbsp&nbsp&nbsp<button  id='nextbutton' class='pure-button' onclick='iter_next();return false;'><i class=\"fa fa-arrow-right\"></i> Next</button>";
+		echo "<br/><br/>";
+
+
 	for($x=1;$x<=$N_RESULTS;$x+=1)
 	{
+
 
 		// TEMP: navbar navbar-fixed-right navbar-absolute
 		if($x==1){
@@ -490,8 +547,10 @@ if(!file_exists($filedir.$filename)){
 	 	 <p style='color:red'>Please mark the checkboxes below to the best of your ability.</p>
 	  </div>";
 
-		echo "<button  style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo($x);return false;'>Replay Video</button>
-		<fieldset>
+
+		echo "<button id='playpausebutton' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo($x);return false;'><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Replay Video</button>";
+
+		echo "<fieldset>
 			<div class='pure-g'>
 		<div class='pure-u-1-1'>
 			<label><h4><u>Identify search information</u></h4></label>

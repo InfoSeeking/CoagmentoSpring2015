@@ -21,6 +21,12 @@
 			Util::getInstance()->saveActionWithLocalTime(basename( __FILE__ ),$stageID,$base,$localTime,$localDate,$localTimestamp);
 			Util::getInstance()->moveToNextStage();
 		}
+		else if(isset($_GET['answer'])){
+			$base = new Base();
+			$stageID = $base->getStageID();
+			Util::getInstance()->saveActionWithLocalTime(basename( __FILE__ ),$stageID,$base);
+			Util::getInstance()->moveToNextStage();
+		}
 		else
 		{
 

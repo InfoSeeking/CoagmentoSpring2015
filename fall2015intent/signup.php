@@ -163,6 +163,7 @@ Registration
 					            <li>Proficiency in English is required.</li>
 					            <li>Intermediate typing and online search skills are required.</li>
                       <li>Normal to corrected vision is required.</li>
+											<li>You must have <em>already completed</em>either 04:567:200 (Writing for Media) or 04:567:324 (News Reporting and Writing).</li>
 
 					          </ul>
 					        </p>

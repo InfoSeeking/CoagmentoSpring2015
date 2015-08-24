@@ -467,7 +467,10 @@ cursor:hand;
 //        echo "<body>";
 
 
-		echo "<body>";
+
+		// echo "<body>";
+
+		echo "<body onload=\"startTimeTask()\">";
 
 	//first region
 	//if (($base->getStageID()==80)||($base->getStageID()==100))
@@ -475,6 +478,37 @@ cursor:hand;
 	{
 		//Show question and timer
 		//Retrieve question
+
+
+		$stID = "";
+
+		if($base->getStageID() < 30){
+			$stID = "15";
+		}else{
+			$stID = "45";
+		}
+
+
+		$query = "SELECT min(timestamp) min_timestamp
+		FROM session_progress
+		WHERE stageID = '$stID' and projectID = '".$base->getProjectID()."'";
+
+
+		$connection = Connection::getInstance();
+		$results = $connection->commit($query);
+		$line = mysql_fetch_array($results, MYSQL_ASSOC);
+		$limit = $base->getMaxTime();
+
+
+		if ($line['min_timestamp']<>'')
+		{
+
+				$base->setTaskStartTimestamp($line['min_timestamp']);
+		}
+
+		// TODO: SET QUESTION ID
+
+
 		$qQuery = "SELECT question
 							 FROM questions_study
 						WHERE questionID = '".$base->getQuestionID()."'";
@@ -543,17 +577,138 @@ var minTime = <?php echo $minTime;?>;
 var maxTime = <?php echo $maxTime;?>;
 var blinkThreshold=<?php echo $blinkThreshold;?>;
 
+function startTimeTask(){
+		var h = Math.floor(overallTimeTask/3600);
+		var m = Math.floor((overallTimeTask%3600)/60);
+		var s = overallTimeTask%60;
+		h=checkTime(h);
+		m=checkTime(m);
+		s=checkTime(s);
+		document.getElementById('taskClock').innerHTML=overallTimeTask;
+}
+function startTimeTask()
+{
+    if (currentTimeTask>=0)
+    {
+        var h = Math.floor(overallTimeTask/3600);
+        var m = Math.floor((overallTimeTask%3600)/60);
+        var s = overallTimeTask%60;
+        h=checkTime(h);
+        m=checkTime(m);
+        s=checkTime(s);
+
+        <?php
+
+        if($base->isTaskInTime()){
+
+//        if($base->isTaskInTime() && $isPretaskQuestionnaireComplete){
+            ?>
+//            if(maxTime-currentTimeTask>=minTime)
+//            {
+//                document.getElementById('finishbutton').style.display = 'block';
+//            }
+//            else
+//            {
+//                document.getElementById('finishbutton').style.display = 'none';
+//            }
+            <?php
+        }
+        ?>
 
 
+        if (overallTimeTask<blinkThreshold)
+        {
+            document.getElementById('taskClock').style.color = "Red";
+            document.getElementById('taskClock').innerHTML=h+":"+m+":"+s; //+" - - "+currentTimeTask;
+            setTimeout('blinkTaskTime()',500);
+        }
 
+        else
+            document.getElementById('taskClock').innerHTML=h+":"+m+":"+s; //+" - - "+currentTimeTask;
+        currentTimeTask--;
+        overallTimeTask--;
 
+        t=setTimeout('startTimeTask()',1000);
+    }
+    else
+    {
+        //load post-task questionnaire
+        document.getElementById('taskClock').innerHTML="00:00";
+        document.getElementById("taskInfo").style.display = "none";
+        <?php
+        if($base->isTaskInTime()){
+//        if($base->isTaskInTime() && $isPretaskQuestionnaireComplete){
+            ?>
+//            document.getElementById('finishbutton').style.display = 'none';
+            <?php
+        }
+        echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
+        echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
+        ?>
+
+        content.wrappedJSObject.location = homeURL+'index.php';
+        document.location = homeURL+'sidebar/sidebar.php';
+    }
+}
+
+function blinkTaskTime()
+{
+    document.getElementById('taskClock').style.color = "Red";
+}
+
+function checkTime(i)
+{
+    if (i<10)
+    {
+        i="0" + i;
+    }
+    return i;
+}
+
+//function answer()
+//{
+//    content.location = homeURL+'instruments/<?php echo $page?>?answer=true';
+//}
+
+function skip()
+{
+    //                    TEMP FIX: NOT REQUIRED FOR THIS STUDY??? PRODUCES PHP ERRORS
+    //					content.location = homeURL+'instruments/
+    <?php
+    //                    echo $page;
+    ?>
+    //                    ?skip=true&qProgressID=
+    <?php
+    //                    echo $qProgressID;
+    ?>
+    //                    ';
+    <?php
+    echo "document.location = '".$homeURL."sidebar/sidebar.php?clean=true';\n";
+    ?>
+}
+
+function finish()
+{
+    document.getElementById('taskClock').innerHTML="00:00";
+    document.getElementById("taskInfo").style.display = "none";
+//    document.getElementById('finishbutton').style.display = 'none';
+    <?php
+    echo "content.location = '".$homeURL."instruments/".$page."?answer=true';\n";
+    echo "document.location = '".$homeURL."sidebar/sidebar.php?answer=true&snippets=true&disallowbrowsing=true';\n";
+    ?>
+
+}
 
 
 <?php
+
+     $flagSession2 = false;
      $height = "100px";
+
      if ($base->getStageID()>=120)
      {
-         $height = "300px";
+     $flagSession2 = true;
+     $height = "300px";
      }
     ?>
 </script>
@@ -571,7 +726,18 @@ var blinkThreshold=<?php echo $blinkThreshold;?>;
 
 
 
-
+<center>
+<div id="taskInfo" style="border-color:black; height:<?php echo $height;?>">
+<table>
+<tr align="center">
+<th colspan="3">Your remaining time</th>
+</tr>
+<tr align="center">
+<td><div id="taskClock" style="font-weight:bold; color:Blue; font-size:30px"></div></td>
+</tr>
+</table>
+</div>
+</center>
 
 <ul class="acc2" id="acc2">
 <?php

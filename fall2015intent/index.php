@@ -30,13 +30,16 @@
 
                     $i = $l['userID'];
                     $q = "DELETE FROM session_progress WHERE userID='$i'";
-										$q = "DELETE FROM questions_progress WHERE userID='$i'";
+
                     $c = Connection::getInstance();
                     $r = $c->commit($q);
 
-                    $q = "INSERT INTO session_progress (projectID,userID,stageID,`date`,`time`,`timestamp`) VALUES ('$i','$i','32','2014-11-06','17:03:20','1415311400'),('$i','$i','1','2014-11-06','17:03:20','1415311400'),('$i','$i','33','2014-11-06','17:03:20','1415311400')";
-                    $c = Connection::getInstance();
-                    $r = $c->commit($q);
+										$q = "DELETE FROM questions_progress WHERE userID='$i'";
+										$r = $c->commit($q);
+
+                    // $q = "INSERT INTO session_progress (projectID,userID,stageID,`date`,`time`,`timestamp`) VALUES ('$i','$i','32','2014-11-06','17:03:20','1415311400'),('$i','$i','1','2014-11-06','17:03:20','1415311400'),('$i','$i','33','2014-11-06','17:03:20','1415311400')";
+                    // $c = Connection::getInstance();
+                    // $r = $c->commit($q);
 
                     $q = "DELETE FROM questions_progress WHERE userID='$i'";
                     $c = Connection::getInstance();

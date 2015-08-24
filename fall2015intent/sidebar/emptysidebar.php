@@ -55,7 +55,7 @@ Maybe we can use this as a replacement for the sidebar login as well.
 			  position: relative;
 			}
     </style>
-		<link type="text/css" rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css" />
+		<link type="text/css" rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css" />
   </head>
   <body>
     <div id="container">
