@@ -48,7 +48,7 @@
     if(!$only_mine){
       $only_mine_clause = "";
     }
-    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND status=1 AND url NOT LIKE '%coagmento.org/fall2015intent%' AND url NOT LIKE '%about:blank%' AND url NOT LIKE '%about:home%' AND url NOT LIKE '%about:newtab%' AND url NOT LIKE '%about:addons%') a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
+    $query = "SELECT * FROM (SELECT * FROM bookmarks WHERE projectID='$projectID' AND questionID='$questionID' AND status=1 AND url NOT LIKE '%coagmento.org/fall2015intent%' AND url NOT LIKE '%about:blank%' AND url NOT LIKE '%about:home%' AND url NOT LIKE '%about:newtab%' AND url NOT LIKE '%about:addons%') a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID " . $only_mine_clause . " ORDER BY ".$orderBy;
     if($filter != -1){
       $query = sprintf("SELECT * FROM (SELECT B.bookmarkID,B.userID,B.projectID,B.stageID,B.questionID,B.url,B.title,B.source,B.timestamp,B.date,B.time,B.localTimestamp,B.localDate,B.localTime,B.result,B.status,
          FROM bookmarks B,tag_assignments TA WHERE B.projectID='$projectID' AND B.status=1 AND TA.bookmarkID=B.bookmarkID AND TA.tagID=%d) a INNER JOIN (SELECT userID,userName FROM users) b ON b.userID=a.userID ". $only_mine_clause . " ORDER BY ".$orderBy, $filter);

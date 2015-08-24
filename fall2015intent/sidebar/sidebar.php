@@ -783,7 +783,7 @@ function finish()
 
 
 <li style="padding-top: 0px">
-<h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; Bookmarks <span style="color:gray;font-size:10px;"></span></h4>
+<!-- <h4><img src="../img/history.jpg" width=32 style="vertical-align:middle;border:0" />&nbsp; Bookmarks <span style="color:gray;font-size:10px;"></span></h4> -->
 
 <div class="acc-section2 tabs">
 <!-- <div class="acc-section2 tabs"> -->

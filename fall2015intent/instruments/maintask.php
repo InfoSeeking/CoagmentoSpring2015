@@ -36,6 +36,10 @@
 			$stageID = $base->getStageID();
 			$projectID = $base->getProjectID();
 
+
+
+
+
 			$part_text = "";
 			if($stageID > 35){
 				$part_text = "Part 2 - ";
@@ -85,12 +89,38 @@ function validate(form)
 
 			$topicAreaID = $base->getTopicAreaID();
 
+			$questionID = $topicAreaID+1;
+			if($base->getStageID() == 15){
+				$questionID = $topicAreaID+1;
+			}else if($base->getStageID() == 45){
+				$questionID = $topicAreaID+4+1;
+			}
 
-			$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
+
+			$query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$questionID";
 			$results = $connection->commit($query);
 			$question1 = '';
 			$line = mysql_fetch_array($results,MYSQL_ASSOC);
 			$question1 = $line['question'];
+
+			$base->setQuestionID($questionID);
+			$base->setQuestion($question1);
+			$base->setQuestionStartTimestamp($base->getTimestamp());
+
+
+			$qQuery = "SELECT question, answer, altAnswer
+			FROM questions_study
+			WHERE questionID = '$questionID'
+			AND topicAreaID = $topicAreaID"; //Added topic area ID
+
+			$connection = Connection::getInstance();
+			$results = $connection->commit($qQuery);
+			$line = mysql_fetch_array($results, MYSQL_ASSOC);
+			$question = $line['question'];
+			$answer = $line['answer'];
+			$altAnswer = $line['altAnswer'];
+
+
 
 
 			echo $question1;
