@@ -376,7 +376,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 				<li>Use this form to register for the paid research study in ITI 220. <strong>All the fields are required</strong>.</li>
 				<li>Please fill in your participant details, then answer the questionnaire below and click Submit.</li>
 				<li>You will receive a confirmation email.</li>
-				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
+				<li><a href="mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>
 				</td>
 			</tr>

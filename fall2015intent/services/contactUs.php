@@ -29,7 +29,7 @@
 		//send ourselves an email
 		$email_message = sprintf("Email : %s\nUsername/ID : %s/%d\nMessage: %s\n", $email, $username, $userID, $message);
 		mail($stg->getContactEmails(), "Coagmento Spring 2015 contact message", $email_message);
-		$confirmation = "We've received your recent contact message: '" . $message . "' We will try to respond as soon as possible. If you don't hear back in 24 hours, send an email to study220@rutgers.edu";
+		$confirmation = "We've received your recent contact message: '" . $message . "' We will try to respond as soon as possible. If you don't hear back in 24 hours, send an email to mmitsui@scarletmail.rutgers.edu";
 		mail($email, "Coagmento Spring 2015 confirmation", $confirmation);
 		Util::getInstance()->saveAction("Sent Contact Us",$contactID, $base);
 		exit("email-sent");

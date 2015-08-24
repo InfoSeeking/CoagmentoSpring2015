@@ -105,7 +105,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 		}else if($username=='ninwac'){
 			$instructorName = "Dr. Nina Wacholder";
 			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-		}else if($username=='study220'){
+		}else if($username=='mmitsui'){
 			$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
 		}else if($username=='eun.baik'){
       $instructorName = "Dr. Nicholas Belkin";
@@ -127,7 +127,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 
 
-		if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'study220' && $_POST['password']=='BJ3&9X')
+		if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'mmitsui' && $_POST['password']=='BJ3&9X')
     || ($_POST['username'] == 'eun.baik' && $_POST['password']=='?UvL6#')
     || ($_POST['username'] == 's.bar' && $_POST['password']=='S&xmb!')) //insert session one end stage if necessary
 		{
@@ -148,7 +148,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
               $instructorID=2;
             }
 
-            if($_POST['username'] != 'study220'){
+            if($_POST['username'] != 'mmitsui'){
               $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID='$instructorID' AND R.userID < 1000 GROUP BY R.projectID";
             }else{
               $query = "SELECT instructorID,projectID FROM recruits R WHERE R.instructorID IN (1,2) AND R.userID < 1000 GROUP BY R.projectID";
@@ -158,9 +158,9 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 						echo "<tbody>";
             while($line = mysql_fetch_array($results,MYSQL_ASSOC)){
 
-                if($_POST['username'] == 'study220' && $line['instructorID']==1){
+                if($_POST['username'] == 'mmitsui' && $line['instructorID']==1){
                   $port = 9000;
-                }else if($_POST['username'] == 'study220' && $line['instructorID']==2){
+                }else if($_POST['username'] == 'mmitsui' && $line['instructorID']==2){
                   $port = 9005;
                 }else if($_POST['username'] == 'eun.baik'){
                   $port = 9000;

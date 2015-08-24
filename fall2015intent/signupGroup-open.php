@@ -134,7 +134,7 @@
                 // SEND NOTIFICATION EMAIL TO RESEARCHER
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Study 220 <study220@rutgers.edu>' . "\r\n";
+                $headers .= 'From: Study 220 <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
 
 
 
@@ -188,7 +188,7 @@
 
 
                 $message .= "\r\n";
-                $message .= "Feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
+                $message .= "Feel free to <a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
 								$message .= "\r\n";
                 $message .= "</body></html>";
 
@@ -209,7 +209,7 @@
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. <br/><br/>You will receive a confirmation email with the time, date, and location of your study session. If you have questions, feel free to <br/><a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. <br/><br/>You will receive a confirmation email with the time, date, and location of your study session. If you have questions, feel free to <br/><a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
 
                 for($x=1;$x<=$NUM_USERS;$x++){

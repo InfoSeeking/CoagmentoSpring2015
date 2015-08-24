@@ -3,7 +3,7 @@
 //This class contains the basic data that are inserted into the DB in most queries.
 class Settings {
 	private $homeURL;
-	private $contactEmails = "study220@rutgers.edu";
+	private $contactEmails = "mmitsui@scarletmail.rutgers.edu";
 //    private $homeDirectory = "userstudy2014";
     private $homeDirectory = "fall2015intent";
 //	private $homeDirectory = "";

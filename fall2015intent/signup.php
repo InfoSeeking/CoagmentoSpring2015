@@ -133,7 +133,7 @@ if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
 				<li>Please fill out the information below then click Submit.</li>
 				<li>You will receive a confirmation email within 24-48 hours with details about time, date, and location of your session.</li>
 
-				<li><a href="mailto:study220@rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
+				<li><a href="mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry">Contact us</a> if you have any questions.</li>
 				</ul>
 				</td>
 			</tr>

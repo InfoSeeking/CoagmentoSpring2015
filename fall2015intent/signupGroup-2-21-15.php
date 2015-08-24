@@ -299,7 +299,7 @@
                 // SEND NOTIFICATION EMAIL TO RESEARCHER
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Study 220 <study220@rutgers.edu>' . "\r\n";
+                $headers .= 'From: Study 220 <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
 
 
 
@@ -373,7 +373,7 @@
 
 
                 $message .= "\r\n";
-                $message .= "Feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
+                $message .= "Feel free to <a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a> if you have any questions.";
 								// $message .= "<br/><br/>Sincerely,<br/>Chris Leeder<br/>Postdoctoral Researcher<br/>Rutgers University School of Communication and Information<br/>chris.leeder@rutgers.edu<br/>";
                 $message .= "\r\n";
                 $message .= "</body></html>";
@@ -397,7 +397,7 @@
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
                 echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
-                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:study220@rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
+                echo "<tr><td align=left>Thank you for submitting your request for participating in this study. An email has been sent to you with this confirmation. If you do not receive this email in an hour or have any further question about this study, feel free to <a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
 
                 for($x=1;$x<=$NUM_USERS;$x++){
