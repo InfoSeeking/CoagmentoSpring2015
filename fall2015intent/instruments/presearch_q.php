@@ -116,13 +116,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 				$topicAreaID = $base->getTopicAreaID();
 
-
-				$query = "SELECT Q.question as question FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
-				$results = $connection->commit($query);
-				$question1 = '';
-				$line = mysql_fetch_array($results,MYSQL_ASSOC);
-				$question1 = $line['question'];
-
+				$base->populateQuestionID();
+				$questionID = $base->getQuestionID();
+				$question1 = $base->getQuestion();
 
 				echo $question1;
 

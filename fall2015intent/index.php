@@ -37,6 +37,18 @@
 										$q = "DELETE FROM questions_progress WHERE userID='$i'";
 										$r = $c->commit($q);
 
+										$q = "DELETE FROM video_intent_assignments WHERE userID='$i'";
+										$r = $c->commit($q);
+
+										$q = "DELETE FROM video_reformulation_history WHERE userID='$i'";
+										$r = $c->commit($q);
+
+										$q = "DELETE FROM video_save_history WHERE userID='$i'";
+										$r = $c->commit($q);
+
+										$q = "DELETE FROM video_unsave_history WHERE userID='$i'";
+										$r = $c->commit($q);
+
                     // $q = "INSERT INTO session_progress (projectID,userID,stageID,`date`,`time`,`timestamp`) VALUES ('$i','$i','32','2014-11-06','17:03:20','1415311400'),('$i','$i','1','2014-11-06','17:03:20','1415311400'),('$i','$i','33','2014-11-06','17:03:20','1415311400')";
                     // $c = Connection::getInstance();
                     // $r = $c->commit($q);

@@ -89,29 +89,14 @@ function validate(form)
 
 			$topicAreaID = $base->getTopicAreaID();
 
-			$questionID = $topicAreaID+1;
-			if($base->getStageID() == 15){
-				$questionID = $topicAreaID+1;
-			}else if($base->getStageID() == 45){
-				$questionID = $topicAreaID+4+1;
-			}
-
-
-			$query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$questionID";
-			$results = $connection->commit($query);
-			$question1 = '';
-			$line = mysql_fetch_array($results,MYSQL_ASSOC);
-			$question1 = $line['question'];
-
-			$base->setQuestionID($questionID);
-			$base->setQuestion($question1);
-			$base->setQuestionStartTimestamp($base->getTimestamp());
+			$base->populateQuestionID();
+			$questionID = $base->getQuestionID();
+			$question1 = $base->getQuestion();
 
 
 			$qQuery = "SELECT question, answer, altAnswer
 			FROM questions_study
-			WHERE questionID = '$questionID'
-			AND topicAreaID = $topicAreaID"; //Added topic area ID
+			WHERE questionID = '$questionID'"; //Added topic area ID
 
 			$connection = Connection::getInstance();
 			$results = $connection->commit($qQuery);
@@ -131,9 +116,9 @@ function validate(form)
 	</div>
 
 
-<p>
+<!-- <p>
 	 <strong>DO NOT CLICK 'FINISH' UNTIL INSTRUCTED</strong>.  If you delete this tab, you may find revisit it by clicking the 'Home' button.
-</p>
+</p> -->
 
 
 <center>

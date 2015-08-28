@@ -449,6 +449,26 @@ class Base {
 		 $_SESSION['CSpace_questionID'] = $questionID;
 	}
 
+
+  public function populateQuestionID(){
+    $topicAreaID = $this->getTopicAreaID();
+
+    $questionID = $topicAreaID+1;
+
+
+    $connection = Connection::getInstance();
+
+    $query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$questionID";
+    $results = $connection->commit($query);
+    $question1 = '';
+    $line = mysql_fetch_array($results,MYSQL_ASSOC);
+    $question1 = $line['question'];
+
+    $this->setQuestionID($questionID);
+    $this->setQuestion($question1);
+    $this->setQuestionStartTimestamp($this->getTimestamp());
+  }
+
 	public function setQuestion($question)
 	{
 		 $this->question = $question;
