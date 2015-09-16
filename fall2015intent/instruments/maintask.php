@@ -16,16 +16,41 @@
 			$localDate = $_POST['localDate'];
 			$localTimestamp =  $_POST['localTimestamp'];
 
+
+
 			$base = new Base();
 			$stageID = $base->getStageID();
+
+			$cxn = Connection::getInstance();
+			$userID = $base->getUserID();
+			$projectID = $base->getProjectID();
+			$date = $base->getDate();
+			$time = $base->getTime();
+			$timestamp = $base->getTimestamp();
+			$query = "UPDATE questions_progress SET `endDate`='$date', `endTime`='$time', `endTimestamp`='$timestamp' WHERE userID='$userID' AND projectID='$projectID' AND stageID='$stageID'";
+			$cxn->commit($query);
+
 			Util::getInstance()->saveActionWithLocalTime(basename( __FILE__ ),$stageID,$base,$localTime,$localDate,$localTimestamp);
 			Util::getInstance()->moveToNextStage();
 		}
 		else if(isset($_GET['answer'])){
 			$base = new Base();
 			$stageID = $base->getStageID();
+
+
+			$cxn = Connection::getInstance();
+			$userID = $base->getUserID();
+			$projectID = $base->getProjectID();
+			$date = $base->getDate();
+			$time = $base->getTime();
+			$timestamp = $base->getTimestamp();
+			$query = "UPDATE questions_progress SET `endDate`='$date', `endTime`='$time', `endTimestamp`='$timestamp' WHERE userID='$userID' AND projectID='$projectID' AND stageID='$stageID'";
+			$cxn->commit($query);
+
+
 			Util::getInstance()->saveActionWithLocalTime(basename( __FILE__ ),$stageID,$base);
 			Util::getInstance()->moveToNextStage();
+
 		}
 		else
 		{
@@ -35,6 +60,8 @@
 			$userID = $base->getUserID();
 			$stageID = $base->getStageID();
 			$projectID = $base->getProjectID();
+
+
 
 
 
@@ -85,6 +112,11 @@ function validate(form)
 
 			$base = Base::getInstance();
 			$userID = $base->getUserID();
+			$projectID = $base->getProjectID();
+			$stageID = $base->getStageID();
+			$date = $base->getDate();
+			$time = $base->getTime();
+			$timestamp = $base->getTimestamp();
 			$connection = Connection::getInstance();
 
 			$topicAreaID = $base->getTopicAreaID();
@@ -92,6 +124,16 @@ function validate(form)
 			$base->populateQuestionID();
 			$questionID = $base->getQuestionID();
 			$question1 = $base->getQuestion();
+
+			$query = "SELECT * FROM questions_progress WHERE userID='$userID' AND projectID='$projectID' AND stageID='$stageID'";
+			$cxn = Connection::getInstance();
+			$results = $cxn->commit($query);
+
+			if(mysql_num_rows($results)<1){
+				$query = "INSERT INTO questions_progress (userID,projectID,stageID,questionID,startDate,startTime,startTimestamp) VALUES ('$userID','$projectID','$stageID','$questionID','$date','$time','$timestamp')";
+				$cxn->commit($query);
+			}
+
 
 
 			$qQuery = "SELECT question, answer, altAnswer

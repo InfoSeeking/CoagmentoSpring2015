@@ -156,13 +156,13 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 
 
-				$query = "SELECT Q.title as title FROM questions_study Q WHERE Q.questionID=$topicAreaID1+1";
+				$query = "SELECT Q.title as title FROM questions_study Q WHERE Q.questionID=$topicAreaID1";
 				$results = $connection->commit($query);
 				$question1 = '';
 				$line = mysql_fetch_array($results,MYSQL_ASSOC);
 				$topicArea1title=$line['title'];
 
-				$query = "SELECT Q.title as title FROM questions_study Q WHERE Q.questionID=$topicAreaID2+4+1";
+				$query = "SELECT Q.title as title FROM questions_study Q WHERE Q.questionID=$topicAreaID2+4";
 				$results = $connection->commit($query);
 				$question1 = '';
 				$line = mysql_fetch_array($results,MYSQL_ASSOC);

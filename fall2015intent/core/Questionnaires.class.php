@@ -144,7 +144,6 @@ class Questionnaires
 		}
 
 		public function addAnswer($key,$answer){
-			print "ADD:$key $answer";
 
 			if(!is_array($answer)){
 					$answer = addslashes($answer);

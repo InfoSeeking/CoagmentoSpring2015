@@ -3,13 +3,45 @@ require_once('core/Connection.class.php');
 
 
 $num_recruits = 0;
-    $recruit_limit =100; // Current Recruitment Limit as of 10/6/2014
+    $recruit_limit =60; // Current Recruitment Limit as of 10/6/2014
 
 $closed=true;
 
+
+function availableDates(){
+  $cxn = Connection::getInstance();
+  $query = "SELECT * FROM questionnaire_questions WHERE `key`='date_firstchoice' AND questionID=1038 AND question_cat='fall2015intent'";
+  $results = $cxn->commit($query);
+  $line = mysql_fetch_array($results, MYSQL_ASSOC);
+  $js = json_decode($line['question_data']);
+  $dates_available = array();
+  foreach($js->{'options'} as $key=>$val){
+    array_push($dates_available,$val);
+  }
+
+
+
+
+
+  $query = "SELECT * FROM recruits WHERE firstpreference != ''";
+  $results = $cxn->commit($query);
+  $dates_taken = array();
+  while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+    array_push($dates_taken,$line['firstpreference']);
+  }
+
+
+  return array_diff($dates_available,$dates_taken);
+
+}
+
+
+function allSlotsTaken(){
+  return count(availableDates()) <= 0;
+}
     $closed = false;
 
-if($num_recruits<=$recruit_limit && !$closed)
+if($num_recruits<=$recruit_limit && !allSlotsTaken() &&!$closed)
 {
 
 ?>

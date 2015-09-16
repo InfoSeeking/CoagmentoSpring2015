@@ -453,7 +453,7 @@ class Base {
   public function populateQuestionID(){
     $topicAreaID = $this->getTopicAreaID();
 
-    $questionID = $topicAreaID+1;
+    $questionID = $topicAreaID;
 
 
     $connection = Connection::getInstance();

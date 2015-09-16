@@ -18,7 +18,7 @@
 		$topicAreaID = $base->getTopicAreaID();
 
 
-		$query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$topicAreaID+1";
+		$query = "SELECT Q.question as question,Q.questionID as questionID FROM questions_study Q WHERE Q.questionID=$topicAreaID";
 		$results = $connection->commit($query);
 		$question1 = '';
 		$line = mysql_fetch_array($results,MYSQL_ASSOC);

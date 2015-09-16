@@ -2,8 +2,8 @@
 	"transport":"scp",
 	"hostname": "chirags.scilsnet.rutgers.edu",
 	"port":"22",
-	"username":"ka324",
-	"password":"kevinAlbs123",
+	"username":"mmitsui",
+	"password":"WklxP7&",
 	"target":"/www/coagmento.org/htdocs/fall2015intent",
 	"ignore": [
 	".git/**"

@@ -23,6 +23,41 @@
 		// print_r($questionnaire->getQuestions());
 		// Check if questionnaire is compelte.
 
+
+
+
+		function availableDates(){
+		  $cxn = Connection::getInstance();
+		  $query = "SELECT * FROM questionnaire_questions WHERE `key`='date_firstchoice' AND questionID=1038 AND question_cat='fall2015intent'";
+		  $results = $cxn->commit($query);
+		  $line = mysql_fetch_array($results, MYSQL_ASSOC);
+		  $js = json_decode($line['question_data']);
+		  $dates_available = array();
+		  foreach($js->{'options'} as $key=>$val){
+		    array_push($dates_available,$val);
+		  }
+
+		  // print_r($dates_available);
+
+
+
+		  $query = "SELECT * FROM recruits WHERE firstpreference != ''";
+		  $results = $cxn->commit($query);
+		  $dates_taken = array();
+		  while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+		    array_push($dates_taken,$line['firstpreference']);
+		  }
+
+
+		  return array_diff($dates_available,$dates_taken);
+
+		}
+
+
+		function allSlotsTaken(){
+		  return count(availableDates()) <= 0;
+		}
+
     function random_password_generator($length = 10) {
         $char_lower = 'abcdefghijklmnopqrstuvwxyz';
         $char_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -43,17 +78,26 @@
 
 		function username_generator($id) {
 
-				$name = 'sum15user'.strval($id);
+				$name = 'user'.strval($id);
 
         return $name;
     }
 
 
 
-    if(0){
+		if(allSlotsTaken()){
+			echo "<p style='background-color:red;'>We apologize, the study is already at capacity.</p>";
+		}
+
+    else if(!in_array($_POST["date_firstchoice_1"],availableDates())){
         echo "<p style='background-color:red;'>We apologize, but the day that you've chosen is already taken.</p>";
         echo "<p>The following are the remaining days with available openings:</p>";
         echo "<ul style=\"list-style-type: none;\">";
+				foreach(availableDates() as $v){
+					echo "<li>";
+					echo $v;
+					echo "</li>";
+				}
         echo "</ul>";
         echo "<p>Please click the button below to return to the sign up form.</p>";
         echo "<input type=\"button\" value=\"Go Back\" onClick=\"javascript:history.go(-1)\" />";
@@ -113,7 +157,7 @@
 
                     $results = $connection->commit($query);
 
-                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year, researchtopic,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year', '','$next_userID','$next_userID','$firstpreference','$secondpreference')";
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year','$next_userID','$next_userID','$firstpreference','$secondpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 

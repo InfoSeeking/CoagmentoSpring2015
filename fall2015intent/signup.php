@@ -4,12 +4,46 @@ require_once('core/Connection.class.php');
 require_once('core/Questionnaires.class.php');
 
 $num_recruits = 0;
-$recruit_limit =100; // Current Recruitment Limit as of 07/15/2014
+$recruit_limit =60; // Current Recruitment Limit as of 07/15/2014
 $section_closed = false;
 $closed=true;
 $closed = false;
 
-if($num_recruits<=$recruit_limit && !$closed && !$section_closed)
+
+function availableDates(){
+  $cxn = Connection::getInstance();
+  $query = "SELECT * FROM questionnaire_questions WHERE `key`='date_firstchoice' AND questionID=1038 AND question_cat='fall2015intent'";
+  $results = $cxn->commit($query);
+  $line = mysql_fetch_array($results, MYSQL_ASSOC);
+  $js = json_decode($line['question_data']);
+  $dates_available = array();
+  foreach($js->{'options'} as $key=>$val){
+    array_push($dates_available,$val);
+  }
+
+  // print_r($dates_available);
+
+
+
+  $query = "SELECT * FROM recruits WHERE firstpreference != ''";
+  $results = $cxn->commit($query);
+  $dates_taken = array();
+  while($line = mysql_fetch_array($results, MYSQL_ASSOC)){
+    array_push($dates_taken,$line['firstpreference']);
+  }
+
+
+  return array_diff($dates_available,$dates_taken);
+
+}
+
+
+function allSlotsTaken(){
+  return count(availableDates()) <= 0;
+}
+
+
+if($num_recruits<=$recruit_limit && !allSLotsTaken() && !$closed && !$section_closed)
 {
 	if(1)
 	{
@@ -270,8 +304,77 @@ echo "<fieldset>";
 
 echo "<hr>";
 
-$questionnaire->printQuestions();
-// $questionnaire->printQuestions(0,1);
+// $questionnaire->printQuestions();
+$questionnaire->printQuestions(0,0);
+
+?>
+
+<div class="pure-control-group">
+<div id="date_firstchoice_1_div"><label name="date_firstchoice_1">Choice of date:</label>
+<select name="date_firstchoice_1" id="date_firstchoice_1" required>
+<option disabled selected>--Select one--</option>
+<?php
+
+	foreach(availableDates() as $d){
+		echo "<option>";
+		echo "$d";
+		echo "</option>";
+	}
+ ?>
+<!-- <option>Monday September 14, 9:00-11:30 AM</option>
+<option>Monday September 14, 12:00-2:30 PM</option>
+<option>Monday September 14, 3:00-5:30 PM</option>
+<option>Monday September 14, 6:00-8:30 PM</option>
+<option>Thursday September 17, 9:00-11:30 AM</option>
+<option>Thursday September 17, 12:00-2:30 PM</option>
+<option>Thursday September 17, 3:00-5:30 PM</option>
+<option>Thursday September 17, 6:00-8:30 PM</option>
+<option>Friday September 18, 9:00-11:30 AM</option>
+<option>Friday September 18, 12:00-2:30 PM</option>
+<option>Friday September 18, 3:00-5:30 PM</option>
+<option>Friday September 18, 6:00-8:30 PM</option>
+<option>Monday September 21, 9:00-11:30 AM</option>
+<option>Monday September 21, 12:00-2:30 PM</option>
+<option>Monday September 21, 3:00-5:30 PM</option>
+<option>Monday September 21, 6:00-8:30 PM</option>
+<option>Thursday September 24, 9:00-11:30 AM</option>
+<option>Thursday September 24, 12:00-2:30 PM</option>
+<option>Thursday September 24, 3:00-5:30 PM</option>
+<option>Thursday September 24, 6:00-8:30 PM</option>
+<option>Friday September 25, 9:00-11:30 AM</option>
+<option>Friday September 25, 12:00-2:30 PM</option>
+<option>Friday September 25, 3:00-5:30 PM</option>
+<option>Friday September 25, 6:00-8:30 PM</option>
+<option>Monday September 28, 9:00-11:30 AM</option>
+<option>Monday September 28, 12:00-2:30 PM</option>
+<option>Monday September 28, 3:00-5:30 PM</option>
+<option>Monday September 28, 6:00-8:30 PM</option>
+<option>Thursday October 1, 9:00-11:30 AM</option>
+<option>Thursday October 1, 12:00-2:30 PM</option>
+<option>Thursday October 1, 3:00-5:30 PM</option>
+<option>Thursday October 1, 6:00-8:30 PM</option>
+<option>Friday October 2, 9:00-11:30 AM</option>
+<option>Friday October 2, 12:00-2:30 PM</option>
+<option>Friday October 2, 3:00-5:30 PM</option>
+<option>Friday October 2, 6:00-8:30 PM</option>
+<option>Monday October 5, 9:00-11:30 AM</option>
+<option>Monday October 5, 12:00-2:30 PM</option>
+<option>Monday October 5, 3:00-5:30 PM</option>
+<option>Monday October 5, 6:00-8:30 PM</option>
+<option>Thursday October 8, 9:00-11:30 AM</option>
+<option>Thursday October 8, 12:00-2:30 PM</option>
+<option>Thursday October 8, 3:00-5:30 PM</option>
+<option>Thursday October 8, 6:00-8:30 PM</option>
+<option>Friday October 9, 9:00-11:30 AM</option>
+<option>Friday October 9, 12:00-2:30 PM</option>
+<option>Friday October 9, 3:00-5:30 PM</option>
+<option>Friday October 9, 6:00-8:30 PM</option> -->
+</select>
+<br>
+</div>
+</div>
+
+<?php
 //
 //
 // $questionnaire->printQuestions(3,5);
@@ -315,19 +418,16 @@ echo "</div>";
 
 else if ($closed)
 {
-  echo "<html>\n";
+	echo "<html>\n";
   echo "<head>\n";
   echo "<title>Interactive Search Study: Currently Closed</title>\n";
   echo "</head>\n";
-  echo "<body>\n";
-  echo "<p style='background-color:red;'>Sorry! The user study registration is currently closed.</p>\n";
-  echo "<br/><br/>\n";
-  echo "<hr/>\n";
-  echo "<p>The number of participants required has been reached at this point.</p>\n";
-  echo "<p>If more user participation is required, we will reopen the study registration and send another round of recruitment emails.</p>\n";
-  echo "<hr/>\n";
-  echo "</body>";
+  echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
+  echo "<table class=body align=center>\n";
+  echo "<tr><td align=center>Our study is currently closed at this time, and we are currently not accepting new recruits.  We apologize for any inconvenience.</td></tr>\n";
+  echo "</table></body>\n";
   echo "</html>";
+
 
 
 }else if($section_closed){
@@ -344,15 +444,20 @@ else if ($closed)
   echo "</body>";
   echo "</html>";
 }else{
+
+
   echo "<html>\n";
   echo "<head>\n";
   echo "<title>Interactive Search Study: Currently Closed</title>\n";
   echo "</head>\n";
-  echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
-  echo "<table class=body align=center>\n";
-  echo "<tr><td align=center>Our study is currently closed at this time, and we are currently not accepting new recruits.  We apologize for any inconvenience.</td></tr>\n";
-  echo "</table></body>\n";
+  echo "<body>\n";
+  echo "<p style='background-color:red;'>Sorry! The user study registration is currently closed.</p>\n";
+  echo "<br/><br/>\n";
+  echo "<hr/>\n";
+  echo "<p>The number of participants required has been reached at this point.</p>\n";
+  echo "<p>If more user participation is required, we will reopen the study registration and send another round of recruitment emails.</p>\n";
+  echo "<hr/>\n";
+  echo "</body>";
   echo "</html>";
-
 }
 ?>

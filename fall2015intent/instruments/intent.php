@@ -19,6 +19,9 @@ function commitanswer_intention(){
 	$projectID = $base->getProjectID();
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
+	$timestamp = $base->getTimestamp();
+	$date = $base->getDate();
+	$time = $base->getTime();
 
 	$id_start = 0;
 	$id_more = 0;
@@ -385,7 +388,7 @@ function commitanswer_intention(){
 				`find_known_text`,`find_specific_text`,`find_common_text`,`find_without_text`,`locate_specific_text`,
 				`locate_common_text`,`locate_area_text`,`keep_bibliographical_text`,`keep_link_text`,`keep_item_text`,
 				`access_item_text`,`access_common_text`,`access_area_text`,`evaluate_correctness_text`,`evaluate_specificity_text`,`evaluate_usefulness_text`,
-				`evaluate_best_text`,`evaluate_duplication_text`,`obtain_specific_text`,`obtain_part_text`,`obtain_whole_text`
+				`evaluate_best_text`,`evaluate_duplication_text`,`obtain_specific_text`,`obtain_part_text`,`obtain_whole_text`,`date`,`time`,`timestamp`
 
 
 	) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$id_start',
@@ -407,7 +410,7 @@ function commitanswer_intention(){
 				'$find_known_text','$find_specific_text','$find_common_text','$find_without_text','$locate_specific_text',
 				'$locate_common_text','$locate_area_text','$keep_bibliographical_text','$keep_link_text','$keep_item_text',
 				'$access_item_text','$access_common_text','$access_area_text','$evaluate_correctness_text','$evaluate_specificity_text','$evaluate_usefulness_text',
-				'$evaluate_best_text','$evaluate_duplication_text','$obtain_specific_text','$obtain_part_text','$obtain_whole_text'
+				'$evaluate_best_text','$evaluate_duplication_text','$obtain_specific_text','$obtain_part_text','$obtain_whole_text','$date','$time','$timestamp'
 
 
 	)");
@@ -421,13 +424,16 @@ function commitanswer_reformulation(){
 	$projectID = $base->getProjectID();
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
+	$timestamp = $base->getTimestamp();
+	$date = $base->getDate();
+	$time = $base->getTime();
 	$reformulation_reason = mysql_escape_string($_POST["reformulation_reason"]);
 
 	$time_start = $_POST['time_start'];
 
-	$cxn->commit("INSERT INTO video_reformulation_history (userID,projectID,stageID,questionID,time_start,`reformulation_reason`
+	$cxn->commit("INSERT INTO video_reformulation_history (userID,projectID,stageID,questionID,time_start,`reformulation_reason`,`date`,`time`,`timestamp`
 
-	) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$reformulation_reason'
+	) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$reformulation_reason','$date','$time','$timestamp'
 
 	)");
 
@@ -441,6 +447,9 @@ function commitanswer_save(){
 	$projectID = $base->getProjectID();
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
+	$timestamp = $base->getTimestamp();
+	$date = $base->getDate();
+	$time = $base->getTime();
 
 	$ninputs = intval($_POST["ninputs"]);
 
@@ -449,9 +458,9 @@ function commitanswer_save(){
 		$useful = $_POST["useful_$x"];
 		$confident = $_POST["confident_$x"];
 		$time_start = $_POST["time_start_$x"];
-		$cxn->commit("INSERT INTO video_save_history (userID,projectID,stageID,questionID,time_start,`useful`,`confident`
+		$cxn->commit("INSERT INTO video_save_history (userID,projectID,stageID,questionID,time_start,`useful`,`confident`,`date`,`time`,`timestamp`
 
-		) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$useful','$confident'
+		) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$useful','$confident','$date','$time','$timestamp'
 
 		)");
 	}
@@ -465,6 +474,9 @@ function commitanswer_unsave(){
 	$projectID = $base->getProjectID();
 	$stageID = $base->getStageID();
 	$questionID = $base->getQuestionID();
+	$timestamp = $base->getTimestamp();
+	$date = $base->getDate();
+	$time = $base->getTime();
 
 	$ninputs = intval($_POST["ninputs"]);
 
@@ -472,9 +484,9 @@ function commitanswer_unsave(){
 		$unsave_reason = mysql_escape_string($_POST["unsave_reason_$x"]);
 		$time_start = $_POST["time_start_$x"];
 
-		$cxn->commit("INSERT INTO video_unsave_history (userID,projectID,stageID,questionID,time_start,`unsave_reason`
+		$cxn->commit("INSERT INTO video_unsave_history (userID,projectID,stageID,questionID,time_start,`unsave_reason`,`date`,`time`,`timestamp`
 
-		) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$unsave_reason'
+		) VALUES ('$userID','$projectID','$stageID','$questionID','$time_start','$unsave_reason','$date','$time','$timestamp'
 
 		)");
 	}
@@ -816,6 +828,8 @@ function playVideoHelper(start,stop){
 	document.getElementById(\"session_video\").play();
 }
 
+
+
 function handleCheck(cb){
 	var pref = $(cb).attr('pref');
 
@@ -838,6 +852,7 @@ function handleRadio(rad){
 		$(\"#\"+textname).show();
 	}
 }
+
 
 ";
 
@@ -987,6 +1002,8 @@ function playVideoHelper(start,stop){
 	document.getElementById(\"session_video\").play();
 }
 
+
+
 ";
 
 $javascript_unsave = "
@@ -1052,8 +1069,6 @@ function playVideoHelper(start,stop){
 	START_TIME = start;
 	document.getElementById(\"session_video\").play();
 }
-
-
 
 ";
 
@@ -1653,7 +1668,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 				$render['video']= "<center>
 				<video id='session_video' width='100%'>
-					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename' >
+					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp']."' >
 				</video>
 				</center>";
 				$render['input']=$intention_inputstring;
@@ -1669,12 +1684,12 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 				$render['video']= "<center><strong><u><h4>Previous Query</h4></u></strong>
 				<video id='session_video1' width='85%'>
-					<source id='mp4source1' type='video/mp4' src='../data/videos/mp4/$filename' >
+					<source id='mp4source1' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp_prev']."' >
 				</video>
 				</center>
 				<center><strong><u><h4>Next Query</h4></u></strong>
 				<video id='session_video2' width='85%'>
-					<source id='mp4source2' type='video/mp4' src='../data/videos/mp4/$filename' >
+					<source id='mp4source2' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp']."' >
 				</video>
 				</center>";
 
@@ -1696,7 +1711,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				";
 
 				$render['video']= "<center><video id='session_video' width='100%'>
-					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename' >
+					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".clean_timestr($nexttask['stamps'][0])."' >
 				</video></center>";
 
 
@@ -1756,7 +1771,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				<p>Please answer the question on the right hand side about this undo action.</p>";
 
 				$render['video']= "<center><video id='session_video' width='100%'>
-					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename' >
+					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".clean_timestr($nexttask['stamps'][0])."' >
 				</video></center>";
 
 
@@ -1838,7 +1853,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
     	overflow-y: scroll;
 
 
-		  height:100%; //set dimensions
+		  height:95%; //set dimensions
 		  transition: width ease .5s; // fluid transition when resizing
 
 		  /* Sass/Scss only:
@@ -1917,6 +1932,16 @@ if(!file_exists($filedir.$filename)){
 	<?php
 		exit();
 	}else{
+
+		$base = Base::getInstance();
+		$userID = $base->getUserID();
+		$projectID = $base->getProjectID();
+		$questionID = $base->getQuestionID();
+		$stageID = 15;
+		$query =  "UPDATE video_segments SET userID='$userID',projectID='$projectID',questionID='$questionID',stageID='$stageID' WHERE userID IS NULL AND projectID IS NULL AND `Elapsed Time` IS NOT NULL";
+		$cxn = Connection::getInstance($query);
+		$query = "DELETE FROM video_segments WHERE `Elapsed Time` IS NULL";
+		$cxn->commit($query);
  ?>
 <body class="style1" onload="init();">
 <br/>
@@ -1932,9 +1957,6 @@ if(!file_exists($filedir.$filename)){
 	 ?>
 
 </div>
-
-<hr>
-<br>
 
 
 
@@ -1957,6 +1979,7 @@ if(!file_exists($filedir.$filename)){
 		if($taskname=='intention'){
 			$start_stamp = $nexttask['start_stamp'];
 			$start_int = timestrToInt($start_stamp);
+			$start_int -= 2;
 			$start_stamp = intToPHPTime($start_int);
 
 			$stop_stamp = $nexttask['stop_stamp'];
@@ -1967,6 +1990,7 @@ if(!file_exists($filedir.$filename)){
 		}else if($taskname=='reformulation'){
 			$start_stamp = $nexttask['start_stamp'];
 			$start_int = timestrToInt($start_stamp);
+			$start_int -= 2;
 			$start_stamp = intToPHPTime($start_int);
 
 			$stop_stamp = $nexttask['stop_stamp'];
@@ -1977,6 +2001,7 @@ if(!file_exists($filedir.$filename)){
 
 			$start_stamp = $nexttask['start_stamp_prev'];
 			$start_int = timestrToInt($start_stamp);
+			$start_int -= 2;
 			$start_stamp = intToPHPTime($start_int);
 
 			$stop_stamp = $nexttask['stop_stamp_prev'];
@@ -2058,6 +2083,15 @@ if(!file_exists($filedir.$filename)){
 		echo "<p><h4><u>Progress: $c/$t </u></h4></p>";
 		?>
 
+		<p>Please complete the form below to the best of your ability.</p>
+		<input type="hidden" name="intent" value="true"/>
+		<?php
+			echo $render['hiddeninputs'];
+		 ?>
+		  <button class="pure-button pure-button-primary" type="submit">Submit</button>
+			<br/>
+			<hr/>
+
 		<div id='error_text' style='display:none'>
 	 	 <p style='color:red'>Please complete the form below to the best of your ability.</p>
 	  </div>
@@ -2076,20 +2110,8 @@ if(!file_exists($filedir.$filename)){
 
 
 
-<br/>
 
 
-<hr>
-
-<div id='error_text' style="display:none">
-	<p style="color:red">Some of the video segments above do not have any corresponding input.  They are shown above in red.  Please complete them to the best of your ability</p>
-</div>
-
-<input type="hidden" name="intent" value="true"/>
-<?php
-	echo $render['hiddeninputs'];
- ?>
-  <button class="pure-button pure-button-primary" type="submit">Submit</button>
 </form>
 </div>
 </body>
