@@ -515,7 +515,11 @@ function timestrToInt($start_string){
 		}
 	}
 
-	$start_time = substr($start_time, 0, strpos($start_time, "."));
+
+	if(strpos($start_time,".")!==false){
+			$start_time = substr($start_time, 0, strpos($start_time, "."));
+	}
+
 	// $start_time = substr($start_time,0,-2);
 	$start_time = strtotime($start_time) - strtotime('TODAY');
 
@@ -1975,6 +1979,7 @@ if(!file_exists($filedir.$filename)){
 
 
 		$nexttask = getNextTask();
+
 		$taskname = $nexttask['type'];
 		if($taskname=='intention'){
 			$start_stamp = $nexttask['start_stamp'];

@@ -43,7 +43,7 @@ function allSlotsTaken(){
 }
 
 
-if($num_recruits<=$recruit_limit && !allSLotsTaken() && !$closed && !$section_closed)
+if($num_recruits<=$recruit_limit && !allSlotsTaken() && !$closed && !$section_closed)
 {
 	if(1)
 	{
