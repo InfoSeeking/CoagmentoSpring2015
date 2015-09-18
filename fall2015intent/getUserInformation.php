@@ -39,9 +39,6 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 <body class="style1">
 <div id="login_div" style="display:block;">
 
-
-
-
 <?php
 
 	session_start();
@@ -63,40 +60,12 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 	}
 
 
-
-
-
-	$username = $_POST['username'];
-	$instructorName = '';
-	$instructorID = 0;
-	$port = 0;
-	$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-	$stageID=-1;
-	$password=$_POST['password'];
-
-	if($username=='belkin'){
-		$instructorName = "Dr. Nicholas Belkin";
-		$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-	}else if($username=='ninwac'){
-		$instructorName = "Dr. Nina Wacholder";
-		$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-	}else if($username=='study220'){
-		$apikey="87b40a9c3818d6cde3d9960db9c4d1a57199ec86fc165f082fbeac072154d559";
-	}
-
 	$query = "SELECT firstName, lastName, username, `password` FROM (SELECT * FROM recruits INNER JOIN (SELECT userID as uID, username, `password` FROM users) b on recruits.userID=b.uID) c";
-
 	$connection = Connection::getInstance();
 	$results = $connection->commit($query);
   $base = Base::getInstance();
 
-
-
-
-
-
-
-	if (mysql_num_rows($results) > 0 || ($_POST['username'] == 'study220' && $_POST['password']=='BJ3&9X')) //insert session one end stage if necessary
+	if (mysql_num_rows($results) > 0) //insert session one end stage if necessary
 	{
 
 					echo "<center><table class=\"pure-table pure-table-striped\">";
@@ -118,17 +87,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
       }else{
               echo "<div style=\"background-color:red;\">The credentials you have entered are incorrect.  Please check your input and try again.</div>";
       }
-
-
-
     ?>
-
-
-
-
-
-
-
 
 
 </body></html>
