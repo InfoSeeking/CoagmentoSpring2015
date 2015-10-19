@@ -170,7 +170,23 @@ function validate(form)
 <input type="hidden" name="localTime" value=""/>
 <input type="hidden" name="localDate" value=""/>
 <input type="hidden" name="localTimestamp" value=""/>
-<button type="submit" id="continue_button" class="pure-button pure-button-primary" style="background: rgb(202, 60, 60);">Finish</button></td></tr>
+<?php
+
+	$base = Base::getInstance();
+	$stageID = $base->getStageID();
+	$taskNum = $base->getTaskNum();
+	$userID = $base->getUserID();
+
+	$cxn = Connection::getInstance();
+	$query = "SELECT * FROM users WHERE userID='$userID'";
+	$results = $cxn->commit($query);
+	$line = mysql_fetch_array($results,MYSQL_ASSOC);
+	$finishTopic = $line["finishTopic$taskNum"];
+	if($finishTopic == 1){
+		echo "<button type=\"submit\" id=\"continue_button\" class=\"pure-button pure-button-primary\" style=\"background: rgb(202, 60, 60);\">Finish</button></td></tr>";
+	}
+ ?>
+
 </table>
 </center>
 </form>

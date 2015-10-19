@@ -119,7 +119,7 @@
 			<table class="body" width="503">
 				<tr><td align="center"><br/>Thank you for participating in this study!<td/></tr>
 				<tr><td align="center"><br/>You will now participate in an exit interview before leaving.<td/></tr>
-				<tr><td align="center"><br/>Afterwards, sign for receiving your incentive payment on the way out.<td/></tr>
+				<tr><td align="center"><br/>Afterwards, please sign for receiving your incentive payment on the way out.<td/></tr>
 				<tr><td align="center"><br/><br /><td/></tr>
 				<!--<tr><td align="center"><a href="../logout.php">Click here to exit.</a></td></tr>-->
 			</table>

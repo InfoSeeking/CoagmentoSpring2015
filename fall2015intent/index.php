@@ -93,6 +93,8 @@
 
 
 
+
+
         $query = "SELECT userID, projectID, username, study FROM users WHERE userName='$userName' AND password_sha1='$password' AND status = 1";
 
         $connection = Connection::getInstance();
@@ -105,11 +107,45 @@
             $line = mysql_fetch_array($results, MYSQL_ASSOC);
             $userID = $line['userID'];
 
+
+
             $ip = $_SERVER['REMOTE_ADDR'];
 
             $q = "UPDATE users SET ip='$ip' WHERE userID='$userID'";
             $c = Connection::getInstance();
             $r = $c->commit($q);
+
+
+
+
+
+						// Set participant ID
+
+						$query = "SELECT * FROM users WHERE userID='$userID' AND participantID IS NOT NULL";
+						$connection = Connection::getInstance();
+						$results = $connection->commit($query);
+
+						if(mysql_num_rows($results) == 0){
+							$query = "SELECT COUNT(*) as ct FROM users WHERE userID!='$userID' AND participantID IS NOT NULL AND arrived=1;";
+							$results = $connection->commit($query);
+							$line = mysql_fetch_array($results,MYSQL_ASSOC);
+							$next_participantID = $line['ct']+1;
+							$next_participantID = "S".str_pad("$next_participantID", 3, '0', STR_PAD_LEFT);
+							$query = "UPDATE users SET participantID='$next_participantID' WHERE userID='$userID'";
+							$results = $connection->commit($query);
+
+							$query = "SELECT questionID1,questionID2 FROM participant_id_to_task WHERE participantID='$next_participantID'";
+							$results = $connection->commit($query);
+							$line = mysql_fetch_array($results,MYSQL_ASSOC);
+							$questionID1 = $line['questionID1'];
+							$questionID2 = $line['questionID2'];
+
+							$query = "UPDATE users SET topicAreaID1='$questionID1',topicAreaID2='$questionID2' WHERE userID='$userID' AND participantID='$next_participantID'";
+							$results = $connection->commit($query);
+							$line = mysql_fetch_array($results,MYSQL_ASSOC);
+						}
+
+
 
 
             //$userName = $line['userName'];
@@ -129,6 +165,9 @@
             //Save action
             Util::getInstance()->saveAction('login',0,$base); //Try later to insert machine name; otherwise work with IP
             //Next stage
+
+
+
 
             $stage = new Stage(); //causing storage error (1/28/2015)
             if ($stage->getCurrentStage()<0){

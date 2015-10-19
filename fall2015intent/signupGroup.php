@@ -121,7 +121,7 @@
 
             if(!$closed && !$section_closed){
                 $NUM_USERS = 1;
-                $query = "SELECT MAX(projectID) as max from recruits WHERE userID <1000";
+                $query = "SELECT MAX(projectID) as max from recruits WHERE userID <500";
                 $results = $connection->commit($query);
                 $line = mysql_fetch_array($results, MYSQL_ASSOC);
 
@@ -131,10 +131,12 @@
 								$user_assoc = array();
                 for($x=1; $x<=$NUM_USERS; $x++){
 
-                    $query = "SELECT MAX(userID) as max FROM recruits WHERE userID <1000";
+                    $query = "SELECT MAX(userID) as max FROM recruits WHERE userID <500";
                     $results = $connection->commit($query);
                     $line = mysql_fetch_array($results,MYSQL_ASSOC);
+
                     $next_userID = $line['max']+1;
+										$next_registrationID= str_pad("$next_userID", 3, '0', STR_PAD_LEFT);
                     $password = random_password_generator();
 										$username = username_generator($next_userID);
                     $password_sha1 = sha1($password);
@@ -157,11 +159,11 @@
 
                     $results = $connection->commit($query);
 
-                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year,userID,projectID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year','$next_userID','$next_userID','$firstpreference','$secondpreference')";
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year,userID,projectID,registrationID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year','$next_userID','$next_userID','$next_registrationID','$firstpreference','$secondpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
-                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,`status`,study,optout,numUsers,topicAreaID,`group`) VALUES ('$next_userID','$next_userID','$username','$password','$password_sha1','1','1','0','$NUM_USERS','1','control')";
+                    $query = "INSERT INTO users (userID,projectID,username,password,password_sha1,`status`,study,optout,numUsers,`group`,`arrived`) VALUES ('$next_userID','$next_userID','$username','$password','$password_sha1','1','1','0','$NUM_USERS','study','1')";
                     $results = $connection->commit($query);
 										$userID = $next_userID;
 
@@ -178,7 +180,7 @@
                 // SEND NOTIFICATION EMAIL TO RESEARCHER
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Study 220 <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
+                $headers .= 'From: Information Seeking Intentions <mmitsui@scarletmail.rutgers.edu>' . "\r\n";
 
 
 
@@ -188,7 +190,7 @@
                 $message .= "\r\n";
                 $message .= "<title>Information seeking intentions study participation confirmation email</title></head>\n<body>\n";
                 $message .= "\r\n";
-                $message .= "Thank you for your interest in taking part in our study. The details are shown below.<br/>";
+                $message .= "Thank you for your interest in taking part in our study. The details are shown below.<br/><br/>";
                 $message .= "\r\n";
                 $message .= "<strong>Participant name: </strong>";
 
@@ -205,8 +207,10 @@
 								$username = $user_assoc["un_1"];
 								$password = $user_assoc["pwd_1"];
 
-								$message .= "<strong>Username:</strong> $username<br/>\r\n";
-								$message .= "<strong>Password:</strong> $password<br/>\r\n";
+								// $message .= "<strong>Username:</strong> $username<br/>\r\n";
+								// $message .= "<strong>Password:</strong> $password<br/>\r\n";
+								$message .= "<strong>Study Date:</strong> $firstpreference<br/>\r\n";
+								$message .= "<br/>\r\n";
 
 
                 $message .= "\r\n";
@@ -223,9 +227,9 @@
 
 
 
-                $message .= "During this study you will conduct task-based searched and will be asked explain your search intentions at various points of your search.<br/><br/>";
+                $message .= "Please arrive on time.  During this study you will conduct task-based searches and will be asked explain your search intentions at various points of your search.<br/><br/>";
                 $message .= "\r\n";
-								$message .= "You will receive <strong>$30 cash</strong> for participating in the study.<br/><br/>";
+								$message .= "You will receive <strong>a $30 Visa gift card</strong> for participating in the study.  The most exemplary participants will receive <strong>an additional $10</strong>.<br/><br/>";
 								$message .= "\r\n";
 
 
@@ -244,7 +248,7 @@
                     $lastName = $_POST["lastName_$x"];
                     $message = $firstName." ".$lastName.",<br/><br/>".$message;
                     $message .= "\r\n";
-                    // mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
+                    mail ($email1, $subject, $message, $headers); //Notificaiton to Participant's primary email
                 }
 
 
@@ -260,6 +264,7 @@
                     $lastName = $_POST["lastName_$x"];
                     $username =$user_assoc["un_$x"];
                     $password = $user_assoc["pwd_$x"];
+										$firstpreference = $_POST["date_firstchoice_$x"];
 
 
 
@@ -271,6 +276,7 @@
                     echo "<tr><td>First name: $firstName</td></tr>\n";
                     echo "<tr><td>Last name: $lastName</td></tr>\n";
                     echo "<tr><td>Email: $email1</td></tr>\n";
+										echo "<tr><td>Study Date: $firstpreference</td></tr>\n";
 
                 }
 

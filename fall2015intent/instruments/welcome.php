@@ -94,10 +94,10 @@
 				<li>Before each task, you will be asked to indicate your knowledge of the task topics.</li>
 				<li>You have 20 minutes to complete the task.</li>
 				<li>As part of the search task, you will be asked to rate the usefulness of the web pages you found and to indicate why they were useful.  Your evaluation will be recorded for later analysis.</li>
-				<li>You will then observe recorded video of your previous session, labeling your intentions at each point of your search.</li>
+				<li>You will also observe recorded video of your previous session, labeling your intentions at each point of your search.</li>
 				<li>You will do all of this for a total of 2 tasks.</li>
-				<li>Do your best!  Compensation is $40.</li>
-				<!-- <li>Do your best!  Compensation is $30.  We are also giving an additional $10 compensation to the best performers!</li> -->
+				<!-- <li>Do your best!  Compensation is $40.</li> -->
+				<li>Do your best!  Compensation is $30.  We are also giving an additional $10 compensation to the best performers!</li>
 				</ul>
 				<?php
 				}

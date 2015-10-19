@@ -10,6 +10,14 @@ $closed=true;
 $closed = false;
 
 
+$cxn = Connection::getInstance();
+$query = "SELECT COUNT(*) as ct from recruits WHERE userID <500";
+$results = $cxn->commit($query);
+$line = mysql_fetch_array($results, MYSQL_ASSOC);
+$num_recruits = $line['ct'];
+
+
+
 function availableDates(){
   $cxn = Connection::getInstance();
   $query = "SELECT * FROM questionnaire_questions WHERE `key`='date_firstchoice' AND questionID=1038 AND question_cat='fall2015intent'";
@@ -184,46 +192,60 @@ Registration
 								<td>
 
 
-									<p>Welcome! This is the sign-up form to register for the paid research study.</p>
-									<p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of information seeking.  Participants will conduct searches in an experimental setting for information relating to several different kinds of search tasks related to journalism tasks.
-									Each experimental session will last <strong>about two and a half hours</strong>, and will be held in the Communication and Interaction Laboratory in the SCI building.  Participants will be asked to complete the background questionnaire about their expectations for each task and then conduct a search.
-									After the search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.  Various aspects of their searching behaviros will be recorded for subsequent analysis.</p>
+                  <p>Welcome! This is the sign-up form to register for the paid research study.</p>
+                  <p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of
+                    information seeking. Participants will conduct two searches in an
+                    experimental setting for information relating to several different kinds of search tasks related to journalism tasks. Each experimental session will
+                    last <strong>about two hours</strong>, and will be held in the Communication and Interaction Laboratory in the SCI building.
+                    Participants will be asked to complete a background questionnaire about each task and then conduct a search.
+                    After each search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.
+                    Various aspects of their searching behavior will be recorded for subsequent analysis.</p>
 
-									<p>All volunteers for this study will receive a <strong>$30 Amazon gift card</strong> for their participation, and those judged to have performed the best searches will receive <strong>an additional $10</strong>. Taking part in this study will help to advance the understanding of the search process and contribute towards development of search systems taht can automatically adapt to a user's specific search goals.</p>
+                  <p>All volunteers for this study will receive a <strong>$30 Visa gift card</strong>
+                    for their participation, and exemplary participants will receive <strong>an additional $10</strong>. Taking part in this study will help to advance the
+                    understanding of the search process and contribute towards development
+                    of search systems that can automatically adapt to a user's specific
+                    search goals.</p>
 
-									<p>Requirements:
-					          <ul>
-					            <li>You must be at least 18 years old to participate.</li>
-					            <li>Proficiency in English is required.</li>
-					            <li>Intermediate typing and online search skills are required.</li>
+                  <p>Requirements:
+                    <ul>
+                      <li>You must be at least 18 years old to participate.</li>
+                      <li>Proficiency in English is required.</li>
+                      <li>Intermediate typing and online search skills are required.</li>
                       <li>Normal to corrected vision is required.</li>
-											<li>You must have <em>already completed</em>either 04:567:200 (Writing for Media) or 04:567:324 (News Reporting and Writing).</li>
+                      <li>You must have <em>already completed</em> either 04:567:200 (Writing for Media) or 04:567:324 (News Reporting and Writing).</li>
+                    </ul>
+                  </p>
 
-					          </ul>
-					        </p>
-
-									<!-- <p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
-									<p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
-									<p>You will receive <strong>$40 cash</strong> for participating in the study.</p> -->
+                  <!-- <p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
+                  <p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
+                  <p>You will receive <strong>$40 cash</strong> for participating in the study.</p> -->
 
 
-					        <!-- <p>Requirements:
-					          <ul>
-					            <li>You must be at least 18 years old to participate.</li>
-					            <li>Proficiency in English is required.</li>
-					            <li>Intermediate typing and online search skills are required.</li>
+                  <!-- <p>Requirements:
+                    <ul>
+                      <li>You must be at least 18 years old to participate.</li>
+                      <li>Proficiency in English is required.</li>
+                      <li>Intermediate typing and online search skills are required.</li>
                       <li>Normal to corrected vision is required.</li>
 
-					          </ul>
-					        </p> -->
+                    </ul>
+                  </p> -->
 
 
 
-									<p>Choosing or declining to participate in this study will not affect your class standing or grades at Rutgers.
-                    You will not be offered or receive any special consideration if you take part in this research; it is purely voluntary.
-                    This study has been approved by the Rutgers Institutional Review Board (IRB Study #E14-136),
-                    and will be supervised by Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu)
-                    at the School of Communication and Information.</p>
+                  <p>Choosing or declining to participate in this study will not affect your
+                    class standing or grades at Rutgers. You will not be offered or receive
+                    any special consideration if you take part in this research; it is
+                    purely voluntary. This study has been approved by the Rutgers
+                    Institutional Review Board (IRB Study #E14-136), and will be supervised
+                    by Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
+
+                  <p>For more information about this study, please send e-mail to Matthew
+                    Mitsui at mmitsui@scarletmail.rutgers.edu. You can also contact Matthew
+                    Mitsui to ask questions or get more information about the project.</p>
+
+
 								</td>
 							</tr>
 	  					</table>

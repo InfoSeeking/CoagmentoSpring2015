@@ -37,36 +37,24 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 </noscript>
 
 <body class="style1">
-  <center><h2>Print Users</h2></center>
+
+  <center><h2>Edit Users</h2></center>
 <div id="login_div" style="display:block;">
 
 <?php
 
 	session_start();
 	require_once('core/Connection.class.php');
-	require_once('core/Base.class.php');
-	require_once('core/Util.class.php');
-    require_once('core/Stage.class.php');
 
     echo "<hr><br><br>";
 
-    function getColor($value)
-	{
-		if (($value % 2) == 0)
-			$color="\"#F2F2F2\"";
-		else
-			$color="\"White\"";
 
-		return $color;
-	}
-
-
-	$query = "SELECT firstName, lastName, username, `password` FROM (SELECT * FROM recruits INNER JOIN (SELECT userID as uID, username, `password` FROM users) b on recruits.userID=b.uID) c";
+	$query = "SELECT firstName, lastName, username, `password`,userID FROM (SELECT * FROM recruits INNER JOIN (SELECT userID as uID, username, `password` FROM users) b on recruits.userID=b.uID) c";
 	$connection = Connection::getInstance();
 	$results = $connection->commit($query);
-  $base = Base::getInstance();
 
-	if (mysql_num_rows($results) > 0) //insert session one end stage if necessary
+
+	if (mysql_num_rows($results) > 0)
 	{
 
 					echo "<center><table class=\"pure-table pure-table-striped\">";
@@ -78,8 +66,9 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 							$firstname = $line['firstName'];
 							$lastname = $line['lastName'];
 							$username = $line['username'];
-							$password = htmlspecialchars($line['password']);
-							echo "<td>$firstname</td><td>$lastname</td><td>$username</td><td>$password</td>";
+              $userID = $line['userID'];
+							echo "<td>$firstname</td><td>$lastname</td><td>$username</td>";
+              echo "<td><button class='pure-button pure-button-primary' onclick=\"location.href='editUser.php?userID=$userID'\">Edit</button></td>";
 							echo "</tr>";
           }
 

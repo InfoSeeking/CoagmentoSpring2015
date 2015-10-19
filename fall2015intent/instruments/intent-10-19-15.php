@@ -1357,7 +1357,7 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 	</div>
 
 	<label for='find_common' class='pure-checkbox'>
-				<input id='find_common' type='checkbox' name='find_common' pref='find_common'  onchange='handleCheck(this);'> Find items sharing a named characteristic
+				<input id='find_common' type='checkbox' name='find_common' pref='find_common'  onchange='handleCheck(this);'> Find items with common characteristics
 	</label>
 
 	<div id='find_common_radiogroup' style='display:none'>

@@ -31,7 +31,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		$taskNum = $base->getTaskNum();
 
 
-		
+
 		$filedir = "/mnt/space/www/coagmento.org/htdocs/fall2015intent/data/videos/mp4/";
 		$filename = "user$userID"."task$taskNum".".mp4";
 ?>
@@ -113,13 +113,6 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		  }
 		}
     </style>
-
-    <script type="text/javascript">
-
-		<?php
-			echo $render['javascript'];
-		 ?>
-    </script>
 
 
 <style type="text/css">

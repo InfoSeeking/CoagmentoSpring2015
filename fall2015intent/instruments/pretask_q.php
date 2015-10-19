@@ -86,10 +86,22 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 			if($('#language_english-Yes').is(':checked')){
 				$('#language_div').hide();
+				$('#english_speak_div').hide();
+				$('#english_understandspoken_div').hide();
+				$('#english_read_div').hide();
+				$('#english_write_div').hide();
 			}else if($('#language_english-No').is(':checked')){
 				$('#language_div').show();
+				$('#english_speak_div').show();
+				$('#english_understandspoken_div').show();
+				$('#english_read_div').show();
+				$('#english_write_div').show();
 			}else{
 				$('#language_div').hide();
+				$('#english_speak_div').hide();
+				$('#english_understandspoken_div').hide();
+				$('#english_read_div').hide();
+				$('#english_write_div').hide();
 			}
 
 
@@ -112,7 +124,34 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 								return $('#language_english-No').is(':checked');
 						}
 					}
-
+				},
+				english_speak:{
+					required:{
+						depends:function(){
+								return $('#language_english-No').is(':checked');
+						}
+					}
+				},
+				english_understandspoken:{
+					required:{
+						depends:function(){
+								return $('#language_english-No').is(':checked');
+						}
+					}
+				},
+				english_read:{
+					required:{
+						depends:function(){
+								return $('#language_english-No').is(':checked');
+						}
+					}
+				},
+				english_write:{
+					required:{
+						depends:function(){
+								return $('#language_english-No').is(':checked');
+						}
+					}
 				}
 				";
 				// date_firstchoice_1: {
@@ -231,15 +270,21 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	<br>
 
 	<div class="pure-control-group">
-	<div id="language_div" style="display:none"><label name="language">What is your native language?</label>
+	<div id="language_div" style="display:none">
+		<hr>
+		<label name="language">What is your native language?</label>
 	<textarea name="language" id="language" rows="5" cols="80" required></textarea>
 	<br>
 	</div>
 	</div>
 
-	<br><div >
-	<label>How well do you speak English?</label>
-	<div id="english_speak_div" class="container">
+	<div >
+
+	<div id="english_speak_div" class="container" style="display:none">
+
+		<strong><p>If your native language is not English, please self evaluate your English proficiency:</p></strong>
+		<br>
+		<label>How well do you speak English?</label>
 	<div class="pure-g">
 	<div style="background-color:#F2F2F2" class="pure-u-1-8"><label for="english_speak_1" class="pure-radio"><input id="english_speak_1" type="radio" name="english_speak" value="1">1 (Not at all)</label></div>
 	<div  class="pure-u-1-8"><label for="english_speak_2" class="pure-radio"><input id="english_speak_2" type="radio" name="english_speak" value="2">2</label></div>
@@ -252,9 +297,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	</div>
 	</div>
 
-	<br><div >
-	<label>How well do you understand spoken English?</label>
-	<div id="english_understandspoken_div" class="container">
+	<div >
+
+	<div id="english_understandspoken_div" class="container" style="display:none">
+		<br>
+		<label>How well do you understand spoken English?</label>
 	<div class="pure-g">
 	<div style="background-color:#F2F2F2" class="pure-u-1-8"><label for="english_understandspoken_1" class="pure-radio"><input id="english_understandspoken_1" type="radio" name="english_understandspoken" value="1">1 (Not at all)</label></div>
 	<div  class="pure-u-1-8"><label for="english_understandspoken_2" class="pure-radio"><input id="english_understandspoken_2" type="radio" name="english_understandspoken" value="2">2</label></div>
@@ -267,9 +314,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	</div>
 	</div>
 
-	<br><div >
-	<label>How well do you read English?</label>
-	<div id="english_read_div" class="container">
+	<div >
+
+	<div id="english_read_div" class="container" style="display:none">
+		<br>
+		<label>How well do you read English?</label>
 	<div class="pure-g">
 	<div style="background-color:#F2F2F2" class="pure-u-1-8"><label for="english_read_1" class="pure-radio"><input id="english_read_1" type="radio" name="english_read" value="1">1 (Not at all)</label></div>
 	<div  class="pure-u-1-8"><label for="english_read_2" class="pure-radio"><input id="english_read_2" type="radio" name="english_read" value="2">2</label></div>
@@ -282,9 +331,11 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 	</div>
 	</div>
 
-	<br><div >
-	<label>How well do you write English?</label>
-	<div id="english_write_div" class="container">
+	<div >
+
+	<div id="english_write_div" class="container" style="display:none">
+		<br>
+		<label>How well do you write English?</label>
 	<div class="pure-g">
 	<div style="background-color:#F2F2F2" class="pure-u-1-8"><label for="english_write_1" class="pure-radio"><input id="english_write_1" type="radio" name="english_write" value="1">1 (Not at all)</label></div>
 	<div  class="pure-u-1-8"><label for="english_write_2" class="pure-radio"><input id="english_write_2" type="radio" name="english_write" value="2">2</label></div>
