@@ -33,12 +33,7 @@ function commitanswer_intention(){
 	$find_specific = 0;
 	$find_common = 0;
 	$find_without = 0;
-	$locate_specific = 0;
-	$locate_common = 0;
-	$locate_area = 0;
-	$keep_bibliographical = 0;
 	$keep_link = 0;
-	$keep_item = 0;
 	$access_item = 0;
 	$access_common = 0;
 	$access_area = 0;
@@ -65,12 +60,7 @@ function commitanswer_intention(){
 	$find_specific_radio = '';
 	$find_common_radio = '';
 	$find_without_radio = '';
-	$locate_specific_radio = '';
-	$locate_common_radio = '';
-	$locate_area_radio = '';
-	$keep_bibliographical_radio = '';
 	$keep_link_radio = '';
-	$keep_item_radio = '';
 	$access_item_radio = '';
 	$access_common_radio = '';
 	$access_area_radio = '';
@@ -97,12 +87,7 @@ function commitanswer_intention(){
 	$find_specific_text = '';
 	$find_common_text = '';
 	$find_without_text = '';
-	$locate_specific_text = '';
-	$locate_common_text = '';
-	$locate_area_text = '';
-	$keep_bibliographical_text = '';
 	$keep_link_text = '';
-	$keep_item_text = '';
 	$access_item_text = '';
 	$access_common_text = '';
 	$access_area_text = '';
@@ -156,23 +141,8 @@ function commitanswer_intention(){
 	if(isset($_POST[ "find_without"])){
 		$find_without = 1;
 	}
-	if(isset($_POST[ "locate_specific"])){
-		$locate_specific = 1;
-	}
-	if(isset($_POST[ "locate_common"])){
-		$locate_common = 1;
-	}
-	if(isset($_POST[ "locate_area"])){
-		$locate_area = 1;
-	}
-	if(isset($_POST[ "keep_bibliographical"])){
-		$keep_bibliographical = 1;
-	}
 	if(isset($_POST[ "keep_link"])){
 		$keep_link = 1;
-	}
-	if(isset($_POST[ "keep_item"])){
-		$keep_item = 1;
 	}
 	if(isset($_POST[ "access_item"])){
 		$access_item = 1;
@@ -245,23 +215,8 @@ function commitanswer_intention(){
 	if(isset($_POST[ "find_without_radio"])){
 		$find_without_radio = $_POST["find_without_radio"];
 	}
-	if(isset($_POST[ "locate_specific_radio"])){
-		$locate_specific_radio = $_POST["locate_specific_radio"];
-	}
-	if(isset($_POST[ "locate_common_radio"])){
-		$locate_common_radio = $_POST["locate_common_radio"];
-	}
-	if(isset($_POST[ "locate_area_radio"])){
-		$locate_area_radio = $_POST["locate_area_radio"];
-	}
-	if(isset($_POST[ "keep_bibliographical_radio"])){
-		$keep_bibliographical_radio = $_POST["keep_bibliographical_radio"];
-	}
 	if(isset($_POST[ "keep_link_radio"])){
 		$keep_link_radio = $_POST["keep_link_radio"];
-	}
-	if(isset($_POST[ "keep_item_radio"])){
-		$keep_item_radio = $_POST["keep_item_radio"];
 	}
 	if(isset($_POST[ "access_item_radio"])){
 		$access_item_radio = $_POST["access_item_radio"];
@@ -332,23 +287,8 @@ function commitanswer_intention(){
 	if(isset($_POST[ "find_without_text"])){
 		$find_without_text = mysql_escape_string($_POST["find_without_text"]);
 	}
-	if(isset($_POST[ "locate_specific_text"])){
-		$locate_specific_text = mysql_escape_string($_POST["locate_specific_text"]);
-	}
-	if(isset($_POST[ "locate_common_text"])){
-		$locate_common_text = mysql_escape_string($_POST["locate_common_text"]);
-	}
-	if(isset($_POST[ "locate_area_text"])){
-		$locate_area_text = mysql_escape_string($_POST["locate_area_text"]);
-	}
-	if(isset($_POST[ "keep_bibliographical_text"])){
-		$keep_bibliographical_text = mysql_escape_string($_POST["keep_bibliographical_text"]);
-	}
 	if(isset($_POST[ "keep_link_text"])){
 		$keep_link_text = mysql_escape_string($_POST["keep_link_text"]);
-	}
-	if(isset($_POST[ "keep_item_text"])){
-		$keep_item_text = mysql_escape_string($_POST["keep_item_text"]);
 	}
 	if(isset($_POST[ "access_item_text"])){
 		$access_item_text = mysql_escape_string($_POST["access_item_text"]);
@@ -393,44 +333,38 @@ function commitanswer_intention(){
 
 	$cxn->commit("INSERT INTO video_intent_assignments (userID,projectID,stageID,questionID,segmentID,time_start,`id_start`,
 		`id_more`,`learn_feature`,`learn_structure`,`learn_domain`,`learn_database`,
-		`find_known`,`find_specific`,`find_common`,`find_without`,`locate_specific`,
-		`locate_common`,`locate_area`,`keep_bibliographical`,`keep_link`,`keep_item`,
+		`find_known`,`find_specific`,`find_common`,`find_without`,`keep_link`,
 		`access_item`,`access_common`,`access_area`,`evaluate_correctness`,`evaluate_specificity`,`evaluate_usefulness`,
 		`evaluate_best`,`evaluate_duplication`,`obtain_specific`,`obtain_part`,`obtain_whole`,`other`,
 
 		`id_start_radio`,
 			`id_more_radio`,`learn_feature_radio`,`learn_structure_radio`,`learn_domain_radio`,`learn_database_radio`,
-			`find_known_radio`,`find_specific_radio`,`find_common_radio`,`find_without_radio`,`locate_specific_radio`,
-			`locate_common_radio`,`locate_area_radio`,`keep_bibliographical_radio`,`keep_link_radio`,`keep_item_radio`,
+			`find_known_radio`,`find_specific_radio`,`find_common_radio`,`find_without_radio`,`keep_link_radio`,
 			`access_item_radio`,`access_common_radio`,`access_area_radio`,`evaluate_correctness_radio`,`evaluate_specificity_radio`,`evaluate_usefulness_radio`,
 			`evaluate_best_radio`,`evaluate_duplication_radio`,`obtain_specific_radio`,`obtain_part_radio`,`obtain_whole_radio`,`other_radio`,
 
 			`id_start_text`,
 				`id_more_text`,`learn_feature_text`,`learn_structure_text`,`learn_domain_text`,`learn_database_text`,
-				`find_known_text`,`find_specific_text`,`find_common_text`,`find_without_text`,`locate_specific_text`,
-				`locate_common_text`,`locate_area_text`,`keep_bibliographical_text`,`keep_link_text`,`keep_item_text`,
+				`find_known_text`,`find_specific_text`,`find_common_text`,`find_without_text`,`keep_link_text`,
 				`access_item_text`,`access_common_text`,`access_area_text`,`evaluate_correctness_text`,`evaluate_specificity_text`,`evaluate_usefulness_text`,
 				`evaluate_best_text`,`evaluate_duplication_text`,`obtain_specific_text`,`obtain_part_text`,`obtain_whole_text`,`other_text`,`other_reason`,`date`,`time`,`timestamp`
 
 
 	) VALUES ('$userID','$projectID','$stageID','$questionID','$segmentID','$time_start','$id_start',
 		'$id_more','$learn_feature','$learn_structure','$learn_domain','$learn_database',
-		'$find_known','$find_specific','$find_common','$find_without','$locate_specific',
-		'$locate_common','$locate_area','$keep_bibliographical','$keep_link','$keep_item',
+		'$find_known','$find_specific','$find_common','$find_without','$keep_link',
 		'$access_item','$access_common','$access_area','$evaluate_correctness','$evaluate_specificity','$evaluate_usefulness',
 		'$evaluate_best','$evaluate_duplication','$obtain_specific','$obtain_part','$obtain_whole','$other',
 
 		'$id_start_radio',
 			'$id_more_radio','$learn_feature_radio','$learn_structure_radio','$learn_domain_radio','$learn_database_radio',
-			'$find_known_radio','$find_specific_radio','$find_common_radio','$find_without_radio','$locate_specific_radio',
-			'$locate_common_radio','$locate_area_radio','$keep_bibliographical_radio','$keep_link_radio','$keep_item_radio',
+			'$find_known_radio','$find_specific_radio','$find_common_radio','$find_without_radio','$keep_link_radio',
 			'$access_item_radio','$access_common_radio','$access_area_radio','$evaluate_correctness_radio','$evaluate_specificity_radio','$evaluate_usefulness_radio',
 			'$evaluate_best_radio','$evaluate_duplication_radio','$obtain_specific_radio','$obtain_part_radio','$obtain_whole_radio','$other_radio',
 
 			'$id_start_text',
 				'$id_more_text','$learn_feature_text','$learn_structure_text','$learn_domain_text','$learn_database_text',
-				'$find_known_text','$find_specific_text','$find_common_text','$find_without_text','$locate_specific_text',
-				'$locate_common_text','$locate_area_text','$keep_bibliographical_text','$keep_link_text','$keep_item_text',
+				'$find_known_text','$find_specific_text','$find_common_text','$find_without_text','$keep_link_text',
 				'$access_item_text','$access_common_text','$access_area_text','$evaluate_correctness_text','$evaluate_specificity_text','$evaluate_usefulness_text',
 				'$evaluate_best_text','$evaluate_duplication_text','$obtain_specific_text','$obtain_part_text','$obtain_whole_text','$other_text','$other_reason','$date','$time','$timestamp'
 
@@ -1388,65 +1322,6 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 	<textarea id='find_without_text' name='find_without_text' rows='5' cols='40' ></textarea>
 	</div>
 </div>
-
-
-
-<div class='pure-u-1-1'>
-	<label><h4><u>Locate: Find out where a specific item is placed</u></h4></label>
-
-	<label for='locate_specific' class='pure-checkbox'>
-				<input id='locate_specific' type='checkbox' name='locate_specific' pref='locate_specific'  onchange='handleCheck(this);'> Locate a specific item
-	</label>
-
-	<div id='locate_specific_radiogroup' style='display:none'>
-	<label for='locate_specific_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='locate_specific_radio-Yes' type='radio' name='locate_specific_radio' pref='locate_specific'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='locate_specific_radio-No' type='radio' name='locate_specific_radio' pref='locate_specific'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='locate_specific_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='locate_specific_text' name='locate_specific_text' rows='5' cols='40' ></textarea>
-	</div>
-
-	<label for='locate_common' class='pure-checkbox'>
-				<input id='locate_common' type='checkbox' name='locate_common' pref='locate_common'  onchange='handleCheck(this);'> Locate items with common characteristics
-	</label>
-
-	<div id='locate_common_radiogroup' style='display:none'>
-	<label for='locate_common_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='locate_common_radio-Yes' type='radio' name='locate_common_radio' pref='locate_common'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='locate_common_radio-No' type='radio' name='locate_common_radio' pref='locate_common'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='locate_common_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='locate_common_text' name='locate_common_text' rows='5' cols='40' ></textarea>
-	</div>
-
-	<label for='locate_area' class='pure-checkbox'>
-				<input id='locate_area' type='checkbox' name='locate_area' pref='locate_area'  onchange='handleCheck(this);'> Locate an area/location
-	</label>
-
-	<div id='locate_area_radiogroup' style='display:none'>
-	<label for='locate_area_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='locate_area_radio-Yes' type='radio' name='locate_area_radio' pref='locate_area'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='locate_area_radio-No' type='radio' name='locate_area_radio' pref='locate_area'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='locate_area_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='locate_area_text' name='locate_area_text' rows='5' cols='40' ></textarea>
-	</div>
-
-
-
-
-
-</div>
 </div>
 
 
@@ -1454,22 +1329,6 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 <div class='pure-g'>
 <div class='pure-u-1-1'>
 	<label><h4><u>Keep record</u></h4></label>
-
-	<label for='keep_bibliographical' class='pure-checkbox'>
-				<input id='keep_bibliographical' type='checkbox' name='keep_bibliographical' pref='keep_bibliographical'  onchange='handleCheck(this);'> Keep record of bibliographical information
-	</label>
-
-	<div id='keep_bibliographical_radiogroup' style='display:none'>
-	<label for='keep_bibliographical_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='keep_bibliographical_radio-Yes' type='radio' name='keep_bibliographical_radio' pref='keep_bibliographical'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='keep_bibliographical_radio-No' type='radio' name='keep_bibliographical_radio' pref='keep_bibliographical'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='keep_bibliographical_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='keep_bibliographical_text' name='keep_bibliographical_text' rows='5' cols='40' ></textarea>
-	</div>
 
 	<label for='keep_link' class='pure-checkbox'>
 				<input id='keep_link' type='checkbox' name='keep_link' pref='keep_link'  onchange='handleCheck(this);'> Keep record of link
@@ -1487,28 +1346,13 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 	<textarea id='keep_link_text' name='keep_link_text' rows='5' cols='40' ></textarea>
 	</div>
 
-	<label for='keep_item' class='pure-checkbox'>
-				<input id='keep_item' type='checkbox' name='keep_item' pref='keep_item'  onchange='handleCheck(this);'> Note item for return
-	</label>
-
-	<div id='keep_item_radiogroup' style='display:none'>
-	<label for='keep_item_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='keep_item_radio-Yes' type='radio' name='keep_item_radio' pref='keep_item'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='keep_item_radio-No' type='radio' name='keep_item_radio' pref='keep_item'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='keep_item_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='keep_item_text' name='keep_item_text' rows='5' cols='40' ></textarea>
-	</div>
 </div>
 
 
 
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Access an item based on its location</u></h4></label>
+	<label><h4><u>Access an item or set of items</u></h4></label>
 
 	<label for='access_item' class='pure-checkbox'>
 				<input id='access_item' type='checkbox' name='access_item' pref='access_item'  onchange='handleCheck(this);'> Access a specific item
@@ -1543,7 +1387,7 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 	</div>
 
 	<label for='access_area' class='pure-checkbox'>
-				<input id='access_area' type='checkbox' name='access_area' pref='access_area'  onchange='handleCheck(this);'> Access an area/location
+				<input id='access_area' type='checkbox' name='access_area' pref='access_area'  onchange='handleCheck(this);'> Access a web site/home page or similar
 	</label>
 
 	<div id='access_area_radiogroup' style='display:none'>
