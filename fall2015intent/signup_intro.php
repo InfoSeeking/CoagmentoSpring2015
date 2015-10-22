@@ -107,7 +107,7 @@ function isRadioSelected(radioButtons, obj)
           <p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of
             information seeking. Participants will conduct two searches in an
             experimental setting for information relating to several different kinds of search tasks related to journalism tasks. Each experimental session will
-            last <strong>about two hours</strong>, and will be held in the Communication and Interaction Laboratory in the SCI building.
+            last <strong>about two hours</strong>, and will be held in the Communication and Interaction Laboratory  - <strong>in rooms 222-A and 222-B</strong> - in the SCI building.
             Participants will be asked to complete a background questionnaire about each task and then conduct a search.
             After each search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.
             Various aspects of their searching behavior will be recorded for subsequent analysis.</p>

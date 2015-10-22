@@ -13,8 +13,25 @@
 ?>
 <html>
 <head>
-<title>Intention Annotation Tutorial
-</title>
+
+	<?php
+	if($stageID<25 || ($stageID>35 && $stageID<51))
+	{
+	?>
+	<title>System Annotation Tutorial
+	</title>
+	<?php
+	}
+	else
+	{
+	?>
+	<title>Intention Annotation Tutorial
+	</title>
+	<?php
+	}
+	?>
+
+
 
 </head>
 <link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
@@ -27,7 +44,21 @@
 	<br/>
 
 		<table class="body" width="90%">
-		<tr><th><h2>Intention Annotation Tutorial</h2></th></tr>
+			<?php
+			if($stageID<25 || ($stageID>35 && $stageID<51))
+			{
+			?>
+			<tr><th><h2>System Tutorial</h2></th></tr>
+			<?php
+			}
+			else
+			{
+			?>
+			<tr><th><h2>Intention Annotation Tutorial</h2></th></tr>
+			<?php
+			}
+			?>
+
 		<tr><td><hr/></td></tr>
 		<tr>
 			<td>

@@ -209,6 +209,7 @@
 
 								// $message .= "<strong>Username:</strong> $username<br/>\r\n";
 								// $message .= "<strong>Password:</strong> $password<br/>\r\n";
+								$message .= "<strong>Study Location:</strong> SCI Communication and Interaction Lab, 222-A + 222-B<br/>\r\n";
 								$message .= "<strong>Study Date:</strong> $firstpreference<br/>\r\n";
 								$message .= "<br/>\r\n";
 
@@ -227,7 +228,8 @@
 
 
 
-                $message .= "Please arrive on time.  During this study you will conduct task-based searches and will be asked explain your search intentions at various points of your search.<br/><br/>";
+                $message .= "<strong>Please arrive on time.  If you are at least 15 minutes late and there is a session after yours, we will need to reschedule your session.</strong><br/><br/>";
+								$message .= "During this study you will conduct task-based searches and will be asked explain your search intentions at various points of your search.<br/><br/>";
                 $message .= "\r\n";
 								$message .= "You will receive <strong>a $30 Visa gift card</strong> for participating in the study.  The most exemplary participants will receive <strong>an additional $10</strong>.<br/><br/>";
 								$message .= "\r\n";
@@ -276,6 +278,7 @@
                     echo "<tr><td>First name: $firstName</td></tr>\n";
                     echo "<tr><td>Last name: $lastName</td></tr>\n";
                     echo "<tr><td>Email: $email1</td></tr>\n";
+										echo "<tr><td>Study Location:</strong> SCI Communication and Interaction Lab, 222-A + 222-B</td></tr>\n";
 										echo "<tr><td>Study Date: $firstpreference</td></tr>\n";
 
                 }
