@@ -10,6 +10,15 @@
 	{
 		$base = new Base();
 		$stageID = $base->getStageID();
+
+		$userID = $base->getUserID();
+		$projectID=$base->getProjectID();
+		$localTime = $_GET['localTime'];
+		$localDate = $_GET['localDate'];
+		$localTimestamp = $_GET['localTimestamp'];
+
+		Util::getInstance()->saveActionWithLocalTime("Review Video",0,$base,$localTime,$localDate,$localTimestamp);
+
 ?>
 <html>
 <head>

@@ -51,9 +51,7 @@
 				$message .= "\r\n";
 				$message .= "<title>Interactive search study completion</title></head>\n<body>\n";
 				$message .= "\r\n";
-				$message .= "Hello,<br/><br/>Thank you for completing our study!<br/><br/>";
-				$message .= "\r\n";
-				$message .= "We have attached to this e-mail the snippets, bookmarks, and Task Pad you've created for your own personal use.<br/><br/>";
+				$message .= "Hello,<br/><br/>This concludes your participation in the study.  Thank you for volunteering your time!<br/><br/>";
 				$message .= "\r\n";
 				$message .= "Feel free to contact me if you have any questions.<br/><br/>Sincerely,<br/>Matthew Mitsui<br/>PhD Student<br/>Rutgers University School of Communication and Information<br/>mmitsui@scarletmail.rutgers.edu<br/>";
 				$message .= "\r\n";
@@ -65,28 +63,28 @@
 
 
         //bookmarks
-        $query = "SELECT * from bookmarks WHERE projectID='$projectID'";
-        $connection = Connection::getInstance();
-        $results = $connection->commit($query);
-        $message .= "<center><strong><u>Bookmarks</u></strong></center><br><br>";
-        $message .= "\r\n";
-        $ct=0;
-        while($line = mysql_fetch_array($results,MYSQL_ASSOC)){
-            $ct+=1;
-            $title = $line['title'];
-            $url = $line['url'];
-            $rating = $line['rating'];
-            // $note = $line['note'];
-
-            $message .= "<u>Bookmark $ct</u><br>";
-            $message .= "<u>Page title:</u> $title<br>";
-            $message .= "<u>URL:</u> $url<br>";
-            $message .= "<u>Rating:</u> $rating<br>";
-            // $message .= "<u>Note:</u> $note<br>";
-
-        }
-
-        $message .= "<br><br>";
+        // $query = "SELECT * from bookmarks WHERE projectID='$projectID'";
+        // $connection = Connection::getInstance();
+        // $results = $connection->commit($query);
+        // $message .= "<center><strong><u>Bookmarks</u></strong></center><br><br>";
+        // $message .= "\r\n";
+        // $ct=0;
+        // while($line = mysql_fetch_array($results,MYSQL_ASSOC)){
+        //     $ct+=1;
+        //     $title = $line['title'];
+        //     $url = $line['url'];
+        //     $rating = $line['rating'];
+        //     // $note = $line['note'];
+				//
+        //     $message .= "<u>Bookmark $ct</u><br>";
+        //     $message .= "<u>Page title:</u> $title<br>";
+        //     $message .= "<u>URL:</u> $url<br>";
+        //     $message .= "<u>Rating:</u> $rating<br>";
+        //     // $message .= "<u>Note:</u> $note<br>";
+				//
+        // }
+				//
+        // $message .= "<br><br>";
 
 
         //etherpad
