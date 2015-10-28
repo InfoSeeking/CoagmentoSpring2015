@@ -6,7 +6,8 @@
 	"password":"WklxP7&",
 	"target":"/www/coagmento.org/htdocs/fall2015intent",
 	"ignore": [
-	".git/**"
+	".git/**",
+	".idea/**"
 	],
 	"uploadOnSave":true
 }
