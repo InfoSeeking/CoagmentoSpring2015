@@ -2,6 +2,7 @@
 	require_once('core/Connection.class.php');
 
     $closed=false;
+	echo "hello";
     if(!$closed){
 ?>
 <html>

@@ -6,6 +6,7 @@
 ?>
 <html>
 <head>
+	<link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
 	<link rel="stylesheet" href="study_styles/custom/text.css">
 <title>Information Seeking Intentions Study: Sign Up</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -17,7 +18,9 @@
 </style>
 </head>
 
-<body class="style1">
+<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
+	<div class="panel panel-default" style="width:95%; margin:auto">
+    <div class="panel-body">
 <?php
 		$questionnaire = Questionnaires::getInstance();
 		// print_r($questionnaire->getQuestions());
@@ -89,7 +92,7 @@
 			echo "<p style='background-color:red;'>We apologize, the study is already at capacity.</p>";
 		}
 
-    else if(!in_array($_POST["date_firstchoice_1"],availableDates())){
+    else if(isset($_POST['date_firstchoice_1']) && !in_array($_POST["date_firstchoice_1"],availableDates())){
         echo "<p style='background-color:red;'>We apologize, but the day that you've chosen is already taken.</p>";
         echo "<p>The following are the remaining days with available openings:</p>";
         echo "<ul style=\"list-style-type: none;\">";
@@ -143,7 +146,6 @@
                     $firstName= addslashes($_POST["firstName_$x"]);
                     $lastName = addslashes($_POST["lastName_$x"]);
                     $email1 = $_POST["email1_$x"];
-                    $sex = $_POST["gender_$x"];
                     $year = $_POST["year_$x"];
 
                     $time = $base->getTime();
@@ -152,14 +154,13 @@
                     $user_ip = $base->getIP();
 										$age = $_POST["age_$x"];
 										$firstpreference = $_POST["date_firstchoice_$x"];
-										$secondpreference = $_POST["date_secondchoice_$x"];
 										$user_assoc["un_$x"]=$username;
 										$user_assoc["pwd_$x"]=$password;
 
 
                     $results = $connection->commit($query);
 
-                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, sex, approved, date, time, timestamp, year,userID,projectID,registrationID,firstpreference,secondpreference) VALUES('$firstName','$lastName','$age','$email1','$sex','1', '$date', '$time', '$timestamp', '$year','$next_userID','$next_userID','$next_registrationID','$firstpreference','$secondpreference')";
+                    $query = "INSERT INTO recruits (firstName, lastName, age, email1, approved, date, time, timestamp, year,userID,projectID,registrationID,firstpreference) VALUES('$firstName','$lastName','$age','$email1','1', '$date', '$time', '$timestamp', '$year','$next_userID','$next_userID','$next_registrationID','$firstpreference')";
                     $results = $connection->commit($query);
                     $recruitsID = $connection->getLastID();
 
@@ -256,7 +257,9 @@
 
 
                 // WEB APPLICATION NOTIFICATION TO THE PARTICIPANT
-                echo "<table>\n";
+
+								echo "<h3>Registration Complete!</h3>";
+								echo "<table>\n";
                 echo "<tr><td></td></tr>\n";
                 echo "<tr><td align=left>Thank you for submitting your request for participating in this study. <br/><br/>You will receive a confirmation email with the time, date, and location of your study session. If you have questions, feel free to <br/><a href=\"mailto:mmitsui@scarletmail.rutgers.edu?subject=Study inquiry\">contact us</a>.<hr/></td></tr>\n";
                 echo "<tr><td><strong>Participant information</strong></td></tr>\n";
@@ -319,5 +322,6 @@
 
 ?>
 <br/>
+</div></div>
 </body>
 </html>

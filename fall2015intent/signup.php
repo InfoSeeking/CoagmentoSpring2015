@@ -64,11 +64,12 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() && !$closed && !$section_cl
 	?>
 <html>
 <head>
+
+  <link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
   <link rel="stylesheet" href="study_styles/custom/text.css">
 	<title>
 			Research Study Registration
     </title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
 
     <style>
     select {
@@ -163,8 +164,11 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() && !$closed && !$section_cl
 		}
 </style>
 </head>
-<body class="style1">
-<br/>
+<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
+
+  <div class="panel panel-default" style="width:95%; margin:auto">
+    <div class="panel-body">
+
 <div id="signupForm" align="center">
 	<h3>Research Study Registration</h3>
 		<table class="style1" width=90%>
@@ -343,64 +347,13 @@ $questionnaire->printQuestions(0,0);
 		echo "</option>";
 	}
  ?>
-<!-- <option>Monday September 14, 9:00-11:30 AM</option>
-<option>Monday September 14, 12:00-2:30 PM</option>
-<option>Monday September 14, 3:00-5:30 PM</option>
-<option>Monday September 14, 6:00-8:30 PM</option>
-<option>Thursday September 17, 9:00-11:30 AM</option>
-<option>Thursday September 17, 12:00-2:30 PM</option>
-<option>Thursday September 17, 3:00-5:30 PM</option>
-<option>Thursday September 17, 6:00-8:30 PM</option>
-<option>Friday September 18, 9:00-11:30 AM</option>
-<option>Friday September 18, 12:00-2:30 PM</option>
-<option>Friday September 18, 3:00-5:30 PM</option>
-<option>Friday September 18, 6:00-8:30 PM</option>
-<option>Monday September 21, 9:00-11:30 AM</option>
-<option>Monday September 21, 12:00-2:30 PM</option>
-<option>Monday September 21, 3:00-5:30 PM</option>
-<option>Monday September 21, 6:00-8:30 PM</option>
-<option>Thursday September 24, 9:00-11:30 AM</option>
-<option>Thursday September 24, 12:00-2:30 PM</option>
-<option>Thursday September 24, 3:00-5:30 PM</option>
-<option>Thursday September 24, 6:00-8:30 PM</option>
-<option>Friday September 25, 9:00-11:30 AM</option>
-<option>Friday September 25, 12:00-2:30 PM</option>
-<option>Friday September 25, 3:00-5:30 PM</option>
-<option>Friday September 25, 6:00-8:30 PM</option>
-<option>Monday September 28, 9:00-11:30 AM</option>
-<option>Monday September 28, 12:00-2:30 PM</option>
-<option>Monday September 28, 3:00-5:30 PM</option>
-<option>Monday September 28, 6:00-8:30 PM</option>
-<option>Thursday October 1, 9:00-11:30 AM</option>
-<option>Thursday October 1, 12:00-2:30 PM</option>
-<option>Thursday October 1, 3:00-5:30 PM</option>
-<option>Thursday October 1, 6:00-8:30 PM</option>
-<option>Friday October 2, 9:00-11:30 AM</option>
-<option>Friday October 2, 12:00-2:30 PM</option>
-<option>Friday October 2, 3:00-5:30 PM</option>
-<option>Friday October 2, 6:00-8:30 PM</option>
-<option>Monday October 5, 9:00-11:30 AM</option>
-<option>Monday October 5, 12:00-2:30 PM</option>
-<option>Monday October 5, 3:00-5:30 PM</option>
-<option>Monday October 5, 6:00-8:30 PM</option>
-<option>Thursday October 8, 9:00-11:30 AM</option>
-<option>Thursday October 8, 12:00-2:30 PM</option>
-<option>Thursday October 8, 3:00-5:30 PM</option>
-<option>Thursday October 8, 6:00-8:30 PM</option>
-<option>Friday October 9, 9:00-11:30 AM</option>
-<option>Friday October 9, 12:00-2:30 PM</option>
-<option>Friday October 9, 3:00-5:30 PM</option>
-<option>Friday October 9, 6:00-8:30 PM</option> -->
 </select>
 <br>
 </div>
 </div>
 
 <?php
-//
-//
-// $questionnaire->printQuestions(3,5);
-// $questionnaire->printQuestions(7,7);
+
 echo "</fieldset>";
 echo "</div>";
 
@@ -413,8 +366,10 @@ echo "</div>";
 }
 ?>
         <hr>
-        	<button class="pure-button pure-button-primary" type="submit">Submit</button>
+        	<button class="btn btn-primary" type="submit">Submit</button>
     </form>
+</div>
+</div>
 </div>
 </body>
 <?php $questionnaire->printPostamble();?>

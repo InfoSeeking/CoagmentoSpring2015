@@ -2,9 +2,7 @@
 <html>
 <head>
 <title>View Course Writeups</title>
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/tables.css">
+<link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="study_styles/custom/text.css">
 
 </head>
@@ -36,8 +34,10 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 </div>
 </noscript>
 
-<body class="style1">
+<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
 
+  <div class="panel panel-default" style="width:95%;  margin:auto">
+    <div class="panel-body">
   <center><h2>Edit Users</h2></center>
 <div id="login_div" style="display:block;">
 
@@ -57,7 +57,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 	if (mysql_num_rows($results) > 0)
 	{
 
-					echo "<center><table class=\"pure-table pure-table-striped\">";
+					echo "<center><table class=\"table  table-striped table-bordered\" style=\"width:auto\">";
 					echo "<thead><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th></thead>";
 
 					echo "<tbody>";
@@ -68,7 +68,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 							$username = $line['username'];
               $userID = $line['userID'];
 							echo "<td>$firstname</td><td>$lastname</td><td>$username</td>";
-              echo "<td><button class='pure-button pure-button-primary' onclick=\"location.href='editUser.php?userID=$userID'\">Edit</button></td>";
+              echo "<td><button class='btn btn-primary' onclick=\"location.href='editUser.php?userID=$userID'\">Edit</button></td>";
 							echo "</tr>";
           }
 
@@ -80,4 +80,6 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     ?>
 
 
+</div>
+</div>
 </body></html>

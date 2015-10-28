@@ -148,6 +148,9 @@
 
 
 
+						$query = "SELECT * FROM users WHERE userID='$userID' AND participantID IS NOT NULL";
+						$connection = Connection::getInstance();
+						$results = $connection->commit($query);
             //$userName = $line['userName'];
             $projectID = $line['projectID'];
             $studyID = $line['study'];

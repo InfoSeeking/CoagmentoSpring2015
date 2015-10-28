@@ -57,8 +57,11 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() &&!$closed)
 	<title>
     Research Study Registration: Introduction
     </title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-<script type="text/javascript">
+
+    <link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
+    <link rel="stylesheet" href="study_styles/custom/text.css">
+
+    <script type="text/javascript">
 
 	var alertColor = "Red";
 	var okColor = "White";
@@ -94,101 +97,105 @@ function isRadioSelected(radioButtons, obj)
 		}
 </style>
 </head>
-<body class="style1">
+<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
 <br/>
-<div id="signupIntro" align="center">
-	<h3>Research Study Registration</h3>
-	<form method="post" onsubmit="return validateForm(this)">
-		<table class="style1" width=90%>
-			<tr>
-			  <td colspan=2>
+<div class="panel panel-default" style="width:95%;  margin:auto">
+  <div class="panel-body">
+  <div id="signupIntro" align="center">
+  	<h3>Research Study Registration</h3>
+  	<form method="post" onsubmit="return validateForm(this)">
+  		<table class="style1" width=90%>
+  			<tr>
+  			  <td colspan=2>
 
-          <p>Welcome! This is the sign-up form to register for the paid research study.</p>
-          <p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of
-            information seeking. Participants will conduct two searches in an
-            experimental setting for information relating to several different kinds of search tasks related to journalism tasks. Each experimental session will
-            last <strong>about two hours</strong>, and will be held in the Communication and Interaction Laboratory  - <strong>in rooms 222-A and 222-B</strong> - in the SCI building.
-            Participants will be asked to complete a background questionnaire about each task and then conduct a search.
-            After each search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.
-            Various aspects of their searching behavior will be recorded for subsequent analysis.</p>
+            <div><p>Welcome! This is the sign-up form to register for the paid research study.</p></div>
+            <p>The research project, <em>Information Seeking Intentions</em>, seeks Journalism/Media Studies students as participants in a study of
+              information seeking. Participants will conduct two searches in an
+              experimental setting for information relating to several different kinds of search tasks related to journalism tasks. Each experimental session will
+              last <strong>about two hours</strong>, and will be held in the Communication and Interaction Laboratory  - <strong>in rooms 222-A and 222-B</strong> - in the SCI building.
+              Participants will be asked to complete a background questionnaire about each task and then conduct a search.
+              After each search session participants will be asked to evaluate the information that they found and explain their search intentions at selected points.
+              Various aspects of their searching behavior will be recorded for subsequent analysis.</p>
 
-          <p>All volunteers for this study will receive a <strong>$30 Visa gift card</strong>
-            for their participation, and exemplary participants will receive <strong>an additional $10</strong>. Taking part in this study will help to advance the
-            understanding of the search process and contribute towards development
-            of search systems that can automatically adapt to a user's specific
-            search goals.</p>
+            <p>All volunteers for this study will receive a <strong>$30 Visa gift card</strong>
+              for their participation, and exemplary participants will receive <strong>an additional $10</strong>. Taking part in this study will help to advance the
+              understanding of the search process and contribute towards development
+              of search systems that can automatically adapt to a user's specific
+              search goals.</p>
 
-          <p>Requirements:
-            <ul>
-              <li>You must be at least 18 years old to participate.</li>
-              <li>Proficiency in English is required.</li>
-              <li>Intermediate typing and online search skills are required.</li>
-              <li>Normal to corrected vision is required.</li>
-              <li>You must have <em>already completed</em> either 04:567:200 (Writing for Media) or 04:567:324 (News Reporting and Writing).</li>
-            </ul>
-          </p>
+            <p>Requirements:
+              <ul>
+                <li>You must be at least 18 years old to participate.</li>
+                <li>Proficiency in English is required.</li>
+                <li>Intermediate typing and online search skills are required.</li>
+                <li>Normal to corrected vision is required.</li>
+                <li>You must have <em>already completed</em> either 04:567:200 (Writing for Media) or 04:567:324 (News Reporting and Writing).</li>
+              </ul>
+            </p>
 
-          <!-- <p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
-          <p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
-          <p>You will receive <strong>$40 cash</strong> for participating in the study.</p> -->
-
-
-          <!-- <p>Requirements:
-            <ul>
-              <li>You must be at least 18 years old to participate.</li>
-              <li>Proficiency in English is required.</li>
-              <li>Intermediate typing and online search skills are required.</li>
-              <li>Normal to corrected vision is required.</li>
-
-            </ul>
-          </p> -->
+            <!-- <p>During this study you will perform online research using an eye tracker and experimental browser plug-in and answer questionnaires.</p>
+            <p>The study will last approximately 150 minutes and take place in the School of Communication and Information building.</p>
+            <p>You will receive <strong>$40 cash</strong> for participating in the study.</p> -->
 
 
+            <!-- <p>Requirements:
+              <ul>
+                <li>You must be at least 18 years old to participate.</li>
+                <li>Proficiency in English is required.</li>
+                <li>Intermediate typing and online search skills are required.</li>
+                <li>Normal to corrected vision is required.</li>
 
-          <p>Choosing or declining to participate in this study will not affect your
-            class standing or grades at Rutgers. You will not be offered or receive
-            any special consideration if you take part in this research; it is
-            purely voluntary. This study has been approved by the Rutgers
-            Institutional Review Board (IRB Study #E14-136), and will be supervised
-            by Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
+              </ul>
+            </p> -->
 
-          <p>For more information about this study, please send e-mail to Matthew
-            Mitsui at mmitsui@scarletmail.rutgers.edu. You can also contact Matthew
-            Mitsui to ask questions or get more information about the project.</p>
-				</td>
-			</tr>
-<!--
-Registration
--->
 
-                                                                                                                                                                                                                </table>
-                                                                                                                                                                                                                                                                                                    <hr>
-                                                                                                                                                                                                                                                                                                    <table>
-			<tr>
-				<td>
-                                                                                                                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                                                                                                                <td align="center" colspan=2>To continue with the participation registration, please click on the continue button.</td></tr>
 
-                                                                                                                                                                                                                                                                                                                <tr>
+            <p>Choosing or declining to participate in this study will not affect your
+              class standing or grades at Rutgers. You will not be offered or receive
+              any special consideration if you take part in this research; it is
+              purely voluntary. This study has been approved by the Rutgers
+              Institutional Review Board (IRB Study #E14-136), and will be supervised
+              by Dr. Nicholas Belkin (belkin@rutgers.edu) and Dr. Chirag Shah (chirags@rutgers.edu) at the School of Communication and Information.</p>
 
-                                                                                                                                                                                                                                                                                                                </table>
+            <p>For more information about this study, please send e-mail to Matthew
+              Mitsui at mmitsui@scarletmail.rutgers.edu. You can also contact Matthew
+              Mitsui to ask questions or get more information about the project.</p>
+  				</td>
+  			</tr>
+  <!--
+  Registration
+  -->
 
-                                                                                                                                                                                                                                                                                                                <table class="style1" width=90%>
-                                                                                                                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                                                                                                                <td align="center" colspan=2>
-                                                                                                                                                                                                                                                                                                                <div style="display: none; background: Red; text-align:center;" id="alertForm"><strong>Please Complete Select the Number of Participants and Try Again</strong></div>
-                                                                                                                                                                                                                                                                                                                </td>
-                                                                                                                                                                                                                                                                                                                </tr>
-                                                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                  </table>
+                                                                                                                                                                                                                                                                                                      <hr>
+                                                                                                                                                                                                                                                                                                      <table>
+  			<tr>
+  				<td>
+                                                                                                                                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                                                                                                                                  <td align="center" colspan=2>To continue with the participation registration, please click on the continue button.</td></tr>
 
-					<td align="center" colspan=2>
-						<input type="submit" value="Continue" style="width:100px; height:40px;" />
-					</td>
-				</tr>
-				</td>
-			</tr>
-		</table>
-    </form>
+                                                                                                                                                                                                                                                                                                                  <tr>
+
+                                                                                                                                                                                                                                                                                                                  </table>
+
+                                                                                                                                                                                                                                                                                                                  <table class="style1" width=90%>
+                                                                                                                                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                                                                                                                                  <td align="center" colspan=2>
+                                                                                                                                                                                                                                                                                                                  <div style="display: none; background: Red; text-align:center;" id="alertForm"><strong>Please Complete Select the Number of Participants and Try Again</strong></div>
+                                                                                                                                                                                                                                                                                                                  </td>
+                                                                                                                                                                                                                                                                                                                  </tr>
+                                                                                                                                                                                                                                                                                                                  <tr>
+
+  					<td align="center" colspan=2>
+                <button class='btn'>Continue</button>
+  					</td>
+  				</tr>
+  				</td>
+  			</tr>
+  		</table>
+      </form>
+</div>
+</div>
 </div>
 </body>
 </html>

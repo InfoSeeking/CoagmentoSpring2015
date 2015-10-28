@@ -2,32 +2,11 @@
 <html>
 <head>
 <title>View Course Writeups</title>
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
-<link rel="stylesheet" href="study_styles/pure-release-0.5.0/tables.css">
+
+<link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="study_styles/custom/text.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
-<script type="text/javascript">
-
-var is_ff;
-var alertColor = "Red";
-var okColor = "White";
-
-
-function validate(form)
-{
-    return true;
-}
-
-function changeColor(field,color)
-{
-    field.style.background = color;
-}
-
-
-</script>
 <noscript>
 <style type="text/css">
 .pagecontainer {display:none;}
@@ -38,6 +17,8 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 </noscript>
 
 <body class="style1">
+  <div class="panel panel-default" style="width:95%;  margin:auto">
+    <div class="panel-body">
 
 
 <div id="login_div" style="display:block;">
@@ -46,10 +27,6 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 
 	session_start();
 	require_once('core/Connection.class.php');
-
-
-
-
 
   $submitted = 0;
   $message = '';
@@ -274,7 +251,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     }
     echo "<form action='editUser.php?userID=$userID' method='post' enctype='multipart/form-data'>";
     echo "<input type=\"hidden\" id=\"user_info\" name=\"user_info\" value=\"1\">";
-    echo "<center><table class=\"pure-table pure-table-striped\">";
+    echo "<center><table class=\"table table-striped table-bordered\" style=\"width:auto\">";
     echo "<thead><th>Name</th><th>Value</th></thead>";
     echo "<tbody>";
     echo "<tr><td>First Name</td><td>$firstname</td></tr>";
@@ -351,7 +328,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     echo "<input type=\"hidden\" name=\"projectID\" id=\"projectID\" value=\"$projectID\">";
 
 
-    echo "<button class='pure-button pure-button-primary'>Submit</button></center></td></tr>";
+    echo "<button class='btn btn-primary'>Submit</button></center></td></tr>";
 
     echo "</tbody></table></center>";
     echo "</form>";
@@ -394,7 +371,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     echo "<br/><br/><br/>";
     echo "<form action='editUser.php?userID=$userID' method='post' enctype='multipart/form-data'>";
     echo "<input type=\"hidden\" id=\"project_info_1\" name=\"project_info_1\" value=\"1\">";
-    echo "<center><table class=\"pure-table pure-table-striped\">";
+    echo "<center><table class=\"table table-striped table-bordered\" style=\"width:auto\">";
     echo "<thead><th colspan='2'>Part 1: $topic - $category</th></thead>";
     echo "<tbody>";
     echo "<tr><td>Finish?</td>";
@@ -417,7 +394,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     echo "<input type=\"hidden\" name=\"projectID\" id=\"projectID\" value=\"$projectID\">";
     echo "<input type=\"hidden\" name=\"stageID\" id=\"stageID\" value=\"15\">";
 
-    echo "<button class='pure-button pure-button-primary'>Submit</button></center></td></tr>";
+    echo "<button class='btn btn-primary'>Submit</button></center></td></tr>";
     echo "</tbody></table></center>";
     echo "</form>";
 
@@ -441,7 +418,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     echo "<br/><br/><br/>";
     echo "<form action='editUser.php?userID=$userID' method='post' enctype='multipart/form-data'>";
     echo "<input type=\"hidden\" id=\"project_info_2\" name=\"project_info_2\" value=\"1\">";
-    echo "<center><table class=\"pure-table pure-table-striped\">";
+    echo "<center><table class=\"table table-striped table-bordered\" style=\"width:auto\">";
     echo "<thead><th colspan='2'>Part 2: $topic - $category</th></thead>";
     echo "<tbody>";
     echo "<tr><td>Finish?</td>";
@@ -464,7 +441,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
     echo "<input type=\"hidden\" name=\"projectID\" id=\"projectID\" value=\"$projectID\">";
     echo "<input type=\"hidden\" name=\"stageID\" id=\"stageID\" value=\"45\">";
 
-    echo "<button class='pure-button pure-button-primary'>Submit</button></center></td></tr>";
+    echo "<button class='btn btn-primary'>Submit</button></center></td></tr>";
     echo "</tbody></table></center>";
     echo "</form>";
 
@@ -472,5 +449,6 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
   }
   ?>
 
-
+</div>
+</div>
 </body></html>
