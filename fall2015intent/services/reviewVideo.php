@@ -43,12 +43,14 @@
 
 
 </head>
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
+<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="../study_styles/custom/text.css">
+<link rel="stylesheet" href="../styles.css">
 
 
 <body class="body">
+	<div class="panel panel-default" style="width:95%;  margin:auto">
+		<div class="panel-body">
 <center>
 	<br/>
 
@@ -57,7 +59,7 @@
 			if($stageID<25 || ($stageID>35 && $stageID<51))
 			{
 			?>
-			<tr><th><h2>System Tutorial</h2></th></tr>
+			<center><h2>System Tutorial</h2></center>
 			<?php
 			}
 			else
@@ -104,6 +106,8 @@
 
 <br/>
 </center>
+</div>
+</div>
 </body>
 </html>
 <?php

@@ -32,10 +32,13 @@
 <html>
     <head>
 		<title>View My Task</title>
-<link rel="stylesheet" href="../study_styles/custom/background.css">
+		<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../study_styles/custom/text.css">
+
     </head>
-<body>
-			<div class="grayrect">
+<body style="padding-top:10px; padding-bottom:10px; padding-left:10px;padding-right:10px;">
+	<div class="well" style="background-color:rgb(210,210,210);">
+
 <p><span>
 <?php
     echo $question1;
