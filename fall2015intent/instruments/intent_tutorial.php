@@ -29,9 +29,9 @@
 </title>
 
 </head>
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
+<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="../study_styles/custom/text.css">
+<link rel="stylesheet" href="../styles.css">
 
 <script type="text/javascript">
 	function validate(form)
@@ -75,11 +75,13 @@
 	}
 </script>
 <body class="body">
+	<div class="panel panel-default" style="width:95%;  margin:auto">
+		<div class="panel-body">
 <center>
 	<br/>
 	<form class="pure-form" action="intent_tutorial.php" method="post" onsubmit="return validate(this)">
 		<table class="body" width="90%">
-		<tr><th><h2>Intention Annotation Tutorial</h2></th></tr>
+		<center><h2>Intention Annotation Tutorial</h2></center>
 		<tr><td><hr/></td></tr>
 		<tr>
 			<td>
@@ -113,15 +115,17 @@
 			</td>
 		</tr>
 		<tr><td><hr/></td></tr>
-		<tr><td><div style="display: none; background: Red; text-align:center;" id="alert"><strong>Before you continue, you must watch the above video. Once you have watched and understood the video, click on the box below and then continue.</strong></div></td></tr>
-		<tr><td><div style="display: none; background: LightGreen; text-align:center;" id="complete"><strong>Good! Click on Continue</strong></div></td></tr>
+		<tr><td><div class="alert alert-danger" style="display:none" id="alert"><strong>Before you continue, you must watch the above video. Once you have watched and understood the video, click on the box below and then continue.</strong></div></td></tr>
+		<tr><td><div class="alert alert-success" style="display:none" id="complete"><strong>Good! Click on Continue</strong></div></td></tr>
 		<tr><td align=center><input type="checkbox" name="confirmReadInstructions" value="true" onclick="complete(this)"/>I have watched and understood the above video</td></tr>
 		<tr><td><br/><input type="hidden" id="localTimestamp" name="localTimestamp" value=""/><input type="hidden" id="localTime" name="localTime" value=""/><input type="hidden" id="localDate" name="localDate" value=""/></td></tr>
-		<tr><td align=center><input type="hidden" name="intent_tutorial" value="true"/><button type="submit" class="pure-button pure-button-primary" >Continue</button></td></tr>
+		<tr><td align=center><input type="hidden" name="intent_tutorial" value="true"/><button type="submit" class="btn btn-primary" >Continue</button></td></tr>
 	  </table>
 	</form>
 <br/>
 </center>
+</div>
+</div>
 </body>
 </html>
 <?php

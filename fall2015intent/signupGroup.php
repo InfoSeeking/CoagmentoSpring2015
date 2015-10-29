@@ -8,6 +8,7 @@
 <head>
 	<link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
 	<link rel="stylesheet" href="study_styles/custom/text.css">
+	<link rel="stylesheet" href="styles.css">
 <title>Information Seeking Intentions Study: Sign Up</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <style type="text/css">
@@ -18,7 +19,7 @@
 </style>
 </head>
 
-<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
+<body class="body" >
 	<div class="panel panel-default" style="width:95%; margin:auto">
     <div class="panel-body">
 <?php

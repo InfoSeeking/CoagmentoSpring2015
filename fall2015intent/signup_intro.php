@@ -60,6 +60,7 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() &&!$closed)
 
     <link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
     <link rel="stylesheet" href="study_styles/custom/text.css">
+    <link rel="stylesheet" href="styles.css">
 
     <script type="text/javascript">
 
@@ -97,14 +98,14 @@ function isRadioSelected(radioButtons, obj)
 		}
 </style>
 </head>
-<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
+<body class="body" >
 <br/>
 <div class="panel panel-default" style="width:95%;  margin:auto">
   <div class="panel-body">
   <div id="signupIntro" align="center">
   	<h3>Research Study Registration</h3>
   	<form method="post" onsubmit="return validateForm(this)">
-  		<table class="style1" width=90%>
+  		<table class="body" width=90%>
   			<tr>
   			  <td colspan=2>
 
@@ -178,7 +179,7 @@ function isRadioSelected(radioButtons, obj)
 
                                                                                                                                                                                                                                                                                                                   </table>
 
-                                                                                                                                                                                                                                                                                                                  <table class="style1" width=90%>
+                                                                                                                                                                                                                                                                                                                  <table class="body" width=90%>
                                                                                                                                                                                                                                                                                                                   <tr>
                                                                                                                                                                                                                                                                                                                   <td align="center" colspan=2>
                                                                                                                                                                                                                                                                                                                   <div style="display: none; background: Red; text-align:center;" id="alertForm"><strong>Please Complete Select the Number of Participants and Try Again</strong></div>

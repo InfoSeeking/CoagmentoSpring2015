@@ -64,8 +64,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <html>
 <head>
+	<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
-	<link rel="stylesheet" href="../study_styles/custom/background.css">
+	<link rel="stylesheet" href="../styles.css">
 	<script type="text/javascript" src="../lib/jquery-2.1.3.min.js"></script>
 	<title>
 		Research Study
@@ -188,8 +189,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		}
 </style>
 </head>
-<body class="style1">
-<br/>
+<body class="body">
+
+	<div class="panel panel-default" style="width:95%;  margin:auto">
+		<div class="panel-body">
 <div style="width:90%; margin: 0 auto">
 	<center><h2>Background Questionnaire</h2></center>
 
@@ -354,8 +357,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 <hr/>
 
 <input type="hidden" name="pretask_q" value="true"/>
-  <button class="pure-button pure-button-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
+</div>
+</div>
 </div>
 </body>
 <?php $questionnaire->printPostamble();?>

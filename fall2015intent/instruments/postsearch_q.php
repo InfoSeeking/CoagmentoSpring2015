@@ -64,8 +64,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <html>
 <head>
+	<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
-	<link rel="stylesheet" href="../study_styles/custom/background.css">
+	<link rel="stylesheet" href="../styles.css">
 	<title>
 		Research Study
     </title>
@@ -125,8 +126,9 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		}
 </style>
 </head>
-<body class="style1">
-<br/>
+<body class="body">
+	<div class="panel panel-default" style="width:95%;  margin:auto">
+		<div class="panel-body">
 <div style="width:90%; margin: 0 auto">
 	<center><h2><?php echo $part_text;?>Post-Search Questionnaire</h2></center>
 
@@ -179,8 +181,10 @@ $questionnaire->printQuestions();
 <hr>
 
 <input type="hidden" name="postsearch_q" value="true"/>
-  <button class="pure-button pure-button-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
+</div>
+</div>
 </div>
 </body>
 <?php $questionnaire->printPostamble();?>

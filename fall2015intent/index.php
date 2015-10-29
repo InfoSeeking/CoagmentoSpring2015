@@ -193,6 +193,8 @@
             }
         }else {
             echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
+						echo "<div class=\"panel panel-default\" style=\"width:95%;  margin:auto\">";
+					  echo "<div class=\"panel-body\">";
             echo "<table class=body align=center>\n";
             echo "<tr><td align=center>Username/password didn't match or you are not authorized to access this.</td></tr>\n";
             echo "</table>\n";
@@ -208,9 +210,9 @@
 	<html>
 		<head>
 			<title>Login</title>
-            <link rel="stylesheet" href="study_styles/pure-release-0.5.0/buttons.css">
-            <link rel="stylesheet" href="study_styles/pure-release-0.5.0/forms.css">
-<link rel="stylesheet" href="study_styles/custom/text.css">
+			<link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
+			<link rel="stylesheet" href="study_styles/custom/text.css">
+			<link rel="stylesheet" href="styles.css">
 
 
 		</head>
@@ -264,7 +266,9 @@
 		</script>
 
 	<!--</html>-->
-	<body class="style1" onload="preLoginValidation()">
+	<body class="body" onload="preLoginValidation()">
+		<div class="panel panel-default" style="width:95%;  margin:auto">
+	    <div class="panel-body">
     <div id="error_div" style="display:none;">
     <p>We have detected the following error(s) when you attempted to access our system.</p>
     <ul>
@@ -305,18 +309,20 @@
 //			echo "<tr><td>Username</td><td>&nbsp;&nbsp; <input type=\"text\" name=\"userName\" size=20 /></td></tr>\n";
 //			echo "<tr><td>Password</td><td>&nbsp;&nbsp; <input type=\"password\" name=\"password\" size=20 /></td></tr>\n";
 			echo "<tr><td colspan=\"2\"><br/></td></tr>\n";
-			echo "<tr><td colspan=\"2\" align=center><input type=\"hidden\" id=\"localTimestamp\" name=\"localTimestamp\" value=\"\"/><input type=\"hidden\" id=\"localTime\" name=\"localTime\" value=\"\"/><input type=\"hidden\" id=\"localDate\" name=\"localDate\" value=\"\"/><button type=\"submit\" class=\"pure-button pure-button-primary\" >Submit</button></td></tr>\n";
+			echo "<tr><td colspan=\"2\" align=center><input type=\"hidden\" id=\"localTimestamp\" name=\"localTimestamp\" value=\"\"/><input type=\"hidden\" id=\"localTime\" name=\"localTime\" value=\"\"/><input type=\"hidden\" id=\"localDate\" name=\"localDate\" value=\"\"/><button type=\"submit\" class=\"btn btn-primary\" >Submit</button></td></tr>\n";
 			echo "</table>\n";
 			echo "</form>\n";
             echo "</div>\n";
 
-			echo "</body></html>";
+			echo "</div></div></body></html>";
 
             }else{
                 echo "<body class=\"body\">\n<center>\n<br/><br/>\n";
+								echo "<div class=\"panel panel-default\" style=\"width:95%;  margin:auto\">";
+							  echo "<div class=\"panel-body\">";
 				echo "<table class=body align=center>\n";
 				echo "<tr><td align=center>Our study is currently closed at this time, and we are currently not accepting new recruits. We apologize for any inconvenience.</td></tr>\n";
-				echo "</table></body>\n";
+				echo "</table></div></div></body>\n";
             }
 		}
 		else

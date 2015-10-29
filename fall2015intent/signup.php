@@ -67,6 +67,7 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() && !$closed && !$section_cl
 
   <link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
   <link rel="stylesheet" href="study_styles/custom/text.css">
+  <link rel="stylesheet" href="styles.css">
 	<title>
 			Research Study Registration
     </title>
@@ -164,14 +165,14 @@ if($num_recruits<=$recruit_limit && !allSlotsTaken() && !$closed && !$section_cl
 		}
 </style>
 </head>
-<body class="style1" style="background-color:lightgray; padding-top:10px; padding-bottom:10px;">
+<body class="body" >
 
   <div class="panel panel-default" style="width:95%; margin:auto">
     <div class="panel-body">
 
 <div id="signupForm" align="center">
 	<h3>Research Study Registration</h3>
-		<table class="style1" width=90%>
+		<table class="body" width=90%>
 			<tr>
 			  <td colspan=2>
 				<ul>
@@ -191,7 +192,7 @@ Registration
 					<p><strong>Check here to if you would like to read recruitment details again. </strong><input type="checkbox" name="viewInstructionsCheckSingle" id="viewInstructionsCheckSingle" onclick="viewDetails(this)" /></p>
 					<br />
 					<div style="display: none; background: #F2F2F2; text-align:center; border-style:solid; width:70%; border-color:blue; padding:25px;" id="singleStudyDetails">
-	 					<table class="style1" width="100%">
+	 					<table class="body" width="100%">
 							<tr>
 								<td>
 
@@ -263,7 +264,7 @@ for($x=1;$x<=$NUM_USERS;$x++){
 
 
   //Registration
-  // echo "<table class=\"style1\" border=\"1\">";
+  // echo "<table class=\"body\" border=\"1\">";
   if($x==1 && $NUM_USERS==1){
   echo "<h3>Enter Participant details</h3>";
   // echo "<tr><th colspan=2 align=center bgcolor=\"#F2F2F2\">Enter Participant details</th></tr>";

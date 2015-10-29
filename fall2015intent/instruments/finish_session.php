@@ -111,11 +111,16 @@
 		<title>Research Study
 		</title>
 		</head>
+		<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../study_styles/custom/text.css">
+		<link rel="stylesheet" href="../styles.css">
+
 		<body class="body">
 		<center>
-			<br/>
+
+			<center><h3>Thank you for participating in this study!</h3></center>
 			<table class="body" width="503">
-				<tr><td align="center"><br/>Thank you for participating in this study!<td/></tr>
+				<tr><td align="center"><br/><td/></tr>
 				<tr><td align="center"><br/>You will now participate in an exit interview before leaving.<td/></tr>
 				<tr><td align="center"><br/>Afterwards, please sign for receiving your incentive payment on the way out.<td/></tr>
 				<tr><td align="center"><br/><br /><td/></tr>

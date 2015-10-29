@@ -2,12 +2,15 @@
 /* CSS Document */
 
 body {
-	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	
+	font-weight: normal;
 	background: #FFFFFF;
 	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
 	padding: 0;
-	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
 	color: #000000;
+	background-color:lightgray;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .style1 {
@@ -33,9 +36,9 @@ body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-.table 
+.table
 {
-	font-family		: Geneva, "Verdana", "Arial", "Helvetica", "sans-serif"; 
+	font-family		: Geneva, "Verdana", "Arial", "Helvetica", "sans-serif";
     font-size: 10pt;
     border: dotted 1px #C58144;
 }

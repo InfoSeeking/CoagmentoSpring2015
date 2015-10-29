@@ -78,10 +78,9 @@
 
 </head>
 
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
-<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
+<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="../study_styles/custom/text.css">
-<link rel="stylesheet" href="../study_styles/custom/background.css">
+<link rel="stylesheet" href="../styles.css">
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
 
@@ -94,6 +93,8 @@ function validate(form)
 
 </script>
 <body class="body">
+	<div class="panel panel-default" style="width:95%;  margin:auto">
+		<div class="panel-body">
 	<div style="width:90%; margin: 0 auto">
 		<center><h2><?php echo $part_text;?>Search Task</h2></center>
 <form action="maintask.php" method="post" onsubmit="return validate(this)">
@@ -106,7 +107,7 @@ function validate(form)
 
 
 
-	<div class="grayrect">
+	<div class="well" style="background-color:rgb(210,210,210);">
 		<span>
 			<?php
 
@@ -183,13 +184,15 @@ function validate(form)
 	$line = mysql_fetch_array($results,MYSQL_ASSOC);
 	$finishTopic = $line["finishTopic$taskNum"];
 	if($finishTopic == 1){
-		echo "<button type=\"submit\" id=\"continue_button\" class=\"pure-button pure-button-primary\" style=\"background: rgb(202, 60, 60);\">Finish</button></td></tr>";
+		echo "<button type=\"submit\" id=\"continue_button\" class=\"btn btn-danger\">Finish</button></td></tr>";
 	}
  ?>
 
 </table>
 </center>
 </form>
+</div>
+</div>
 </div>
 </body>
 </html>

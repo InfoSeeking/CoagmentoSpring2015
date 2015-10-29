@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="study_styles/bootstrap-lumen/css/bootstrap.min.css">
 <link rel="stylesheet" href="study_styles/custom/text.css">
+<link rel="stylesheet" href="styles.css">
 
 </head>
 <noscript>
@@ -16,7 +17,7 @@ You don't have Javascript enabled.  You must enable it in your browser to procee
 </div>
 </noscript>
 
-<body class="style1">
+<body class="body">
   <div class="panel panel-default" style="width:95%;  margin:auto">
     <div class="panel-body">
 
