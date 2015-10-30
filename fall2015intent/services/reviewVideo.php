@@ -51,10 +51,10 @@
 <body class="body">
 	<div class="panel panel-default" style="width:95%;  margin:auto">
 		<div class="panel-body">
-<center>
+
 	<br/>
 
-		<table class="body" width="90%">
+		<center>
 			<?php
 			if($stageID<25 || ($stageID>35 && $stageID<51))
 			{
@@ -69,15 +69,18 @@
 			<?php
 			}
 			?>
+			</center>
 
-		<tr><td><hr/></td></tr>
-		<tr>
-			<td>
+	<hr/>
 
-				Below is the video that was just shown to you.  You may review this video again if you wish.  Otherwise, please click the checkbox below and press 'Continue'.
-				<?php
-				if($stageID<25 || ($stageID>35 && $stageID<51))
-				{
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Below is the video that was just shown to you.  You may review this video again if you wish.  Otherwise, please click the checkbox below and press 'Continue'.
+		</div>
+		<div class="panel-body">
+			<?php
+			if($stageID<25 || ($stageID>35 && $stageID<51))
+			{
 				?>
 				<center>
 					<video id='session_video' width='100%' controls>
@@ -85,9 +88,9 @@
 					</video>
 				</center>
 				<?php
-				}
-				else
-				{
+			}
+			else
+			{
 				?>
 				<center>
 					<video id='session_video' width='100%' controls>
@@ -95,17 +98,13 @@
 					</video>
 				</center>
 				<?php
-				}
-				?>
+			}
+			?>
+
+		</div>
+	</div>
 
 
-
-			</td>
-		</tr>
-	  </table>
-
-<br/>
-</center>
 </div>
 </div>
 </body>

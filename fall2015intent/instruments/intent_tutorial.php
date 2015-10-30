@@ -80,47 +80,54 @@
 <center>
 	<br/>
 	<form class="pure-form" action="intent_tutorial.php" method="post" onsubmit="return validate(this)">
-		<table class="body" width="90%">
+
+
 		<center><h2>Intention Annotation Tutorial</h2></center>
-		<tr><td><hr/></td></tr>
-		<tr>
-			<td>
+		<hr/>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 
 				<?php
 				if(Base::getInstance()->getStageID()<30)
 				{
-				?>
-				You are about to annotate the task you just completed.  Please watch the video below and listen to the instructions carefully.
-				<?php
+					?>
+					You are about to annotate the task you just completed.  Please watch the video below and listen to the instructions carefully.
+					<?php
 				}
 				else
 				{
-				?>
-				Below is the video that you saw before for intention annotation.  You may review this video again if you wish.  Otherwise, please click the checkbox below and press 'Continue'.
-				<?php
+					?>
+					Below is the video that you saw before for intention annotation.  You may review this video again if you wish.  Otherwise, please click the checkbox below and press 'Continue'.
+					<?php
 				}
 				?>
 
 
+			</div>
+			<div class="panel-body">
 				<center>
 					<video id='session_video' width='100%' controls>
 						<source id='mp4source' type='video/mp4' src='../tutorial/intent_tutorial.mp4' >
 					</video>
-			</center>
-				<center>
-					<p>
-						<strong>After you have watched this video, please check the option below and press "Continue." Have fun!</strong>
-					</p>
 				</center>
-			</td>
-		</tr>
-		<tr><td><hr/></td></tr>
-		<tr><td><div class="alert alert-danger" style="display:none" id="alert"><strong>Before you continue, you must watch the above video. Once you have watched and understood the video, click on the box below and then continue.</strong></div></td></tr>
-		<tr><td><div class="alert alert-success" style="display:none" id="complete"><strong>Good! Click on Continue</strong></div></td></tr>
-		<tr><td align=center><input type="checkbox" name="confirmReadInstructions" value="true" onclick="complete(this)"/>I have watched and understood the above video</td></tr>
-		<tr><td><br/><input type="hidden" id="localTimestamp" name="localTimestamp" value=""/><input type="hidden" id="localTime" name="localTime" value=""/><input type="hidden" id="localDate" name="localDate" value=""/></td></tr>
-		<tr><td align=center><input type="hidden" name="intent_tutorial" value="true"/><button type="submit" class="btn btn-primary" >Continue</button></td></tr>
-	  </table>
+			</div>
+		</div>
+
+		<center>
+			<p>
+				<strong>After you have watched this video, please check the option below and press "Continue." Have fun!</strong>
+			</p>
+		</center>
+		<hr/>
+		<div class="alert alert-danger" style="display:none" id="alert"><strong>Before you continue, you must watch the above video. Once you have watched and understood the video, click on the box below and then continue.</strong></div>
+		<div class="alert alert-success" style="display:none" id="complete"><strong>Good! Click on Continue</strong></div>
+		<p><input type="checkbox" name="confirmReadInstructions" value="true" onclick="complete(this)"/>I have watched and understood the above video</p>
+		<input type="hidden" id="localTimestamp" name="localTimestamp" value=""/>
+		<input type="hidden" id="localTime" name="localTime" value=""/>
+		<input type="hidden" id="localDate" name="localDate" value=""/>
+		<input type="hidden" name="intent_tutorial" value="true"/>
+		<br/>
+		<center><button type="submit" class="btn btn-primary" >Continue</button></center>
 	</form>
 <br/>
 </center>

@@ -1138,116 +1138,146 @@ function playVideoHelper(start,stop){
 
 ";
 
-$intention_inputstring = "<button id='playpausebutton' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo(1);return false;'><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Replay Video</button>
+$intention_inputstring = "
+
+<div class='form-group'>
+<button id='playpausebutton' class='btn btn-success' onclick='playvideo(1);return false;'><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Review Search Segment</button>
+</div>
 
 <fieldset>
 	<div class='pure-g'>
 <div class='pure-u-1-1'>
-	<label><h4><u>Identify search information</u></h4></label>
+	<div class='panel panel-default'>
+		<div class='panel-body'>
 
-	<label for='id_start' class='pure-checkbox'>
-				<input id='id_start' type='checkbox' name='id_start' pref='id_start'  onchange='handleCheck(this);'> Identify something to get started
-	</label>
+			<legend>Identify search information</legend>
 
-			<div id='id_start_radiogroup' style='display:none'>
-			<label for='id_start_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-			<input id='id_start_radio-Yes' type='radio' name='id_start_radio' pref='id_start'  value='Yes' onclick='handleRadio(this);'> Yes
-			<input id='id_start_radio-No' type='radio' name='id_start_radio' pref='id_start'  value='No' onclick='handleRadio(this);'> No
+
+			<div class='form-group' style='margin-bottom:0px;'>
+			<label for='id_start' class='pure-checkbox'>
+						<input id='id_start' type='checkbox' name='id_start' pref='id_start'  onchange='handleCheck(this);'> Identify something to get started
 			</label>
 			</div>
 
-			<div id='id_start_textgroup' style='display:none'>
-			<label><strong>Why not?</strong></label>
-			<textarea id='id_start_text' name='id_start_text' rows='5' cols='40' ></textarea>
-			</div>
+
+					<div class='form-group' id='id_start_radiogroup' style='display:none; margin-bottom:0px;' >
+					<label for='id_start_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+					<input id='id_start_radio-Yes' type='radio' name='id_start_radio' pref='id_start'  value='Yes' onclick='handleRadio(this);'> Yes
+					<input id='id_start_radio-No' type='radio' name='id_start_radio' pref='id_start'  value='No' onclick='handleRadio(this);'> No
+					</label>
+					</div>
+
+					<div class='form-group' id='id_start_textgroup' style='display:none; margin-bottom:0px;'>
+					<label><strong>Why not?</strong></label>
+					<textarea id='id_start_text' name='id_start_text' rows='5' cols='40' ></textarea>
+					</div>
 
 
-	<label for='id_more' class='pure-checkbox'>
-				<input id='id_more' type='checkbox' name='id_more' pref='id_more'  onchange='handleCheck(this);'> Identify something more to search
-	</label>
-
-			<div id='id_more_radiogroup' style='display:none'>
-			<label for='id_more_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-			<input id='id_more_radio-Yes' type='radio' name='id_more_radio' pref='id_more'  value='Yes' onclick='handleRadio(this);'> Yes
-			<input id='id_more_radio-No' type='radio' name='id_more_radio' pref='id_more'  value='No' onclick='handleRadio(this);'> No
+			<div class='form-group' style='margin-bottom:0px;'>
+			<label for='id_more' class='pure-checkbox'>
+						<input id='id_more' type='checkbox' name='id_more' pref='id_more'  onchange='handleCheck(this);'> Identify something more to search
 			</label>
 			</div>
 
-			<div id='id_more_textgroup' style='display:none'>
-			<label><strong>Why not?</strong></label>
-			<textarea id='id_more_text' name='id_more_text' rows='5' cols='40' ></textarea>
+
+					<div class='form-group' id='id_more_radiogroup' style='display:none; margin-bottom:0px;'>
+					<label for='id_more_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+					<input id='id_more_radio-Yes' type='radio' name='id_more_radio' pref='id_more'  value='Yes' onclick='handleRadio(this);'> Yes
+					<input id='id_more_radio-No' type='radio' name='id_more_radio' pref='id_more'  value='No' onclick='handleRadio(this);'> No
+					</label>
+					</div>
+
+					<div class='form-group' id='id_more_textgroup' style='display:none; margin-bottom:0px;'>
+					<label><strong>Why not?</strong></label>
+					<textarea id='id_more_text' name='id_more_text' rows='5' cols='40' ></textarea>
+					</div>
 			</div>
+		</div>
+
 	</div>
 
 
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Learning</u></h4></label>
 
-	<!-- <label for='learn_feature' class='pure-checkbox'>
-				<input id='learn_feature' type='checkbox' name='learn_feature' pref='learn_feature'  onchange='handleCheck(this);'> Learn system feature
-	</label>
+	<div class='panel panel-default'>
 
-	<div id='learn_feature_radiogroup' style='display:none'>
-	<label for='learn_feature_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='learn_feature_radio-Yes' type='radio' name='learn_feature_radio' pref='learn_feature'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='learn_feature_radio-No' type='radio' name='learn_feature_radio' pref='learn_feature'  value='No' onclick='handleRadio(this);'> No
-	</label>
+
+		<div class='panel-body'>
+			<legend>Learning</legend>
+
+			<!-- <label for='learn_feature' class='pure-checkbox'>
+						<input id='learn_feature' type='checkbox' name='learn_feature' pref='learn_feature'  onchange='handleCheck(this);'> Learn system feature
+			</label>
+
+			<div id='learn_feature_radiogroup' style='display:none'>
+			<label for='learn_feature_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+			<input id='learn_feature_radio-Yes' type='radio' name='learn_feature_radio' pref='learn_feature'  value='Yes' onclick='handleRadio(this);'> Yes
+			<input id='learn_feature_radio-No' type='radio' name='learn_feature_radio' pref='learn_feature'  value='No' onclick='handleRadio(this);'> No
+			</label>
+			</div>
+
+			<div id='learn_feature_textgroup' style='display:none'>
+			<label><strong>Why not?</strong></label>
+			<textarea id='learn_feature_text' name='learn_feature_text' rows='5' cols='40' ></textarea>
+			</div>
+
+			<label for='learn_structure' class='pure-checkbox'>
+						<input id='learn_structure' type='checkbox' name='learn_structure' pref='learn_structure'  onchange='handleCheck(this);'> Learn system structure
+			</label>
+
+			<div id='learn_structure_radiogroup' style='display:none'>
+			<label for='learn_structure_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+			<input id='learn_structure_radio-Yes' type='radio' name='learn_structure_radio' pref='learn_structure'  value='Yes' onclick='handleRadio(this);'> Yes
+			<input id='learn_structure_radio-No' type='radio' name='learn_structure_radio' pref='learn_structure'  value='No' onclick='handleRadio(this);'> No
+			</label>
+			</div>
+
+			<div id='learn_structure_textgroup' style='display:none'>
+			<label><strong>Why not?</strong></label>
+			<textarea id='learn_structure_text' name='learn_structure_text' rows='5' cols='40' ></textarea>
+			</div> -->
+
+			<div class='form-group' style='margin-bottom:0px;'>
+			<label for='learn_domain' class='pure-checkbox'>
+						<input id='learn_domain' type='checkbox' name='learn_domain' pref='learn_domain'  onchange='handleCheck(this);'> Learn domain knowledge
+			</label>
+			</div>
+
+
+			<div class='form-group' id='learn_domain_radiogroup' style='display:none; margin-bottom:0px;'>
+			<label for='learn_domain_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+			<input id='learn_domain_radio-Yes' type='radio' name='learn_domain_radio' pref='learn_domain'  value='Yes' onclick='handleRadio(this);'> Yes
+			<input id='learn_domain_radio-No' type='radio' name='learn_domain_radio' pref='learn_domain'  value='No' onclick='handleRadio(this);'> No
+			</label>
+			</div>
+
+			<div class='form-group' id='learn_domain_textgroup' style='display:none; margin-bottom:0px;'>
+			<label><strong>Why not?</strong></label>
+			<textarea id='learn_domain_text' name='learn_domain_text' rows='5' cols='40' ></textarea>
+			</div>
+
+			<div class='form-group' style='margin-bottom:0px;'>
+			<label for='learn_database' class='pure-checkbox'>
+						<input id='learn_database' type='checkbox' name='learn_database' pref='learn_database'  onchange='handleCheck(this);'> Learn database content
+			</label>
+			</div>
+
+
+			<div class='form-group' id='learn_database_radiogroup' style='display:none; margin-bottom:0px;'>
+			<label for='learn_database_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
+			<input id='learn_database_radio-Yes' type='radio' name='learn_database_radio' pref='learn_database'  value='Yes' onclick='handleRadio(this);'> Yes
+			<input id='learn_database_radio-No' type='radio' name='learn_database_radio' pref='learn_database'  value='No' onclick='handleRadio(this);'> No
+			</label>
+			</div>
+
+			<div class='form-group' id='learn_database_textgroup' style='display:none; margin-bottom:0px;'>
+			<label><strong>Why not?</strong></label>
+			<textarea id='learn_database_text' name='learn_database_text' rows='5' cols='40' ></textarea>
+			</div>
+			</div>
+		</div>
 	</div>
-
-	<div id='learn_feature_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='learn_feature_text' name='learn_feature_text' rows='5' cols='40' ></textarea>
-	</div>
-
-	<label for='learn_structure' class='pure-checkbox'>
-				<input id='learn_structure' type='checkbox' name='learn_structure' pref='learn_structure'  onchange='handleCheck(this);'> Learn system structure
-	</label>
-
-	<div id='learn_structure_radiogroup' style='display:none'>
-	<label for='learn_structure_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='learn_structure_radio-Yes' type='radio' name='learn_structure_radio' pref='learn_structure'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='learn_structure_radio-No' type='radio' name='learn_structure_radio' pref='learn_structure'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='learn_structure_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='learn_structure_text' name='learn_structure_text' rows='5' cols='40' ></textarea>
-	</div> -->
-
-	<label for='learn_domain' class='pure-checkbox'>
-				<input id='learn_domain' type='checkbox' name='learn_domain' pref='learn_domain'  onchange='handleCheck(this);'> Learn domain knowledge
-	</label>
-
-	<div id='learn_domain_radiogroup' style='display:none'>
-	<label for='learn_domain_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='learn_domain_radio-Yes' type='radio' name='learn_domain_radio' pref='learn_domain'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='learn_domain_radio-No' type='radio' name='learn_domain_radio' pref='learn_domain'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='learn_domain_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='learn_domain_text' name='learn_domain_text' rows='5' cols='40' ></textarea>
-	</div>
-
-	<label for='learn_database' class='pure-checkbox'>
-				<input id='learn_database' type='checkbox' name='learn_database' pref='learn_database'  onchange='handleCheck(this);'> Learn database content
-	</label>
-
-	<div id='learn_database_radiogroup' style='display:none'>
-	<label for='learn_database_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
-	<input id='learn_database_radio-Yes' type='radio' name='learn_database_radio' pref='learn_database'  value='Yes' onclick='handleRadio(this);'> Yes
-	<input id='learn_database_radio-No' type='radio' name='learn_database_radio' pref='learn_database'  value='No' onclick='handleRadio(this);'> No
-	</label>
-	</div>
-
-	<div id='learn_database_textgroup' style='display:none'>
-	<label><strong>Why not?</strong></label>
-	<textarea id='learn_database_text' name='learn_database_text' rows='5' cols='40' ></textarea>
-	</div>
-</div>
 
 </div>
 
@@ -1256,71 +1286,88 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 <div class='pure-g'>
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Finding</u></h4></label>
+<div class='panel panel-default'>
 
+
+		<div class='panel-body'>
+	<legend>Finding</legend>
+
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='find_known' class='pure-checkbox'>
 				<input id='find_known' type='checkbox' name='find_known' pref='find_known'  onchange='handleCheck(this);'> Find a known item
 	</label>
+	</div>
 
-	<div id='find_known_radiogroup' style='display:none'>
+
+	<div class='form-group' id='find_known_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='find_known_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='find_known_radio-Yes' type='radio' name='find_known_radio' pref='find_known'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='find_known_radio-No' type='radio' name='find_known_radio' pref='find_known'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='find_known_textgroup' style='display:none'>
+	<div class='form-group' id='find_known_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='find_known_text' name='find_known_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='find_specific' class='pure-checkbox'>
 				<input id='find_specific' type='checkbox' name='find_specific' pref='find_specific'  onchange='handleCheck(this);'> Find specific information
 	</label>
+	</div>
 
-	<div id='find_specific_radiogroup' style='display:none'>
+
+	<div class='form-group' id='find_specific_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='find_specific_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='find_specific_radio-Yes' type='radio' name='find_specific_radio' pref='find_specific'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='find_specific_radio-No' type='radio' name='find_specific_radio' pref='find_specific'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='find_specific_textgroup' style='display:none'>
+	<div class='form-group' id='find_specific_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='find_specific_text' name='find_specific_text' rows='5' cols='40' ></textarea>
 	</div>
 
-	<label for='find_common' class='pure-checkbox'>
+	<div class='form-group' style='margin-bottom:0px;'>
+	<label class='form-group' for='find_common' class='pure-checkbox'>
 				<input id='find_common' type='checkbox' name='find_common' pref='find_common'  onchange='handleCheck(this);'> Find items sharing a named characteristic
 	</label>
+	</div>
 
-	<div id='find_common_radiogroup' style='display:none'>
+
+	<div class='form-group' id='find_common_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='find_common_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='find_common_radio-Yes' type='radio' name='find_common_radio' pref='find_common'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='find_common_radio-No' type='radio' name='find_common_radio' pref='find_common'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='find_common_textgroup' style='display:none'>
+	<div class='form-group' id='find_common_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='find_common_text' name='find_common_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='find_without' class='pure-checkbox'>
 				<input id='find_without' type='checkbox' name='find_without' pref='find_without'  onchange='handleCheck(this);'> Find items without predefined criteria
 	</label>
+	</div>
 
-	<div id='find_without_radiogroup' style='display:none'>
+
+	<div class='form-group' id='find_without_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='find_without_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='find_without_radio-Yes' type='radio' name='find_without_radio' pref='find_without'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='find_without_radio-No' type='radio' name='find_without_radio' pref='find_without'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='find_without_textgroup' style='display:none'>
+	<div class='form-group' id='find_without_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='find_without_text' name='find_without_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 </div>
 </div>
 
@@ -1328,23 +1375,31 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 
 <div class='pure-g'>
 <div class='pure-u-1-1'>
-	<label><h4><u>Keep record</u></h4></label>
+<div class='panel panel-default'>
 
+
+		<div class='panel-body'>
+	<legend>Keep Record</legend>
+
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='keep_link' class='pure-checkbox'>
 				<input id='keep_link' type='checkbox' name='keep_link' pref='keep_link'  onchange='handleCheck(this);'> Keep record of link
 	</label>
+	</div>
 
-	<div id='keep_link_radiogroup' style='display:none'>
+
+	<div class='form-group' id='keep_link_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='keep_link_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='keep_link_radio-Yes' type='radio' name='keep_link_radio' pref='keep_link'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='keep_link_radio-No' type='radio' name='keep_link_radio' pref='keep_link'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='keep_link_textgroup' style='display:none'>
+	<div class='form-group' id='keep_link_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='keep_link_text' name='keep_link_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 
 </div>
 
@@ -1352,55 +1407,69 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Access an item or set of items</u></h4></label>
+<div class='panel panel-default'>
 
+
+		<div class='panel-body'>
+	<legend>Access an item or set of items</legend>
+
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='access_item' class='pure-checkbox'>
 				<input id='access_item' type='checkbox' name='access_item' pref='access_item'  onchange='handleCheck(this);'> Access a specific item
 	</label>
+	</div>
 
-	<div id='access_item_radiogroup' style='display:none'>
+
+	<div class='form-group' id='access_item_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='access_item_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='access_item_radio-Yes' type='radio' name='access_item_radio' pref='access_item'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='access_item_radio-No' type='radio' name='access_item_radio' pref='access_item'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='access_item_textgroup' style='display:none'>
+	<div class='form-group' id='access_item_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='access_item_text' name='access_item_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='access_common' class='pure-checkbox'>
 				<input id='access_common' type='checkbox' name='access_common' pref='access_common'  onchange='handleCheck(this);'> Access items with common characteristics
 	</label>
+	</div>
 
-	<div id='access_common_radiogroup' style='display:none'>
+
+	<div class='form-group' id='access_common_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='access_common_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='access_common_radio-Yes' type='radio' name='access_common_radio' pref='access_common'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='access_common_radio-No' type='radio' name='access_common_radio' pref='access_common'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='access_common_textgroup' style='display:none'>
+	<div class='form-group' id='access_common_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='access_common_text' name='access_common_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='access_area' class='pure-checkbox'>
 				<input id='access_area' type='checkbox' name='access_area' pref='access_area'  onchange='handleCheck(this);'> Access a web site/home page or similar
 	</label>
+	</div>
 
-	<div id='access_area_radiogroup' style='display:none'>
+
+	<div class='form-group' id='access_area_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='access_area_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='access_area_radio-Yes' type='radio' name='access_area_radio' pref='access_area'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='access_area_radio-No' type='radio' name='access_area_radio' pref='access_area'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='access_area_textgroup' style='display:none'>
+	<div class='form-group' id='access_area_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='access_area_text' name='access_area_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 </div>
 </div>
 
@@ -1408,167 +1477,215 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 
 <div class='pure-g'>
 <div class='pure-u-1-1'>
-	<label><h4><u>Evaluate</u></h4></label>
+<div class='panel panel-default'>
 
+
+		<div class='panel-body'>
+	<legend>Evaluate</legend>
+
+
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='evaluate_correctness' class='pure-checkbox'>
 				<input id='evaluate_correctness' type='checkbox' name='evaluate_correctness' pref='evaluate_correctness'  onchange='handleCheck(this);'> Evaluate correctness of an item
 	</label>
+	</div>
 
-	<div id='evaluate_correctness_radiogroup' style='display:none'>
+
+	<div class='form-group' id='evaluate_correctness_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='evaluate_correctness_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='evaluate_correctness_radio-Yes' type='radio' name='evaluate_correctness_radio' pref='evaluate_correctness'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='evaluate_correctness_radio-No' type='radio' name='evaluate_correctness_radio' pref='evaluate_correctness'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='evaluate_correctness_textgroup' style='display:none'>
+	<div class='form-group' id='evaluate_correctness_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='evaluate_correctness_text' name='evaluate_correctness_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='evaluate_specificity' class='pure-checkbox'>
 				<input id='evaluate_specificity' type='checkbox' name='evaluate_specificity' pref='evaluate_specificity'  onchange='handleCheck(this);'> Evaluate specificity of an item
 	</label>
+	</div>
 
-	<div id='evaluate_specificity_radiogroup' style='display:none'>
+
+	<div class='form-group' id='evaluate_specificity_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='evaluate_specificity_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='evaluate_specificity_radio-Yes' type='radio' name='evaluate_specificity_radio' pref='evaluate_specificity'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='evaluate_specificity_radio-No' type='radio' name='evaluate_specificity_radio' pref='evaluate_specificity'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='evaluate_specificity_textgroup' style='display:none'>
+	<div class='form-group' id='evaluate_specificity_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='evaluate_specificity_text' name='evaluate_specificity_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='evaluate_usefulness' class='pure-checkbox'>
 				<input id='evaluate_usefulness' type='checkbox' name='evaluate_usefulness' pref='evaluate_usefulness'  onchange='handleCheck(this);'> Evaluate usefulness of an item
 	</label>
+	</div>
 
-	<div id='evaluate_usefulness_radiogroup' style='display:none'>
+
+	<div class='form-group' id='evaluate_usefulness_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='evaluate_usefulness_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='evaluate_usefulness_radio-Yes' type='radio' name='evaluate_usefulness_radio' pref='evaluate_usefulness'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='evaluate_usefulness_radio-No' type='radio' name='evaluate_usefulness_radio' pref='evaluate_usefulness'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='evaluate_usefulness_textgroup' style='display:none'>
+	<div class='form-group' id='evaluate_usefulness_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='evaluate_usefulness_text' name='evaluate_usefulness_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='evaluate_best' class='pure-checkbox'>
 				<input id='evaluate_best' type='checkbox' name='evaluate_best' pref='evaluate_best'  onchange='handleCheck(this);'> Pick best item(s) from all the useful ones
 	</label>
+	</div>
 
-	<div id='evaluate_best_radiogroup' style='display:none'>
+
+	<div class='form-group' id='evaluate_best_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='evaluate_best_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='evaluate_best_radio-Yes' type='radio' name='evaluate_best_radio' pref='evaluate_best'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='evaluate_best_radio-No' type='radio' name='evaluate_best_radio' pref='evaluate_best'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='evaluate_best_textgroup' style='display:none'>
+	<div class='form-group' id='evaluate_best_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='evaluate_best_text' name='evaluate_best_text' rows='5' cols='40' ></textarea>
 	</div>
 
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='evaluate_duplication' class='pure-checkbox'>
 				<input id='evaluate_duplication' type='checkbox' name='evaluate_duplication' pref='evaluate_duplication'  onchange='handleCheck(this);'> Evaluate duplication of an item
 	</label>
+	</div>
 
-	<div id='evaluate_duplication_radiogroup' style='display:none'>
+
+	<div class='form-group' id='evaluate_duplication_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='evaluate_duplication_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='evaluate_duplication_radio-Yes' type='radio' name='evaluate_duplication_radio' pref='evaluate_duplication'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='evaluate_duplication_radio-No' type='radio' name='evaluate_duplication_radio' pref='evaluate_duplication'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='evaluate_duplication_textgroup' style='display:none'>
+	<div class='form-group' id='evaluate_duplication_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='evaluate_duplication_text' name='evaluate_duplication_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 </div>
 
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Obtain</u></h4></label>
+<div class='panel panel-default'>
 
-	<label for='obtain_specific' class='pure-checkbox'>
+
+		<div class='panel-body'>
+	<legend>Obtain</legend>
+
+
+	<div class='form-group' style='margin-bottom:0px;'>
+		<label for='obtain_specific' class='pure-checkbox'>
 				<input id='obtain_specific' type='checkbox' name='obtain_specific' pref='obtain_specific'  onchange='handleCheck(this);'>  Obtain specific information
-	</label>
+		</label>
+	</div>
 
-	<div id='obtain_specific_radiogroup' style='display:none'>
+
+	<div class='form-group' id='obtain_specific_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='obtain_specific_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='obtain_specific_radio-Yes' type='radio' name='obtain_specific_radio' pref='obtain_specific'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='obtain_specific_radio-No' type='radio' name='obtain_specific_radio' pref='obtain_specific'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='obtain_specific_textgroup' style='display:none'>
+	<div class='form-group' id='obtain_specific_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='obtain_specific_text' name='obtain_specific_text' rows='5' cols='40' ></textarea>
 	</div>
 
-	<label for='obtain_part' class='pure-checkbox'>
+	<div class='form-group' style='margin-bottom:0px;'>
+		<label for='obtain_part' class='pure-checkbox'>
 				<input id='obtain_part' type='checkbox' name='obtain_part' pref='obtain_part'  onchange='handleCheck(this);'> Obtain part of the item
-	</label>
+		</label>
+	</div>
 
-	<div id='obtain_part_radiogroup' style='display:none'>
+
+	<div class='form-group' id='obtain_part_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='obtain_part_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='obtain_part_radio-Yes' type='radio' name='obtain_part_radio' pref='obtain_part'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='obtain_part_radio-No' type='radio' name='obtain_part_radio' pref='obtain_part'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='obtain_part_textgroup' style='display:none'>
+	<div class='form-group' id='obtain_part_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='obtain_part_text' name='obtain_part_text' rows='5' cols='40' ></textarea>
 	</div>
 
-	<label for='obtain_whole' class='pure-checkbox'>
-				<input id='obtain_whole' type='checkbox' name='obtain_whole' pref='obtain_whole'  onchange='handleCheck(this);'> Obtain a whole item(s)
-	</label>
 
-	<div id='obtain_whole_radiogroup' style='display:none'>
+	<div class='form-group' style='margin-bottom:0px;'>
+		<label for='obtain_whole' class='pure-checkbox'>
+				<input id='obtain_whole' type='checkbox' name='obtain_whole' pref='obtain_whole'  onchange='handleCheck(this);'> Obtain a whole item(s)
+		</label>
+	</div>
+
+
+
+	<div class='form-group' id='obtain_whole_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='obtain_whole_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='obtain_whole_radio-Yes' type='radio' name='obtain_whole_radio' pref='obtain_whole'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='obtain_whole_radio-No' type='radio' name='obtain_whole_radio' pref='obtain_whole'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='obtain_whole_textgroup' style='display:none'>
+	<div class='form-group' id='obtain_whole_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='obtain_whole_text' name='obtain_whole_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 </div>
 </div>
 
 
 
 <div class='pure-u-1-1'>
-	<label><h4><u>Other</u></h4></label>
+<div class='panel panel-default'>
+
+
+		<div class='panel-body'>
+	<legend>Other</legend>
+
+
+	<div class='form-group' style='margin-bottom:0px;'>
 	<label for='other' class='pure-checkbox'>
 				<input id='other' type='checkbox' name='other' pref='other'  onchange='handleCheck(this);'> Other
 	</label>
+	</div>
 
-	<div id='other_reasongroup' style='display:none'>
+
+	<div class='form-group' id='other_reasongroup' style='display:none; margin-bottom:0px;'>
 	<label>Describe</label>
 	<textarea id='other_reason' name='other_reason' rows='1' cols='40' ></textarea>
 	</div>
 
-	<div id='other_radiogroup' style='display:none'>
+	<div class='form-group' id='other_radiogroup' style='display:none; margin-bottom:0px;'>
 	<label for='other_radio' class='pure-radio'><strong>Were you successful?</strong><br/>
 	<input id='other_radio-Yes' type='radio' name='other_radio' pref='other'  value='Yes' onclick='handleRadio(this);'> Yes
 	<input id='other_radio-No' type='radio' name='other_radio' pref='other'  value='No' onclick='handleRadio(this);'> No
 	</label>
 	</div>
 
-	<div id='other_textgroup' style='display:none'>
+	<div class='form-group' id='other_textgroup' style='display:none; margin-bottom:0px;'>
 	<label><strong>Why not?</strong></label>
 	<textarea id='other_text' name='other_text' rows='5' cols='40' ></textarea>
 	</div>
+	</div></div>
 
 </div>
 
@@ -1585,13 +1702,22 @@ $intention_inputstring = "<button id='playpausebutton' style='color: white; back
 
 
 
-$reformulation_inputstring = "<button id='playpausebutton_prev' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick=\"playvideo('prev',0);return false;\"><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Replay Previous Query</button>
-<br/><br/><button id='playpausebutton_next' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick=\"playvideo('next',1);return false;\"><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Replay Next Query</button>
+$reformulation_inputstring = "
+<div class='form-group'>
+<button id='playpausebutton_prev' class='btn btn-success' onclick=\"playvideo('prev',0);return false;\"><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Review Previous Query</button>
+</div>
+
+<div class='form-group'>
+<button id='playpausebutton_next' class='btn btn-success' onclick=\"playvideo('next',1);return false;\"><i id=\"playpauseicon\" class=\"fa fa-repeat\"></i> Review Next Query</button>
+</div>
+
 
 <fieldset>
+<div class='form-group'>
 <div id='reformulation_reason_textgroup' >
-<label>Please explain why you entered this new query, <br/>and what you were hoping to accomplish by doing so.</label>
+<label>Please explain why you entered this new query, and what you were hoping to accomplish by doing so.</label>
 <textarea id='reformulation_reason' name='reformulation_reason' rows='5' cols='40' ></textarea>
+</div>
 </div>
 </fieldset>";
 
@@ -1667,16 +1793,28 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		if(file_exists($filedir.$filename)){
 			if($taskname=='intention'){
 				$render['title'] = 'Intent Annotation';
-				$render['preftext'] = "<p>Below is a video of a query you previously conducted.</p>
-				<p><strong>What were you trying to accomplish (what was your intention) during this part of the search?
-					Please choose one or more of the \"search intentions\" on the right; if none fits your goal at this point in the search, please
-				choose \"Other\", and give a brief exlplanation.</strong></p>";
+				$render['preftext'] = "
+					<div class='alert alert-info'><p style='color:black'>Review <strong><u>this video of your current query</u></strong> and mark the intentions that apply!</p>
 
-				$render['video']= "<center>
-				<video id='session_video' width='100%'>
+					<p style='color:black'><strong>What were you trying to accomplish (what was your intention) during this part of the search?
+					Please choose one or more of the \"search intentions\" on the right; if none fits your goal at this point in the search, please
+				choose \"Other\", and give a brief exlplanation.</strong></p></div>
+					";
+
+				$render['video']= "
+
+				<div class='panel panel-default'>
+				<div class='panel-heading'><strong>Current Query</strong></div>
+				<div class='panel-body'>
+				<center>
+				<video id='session_video' width='100%' poster='../tutorial/query_segment.png'>
 					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp']."' >
 				</video>
-				</center>";
+				</center>
+				</div>
+				</div>
+
+				";
 				$render['input']=$intention_inputstring;
 				$render['hiddeninputs']="
 					<input type=\"hidden\" name=\"time_start\" value=\"".clean_timestr($nexttask['start_stamp'])."\"/>
@@ -1686,19 +1824,41 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 			}else if($taskname=='reformulation'){
 				$render['title'] = 'Next Query';
-				$render['preftext'] = "<p>After issuing the previous query, you issued another one.  Video of these two queries is below.</p>
-				<p><strong>Please answer the question on the right-hand-side regarding the reformulation.</strong></p>";
+				$render['preftext'] = "
+					<div class='alert alert-info'>
+					<p style='color:black'>After issuing the previous query, you issued another one.  <strong><u>Video of these two queries is below.</u></strong></p>
+				<p style='color:black'><strong>Please answer the question on the right-hand-side regarding the reformulation.</strong></p>
+</div>
+				";
 
-				$render['video']= "<center><strong><u><h4>Previous Query</h4></u></strong>
-				<video id='session_video1' width='85%'>
+				$render['video']= "
+
+				<div class='panel panel-default'>
+				<div class='panel-heading'><strong>Previous Query</strong></div>
+				<div class='panel-body'>
+
+				<center>
+				<video id='session_video1' width='85%' poster='../tutorial/prev_query.png'>
 					<source id='mp4source1' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp_prev']."' >
 				</video>
+
 				</center>
-				<center><strong><u><h4>Next Query</h4></u></strong>
-				<video id='session_video2' width='85%'>
+				</div>
+				</div>
+
+
+				<div class='panel panel-default'>
+				<div class='panel-heading'><strong>Next Query</strong></div>
+				<div class='panel-body'>
+				<center>
+				<video id='session_video2' width='85%' poster='../tutorial/next_query.png'>
 					<source id='mp4source2' type='video/mp4' src='../data/videos/mp4/$filename#t=".$nexttask['start_stamp']."' >
 				</video>
-				</center>";
+
+				</center>
+				<div>
+				</div>
+				";
 
 
 
@@ -1716,13 +1876,25 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 			}else if($taskname=='save'){
 				$render['title'] = 'Saved Page';
-				$render['preftext'] = "<p>After issuing the query you just marked for intention, you saved a bookmark.  We show a video of your saving action(s) below.</p>
-				<p><strong>Please answer the question on the right hand side about this save.</strong></p>
+				$render['preftext'] = "
+				<div class='alert alert-info'>
+				<p style='color:black'>After issuing the query you just marked for intention, <strong><u>you saved a bookmark</u></strong>.  We show <strong><u>a video of your saving action(s) below</u></strong>.</p>
+				<p style='color:black'><strong>Please answer the question on the right hand side about this save.</strong></p>
+				</div>
 				";
 
-				$render['video']= "<center><video id='session_video' width='100%'>
+				$render['video']= "
+
+
+				<div class='panel panel-default'>
+				<div class='panel-heading'><strong>Current Save Action(s)</strong></div>
+				<div class='panel-body'>
+				<center><video id='session_video' width='100%' poster='../tutorial/save.png'>
 					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".clean_timestr($nexttask['stamps'][0])."' >
-				</video></center>";
+				</video></center>
+				</div>
+
+				</div>";
 
 
 
@@ -1732,38 +1904,78 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 				for($x=1;$x<=count($nexttask['stamps']);$x+=1){
 						$render['input'] .= "
-						<p><u><strong>Save $x</strong></u></p>
-						<button id='playpausebutton_$x' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo($x);return false;'><i id=\"playpauseicon_$x\" class=\"fa fa-repeat\"></i> Replay Video</button>
+						<div class='panel panel-default'>
+						<div class='panel-heading'>
 
+						<legend>Save $x</legend>
+						</div>
+						<div class='panel-body'>
+
+						<div class='form-group'>
+						<button id='playpausebutton_$x' class='btn btn-success' onclick='playvideo($x);return false;'><i id=\"playpauseicon_$x\" class=\"fa fa-repeat\"></i> Review Save Action</button>
+						</div>
 
 						<fieldset>
-						<div id='useful_div_$x' class='container'>
-							How useful was this page in helping you to complete and/or understand your assignment?
-						<div class='pure-g'>
-						<div class='pure-u-1-8'><label for='useful_1_$x' class='pure-radio'><input id='useful_1_$x' type='radio' name='useful_$x' value='1'>1 (Not at all)</label></div>
-						<div  style='background-color:#F2F2F2' class='pure-u-1-8'><label for='useful_2_$x' class='pure-radio'><input id='useful_2_$x' type='radio' name='useful_$x' value='2'>2</label></div>
-						<div  class='pure-u-1-8'><label for='useful_3_$x' class='pure-radio'><input id='useful_3_$x' type='radio' name='useful_$x' value='3'>3</label></div>
-						<div style='background-color:#F2F2F2' class='pure-u-1-8'><label for='useful_4_$x' class='pure-radio'><input id='useful_4_$x' type='radio' name='useful_$x' value='4'>4 (Somewhat)</label></div>
-						<div  class='pure-u-1-8'><label for='useful_5_$x' class='pure-radio'><input id='useful_5_$x' type='radio' name='useful_$x' value='5'>5</label></div>
-						<div style='background-color:#F2F2F2' class='pure-u-1-8'><label for='useful_6_$x' class='pure-radio'><input id='useful_6_$x' type='radio' name='useful_$x' value='6'>6</label></div>
-						<div  class='pure-u-1-8'><label for='useful_7_$x' class='pure-radio'><input id='useful_7_$x' type='radio' name='useful_$x' value='7'>7 (Extremely)</label></div>
-						</div>
+						<div id='useful_div_$x' class='container' style='padding-left:0px'>
+							How useful was this page in helping you to <br/>complete and/or understand your assignment?
+
+						<table class='table table-bordered' style='width:50px;'>
+							<tr >
+								<td style='background-color:#ABCDFE'><center><label for='useful_1_$x' class='pure-radio'>1<br/>(Not at all)</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='useful_2_$x' class='pure-radio'>2</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='useful_3_$x' class='pure-radio'>3</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='useful_4_$x' class='pure-radio'>4<br/>(Somewhat)</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='useful_5_$x' class='pure-radio'>5</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='useful_6_$x' class='pure-radio'>6</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='useful_7_$x' class='pure-radio'>7<br/>(Extremely)</label></center></td>
+							</tr>
+							<tr >
+								<td style='background-color:#ABCDFE'><center><input id='useful_1_$x' type='radio' name='useful_$x' value='1'></center></td>
+								<td style='background-color:#ffffff'><center><input id='useful_2_$x' type='radio' name='useful_$x' value='2'></center></td>
+								<td style='background-color:#ABCDFE'><center><input id='useful_3_$x' type='radio' name='useful_$x' value='3'></center></td>
+								<td style='background-color:#ffffff'><center><input id='useful_4_$x' type='radio' name='useful_$x' value='4'></center></td>
+								<td style='background-color:#ABCDFE'><center><input id='useful_5_$x' type='radio' name='useful_$x' value='5'></center></td>
+								<td style='background-color:#ffffff'><center><input id='useful_6_$x' type='radio' name='useful_$x' value='6'></center></td>
+								<td style='background-color:#ABCDFE'><center><input id='useful_7_$x' type='radio' name='useful_$x' value='7'></center></td>
+							</tr>
+						</table>
 						</div>
 
-						<div id='confident_div_$x' class='container'>
-							How confident are you in your usefulness rating?
-						<div class='pure-g'>
-						<div class='pure-u-1-8'><label for='confident_1_$x' class='pure-radio'><input id='confident_1_$x' type='radio' name='confident_$x' value='1'>1 (Not at all)</label></div>
-						<div  style='background-color:#F2F2F2' class='pure-u-1-8'><label for='confident_2_$x' class='pure-radio'><input id='confident_2_$x' type='radio' name='confident_$x' value='2'>2</label></div>
-						<div  class='pure-u-1-8'><label for='confident_3_$x' class='pure-radio'><input id='confident_3_$x' type='radio' name='confident_$x' value='3'>3</label></div>
-						<div style='background-color:#F2F2F2' class='pure-u-1-8'><label for='confident_4_$x' class='pure-radio'><input id='confident_4_$x' type='radio' name='confident_$x' value='4'>4 (Somewhat)</label></div>
-						<div  class='pure-u-1-8'><label for='confident_5_$x' class='pure-radio'><input id='confident_5_$x' type='radio' name='confident_$x' value='5'>5</label></div>
-						<div style='background-color:#F2F2F2' class='pure-u-1-8'><label for='confident_6_$x' class='pure-radio'><input id='confident_6_$x' type='radio' name='confident_$x' value='6'>6</label></div>
-						<div  class='pure-u-1-8'><label for='confident_7_$x' class='pure-radio'><input id='confident_7_$x' type='radio' name='confident_$x' value='7'>7 (Extremely)</label></div>
-						</div>
+
+						<div id='confident_div_$x' class='container' style='padding-left:0px'>
+							How confident are you in your <br/>usefulness rating?
+						<table class='table table-bordered' style='width:50px;'>
+
+							<tr >
+								<td style='background-color:#ABCDFE'><center><label for='confident_1_$x' class='pure-radio'>1<br/>(Not at all)</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='confident_2_$x' class='pure-radio'>2</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='confident_3_$x' class='pure-radio'>3</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='confident_4_$x' class='pure-radio'>4<br/>(Somewhat)</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='confident_5_$x' class='pure-radio'>5</label></center></td>
+								<td style='background-color:#ffffff'><center><label for='confident_6_$x' class='pure-radio'>6</label></center></td>
+								<td style='background-color:#ABCDFE'><center><label for='confident_7_$x' class='pure-radio'>7<br/>(Extremely)</label></center></td>
+							</tr>
+
+							<tr >
+								<td style='background-color:#ABCDFE'><center><input id='confident_1_$x' type='radio' name='confident_$x' value='1'></center></td>
+								<td style='background-color:#ffffff'><center><input id='confident_2_$x' type='radio' name='confident_$x' value='2'></center></td>
+								<td style='background-color:#ABCDFE'><center></center><input id='confident_3_$x' type='radio' name='confident_$x' value='3'></td>
+								<td style='background-color:#ffffff'><center><input id='confident_4_$x' type='radio' name='confident_$x' value='4'></center></td>
+								<td style='background-color:#ABCDFE'><center><input id='confident_5_$x' type='radio' name='confident_$x' value='5'></center></td>
+								<td style='background-color:#ffffff'><center><input id='confident_6_$x' type='radio' name='confident_$x' value='6'></center></td>
+								<td style='background-color:#ABCDFE'><center><input id='confident_7_$x' type='radio' name='confident_$x' value='7'></center></td>
+							</tr>
+
+
+
+
+						</table>
 						</div>
 
-						</fieldset>";
+						</fieldset>
+						</div>
+						</div>
+						";
 				}
 				$render['hiddeninputs']="
 
@@ -1782,12 +1994,22 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 			}else if($taskname=='unsave'){
 				$render['title'] = 'Unsaved Page';
-				$render['preftext'] = "<p>After issuing the query you just marked for intention, you decided to unsave some previously saved page(s).  We show a video of your undo action below.</p>
-				<p><strong>Please answer the question on the right hand side about this undo action.</strong></p>";
+				$render['preftext'] = "
+		<div class='alert alert-info'>
+		<p style='color:black'>After issuing the query you just marked for intention, you decided to unsave some previously saved page(s).  We show a video of your undo action below.</p>
+		</div>
+				";
 
-				$render['video']= "<center><video id='session_video' width='100%'>
+				$render['video']= "
+
+				<div class='panel panel-default'>
+				<div class='panel-heading'><strong>Please answer the question on the right hand side about this undo action.</strong></div>
+				<div class='panel-body'>
+				<center><video id='session_video' width='100%' poster='../tutorial/unsave.png'>
 					<source id='mp4source' type='video/mp4' src='../data/videos/mp4/$filename#t=".clean_timestr($nexttask['stamps'][0])."' >
-				</video></center>";
+				</video></center>
+				</div>
+				</div>";
 
 
 				$render['input']="";
@@ -1795,17 +2017,28 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 				for($x=1;$x<=count($nexttask['stamps']);$x+=1){
 						$render['input'] .= "
 
+						<div class='panel panel-default'>
+						<div class='panel-heading'>
 
-						<p><strong><u>Unsave $x</u></strong></p>
+						<legend>Unsave $x</legend>
+						</div>
 
-						<button id='playpausebutton_$x' style='color: white; background:rgb(28, 184, 65);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);' class='pure-button' onclick='playvideo($x);return false;'><i id=\"playpauseicon_$x\" class=\"fa fa-repeat\"></i> Replay Video</button>
+						<div class='panel-body'>
+						<div class='form-group'>
+						<button id='playpausebutton_$x' class='btn btn-success' onclick='playvideo($x);return false;'><i id=\"playpauseicon_$x\" class=\"fa fa-repeat\"></i> Review Unsave Action</button>
+						</div>
 
 						<fieldset>
+						<div class='form-group'>
 						<div id='unsave_reason_textgroup_$x' >
 						<label>You decided to unsave this document. <br/>Please say why you made this decision.</label>
 						<textarea id='unsave_reason_$x' name='unsave_reason_$x' rows='5' cols='40' ></textarea>
 						</div>
-						</fieldset>";
+						</div>
+						</fieldset>
+						</div>
+						</div>
+						";
 				}
 
 
@@ -1841,11 +2074,10 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 
 <html>
 <head>
+
+	<link rel="stylesheet" href="../study_styles/bootstrap-lumen/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../study_styles/custom/text.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="../study_styles/custom/background.css">
-	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/buttons.css">
-	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/forms.css">
+	<link rel="stylesheet" href="../styles.css">
 	<link rel="stylesheet" href="../study_styles/pure-release-0.5.0/grids-min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="../lib/jquery-2.1.3.min.js"></script>
@@ -1874,7 +2106,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
     	overflow-y: scroll;
 
 
-		  height:95%; //set dimensions
+		  height:100%; //set dimensions
 		  transition: width ease .5s; // fluid transition when resizing
 
 		  /* Sass/Scss only:
@@ -1883,7 +2115,7 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		  More info: http://thesassway.com/intermediate/referencing-parent-selectors-using-ampersand
 		  */
 		  body.open-nav & {
-		    width:250px;
+		    width:200px;
 		  }
 
 		  ul {
@@ -1932,6 +2164,18 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 		}
 </style>
 
+<style type="text/css">
+		legend{
+		color:white;
+		background-color:#404040;
+		padding-left:5px;
+		padding-right:5px;
+		padding-top:3px;
+		padding-bottom:3px;
+		border-radius:5px;
+		}
+</style>
+
 </head>
 
 
@@ -1941,13 +2185,16 @@ if (Util::getInstance()->checkCurrentPage(basename( __FILE__ )))
 if(!file_exists($filedir.$filename)){
 	?>
 
-<body class="style1">
+<body class="body">
 	<div style="width:90%; margin: 0 auto">
+		<div class="panel panel-default" style="width:95%;  margin:auto">
+			<div class="panel-body">
 
 		<center><h2><?php echo $render['title'];?></h2></center>
 
 		<p>Your lab proctor has not yet uploaded the necessary files to continue with the study.  Please wait momentarily to refresh this page.  We apologize for the inconvenience.</p>
 	</div>
+</div></div>
 </body>
 </html>
 	<?php
@@ -1961,10 +2208,13 @@ if(!file_exists($filedir.$filename)){
 		$stageID = $base->getStageID();
 
  ?>
-<body class="style1" onload="init();">
-<br/>
+<body class="body" onload="init();">
+
+
 <div style="width:90%; margin: 0 auto">
 	<div style="margin-right:30%">
+		<div class="panel panel-default" style="width:95%;  margin:auto">
+			<div class="panel-body">
 	<center><h2><?php echo $render['title'];?></h2></center>
 
 	<?php
@@ -1973,7 +2223,8 @@ if(!file_exists($filedir.$filename)){
 
 
 	 ?>
-
+ </div>
+ </div>
 </div>
 
 
@@ -1984,7 +2235,9 @@ if(!file_exists($filedir.$filename)){
 
 
 	<form onSubmit="return validate();" class="pure-form pure-form-stacked" method=post>
-		<div class='grayrect left'>
+
+		<div class='panel panel-primary left'>
+			<div class='panel-heading'>
 
 		<div style="display:none">
 			<select id="timeslice" onchange="shownext();">
@@ -2093,35 +2346,48 @@ if(!file_exists($filedir.$filename)){
 
 
 		?>
-	<div id='checkboxset' style='display:block'>
+
 		<?php
 
 		$progress = getProgress();
 		$c = $progress['count']+1;
 		$t = $progress['total'];
-		echo "<p><h4><u>Progress: $c/$t </u></h4></p>";
+		$perc = round(((double)$c)/((double)$t)*100);
+		echo "<p><h4 style='color:white'><u>Progress: $c/$t </u></h4></p>";
+
 		?>
 
-		<p>Please complete the form below to the best of your ability.</p>
+		<div class='progress'>
+			<?php
+				echo "<div class='progress-bar progress-bar-success' style='width:$perc%'>";
+				echo "</div>";
+			?>
+		</div>
+		</div>
+		<div class='panel-body'>
+			<div id='checkboxset' style='display:block'>
+		<p>Please complete the form below to the best of your <br/>ability.</p>
 		<input type="hidden" name="intent" value="true"/>
 		<?php
 			echo $render['hiddeninputs'];
 		 ?>
-		  <button class="pure-button pure-button-primary" type="submit">Submit</button>
-			<br/>
+		  <button class="btn btn-primary" type="submit">Submit</button>
 			<hr/>
 
-		<div id='error_text' style='display:none'>
-	 	 <p style='color:red'>Please complete the form below to the best of your ability.</p>
-	  </div>
+		<div id='error_text' class='alert alert-danger' style='display:none; width:90%'>
+	 	 <p>You missed some inputs. Please complete the form <br/>below to the best of your ability.</p>
+	 </div>
 
+		<div class='well' style='background-color:rgb(210,210,210);'>
 		<?php
 		echo $render['input'];
 		?>
-
+		</div>
 
 
 	</div>
+	</div>
+
 
 
 
